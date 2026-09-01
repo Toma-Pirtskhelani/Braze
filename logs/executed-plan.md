@@ -64,7 +64,49 @@ tested end to end by scaffolding a Klaviyo repo, and a record template) and `bra
 
 **Outstanding at handover:** CT logs were not captured — crt.sh was returning 502 and
 Cert Spotter rate-limited. Recorded in [`fetch-failures.md`](fetch-failures.md); retry
-before phase 5, as CT is the highest-value infrastructure source.
+before phase 4, as CT is the highest-value infrastructure source.
+
+---
+
+## 2026-09-02 — made runnable without a human
+
+A critical review of the first pass found one structural failure and several gaps. The
+failure: **phase 1 had a human in the middle of it.** G2, Gartner, TrustRadius and
+Glassdoor all return HTTP 403 to scripted access, so an unattended run reached the panel
+step and stopped. Everything below follows from fixing that.
+
+**The substitution.** `tools/fetch_issues.py` captures public issue trackers instead —
+1,091 issues across `braze-inc`, 1,065 closed and 26 open, verified reachable. On several
+axes it is better evidence than a review panel: unsolicited, specific, dated, with
+measurable time-to-close, and with the vendor answering in public. Tested on two repos
+alone it returned 284 issues spanning 2016-02-25 → 2026-08-27, median close 5 days and
+90th percentile 130 days. It is not representative of buyers, and the tool says so in its
+own output. The panels are now enrichment, not a dependency.
+
+**Gaps closed.**
+
+| Gap | Fix |
+|---|---|
+| The 10-K itself was never fetched, only its index row | `tools/fetch_filings.py` — 10-K/10-Q/8-K/DEF 14A as text. The FY2026 10-K is ~73,000 words |
+| `capability_count.py` looked for `api_endpoints.csv` that nothing produced — the second lens was missing | `tools/extract_api.py` reads the 200 `/docs/api` pages already in the corpus |
+| No orchestrator; fourteen commands to run in the right order | `tools/run_all.py` — idempotent, continues past optional failures, writes `logs/run-status.md` |
+| Nothing checked the agent's own work | `tools/verify.py` — ten rules, `--strict` exits non-zero |
+| The evidence record had a spec but no generator: ~250 KB of HTML to write by hand | `deck/build_record.py` — chapters as markdown, slide map derived from the built deck, duplicate figures reported by name |
+| No worked example of the slide component vocabulary | `deck/COMPONENTS.md` |
+| No budgets, stopping conditions, or degradation rules for an unattended run | `AGENTS.md` |
+
+**Bugs found while testing this pass:**
+
+| Bug | Fix |
+|---|---|
+| `fetch_issues.py` consumed `--max-repos`'s value as the org name, so every call 404'd | Parse the flag and its value together |
+| `build_record.py` demanded record coverage for frame slides that assert nothing | A slide with no figure has nothing to prove — a rule, not an exception list |
+| Slide-to-chapter matching was fuzzy title matching only | Chapters claim slides explicitly with `{{slides: 1, 4, 12}}`; matching is the fallback |
+| `make_release.sh` split the record on `<header class="cover">`, which the generated record does not have | Anchor on `<nav class="parts">`; align the print selectors |
+
+**Verified end to end today:** `slides_*.py` + `record/*.md` → deck → speaker script →
+evidence record → two PDFs with no fallback fonts and correct page counts. The whole
+chain works before any research has been done, which is what lets an agent trust it.
 
 ---
 

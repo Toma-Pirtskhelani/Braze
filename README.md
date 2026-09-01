@@ -22,6 +22,7 @@ command.
 | You want to… | Open |
 |---|---|
 | **Run the research** | **[`TODO.md`](TODO.md)** — the whole run, phase by phase, with a *done when* for each |
+| **Run it as an agent, alone** | **[`AGENTS.md`](AGENTS.md)** — the loop, the budgets, what to substitute when a source is blocked |
 | Know what makes Braze different | [`docs/STRATEGY.md`](docs/STRATEGY.md) — read this before phase 0 |
 | Know where to pull from | [`docs/SOURCES.md`](docs/SOURCES.md) — every source, verified, with what it yields |
 | Understand the process | [`docs/METHOD.md`](docs/METHOD.md) — seven phases, and seven mistakes not to repeat |
@@ -57,26 +58,52 @@ Google Chrome is needed only for the PDF release step at the very end.
 
 ## Run the research
 
+One command does the whole capture and extraction, unattended:
+
+```bash
+python3 tools/run_all.py           # ~40 min. Idempotent — interrupt and rerun freely
+python3 tools/verify.py            # what is still wrong
+cat logs/run-status.md             # what ran, what failed, what to do next
+```
+
+It skips steps already done, **continues past optional failures**, and stops only when
+something required breaks. Individual tools if you prefer to drive it yourself:
+
 ```bash
 python3 tools/fetch_sitemap.py     # sitemaps      -> site_inventory.csv        (~30s)
 python3 tools/sec_facts.py         # SEC XBRL      -> financials*.csv           (~15s)
 python3 tools/sec_filings.py       # SEC EDGAR     -> filings.csv               (~20s)
+python3 tools/fetch_filings.py     # 10-K/10-Q/8-K -> sources/filings/*.txt     (~3min)
 python3 tools/status_history.py    # status page   -> incidents.csv             (~60s)
 python3 tools/github_org.py        # braze-inc     -> repos.csv, sdk_releases   (~90s)
+python3 tools/fetch_issues.py      # issue tracker -> issues.csv + a panel      (~3min)
 python3 tools/ct_probe.py          # CT logs       -> subdomains.csv            (varies)
 python3 tools/fetch_docs.py        # docs site     -> sources/docs/*.md         (~25min)
 python3 tools/index_docs.py        # the corpus    -> docs_index.csv            (~10s)
+python3 tools/extract_api.py       # API pages     -> api_endpoints.csv         (~5s)
 python3 tools/capability_count.py  # docs + API    -> capabilities.csv          (~20s)
 python3 tools/code_reviews.py      # panels        -> review_themes.csv         (~5s)
 python3 tools/build_timeline.py    # everything    -> timeline.csv              (~5s)
 
 python3 deck/build_deck.py         # slides_*.py   -> deck/braze-deck.html
 python3 deck/make_script.py        # the deck      -> docs/PRESENTATION-SCRIPT.md
+python3 deck/build_record.py       # record/*.md   -> deck/evidence-record.html
 bash   tools/make_release.sh       # both docs     -> dist/ HTML + PDF + zip
 ```
 
-`make_script.py` reads the **built deck**, so the spoken script cannot drift from the
-slides. Change a slide, rebuild both.
+Both generated documents read from their source, so neither can drift: `make_script.py`
+reads the built deck, and `build_record.py` derives the slide map from it too.
+
+---
+
+## It runs without a human
+
+No step in this repository waits for a person. The review sites that block scripted
+access (G2, Gartner, TrustRadius, Glassdoor all return 403) are handled by
+**substitution, not by waiting**: `fetch_issues.py` captures 1,000+ unsolicited, dated
+public issues as the customer-voice corpus instead. [`AGENTS.md`](AGENTS.md) carries the
+loop, the budgets, the degradation rules, and the three cases — and only three — where
+an agent should stop and ask.
 
 ---
 
@@ -84,8 +111,11 @@ slides. Change a slide, rebuild both.
 
 | | |
 |---|---|
-| **11 extraction tools** | All dependency-free; every one tested against the live source on 2026-09-01 |
-| **The deck design system** | `deck/lib.py`, `css.py`, `icons.py` — ported from a deck that shipped, with a 3-slide working scaffold |
+| **14 extraction tools** | All dependency-free; every one tested against the live source |
+| **An orchestrator** | `tools/run_all.py` — the whole pipeline, idempotent, with a status report |
+| **A self-check** | `tools/verify.py` — ten rules the analysis must satisfy, `--strict` for a gate |
+| **The deck design system** | `deck/lib.py`, `css.py`, `icons.py` + a working scaffold and [`deck/COMPONENTS.md`](deck/COMPONENTS.md) |
+| **A record generator** | `deck/build_record.py` — enforces one-fact-one-home and derives the slide map from the deck |
 | **The PDF release pipeline** | `tools/make_release.sh`, including the non-obvious static-font fix documented inline |
 | **The method** | Seven phases, plus nine mistakes made in anger and what each taught |
 | **The source catalogue** | Every public source, verified reachable, with what it yields and what it costs |

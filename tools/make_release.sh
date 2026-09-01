@@ -17,9 +17,10 @@ trap 'rm -rf "$WORK"' EXIT
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 [ -x "$CHROME" ] || { echo "Google Chrome not found at $CHROME"; exit 1; }
 
-echo "── rebuilding the deck from source"
+echo "── rebuilding both documents from source"
 python3 deck/build_deck.py
 python3 deck/make_script.py
+python3 deck/build_record.py
 
 DECK="$REPO/deck/braze-deck.html"
 REC="$REPO/deck/evidence-record.html"
@@ -102,12 +103,12 @@ REC_PRINT = '''<style id="printcss">@media print{
   body{font-size:9.6pt;line-height:1.5;background:var(--paper)!important}
   nav.parts{display:none!important}
   .w{max-width:none!important;padding:0!important}
-  header.cover{break-after:page;page-break-after:always}
+  body > .w > header{break-after:page;page-break-after:always}
   section.part{break-before:page;page-break-before:always;break-inside:avoid}
-  .box,.tw,table,.diag,pre,.stats,.cover-meta{break-inside:avoid;page-break-inside:avoid}
+  .box,.tw,table,pre,.thesis{break-inside:avoid;page-break-inside:avoid}
   tr,li{break-inside:avoid;page-break-inside:avoid}
   thead{display:table-header-group}
-  h1,h2,h3,h4,.slide-head,.thesis{break-after:avoid;page-break-after:avoid}
+  h1,h2,h3,h4,.thesis{break-after:avoid;page-break-after:avoid}
   h1{font-size:26pt}h2{font-size:17pt}h3{font-size:13pt}h4{font-size:8.4pt}
   .thesis{font-size:10.4pt}table{font-size:8.6pt}.tw table td,.tw table th{padding:4px 6px}
   code,.mono{font-size:8.2pt}a{text-decoration:none}
@@ -133,7 +134,7 @@ fr = open(os.path.join(work, 'record.css')).read()
 prep(os.path.join(repo, 'deck/braze-deck.html'),  os.path.join(work, 'print-deck.html'),
      fd, DECK_PRINT, '<div id="viewport">')
 prep(os.path.join(repo, 'deck/evidence-record.html'),   os.path.join(work, 'print-record.html'),
-     fr, REC_PRINT, '<header class="cover">', ' data-theme="light"')
+     fr, REC_PRINT, '<nav class="parts">', ' data-theme="light"')
 print('   print copies written')
 PY
 

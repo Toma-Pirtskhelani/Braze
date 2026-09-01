@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Braze, Inc. — evidence record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#FBFAF8;--ink:#1A1D23;--muted:#5D6675;--rule:#E2DFD8;--rule2:#CFCABF;
+ --accent:#2C4A7C;--g-audited:#2F6B4F;--g-infra:#3E6B8A;--g-doc:#6B7A2F;--g-third:#B07B1E;
+ --g-claim:#A6472F;--disp:"Newsreader",Georgia,serif;--body:"Public Sans",system-ui,sans-serif;
+ --mono:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#14171C;--ink:#E8E6E1;
+ --muted:#98A0AD;--rule:#262B33;--rule2:#39404B;--accent:#7FA8DC}}
+:root[data-theme="dark"]{--paper:#14171C;--ink:#E8E6E1;--muted:#98A0AD;--rule:#262B33;
+ --rule2:#39404B;--accent:#7FA8DC}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;font-size:16px}
+.w{max-width:52rem;margin:0 auto;padding:2rem 1.5rem 6rem}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.25;text-wrap:balance}
+h1{font-size:2.5rem;margin-bottom:.4rem}
+h2{font-size:1.85rem;margin:3rem 0 .5rem;padding-top:1.4rem;border-top:2px solid var(--rule2)}
+h3{font-size:1.2rem;margin:1.8rem 0 .4rem}
+h4{font-size:1rem;margin:1.2rem 0 .3rem;color:var(--muted)}
+p{margin:.7rem 0} ul{margin:.7rem 0 .7rem 1.2rem} li{margin:.25rem 0}
+a{color:var(--accent)}
+.thesis{font-family:var(--disp);font-size:1.14rem;line-height:1.5;border-left:3px solid var(--accent);
+ padding:.35rem 0 .35rem 1rem;margin:.9rem 0 1.4rem}
+.tw{overflow-x:auto;margin:1.1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+code{font-family:var(--mono);font-size:.86em}
+.g{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;
+ padding:.1rem .42rem;border-radius:3px;color:#fff;white-space:nowrap}
+.g-audited{background:var(--g-audited)}.g-infra{background:var(--g-infra)}
+.g-doc{background:var(--g-doc)}.g-third{background:var(--g-third)}.g-claim{background:var(--g-claim)}
+.src{font-family:var(--mono);font-size:.76rem;color:var(--muted);display:block;margin:.2rem 0 .6rem}
+.todo{color:var(--g-claim);font-family:var(--mono);font-size:.76rem}
+.box{background:color-mix(in srgb,var(--rule) 40%,transparent);border:1px solid var(--rule);
+ border-radius:6px;padding:.9rem 1.15rem;margin:1.1rem 0}
+nav.parts{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--rule);
+ padding:.55rem 0;font-family:var(--mono);font-size:.71rem;display:flex;gap:.9rem;flex-wrap:wrap;z-index:5}
+@media print{@page{size:A4 portrait;margin:15mm 14mm 16mm}
+ *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+ body{font-size:9.6pt}nav.parts{display:none!important}.w{max-width:none;padding:0}
+ section.part{break-before:page}.box,.tw,table,tr,li{break-inside:avoid}
+ thead{display:table-header-group}h1,h2,h3,h4,.thesis{break-after:avoid}
+ a[href^="http"]::after{content:" (" attr(href) ")";font-size:7pt;color:var(--muted)}}
+</style></head><body>
+<nav class="parts"><a href="#c1">1 The company</a><a href="#c2">2 The money</a><a href="#c3">3 What they bought</a><a href="#c4">4 The platform</a><a href="#c5">5 Channels and deliv</a><a href="#c6">6 The AI</a><a href="#c7">7 The market</a><a href="#c8">8 What we could not </a><a href="#map">Slide map</a></nav>
+<div class="w">
+<header><h1>Braze, Inc. — evidence record</h1>
+<p class="src">Public sources only · every claim graded and traceable</p>
+<div class="box"><p><strong>How to read this.</strong> The chapters are the
+<em>Record</em>: every fact is stated <strong>once</strong>, in full, with its caveats in
+the same sentence as the number. The <a href="#map">Slide Map</a> is the deck in order and
+holds no evidence — it points back into the chapters.</p>
+<p>Grades run <span class="g g-audited">audited</span>
+<span class="g g-infra">infrastructure</span> <span class="g g-doc">documented</span>
+<span class="g g-third">third-party</span> <span class="g g-claim">claimed</span>, ordered by
+how hard it would be for the vendor to have made the statement untrue.
+<strong>A claim takes the grade of its weakest source.</strong></p></div></header>
+<section class="part" id="c1"><h2>1 · The company</h2><p class="thesis">Entity, listing, history, leadership, ownership, headcount, subsidiaries.</p>
+<div class="tw"><table><thead><tr><th>Fact</th><th>Value</th><th>Grade</th><th>Source</th></tr></thead><tbody><tr><td>SEC registrant</td><td>Braze, Inc.</td><td><span class="g g-audited">audited</span></td><td><code>data/filings.csv</code></td></tr><tr><td>CIK / ticker</td><td>0001676238 / BRZE (Nasdaq)</td><td><span class="g g-audited">audited</span></td><td><code>data/filings.csv</code></td></tr><tr><td>Fiscal year end</td><td>31 January</td><td><span class="g g-audited">audited</span></td><td><code>data/filings.csv</code></td></tr></tbody></table></div>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c2"><h2>2 · The money</h2><p class="thesis">Revenue, margin, cost structure, cash, contracted revenue, dilution. Audited only.</p>
+<p>_Pending. Everything here traces to <code>data/financials_annual.csv</code>, and nothing enters that is not audited._</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c3"><h2>3 · What they bought</h2><p class="thesis">Acquisitions: price, date, and what each one brought.</p>
+<p>_Pending. 8-K item dates, 10-K business-combination notes, and the cash-paid line._</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c4"><h2>4 · The platform</h2><p class="thesis">Architecture, data model, identity, limits, infrastructure.</p>
+<p>&lt;!-- this chapter holds the source-inventory counts the title slide shows --&gt;</p>
+<div class="tw"><table><thead><tr><th>Fact</th><th>Value</th><th>Grade</th><th>Source</th></tr></thead><tbody><tr><td>Documentation pages</td><td>1,352</td><td><span class="g g-doc">documented</span></td><td>docs sitemap, captured 2026-09-01</td></tr><tr><td>Indexed site URLs</td><td>6,366 across 8 sitemaps</td><td><span class="g g-doc">documented</span></td><td><code>data/site_inventory.csv</code></td></tr><tr><td>Status-page components</td><td>132 in 12 groups</td><td><span class="g g-doc">documented</span></td><td><code>data/status_components.csv</code></td></tr></tbody></table></div>
+<p>These are source-inventory counts, not claims about the product. They are here because they are the denominators other facts get quoted against.</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c5"><h2>5 · Channels and delivery</h2><p class="thesis">What exists, what is marketed, who delivers each one.</p>
+<p>_Pending. The sub-processor disclosure is the highest-value source here: it names every delivery supplier, and by omission says which channel has no middleman._</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c6"><h2>6 · The AI</h2><p class="thesis">Shipped ML, the agentic layer, and the four-lens measurement.</p>
+<p>_Pending. Never assert thinness. State the focused-page counts, the endpoint counts, the words customers use and analyst coverage counts, and let the ratio speak._</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c7"><h2>7 · The market</h2><p class="thesis">Customers, geography, segment mix, competition, what buyers shortlist.</p>
+<p>_Pending. Customer count has at least three definitions here — the 10-K&#x27;s defined metric, the customer-story pages, and independent detection. Never merge them._</p>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section><section class="part" id="c8"><h2>8 · What we could not answer</h2><p class="thesis">Open questions, and what would close each one.</p>
+<p>Public sources run out somewhere, and saying where is part of the analysis. <code>docs/QUESTIONS.md</code> §4 carries the full list; each entry names what <em>would</em> close it.</p>
+<div class="tw"><table><thead><tr><th>Question</th><th>What would close it</th></tr></thead><tbody><tr><td>Actual list pricing and discounting</td><td>A public-sector procurement award, or a customer contract</td></tr><tr><td>Which features customers actually use</td><td>No vendor publishes adoption. This needs primary research</td></tr><tr><td>Win/loss rates against named rivals</td><td>Requires being in the deals</td></tr></tbody></table></div>
+<h5>What would change this chapter</h5>
+<p>_Say what evidence would overturn the thesis above._</p></section>
+<section class="part" id="map"><h2>Slide map</h2>
+<p>The deck in order, generated from the built deck so coverage cannot be overstated.
+No evidence lives here — if a number appears in this table it belongs in a chapter.</p>
+<div class="tw"><table><thead><tr><th>#</th><th>Slide</th><th>Record</th></tr></thead><tbody><tr><td>01</td><td>Competitor Analysis</td><td><a href="#c4">§4</a></td></tr><tr><td>02</td><td>How we approach it</td><td><span class="src">no evidence claimed</span></td></tr><tr><td>03</td><td>How we grade</td><td><span class="src">no evidence claimed</span></td></tr></tbody></table></div></section>
+</div></body></html>

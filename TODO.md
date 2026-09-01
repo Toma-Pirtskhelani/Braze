@@ -7,9 +7,12 @@ progress log as well as its plan.
 Read [`STRATEGY.md`](docs/STRATEGY.md) first. It is short and it changes how several of
 these phases should be done.
 
-**Estimated:** phases 0–2 take about an hour of wall time, most of it the docs fetch
-running unattended. Phases 3–6 are the analysis. Phases 7–8 are the presentation, and
-they will take as long as everything before them combined.
+**Estimated:** phase 1 is about forty minutes of wall time, unattended. Phases 2–5 are
+the analysis. Phases 6–7 are the presentation, and they will take as long as everything
+before them combined.
+
+An agent running this alone should read [`AGENTS.md`](AGENTS.md) first: it carries the
+budgets, the stopping conditions, and what to substitute when a source is unavailable.
 
 ---
 
@@ -30,59 +33,66 @@ financial chapter is stronger here than on a private vendor.
 
 ---
 
-## Phase 1 · Capture — 45 minutes, mostly unattended
+## Phase 1 · Capture and extract — one command, ~40 minutes unattended
 
-Cheap and exhaustive first; expensive and partial last.
+```bash
+python3 tools/run_all.py            # everything below, in order, idempotent
+python3 tools/run_all.py --dry-run  # see the plan first
+```
 
-- [ ] `python3 tools/fetch_sitemap.py` → `data/site_inventory.csv`
-- [ ] `python3 tools/sec_facts.py` → `data/financials*.csv`
-- [ ] `python3 tools/sec_filings.py` → `data/filings.csv`, `data/insider_filing_counts.csv`
-- [ ] `python3 tools/status_history.py` → `data/incidents.csv`, `data/status_components.csv`
-- [ ] `python3 tools/github_org.py` → `data/repos.csv`, `data/sdk_releases.csv`
-- [ ] `python3 tools/ct_probe.py` → `data/subdomains.csv`
-      *(crt.sh is often down. If both sources fail, record it in `logs/fetch-failures.md`
-      and retry later — do not silently skip it, CT is the highest-value infrastructure source)*
-- [ ] `python3 tools/fetch_docs.py` → ~1,352 pages into `sources/docs/`. Resumable; rerun
-      if interrupted. Budget ~25 minutes.
-- [ ] Capture the API reference into `sources/external/` and extract to
-      `data/api_endpoints.csv` — endpoint counts are the second lens on capability and
-      the measurement is much weaker without them
+It runs each step, skips anything already done, **continues past optional failures**, and
+writes `logs/run-status.md` saying what ran, what failed, and what to do next. Interrupt
+it and rerun; nothing is lost.
+
+What it does, if you would rather drive it by hand:
+
+- [ ] `fetch_sitemap.py` → `data/site_inventory.csv`  *(required — nothing downstream works without it)*
+- [ ] `sec_facts.py` → `data/financials*.csv`
+- [ ] `sec_filings.py` → `data/filings.csv`, `data/insider_filing_counts.csv`
+- [ ] `status_history.py` → `data/incidents.csv`, `data/status_components.csv`
+- [ ] `github_org.py` → `data/repos.csv`, `data/sdk_releases.csv`
+- [ ] `ct_probe.py` → `data/subdomains.csv` *(crt.sh is often down; there is a fallback,
+      and a failure here is logged rather than fatal)*
+- [ ] `fetch_filings.py` → `sources/filings/` — the 10-K, 10-Q, 8-K and proxy as text.
+      **The 10-K is ~73,000 words and is the richest single source on the company**
+- [ ] `fetch_issues.py` → `data/issues.csv` + `sources/panels/github_issues.txt`
+- [ ] `fetch_docs.py` → ~1,352 pages into `sources/docs/`. Resumable. ~25 minutes
+- [ ] `index_docs.py` → `data/docs_index.csv` — **index before reading anything**
+- [ ] `extract_api.py` → `data/api_endpoints.csv` — the second lens on capability
+- [ ] `capability_count.py` → `data/capabilities.csv`
+- [ ] `code_reviews.py` → `data/review_themes.csv`
+- [ ] `build_timeline.py` → `data/timeline.csv`
+
+Then, by hand:
+
 - [ ] Capture the sub-processor disclosure into `sources/clean/` **with a capture date**
-- [ ] Capture `security.txt`, `robots.txt` and the status-page component list
-- [ ] Panels — these are 403 to scripts, so use a browser session or paste them in:
-  - [ ] G2 → `sources/panels/g2.txt`
-  - [ ] Gartner Peer Insights → `sources/panels/gartner.txt` *(capture the shortlists —
-        who buyers compared them against is the highest-value field on the page)*
-  - [ ] TrustRadius → `sources/panels/trustradius.txt`
-  - [ ] Glassdoor → `sources/panels/glassdoor.txt`
-  - [ ] Careers board → `sources/panels/jobs.txt`
-- [ ] Every panel file opens with a capture date on line 1
+- [ ] Capture `security.txt` and `robots.txt`
+- [ ] Read the section histogram `index_docs.py` prints. That distribution is the first
+      real finding of the project and it costs nothing
+- [ ] Revise [`docs/CAPABILITY-TAXONOMY.tsv`](docs/CAPABILITY-TAXONOMY.tsv) with Braze's
+      **own** vocabulary — product names beat category words, and you could not guess
+      them before the corpus existed — then rerun `capability_count.py`
 
-**Done when:** `sources/` has the docs corpus and at least three panels, `data/` has six
-or more CSVs, and every failure is written down in `logs/fetch-failures.md`.
+### The review panels, and why they are not a blocker
+
+G2, Gartner Peer Insights, TrustRadius and Glassdoor all return **HTTP 403** to scripted
+access. They are *enrichment*, not a dependency: `fetch_issues.py` captures 1,000+
+unsolicited, dated, public issues as the customer-voice corpus instead, and
+`code_reviews.py` codes it like any other panel.
+
+Capture the panels **if** a browser session is available — Gartner's shortlists (who
+buyers actually compared them against) are the single highest-value field on any review
+page. If not, note the absence and move on. See *Degradation* in [`AGENTS.md`](AGENTS.md).
+
+**Done when:** `logs/run-status.md` shows no **required** failure, `data/` has ten or more
+CSVs, and every optional failure is written down in `logs/fetch-failures.md`.
 
 **Do not skip the failure log.** A gap you have written down is evidence; a gap you have
 not is a mistake.
 
 ---
 
-## Phase 2 · Index — 10 minutes
-
-- [ ] `python3 tools/index_docs.py` → `data/docs_index.csv`, `data/docs_sections.csv`
-- [ ] Read the section histogram it prints. That distribution is the first real finding
-      of the project and it costs nothing.
-- [ ] Revise [`docs/CAPABILITY-TAXONOMY.tsv`](docs/CAPABILITY-TAXONOMY.tsv) using Braze's
-      **own** vocabulary — product names beat category words, and you could not guess
-      them before now
-- [ ] `python3 tools/capability_count.py` → `data/capabilities.csv`
-- [ ] `python3 tools/build_timeline.py` → `data/timeline.csv`
-
-**Done when:** you can answer "which capability carries the most documentation, and which
-carries almost none?" without opening a single source file.
-
----
-
-## Phase 3 · Read the documentation — the core of the analysis
+## Phase 2 · Read the documentation — the core of the analysis
 
 Count before you read. Never read a file end to end.
 
@@ -104,7 +114,7 @@ not mention.
 
 ---
 
-## Phase 4 · The money — audited, and kept in proportion
+## Phase 3 · The money — audited, and kept in proportion
 
 - [ ] Revenue, gross profit, gross margin: 7 fiscal years and every quarter available
 - [ ] R&D / S&M / G&A as absolute lines and as a share of revenue
@@ -125,7 +135,7 @@ planned deck. If it is growing past that, re-read the equity-research trap in
 
 ---
 
-## Phase 5 · The records they do not control
+## Phase 4 · The records they do not control
 
 - [ ] CT logs: sort by first-seen date and **read the newest fifteen hosts first**. That
       is where unannounced things appear.
@@ -143,7 +153,7 @@ planned deck. If it is growing past that, re-read the equity-research trap in
 
 ---
 
-## Phase 6 · Triangulate and write the record
+## Phase 5 · Triangulate and write the record
 
 - [ ] Every finding tested against a **second independent lens**. Anything that survives
       only one lens is downgraded or dropped
@@ -162,7 +172,7 @@ reports zero unreferenced slides.
 
 ---
 
-## Phase 7 · The deck
+## Phase 6 · The deck
 
 - [ ] Write slides to [`DECK-SPEC.md`](docs/DECK-SPEC.md): `deck/slides_b.py` onward, one
       file per part. `build_deck.py` discovers them automatically
@@ -180,7 +190,7 @@ at all 41.
 
 ---
 
-## Phase 8 · Release
+## Phase 7 · Release
 
 - [ ] `bash tools/make_release.sh` → dated HTML + PDF + zip in `dist/`
 - [ ] Verify the PDF reports **no fallback fonts**. Georgia or Menlo in the font list

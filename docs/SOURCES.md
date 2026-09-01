@@ -154,15 +154,36 @@ Six published languages: `en-us`, `ja`, `pt-br`, `fr`, `es`, `ko`.
 
 ---
 
-## Tier 4 — third-party panels (need a browser, not a script)
+## Tier 4 — what customers say
+
+### The scriptable one: public issue trackers
+
+**1,091 issues across `braze-inc`** — 1,065 closed, 26 open, verified 2026-09-01. Fully
+scriptable, and on several axes better evidence than a review panel:
+
+- **Unsolicited.** Nobody was emailed a review request. People open an issue because
+  something cost them a day.
+- **Specific.** A stack trace and a reproduction, not "segmentation is clunky".
+- **Dated, with a resolution**, so time-to-close is measurable.
+- **The vendor answers in public**, which is itself a support-quality signal.
+
+What it is not: representative. Issue authors are developers, not the marketers who buy
+the product, so it describes the SDK surface rather than the dashboard. Never convert
+issue counts into a satisfaction rating.
+
+**Run:** `python3 tools/fetch_issues.py` → `data/issues.csv` and a panel file that
+`code_reviews.py` codes like any other corpus.
+
+### The bot-walled ones: enrichment, not a dependency
 
 **All of these returned HTTP 403 to scripted access on 2026-09-01.** They are not
-missing; they are bot-walled. Two ways through, in order of preference:
+missing; they are bot-walled — and they are **not a blocker**, because the issue tracker
+above covers the customer-voice requirement. Capture them if a browser session is
+available, note the absence if not.
 
-1. **Drive the user's real Chrome** with the `claude-in-chrome` tools, which use the
-   existing session. Read the page, save the text to `sources/panels/<site>.txt`.
-2. **Ask the operator to paste it.** This is how the reference project's panels were
-   captured and it is not a failure mode — it is a five-minute human step.
+1. **Drive a real Chrome session** with the `claude-in-chrome` tools. Read the page, save
+   the text to `sources/panels/<site>.txt`.
+2. **Ask the operator to paste it.** A five-minute human step, worth it for Gartner.
 
 Put a capture date at the top of every panel file. Then run
 `python3 tools/code_reviews.py`, which locks the theme patterns in a script so the
@@ -206,17 +227,22 @@ usual, because the 10-K may cover it. **Search the filings before calling anythi
 
 Cheap and exhaustive first; expensive and partial last.
 
+`python3 tools/run_all.py` does all of this in order, skipping what is already done and
+continuing past optional failures. Individually:
+
 ```bash
 python3 tools/fetch_sitemap.py       # ~30s   the map. Do this first, always
 python3 tools/sec_facts.py           # ~15s   audited financials, machine-readable
 python3 tools/sec_filings.py         # ~20s   the filing index is itself evidence
+python3 tools/fetch_filings.py       # ~3min  the 10-K itself — ~73,000 words
 python3 tools/status_history.py      # ~60s   a decade of incidents
 python3 tools/github_org.py          # ~90s   release cadence per platform
+python3 tools/fetch_issues.py        # ~3min  the customer voice, scriptable
 python3 tools/ct_probe.py            # varies crt.sh is unreliable; retry later
 python3 tools/fetch_docs.py          # ~25min 1,352 pages, polite and resumable
 python3 tools/index_docs.py          # ~10s   index BEFORE reading anything
+python3 tools/extract_api.py         # ~5s    the second lens on capability
 python3 tools/capability_count.py    # ~20s   the focused-page measurement
-# then the panels, by hand or by browser, then:
-python3 tools/code_reviews.py
-python3 tools/build_timeline.py
+python3 tools/code_reviews.py        # ~5s    codes every panel present
+python3 tools/build_timeline.py      # ~5s    one chronology from every source
 ```

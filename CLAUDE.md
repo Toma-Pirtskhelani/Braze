@@ -28,6 +28,8 @@ for something already recorded wastes context and risks resurrecting a corrected
 | Looking for | Open |
 |---|---|
 | What to do next | [`TODO.md`](TODO.md) |
+| **How to run this unattended** | [`AGENTS.md`](AGENTS.md) — budgets, degradation rules, when to stop |
+| How to write a slide | [`deck/COMPONENTS.md`](deck/COMPONENTS.md) |
 | What makes Braze different from a private vendor | [`docs/STRATEGY.md`](docs/STRATEGY.md) |
 | Where to pull a source from | [`docs/SOURCES.md`](docs/SOURCES.md) |
 | A number | [`docs/FACTS.md`](docs/FACTS.md) |
@@ -85,26 +87,40 @@ Five grades, defined in [`docs/EVIDENCE-GRADES.md`](docs/EVIDENCE-GRADES.md): `a
 ## Running things
 
 ```bash
-python3 tools/fetch_sitemap.py       # sitemaps    -> site_inventory
-python3 tools/sec_facts.py           # SEC XBRL    -> financials, restatements
-python3 tools/sec_filings.py         # SEC EDGAR   -> filings, insider counts
-python3 tools/status_history.py      # status page -> incidents, components
-python3 tools/github_org.py          # braze-inc   -> repos, sdk_releases
-python3 tools/ct_probe.py            # CT logs     -> subdomains
-python3 tools/fetch_docs.py          # docs site   -> sources/docs/  (resumable)
-python3 tools/index_docs.py          # corpus      -> docs_index
-python3 tools/capability_count.py    # docs + API  -> capabilities
-python3 tools/code_reviews.py        # panels      -> review coding
-python3 tools/build_timeline.py      # everything  -> timeline
+python3 tools/run_all.py             # the whole pipeline, idempotent, ~40 min
+python3 tools/verify.py              # ten rules the analysis must satisfy
+```
 
-python3 deck/build_deck.py           # slides_*.py -> deck/braze-deck.html
-python3 deck/make_script.py          # the deck    -> docs/PRESENTATION-SCRIPT.md
-bash   tools/make_release.sh         # both        -> dist/ HTML + PDF + zip
+Individually:
+
+```bash
+python3 tools/fetch_sitemap.py       # sitemaps      -> site_inventory
+python3 tools/sec_facts.py           # SEC XBRL      -> financials, restatements
+python3 tools/sec_filings.py         # SEC EDGAR     -> filings, insider counts
+python3 tools/fetch_filings.py       # 10-K/10-Q/8-K -> sources/filings/*.txt
+python3 tools/status_history.py      # status page   -> incidents, components
+python3 tools/github_org.py          # braze-inc     -> repos, sdk_releases
+python3 tools/fetch_issues.py        # issue tracker -> issues + a coded panel
+python3 tools/ct_probe.py            # CT logs       -> subdomains
+python3 tools/fetch_docs.py          # docs site     -> sources/docs/  (resumable)
+python3 tools/index_docs.py          # corpus        -> docs_index
+python3 tools/extract_api.py         # API pages     -> api_endpoints
+python3 tools/capability_count.py    # docs + API    -> capabilities
+python3 tools/code_reviews.py        # panels        -> review coding
+python3 tools/build_timeline.py      # everything    -> timeline
+
+python3 deck/build_deck.py           # slides_*.py   -> deck/braze-deck.html
+python3 deck/make_script.py          # the deck      -> docs/PRESENTATION-SCRIPT.md
+python3 deck/build_record.py         # record/*.md   -> deck/evidence-record.html
+bash   tools/make_release.sh         # both          -> dist/ HTML + PDF + zip
 ```
 
 `build_deck.py` **discovers** `deck/slides_*.py` in filename order — adding a chapter is
 one new file, with no edit to the assembler. `make_script.py` reads the built deck, so
-the script cannot drift from the slides.
+the script cannot drift from the slides. `build_record.py` derives the slide map from the
+built deck too, so the record cannot claim coverage it does not have — and it reports any
+figure that appears in more than one chapter, which is the one-fact-one-home rule made
+mechanical.
 
 ## Two things that will bite you
 

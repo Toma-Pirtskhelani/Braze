@@ -5,6 +5,7 @@
 | Question | File |
 |---|---|
 | What do I do? | [`../TODO.md`](../TODO.md) |
+| How do I run this unattended? | [`../AGENTS.md`](../AGENTS.md) |
 | What is different about analysing Braze? | [`STRATEGY.md`](STRATEGY.md) |
 | Where do I pull sources from? | [`SOURCES.md`](SOURCES.md) |
 | How is this done at all? | [`METHOD.md`](METHOD.md) |
@@ -22,6 +23,7 @@
 | What still needs answering? | [`QUESTIONS.md`](QUESTIONS.md) |
 | What is being counted as a capability? | [`CAPABILITY-TAXONOMY.tsv`](CAPABILITY-TAXONOMY.tsv) |
 | What do I say over each slide? | `PRESENTATION-SCRIPT.md` *(generated)* |
+| How do I write a slide? | [`../deck/COMPONENTS.md`](../deck/COMPONENTS.md) |
 
 ## By source type
 
@@ -29,19 +31,33 @@
 |---|---|---|
 | SEC XBRL financials | `tools/sec_facts.py` | `data/financials*.csv` |
 | SEC filing index | `tools/sec_filings.py` | `data/filings.csv` |
+| SEC filing documents | `tools/fetch_filings.py` | `sources/filings/*.txt` |
 | Certificate transparency | `tools/ct_probe.py` | `data/subdomains.csv` |
 | Public status page | `tools/status_history.py` | `data/incidents.csv` |
 | Public repositories | `tools/github_org.py` | `data/repos.csv`, `data/sdk_releases.csv` |
+| Public issue trackers | `tools/fetch_issues.py` | `data/issues.csv`, a coded panel |
 | Sitemaps | `tools/fetch_sitemap.py` | `data/site_inventory.csv` |
 | Documentation | `tools/fetch_docs.py` → `tools/index_docs.py` | `sources/docs/`, `data/docs_index.csv` |
+| API surface | `tools/extract_api.py` | `data/api_endpoints.csv` |
 | Capability measurement | `tools/capability_count.py` | `data/capabilities.csv` |
 | Review panels | `tools/code_reviews.py` | `data/review_themes.csv` |
 | Everything dated | `tools/build_timeline.py` | `data/timeline.csv` |
+
+## Building and checking
+
+| Task | Command |
+|---|---|
+| Run the whole pipeline | `python3 tools/run_all.py` |
+| Check the analysis against its own rules | `python3 tools/verify.py` |
+| Build the deck and its script | `python3 deck/build_deck.py && python3 deck/make_script.py` |
+| Build the evidence record | `python3 deck/build_record.py` |
+| Cut a dated release | `bash tools/make_release.sh` |
 
 ## Process and provenance
 
 | Question | File |
 |---|---|
+| What ran, what failed, what next? | `../logs/run-status.md` |
 | What failed to fetch, and when? | `../logs/fetch-failures.md` |
 | What was captured, from where, on what date? | `../logs/provenance.md` |
 | What was actually executed? | `../logs/executed-plan.md` |
