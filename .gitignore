@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+
+# partial downloads
+*.part
+
+# tool scratch
+.playwright-mcp/
+__pycache__/
+*.pyc
+
+# session scratch — never commit
+scratch/
+
+# personal machine-specific Claude Code config — not for a shared repo
+.claude/settings.local.json

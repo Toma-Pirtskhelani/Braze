@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENDOR — evidence record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#FBFAF8; --ink:#1A1D23; --muted:#5D6675; --rule:#E2DFD8; --rule2:#CFCABF;
+  --accent:#2C4A7C;
+  --g-audited:#2F6B4F; --g-infra:#3E6B8A; --g-doc:#6B7A2F; --g-third:#B07B1E; --g-claim:#A6472F;
+  --disp:"Newsreader",Georgia,serif; --body:"Public Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#14171C; --ink:#E8E6E1; --muted:#98A0AD; --rule:#262B33; --rule2:#39404B; --accent:#7FA8DC;}}
+:root[data-theme="dark"]{
+  --paper:#14171C; --ink:#E8E6E1; --muted:#98A0AD; --rule:#262B33; --rule2:#39404B; --accent:#7FA8DC;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;font-size:16px}
+.w{max-width:52rem;margin:0 auto;padding:3rem 1.5rem 6rem}
+h1,h2,h3{font-family:var(--disp);font-weight:600;line-height:1.2;text-wrap:balance}
+h1{font-size:2.6rem;margin-bottom:.5rem}
+h2{font-size:1.9rem;margin:3.5rem 0 .5rem;padding-top:1.5rem;border-top:2px solid var(--rule2)}
+h3{font-size:1.25rem;margin:2rem 0 .5rem}
+h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--muted);margin:1.5rem 0 .5rem}
+p{margin:.75rem 0}
+a{color:var(--accent)}
+.thesis{font-family:var(--disp);font-size:1.15rem;line-height:1.5;color:var(--ink);
+  border-left:3px solid var(--accent);padding:.4rem 0 .4rem 1rem;margin:1rem 0 1.5rem}
+.box{background:color-mix(in srgb,var(--rule) 40%,transparent);border:1px solid var(--rule);
+  border-radius:6px;padding:1rem 1.25rem;margin:1.25rem 0}
+.tw{overflow-x:auto;margin:1.25rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+code,.mono{font-family:var(--mono);font-size:.86em}
+.g{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+   padding:.12rem .45rem;border-radius:3px;color:#fff;white-space:nowrap}
+.g-audited{background:var(--g-audited)} .g-infra{background:var(--g-infra)}
+.g-doc{background:var(--g-doc)} .g-third{background:var(--g-third)} .g-claim{background:var(--g-claim)}
+.src{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+nav.parts{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--rule);
+  padding:.6rem 0;font-family:var(--mono);font-size:.72rem;display:flex;gap:1rem;flex-wrap:wrap;z-index:5}
+@media print{
+  @page{size:A4 portrait;margin:15mm 14mm 16mm}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  body{font-size:9.6pt} nav.parts{display:none!important} .w{max-width:none;padding:0}
+  section.part{break-before:page} .box,.tw,table,tr,li{break-inside:avoid}
+  thead{display:table-header-group} h1,h2,h3,h4,.thesis{break-after:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:7pt;color:var(--muted)}
+}
+</style>
+</head>
+<body>
+<nav class="parts">
+  <a href="#c1">1 Company</a><a href="#c2">2 Money</a><a href="#c3">3 Acquisitions</a>
+  <a href="#c4">4 Platform</a><a href="#c5">5 Channels</a><a href="#c6">6 AI</a>
+  <a href="#c7">7 Market</a><a href="#c8">8 Open</a><a href="#map">Slide map</a>
+  <a href="#corrections">Corrections</a>
+</nav>
+<div class="w">
+
+<header>
+  <h1>VENDOR — evidence record</h1>
+  <p class="src">Public sources only · captured DATE · every claim graded and traceable</p>
+  <div class="box">
+    <p><strong>How to read this.</strong> Chapters 1–8 are the <em>Record</em>: every fact is
+    stated <strong>once</strong>, in full, with its caveats in the same sentence as the number.
+    The <a href="#map">Slide Map</a> is the deck in order, and holds no evidence — it points
+    back into the chapters.</p>
+    <p>Grades run
+    <span class="g g-audited">audited</span>
+    <span class="g g-infra">infrastructure</span>
+    <span class="g g-doc">documented</span>
+    <span class="g g-third">third-party</span>
+    <span class="g g-claim">claimed</span>,
+    ordered by how hard it would be for the vendor to have made the statement untrue.
+    <strong>A claim takes the grade of its weakest source.</strong></p>
+  </div>
+</header>
+
+<!-- ONE FACT, ONE HOME. Before adding a paragraph, check the fact does not already
+     have a chapter. If it does, link to it. If linking feels awkward, the chapters are
+     wrong — that is not a reason to duplicate. -->
+
+<section class="part" id="c1">
+  <h2>1 · The company</h2>
+  <p class="thesis">One sentence a reader could repeat.</p>
+
+  <h3>1.1 Legal entity and listing</h3>
+  <p>Fact, with its caveat attached in the same sentence.
+     <span class="g g-audited">audited</span></p>
+  <p class="src">source: <code>path/to/file:120-160</code> · captured YYYY-MM-DD</p>
+
+  <h4>What would change this chapter</h4>
+  <p>…</p>
+</section>
+
+<section class="part" id="c2"><h2>2 · The money</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c3"><h2>3 · What they bought</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c4"><h2>4 · The platform</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c5"><h2>5 · Channels and delivery</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c6"><h2>6 · The AI</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c7"><h2>7 · The market</h2>
+  <p class="thesis">…</p></section>
+<section class="part" id="c8"><h2>8 · What we could not answer</h2>
+  <p class="thesis">…</p>
+  <p>Each open question with what <em>would</em> close it.</p></section>
+
+<section class="part" id="map">
+  <h2>Slide map</h2>
+  <p>The deck in order. <strong>No evidence lives here</strong> — if a number appears in this
+  table it belongs in a chapter above. Generate this from the built deck rather than typing
+  it, and verify coverage mechanically.</p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Slide</th><th>Claims</th><th>Record</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Title</td><td>0</td><td>—</td></tr>
+      <tr><td>02</td><td>How we approach it</td><td>0</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="part" id="corrections">
+  <h2>Corrections</h2>
+  <p>Old values stay visible so a stale copy of the deck can be recognised on sight.
+  A file that shows its own errors is the reason to trust the rest of it.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Fact</th><th>Was</th><th>Is now</th><th>Why</th><th>Date</th></tr></thead>
+    <tbody><tr><td colspan="5">none yet</td></tr></tbody>
+  </table></div>
+</section>
+
+</div>
+</body>
+</html>

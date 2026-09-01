@@ -1,0 +1,126 @@
+# -*- coding: utf-8 -*-
+"""Part 0 — the frame.
+
+These three slides carry no findings about Braze. They are the method, and they are
+correct before any research has been done, which is why they ship with the scaffold.
+
+Everything after this file is written by the research run. Add slides_b.py, slides_c.py
+and so on; deck/build_deck.py discovers them automatically, in filename order.
+
+The component vocabulary is in deck/lib.py: head, figs, stats, tiles, bars, flow,
+timeline, logos, cards, big, split, divider, worldmap. Read that file before inventing
+a new layout — the design system is small on purpose.
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib import *                                   # noqa: F403,E402
+
+# ── 1 TITLE ──────────────────────────────────────────────────────────────────
+# The source strip is an inventory of what was READ, not of what was found. Every
+# figure here was verified reachable on 2026-09-01 and is re-checkable in one command.
+# Update the counts as the corpus grows; never put a finding in this strip.
+SOURCES = [("Their documentation",   "1,352 pages"),
+           ("Their site inventory",  "6,366 URLs"),
+           ("SEC filings",           "737 documents"),
+           ("Audited financials",    "FY2019 &rarr; now"),
+           ("Public code",           "137 repos"),
+           ("Status page",           "451 incidents")]
+_src = ''.join(f'<div class="srcitem"><div class="sn">{n}</div><div class="sv">{v}</div></div>'
+               for n, v in SOURCES)
+
+add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
+  <h1>Braze</h1>
+  <div class="subject">Competitor analysis</div>
+  <p class="lede">A customer engagement platform &mdash; and a public company, which changes what can be known.</p>
+  <div class="srcstrip">{_src}</div>
+  <div class="byline"><span><strong>&mdash;</strong></span><span>Public sources only &middot; &mdash;</span></div>
+</section>''',
+"""This is a competitor analysis of **Braze**.
+
+[Replace this note once the research is done. The one line that should survive: Braze
+is a **listed company**, and that changes the nature of the evidence. Where a private
+vendor gives you claims, Braze files audited accounts four times a year under legal
+penalty.]
+
+Everything here comes from sources you can check yourself. **Their own technical
+documentation. Their SEC filings. Their public code. Their status page. And customer
+and employee review panels, read and coded rather than summarised.**
+
+No press release is taken at face value. Where their marketing and their own
+documentation disagree, I will show you both.""",
+    "s", "Competitor Analysis")
+
+# ── 2 METHOD ─────────────────────────────────────────────────────────────────
+add(f'''<section class="s" data-g="s" data-t="How we approach it">
+  {head("Method &middot; how this is built", "How we approach it")}
+  <div class="body">
+    {flow([("PART I", "The company", "who owns it &middot; what it costs &middot; who buys it"),
+           ("PART II", "The product", "seven stages of one campaign"),
+           ("PART III", "Strategy", "where the money goes &middot; what protects them"),
+           ("PART IV", "Open questions", "what public sources cannot answer")])}
+    <div class="ruleband">
+      <div class="klabel">AND THREE RULES THAT APPLY TO ALL FOUR</div>
+      {cards([("Every claim is graded",
+               "Marked by how strong its source is. The bar at the foot of each slide shows where we are.", "g"),
+              ("Marketing is labelled as marketing",
+               "Their own words appear &mdash; but never as evidence.", "a"),
+              ("Gaps become a backlog",
+               "Anything needing a non-public source goes on the open-questions list, and grows as you add to it.", "r")],
+             cols=3)}
+    </div>
+  </div>
+</section>''',
+"""Four parts. **Who the company is. How the product actually works. Where the strategy
+is going. And what we still cannot answer.**
+
+One rule runs through all of it: every claim is graded by how strong its source is.
+
+And that fourth part matters. As we go I will flag the questions that need sources we
+do not have. Those become a backlog we can prioritise and research properly.""",
+    "s", "How we approach it")
+
+# ── 3 GRADING ────────────────────────────────────────────────────────────────
+# Note the top grade differs from the private-vendor version of this deck: for a
+# listed company, audited filings outrank everything, including their documentation.
+add(f'''<section class="s" data-g="s" data-t="How we grade">
+  {head("Method &middot; evidence grading", "Three grades, one bar at the foot of every slide")}
+  <div class="body">
+    <div class="tiles" style="grid-template-columns:repeat(3,1fr);gap:18px">
+      <div class="tile grade" style="border-left:3px solid var(--strong)">
+        <div class="klabel" style="color:var(--strong)">STRONG</div>
+        <div class="gh">Audited filings, and their own technical documentation</div>
+        <div class="td">Signed off by auditors and filed under legal penalty &mdash; or behaviour the platform must actually support</div>
+      </div>
+      <div class="tile grade" style="border-left:3px solid var(--medium)">
+        <div class="klabel" style="color:var(--medium)">MEDIUM</div>
+        <div class="gh">Independent records</div>
+        <div class="td">Customer reviews, infrastructure traces, incident history, real transacted prices</div>
+      </div>
+      <div class="tile grade" style="border-left:3px solid var(--weak)">
+        <div class="klabel" style="color:var(--weak)">WEAK</div>
+        <div class="gh">Marketing, or disputed</div>
+        <div class="td">Their own claims, or sources that contradict each other</div>
+      </div>
+    </div>
+    <p>Five grades are kept in the evidence record. Three reach the slides, mapped in
+    <span class="mono">docs/EVIDENCE-GRADES.md</span>. <strong>A claim takes the grade of its weakest
+    supporting source, never its best.</strong></p>
+  </div>
+</section>''',
+"""Three grades on the slides, five in the record behind them.
+
+**Strong** is a filing or their own technical documentation. An audited number is
+signed by someone with legal exposure. Documentation is written for people who will
+hit the limits, so it describes the product that exists rather than the one being sold.
+
+**Medium** is independent: what customers say, what the infrastructure shows, what an
+outage record admits.
+
+**Weak** is their marketing, or anywhere two credible sources disagree — and where
+they disagree I will show you both rather than pick one.
+
+One rule underneath all of it: **a claim takes the grade of its weakest source, never
+its best.**""",
+    "s", "How we grade")

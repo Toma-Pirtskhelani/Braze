@@ -1,0 +1,66 @@
+{
+  "skill": "braze",
+  "note": "Cases 1-3 are answerable from the empty scaffold and test that the skill refuses to invent. Cases 4-6 become meaningful once the corpus exists. Run with and without the skill; the discriminating behaviour is refusing to answer from memory.",
+  "evals": [
+    {
+      "name": "refuses-to-answer-from-memory",
+      "prompt": "What was Braze's revenue last year?",
+      "expected_output": "States that the corpus has not been captured yet (data/ is empty), names tools/sec_facts.py as the way to get an audited figure, and offers to run it. Does not state a revenue number from recollection.",
+      "assertions": [
+        "does not state a revenue figure",
+        "mentions that the evidence base is empty or not yet captured",
+        "names a specific tool or source that would answer it"
+      ]
+    },
+    {
+      "name": "source-inventory-is-safe-to-state",
+      "prompt": "How much documentation does Braze publish, and how would I capture it?",
+      "expected_output": "1,352 pages in the docs sitemap, verified 2026-09-01, and the capture route: fetch_sitemap.py then fetch_docs.py. Distinguishes a source-inventory count from a claim about the product.",
+      "assertions": [
+        "gives the 1,352 figure with its verification date",
+        "names fetch_sitemap.py and fetch_docs.py",
+        "does not present the count as a claim about product capability"
+      ]
+    },
+    {
+      "name": "uk-entity-ambiguity",
+      "prompt": "What is Braze's UK company number?",
+      "expected_output": "Names both BRAZE LIMITED (09846844) and BRAZE MARKETING LTD (10711967), states that neither is confirmed as the vendor's, and says the resolution is to match against the 10-K subsidiary exhibit.",
+      "assertions": [
+        "gives both candidate numbers",
+        "explicitly says neither is confirmed",
+        "names the 10-K subsidiary exhibit as the resolution"
+      ]
+    },
+    {
+      "name": "xbrl-fiscal-year-trap",
+      "prompt": "I pulled Braze's XBRL and two different revenue figures are both tagged fy2026. Which is the FY2026 number?",
+      "expected_output": "Explains that fy describes the filing, not the period; the FY2026 10-K reports FY2024 and FY2025 and labels both fy2026. Directs to the derived period column keyed on start/end.",
+      "assertions": [
+        "explains that fy refers to the filing not the period",
+        "directs to start/end or the derived period column",
+        "does not pick one of the two figures arbitrarily"
+      ]
+    },
+    {
+      "name": "ai-capability-framing",
+      "prompt": "Is Braze's AI any good, or is it just marketing?",
+      "expected_output": "Refuses the framing. Describes the four-lens measurement (focused pages, endpoints, review vocabulary, analyst coverage), notes what has and has not been captured, and declines to call a capability thin without counts.",
+      "assertions": [
+        "does not assert that the AI is thin or is marketing",
+        "describes a countable measurement rather than an opinion",
+        "requires more than one independent lens before concluding"
+      ]
+    },
+    {
+      "name": "keeps-money-in-proportion",
+      "prompt": "Write me the financial section of the Braze competitor deck.",
+      "expected_output": "Sources every figure from data/financials_annual.csv, and flags the equity-research trap: the money chapter should be about a fifth of the deck, and financial facts earn a slide when they explain a product or strategy fact.",
+      "assertions": [
+        "no forecast, valuation, or investment recommendation",
+        "cites data/financials_annual.csv or sec_facts.py as the source",
+        "mentions keeping the financial chapter in proportion"
+      ]
+    }
+  ]
+}

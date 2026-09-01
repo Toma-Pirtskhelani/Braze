@@ -1,0 +1,57 @@
+{
+  "skill": "competitor-analysis",
+  "note": "Each case tests a different failure mode. Case 3 is the discriminating one: a baseline model almost always picks a number, and refusing to is the behaviour the skill exists to change. Run with and without the skill and grade against the assertions.",
+  "evals": [
+    {
+      "name": "goes-to-non-controlled-records",
+      "prompt": "we keep losing deals to Klaviyo and my VP wants something for the sales team by thursday. can you dig into them properly — not the usual g2 summary",
+      "expected_output": "Proposes a capture plan that reaches records Klaviyo does not control — SEC filings if listed, certificate transparency, sub-processor disclosure, public repositories, status page — rather than summarising marketing. States what it will and will not be able to establish.",
+      "assertions": [
+        "names at least three record classes the vendor does not control",
+        "distinguishes documentation from marketing as sources",
+        "does not produce a summary of the vendor's own positioning"
+      ]
+    },
+    {
+      "name": "measures-rather-than-reads",
+      "prompt": "here's a folder of ~400 doc pages I scraped from vendor X. what can you actually tell from this about where they're strong vs where the marketing is ahead of the product",
+      "expected_output": "Indexes before reading, then applies the focused-page test (>=5 mentions in the body) to count what each capability actually carries. States the caveats: it measures documentation not capability, and a new feature is under-documented by construction.",
+      "assertions": [
+        "builds an index before reading any page",
+        "uses a mention threshold rather than a raw keyword count",
+        "states that documentation volume is a proxy, not a capability measure",
+        "asks for a second independent lens before concluding"
+      ]
+    },
+    {
+      "name": "records-the-conflict",
+      "prompt": "I've got two sources saying different headcounts for this company (1,500 and 1,900). which one do I use in the deck?",
+      "expected_output": "Does not select a value. Records both with their sources and grades, explains the likely mechanism for the difference, and gives a ruling such as 'quote the range, never a precise figure'.",
+      "assertions": [
+        "does NOT select a single value",
+        "records both values with their sources",
+        "gives an explicit ruling on what to say out loud"
+      ]
+    },
+    {
+      "name": "absence-is-a-finding",
+      "prompt": "I searched their whole site and there's no pricing anywhere. that's a dead end right?",
+      "expected_output": "Treats the absence as a finding, provided the check was exhaustive and can be stated as such — 'no price appears across N indexed URLs'. Then names the routes that can still bound a price: reviews, procurement records, resellers, and revenue divided by disclosed customer count.",
+      "assertions": [
+        "treats the absence as a reportable finding",
+        "requires the check to be exhaustive and stated as such",
+        "names at least two other routes to bound a price"
+      ]
+    },
+    {
+      "name": "honest-about-preconditions",
+      "prompt": "Run your full competitive analysis method on a 12-person private startup with a one-page website.",
+      "expected_output": "Says plainly that the method degrades here: no documentation corpus to index, no filings, probably no public code or status page. Offers what still works, and does not promise the full deliverable.",
+      "assertions": [
+        "states that the method's preconditions are not met",
+        "identifies which specific phases will not produce anything",
+        "does not promise a graded evidence base it cannot build"
+      ]
+    }
+  ]
+}

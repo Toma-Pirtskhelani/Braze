@@ -1,0 +1,58 @@
+# Capability taxonomy — the input to tools/capability_count.py
+#
+# group <TAB> capability <TAB> regex pattern (case-insensitive, matched against page body)
+#
+# This is a STARTING taxonomy for a customer-engagement platform, written before the
+# corpus was read. It is deliberately generic. Revise it after the first index pass,
+# when you can see the vendor's own vocabulary — a vendor's product names are the
+# highest-signal patterns and you cannot guess them.
+#
+# Rules that keep the count honest:
+#   - one capability per row; overlapping patterns are fine, counts are independent
+#   - prefer \b word boundaries; "sms" without them matches inside other words
+#   - a product NAME is worth more than a category word. Add them as you find them.
+#   - when you change a pattern, rerun and note the change — a number that moved
+#     because the pattern moved is not a finding.
+
+channel	Email	\bemail\b|\bemails\b|email campaign|deliverability
+channel	SMS	\bsms\b|\bmms\b|short code|10dlc|toll.free
+channel	RCS	\brcs\b|rich communication
+channel	WhatsApp	whatsapp
+channel	Push (mobile)	push notification|apns|\bfcm\b|mobile push|rich push
+channel	Push (web)	web push|browser push|service worker
+channel	In-app message	in.app message|\biam\b|in.app messaging
+channel	Content card	content card|news feed|feed card
+channel	In-browser / on-site	in.browser|on.site message|web personali[sz]ation|overlay
+channel	Line	\bline\b messaging|line channel
+channel	Voice / call	voice call|outbound call|\bivr\b|telephon
+channel	Direct mail / offline	direct mail|postcard|offline channel
+channel	Wallet / pass	wallet pass|apple wallet|google wallet
+
+orchestration	Journey orchestration	canvas|journey|orchestrat|workflow builder
+orchestration	Triggered campaigns	action.based|trigger|event.triggered
+orchestration	Scheduling & frequency	frequency cap|quiet hour|rate limit|send time
+orchestration	A/B testing	\ba/b\b|multivariate|winning variant|experiment
+orchestration	Holdout & incrementality	holdout|control group|incremental|lift test
+
+data	Customer profile / CDP	user profile|custom attribute|customer data platform|\bcdp\b
+data	Identity resolution	identity resolution|external.?id|alias|merge.*profile|user merge
+data	Segmentation	segment|audience|filter.*users
+data	Catalog / product data	catalog|product feed|item data
+data	Ingestion & streaming	ingest|stream|\betl\b|data pipeline|currents|webhook
+data	Warehouse integration	snowflake|bigquery|redshift|databricks|warehouse
+data	Data governance & privacy	\bgdpr\b|\bccpa\b|consent|data retention|right to be forgotten|\bpii\b
+
+ai	Predictive ML	predictive|propensity|churn.*model|\bltv\b|machine learning
+ai	Recommendations	recommend|next best|affinity
+ai	Generative AI	generative|\bllm\b|large language model|prompt|copywrit.*ai
+ai	Agentic AI	\bagent\b|agentic|autonomous|\bmcp\b|model context protocol
+ai	Send-time optimisation	send.time optimi|intelligent timing|\bsto\b
+ai	Channel optimisation	intelligent channel|channel optimi
+
+platform	REST API	\bapi\b|endpoint|rest\b
+platform	SDKs	\bsdk\b|android|\bios\b|react native|flutter|unity|cordova
+platform	Partner integrations	integration|partner|connector|\bipaas\b
+platform	Analytics & reporting	report|dashboard|funnel|retention.*report|analytics
+platform	Deliverability & compliance	deliverab|spam|dmarc|\bdkim\b|\bspf\b|opt.out|unsubscribe
+platform	Roles & permissions	permission|\brbac\b|role|\bsso\b|\bsaml\b|scim
+platform	Reliability & scale	uptime|\bsla\b|cluster|latency|throughput|rate limit
