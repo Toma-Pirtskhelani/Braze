@@ -12,5 +12,8 @@ __pycache__/
 # session scratch — never commit
 scratch/
 
+# per-run pipeline state; provenance lives in logs/executed-plan.md
+logs/run-status.md
+
 # personal machine-specific Claude Code config — not for a shared repo
 .claude/settings.local.json

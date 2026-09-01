@@ -111,3 +111,17 @@ chain works before any research has been done, which is what lets an agent trust
 ---
 
 <!-- ## <date> — <phase>  -->
+
+**A round trip worth recording.** `tools/verify.py` was written here and then run against
+the *reference* repository it was derived from. It found two figures said out loud on
+slides with no canonical row, and nine conflicts whose ruling was present in prose but
+unlabelled — both since fixed there. It also raised five false alarms first, each of which
+had to be fixed in the checker: an abbreviated grade vocabulary, `**Assessment.**` instead
+of `**Ruling:**`, a corrections-table header read as a fact row, a currency pattern that
+swallowed the next word's first letter (`$0 Migration` → `$0 m`), and `22%` failing to
+match a recorded `22.0%`.
+
+The lesson is now in `docs/METHOD.md`: **a checker that cries wolf gets ignored — tune it
+against a known-good corpus before trusting its failures.** And the corollary, which is
+cheaper than it sounds: run your own rules against your own finished work, even when you
+are certain it will pass.

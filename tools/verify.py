@@ -76,48 +76,82 @@ def sources_have_evidence_column():
 
 ROW = re.compile(r"^\|(?!\s*-)(.+)\|\s*$", re.M)
 
+# Two grade vocabularies are in use across these projects: full words, and the
+# abbreviations an earlier repository adopted. Both express the same discipline, so the
+# check accepts either rather than forcing a rewrite of a shipped analysis.
+GRADES = {"audited", "infrastructure", "documented", "third-party", "claimed", "conflicted",
+          "aud", "inf", "doc", "3p", "clm", "cfl"}
+
 
 def facts_rows():
+    """Rows of tables whose header is Fact | Value | Grade | Source.
+
+    Tracking the header matters: FACTS.md also carries a corrections table whose fourth
+    column is prose, and reading that as a grade produces a page of false failures.
+    """
     t = read("docs/FACTS.md")
     if not t:
         return []
-    out = []
+    out, in_fact_table = [], False
     for m in ROW.finditer(t):
         cells = [c.strip() for c in m.group(1).split("|")]
-        if len(cells) >= 4 and cells[0] and not cells[0].lower().startswith(("fact", "---")):
+        low = [c.lower() for c in cells]
+        if "grade" in low and ("fact" in low or "value" in low):
+            in_fact_table = True
+            continue
+        if "was" in low and "is now" in low:        # the corrections table starts here
+            in_fact_table = False                   # tested BEFORE appending, or this
+            continue                                # header is read as a fact row
+        if not cells or not cells[0] or cells[0].startswith("---"):
+            continue
+        if in_fact_table and len(cells) >= 4:
             out.append(cells)
     return out
 
 
+def split_grades(cell):
+    return [p.strip().lower() for p in re.split(r"[/,]", re.sub(r"[*`]", "", cell)) if p.strip()]
+
+
 def facts_are_sourced():
     rows = [r for r in facts_rows() if len(r) >= 4]
-    real = [r for r in rows if r[2] and not r[2].startswith("_")]
+    # A row whose grade cell is a dash is an ANNOTATION, not a fact - a discipline note
+    # or a caveat sitting inside the table. It needs no grade, but it must say where it
+    # comes from, so it is still checked for a source below.
+    real = [r for r in rows if r[2] and not r[2].startswith(("_", "—", "-"))]
+    notes = [r for r in rows if r not in real]
     if not real:
         return "SKIP", "FACTS.md holds no fact rows yet"
-    grades = {"audited", "infrastructure", "documented", "third-party", "claimed", "conflicted"}
-    ungraded = [r[0] for r in real if r[2].lower() not in grades]
-    unsourced = [r[0] for r in real if not r[3].strip()]
+    ungraded = [r[0] for r in real
+                if not all(g in GRADES for g in split_grades(r[2]))]
+    unsourced = [r[0] for r in real + notes
+                 if not r[3].strip() or r[3].strip() in ("—", "-")]
     if ungraded or unsourced:
-        return "FAIL", ("%d rows with an unrecognised grade (%s); %d with no source"
-                        % (len(ungraded), ", ".join(ungraded[:3]), len(unsourced)))
-    return "PASS", "%d fact rows, all graded and sourced" % len(real)
+        return "FAIL", ("%d rows with an unrecognised grade (%s); %d with no source (%s)"
+                        % (len(ungraded), ", ".join(ungraded[:3]),
+                           len(unsourced), ", ".join(unsourced[:3])))
+    return "PASS", ("%d fact rows graded and sourced, %d annotations sourced"
+                    % (len(real), len(notes)))
 
 
 def conflicts_have_rulings():
+    """Every conflict must say what to do about it, however that is worded."""
     t = read("docs/CONFLICTS.md")
     if not t:
         return "SKIP", "no CONFLICTS.md"
-    body = t.split("## Register", 1)[-1]
-    body = re.sub(r"(?s)<!--.*?-->", "", body)
-    entries = re.findall(r"^### (C-\d+)", body, re.M)
-    if not entries:
+    body = re.sub(r"(?s)<!--.*?-->", "", t)
+    parts = re.split(r"^#{2,3} (C-\d+)", body, flags=re.M)
+    if len(parts) < 3:
         return "SKIP", "no conflicts recorded yet"
-    missing = [e for e, chunk in
-               ((e, c) for e, c in zip(entries, re.split(r"^### C-\d+", body, flags=re.M)[1:]))
-               if "**Ruling:**" not in chunk]
+    pairs = list(zip(parts[1::2], parts[2::2]))
+    # "Ruling", "Assessment", "Verdict" - the wording differs between repositories;
+    # what matters is that the entry tells a presenter what to say.
+    verdict = re.compile(r"\*\*(ruling|assessment|verdict|what to say)", re.I)
+    missing = [c for c, chunk in pairs if not verdict.search(chunk)]
     if missing:
-        return "FAIL", "no ruling on: %s" % ", ".join(missing)
-    return "PASS", "%d conflicts, every one with a ruling" % len(entries)
+        return "FAIL", ("%d of %d conflicts carry no ruling: %s"
+                        % (len(missing), len(pairs), ", ".join(missing[:5])))
+    return "PASS", "%d conflicts, every one with a ruling" % len(pairs)
 
 
 # ── the deck ─────────────────────────────────────────────────────────────────
@@ -176,7 +210,13 @@ def record_div_balance():
     return "PASS", "%d divs, balanced" % o
 
 
-NUM = re.compile(r"(?<![\w.$])(\d[\d,]{2,}(?:\.\d+)?|\d+(?:\.\d+)?%|\$\d[\d,.]*[MBK]?)")
+# Only shapes that carry a claim: comma-grouped counts, percentages, currency. Bare
+# integers are excluded deliberately - they match years in a biography and product names
+# like "Customer 360", and a check that cries wolf gets ignored.
+# No magnitude suffix: "$325 million" and "$0 Migration" both tempt a suffix pattern
+# into swallowing the next word's first letter, which produced "$0 m" as a phantom
+# figure. Match the number, stop, and let the substring comparison handle "$500M".
+NUM = re.compile(r"(?<![\w.$])(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?%|\$\d[\d,.]*)")
 
 
 def slide_numbers_are_in_facts():
@@ -189,13 +229,26 @@ def slide_numbers_are_in_facts():
     body = re.sub(r"(?s)<script.*?</script>", " ", deck)
     body = re.sub(r"(?s)<style.*?</style>", " ", body)
     text = re.sub(r"<[^>]+>", " ", body)
+    def variants(v):
+        """A slide rounds; FACTS carries the precise value. 22% and 22.0% are the same
+        claim, and flagging them as different is how a useful check becomes noise."""
+        v = v.strip()
+        out = {v, v.replace(",", "")}
+        m2 = re.match(r"^(\d+)\.0(%?)$", v)
+        if m2:
+            out.add(m2.group(1) + m2.group(2))
+        if re.match(r"^\d+%$", v):
+            out.add(v[:-1] + ".0%")
+        return out
+
+    flat = facts.replace(",", "")
     seen, orphans = set(), []
     for m in NUM.finditer(text):
-        v = m.group(1)
+        v = m.group(1).strip()
         if v in seen:
             continue
         seen.add(v)
-        if v not in facts and v.replace(",", "") not in facts.replace(",", ""):
+        if not any(x in facts or x in flat for x in variants(v)):
             orphans.append(v)
     if orphans:
         return "WARN", ("%d figures on slides do not appear in FACTS.md: %s. Every "

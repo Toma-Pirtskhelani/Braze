@@ -51,9 +51,13 @@ STEPS = [
     (3, "timeline",        ["tools/build_timeline.py"],  True,  "data/timeline.csv"),
 
     (4, "build deck",      ["deck/build_deck.py"],       True,  None),
-    (4, "build script",    ["deck/make_script.py"],      True,  "docs/PRESENTATION-SCRIPT.md"),
+    (4, "build script",    ["deck/make_script.py"],      True,  None),
+    (4, "build record",    ["deck/build_record.py"],     False, None),
     (4, "verify",          ["tools/verify.py"],          False, None),
 ]
+
+# Phase 4 steps declare no output file on purpose: the deck, the script and the record
+# must be REBUILT every run, or a stale artefact silently survives a content change.
 
 PHASE_NAMES = {1: "capture — cheap, exhaustive, and mostly instant",
                2: "capture — the long fetches",
@@ -152,7 +156,7 @@ def write_report(results, stopped=None):
             lines.append("- **%s** — %s" % (name, tail[:150]))
     else:
         lines.append("Everything ran. Next: `python3 tools/verify.py`, then start "
-                     "phase 3 of `TODO.md` — reading the documentation.")
+                     "phase 2 of `TODO.md` — reading the documentation.")
 
     with open(p, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")
