@@ -1,0 +1,364 @@
+---
+url: https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_triggered_canvases
+slug: docs__api__endpoints__messaging__send_messages__post_send_triggered_canvases
+title: "Send Canvas messages using API-triggered delivery"
+description: "This article outlines details about the Send Canvases using API-triggered delivery Braze endpoint."
+section: api/endpoints
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Send Canvas messages using API-triggered delivery
+
+post
+
+/canvas/trigger/send
+
+core endpoint
+
+Use this endpoint to send Canvas messages with API-triggered delivery.
+
+API-triggered delivery allows you to store message content in the Braze dashboard while dictating when a message is sent, and to whom using your API.
+
+Before you can send messages with this endpoint, you must have a Canvas ID (which is created when you build a Canvas).
+
+See me in Postman
+
+## Prerequisites
+
+To use this endpoint, you’ll need to generate an API key with the canvas.trigger.send permission.
+
+## Rate limit
+
+When using Connected Audience filters in your request, we apply a rate limit of 250 requests per minute to this endpoint. Otherwise, if specifying an external_id, this endpoint has a default rate limit of 250,000 requests per hour shared between the endpoints documented in API rate limits.
+
+Braze endpoints support batching API requests. A single request to the messaging endpoints can reach any of the following:
+
+- Up to 50 specific external_ids, each with individual message parameters
+ 
+- An audience segment of any size, defined in the request as a connected audience object
+
+Braze endpoints support batching API requests. A single request to the messaging endpoints can reach any of the following:
+
+- Up to 50 specific external_ids, each with individual message parameters
+ 
+- An audience segment of any size, defined in the request as a connected audience object
+
+## Request body
+
+```
+
+1
+2
+
+```
+ | 
+```
+Content-Type: application/json
+Authorization: Bearer YOUR-REST-API-KEY
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+```
+ | 
+```
+{
+ "canvas_id": (required, string) see Canvas identifier,
+ "context": (optional, object) Canvas context properties that apply to all users in this request,
+ "broadcast": (optional, boolean) see Broadcast -- defaults to false on 8/31/17, must be set to true if `recipients` is omitted,
+ "audience": (optional, connected audience object) see connected audience,
+ // Including 'audience' will only send to users in the audience
+ "recipients": (optional, array; if not provided and broadcast is not set to 'false', message sends to the entire segment targeted by the Canvas)
+ [{
+ // Either "external_user_id" or "user_alias" or "email" is required. Requests must specify only one.
+ "user_alias": (optional, user alias object) user alias of user to receive message,
+ "external_user_id": (optional, string) external identifier of user to receive message,
+ "email": (optional, string) email address of user to receive message,
+ "prioritization": (optional, array) prioritization array; required when using email,
+ "context": (optional, object) Canvas context properties for this user; key-value pairs override any keys that conflict with the parent `context`,
+ "send_to_existing_only": (optional, boolean) defaults to true, can't be used with user aliases; if set to `false`, an `attributes` object must also be included,
+ "attributes": (optional, object) fields in the attributes object create or update an attribute of that name with the given value on the specified user profile before the message is sent and existing values are overwritten
+ }],
+ ...
+}
+
+```
+ | 
+
+## Request parameters
+
+ Parameter | 
+ Required | 
+ Data Type | 
+ Description | 
+
+ canvas_id | 
+ Required | 
+ String | 
+ See Canvas identifier. | 
+
+ context | 
+ Optional | 
+ Object | 
+ Canvas context properties for all recipients in this request. Personalization key-value pairs apply to every user unless a per-recipient context overrides a key. The context object can be up to 50 KB. | 
+
+ broadcast | 
+ Optional | 
+ Boolean | 
+ You must set broadcast to true when sending a message to the entire segment configured as the Canvas’s target audience in the Braze dashboard. This parameter defaults to false (as of August 31, 2017). 
+
+ If broadcast is set to true, a recipients list cannot be included. However, use caution when setting broadcast: true, as unintentionally setting this flag may cause you to send your message to a larger-than-expected audience. | 
+
+ audience | 
+ Optional | 
+ Connected audience object | 
+ See Connected audience. When you include audience, the message is sent only to users who match the defined filters, such as custom attributes and subscription statuses. | 
+
+ recipients | 
+ Optional | 
+ Array | 
+ See Recipients object. 
+
+If send_to_existing_only is false, an attributes object must be included on the recipient. 
+
+If not provided and broadcast is set to true, the message is sent to the entire segment configured as the Canvas’s target audience in the Braze dashboard.
+
+ The recipients array may contain up to 50 objects. Each object must include exactly one of external_user_id, user_alias, or email, and may include a per-recipient context object for Canvas context properties (per-recipient keys override the parent-level context when they conflict). 
+
+If email is the identifier, you must include prioritization in the recipients object. | 
+
+## Example request
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/canvas/trigger/send' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR-REST-API-KEY' \
+--data-raw '{
+ "canvas_id": "canvas_identifier",
+ "context": {"product_name" : "shoes", "product_price" : 79.99},
+ "broadcast": false,
+ "audience": {
+ "AND": [
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "eye_color",
+ "comparison": "equals",
+ "value": "blue"
+ }
+ },
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "favorite_foods",
+ "comparison": "includes_value",
+ "value": "pizza"
+ }
+ },
+ {
+ "OR": [
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "last_purchase_time",
+ "comparison": "less_than_x_days_ago",
+ "value": 2
+ }
+ },
+ {
+ "push_subscription_status": {
+ "comparison": "is",
+ "value": "opted_in"
+ }
+ }
+ ]
+ },
+ {
+ "email_subscription_status": {
+ "comparison": "is_not",
+ "value": "subscribed"
+ }
+ },
+ {
+ "last_used_app": {
+ "comparison": "after",
+ "value": "2019-07-22T13:17:55+0000"
+ }
+ }
+ ]
+ },
+ "recipients": [
+ {
+ "user_alias": {
+ "alias_name" : "example_name",
+ "alias_label" : "example_label"
+ },
+ "external_user_id": "user_identifier",
+ "send_to_existing_only": true,
+ "attributes": {
+ "first_name" : "Alex"
+ }
+ }
+ ]
+}'
+
+```
+ | 
+
+## Response details
+
+Message-sending endpoint responses include the message’s dispatch_id for reference back to the dispatch of the message. The dispatch_id is the ID of the message dispatch (unique ID for each “transmission” sent from the Braze platform). Check out Dispatch ID behavior for more information.
+
+### Example success response
+
+The status code 201 could return the following response body. If the Canvas is archived, stopped, or paused, the Canvas is not sent through this endpoint.
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+{
+ "notice": "The Canvas is paused. Resume the Canvas to ensure trigger requests will take effect.",
+ "dispatch_id": "example_dispatch_id",
+ "message": "success"
+}
+
+```
+ | 
+
+If your Canvas is archived, you see this notice message: “The Canvas is archived. Unarchive the Canvas to ensure trigger requests will take effect.” If your Canvas is not active, you see this notice message: “The Canvas is paused. Resume the Canvas to ensure trigger requests will take effect.”
+
+If your request encounters a fatal error, refer to Errors and responses for the error code and description.
+
+## Considerations
+
+Consider the following when making API calls to send Canvas messages using API-triggered delivery:
+
+- Sending to existing users: When send_to_existing_only is set to true (the default), the message is sent only to existing users in Braze.
+ 
+- Creating new users: When send_to_existing_only is set to false, you must include an attributes object. If a user with the specified ID does not exist, Braze creates a user with that ID and attributes before sending the message.
+ 
+- Net-new profiles need attributes with send_to_existing_only: false. Braze runs the pre-send create or update from the attributes object in the same recipient. If you set send_to_existing_only to false but omit attributes (or send an empty object), Braze does not hydrate profile data the same way, so you do not get the combined “create or update user, then send” behavior this pattern is meant for.
+ 
+- Email and SMS addressing. For most Email or SMS API-triggered sends to someone who is not already in Braze, include the delivery fields you need inside attributes (for example email, or the phone attributes your workspace uses for SMS). You can also set subscription group membership or subscription status there when opt-in state must change in the same call.
+ 
+- Canvas eligibility. After the profile exists or updates, that user must still match the Canvas’s dashboard target audience and channel send rules (for example opted in for email) or Braze does not send the message.
+ 
+- User alias limitation: The send_to_existing_only flag cannot be used with user aliases. To send to an alias-only user, the user must already exist in Braze.
+ 
+- Segment targeting: The segment_id parameter is not supported for this endpoint. To target a segment, configure the segment in the Canvas’s target audience settings in the Braze dashboard and use broadcast: true, or use the audience parameter with Connected Audience filters.
+ 
+- Combined targeting: When you include both the recipients parameter and configure a target segment in the dashboard, the message is sent only to user profiles that are specified in the API call and also match the segment’s filters.
+ 
+- Server-to-server calls: If you’re making server-to-server calls, you may need to allowlist the appropriate API URL if you’re behind a firewall.
+
+## Attributes object for Canvas
+
+Use the messaging object attributes to add, create, or update attributes and values for a user before sending them an API-triggered Canvas using the canvas/trigger/send endpoint. This API call processes the user attributes object before it processes and sends the Canvas. This helps minimize the risk of issues caused by race conditions. However, by default, subscription groups cannot be updated this way.
+
+note
+
+Looking for the campaign version of this endpoint? Check out Sending campaign messages using API-triggered delivery.
+
+- 
+
+New Stuff!

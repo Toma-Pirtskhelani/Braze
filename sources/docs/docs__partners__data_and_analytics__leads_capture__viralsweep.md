@@ -1,0 +1,102 @@
+---
+url: https://www.braze.com/docs/partners/data_and_analytics/leads_capture/viralsweep
+slug: docs__partners__data_and_analytics__leads_capture__viralsweep
+title: "ViralSweep"
+description: "This reference article outlines the partnership between Braze and ViralSweep, a software service that allows brands to build, run, and manage digital marketing promotions like..."
+section: partners/data_and_analytics
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# ViralSweep
+
+ViralSweep is a software service that allows brands to build, run, and manage digital marketing promotions like sweepstakes, contests, instant win, waitlists, referral promotions, and more.
+
+This integration is maintained by ViralSweep.
+
+## About the integration
+
+The Braze and ViralSweep integration allows you to hold sweepstakes and contests on the ViralSweep platform (growing your email and SMS lists) and then send sweepstakes or contest entry information into Braze to use in campaigns or Canvases.
+
+## Prerequisites
+
+ Requirement | 
+ Description | 
+
+ ViralSweep account | 
+ A ViralSweep account utilizing the business plan is required to take advantage of this partnership. | 
+
+ Braze REST API key | 
+ A Braze REST API key with all user data and email permissions. 
+
+ This can be created in the Braze dashboard from Settings > API Keys. | 
+
+ Braze REST endpoint | 
+ Your REST endpoint URL. Your endpoint will depend on the Braze URL for your instance. | 
+
+## Integration
+
+### Step 1 : Connect to Braze within ViralSweep
+
+In ViralSweep, navigate to Integrations > Email & SMS > Add Service and select Braze.
+
+### Step 2 : Add Braze Credentials
+
+In the integrations configuration window, provide your Braze REST API key and REST endpoint. Make sure the endpoint you provide does not include https://, for example, dashboard-03.braze.com.
+
+Click Connect.
+
+### Step 3 : Add Braze Credentials
+
+You’re connected! The promotion is now connected to Braze, and all entries collected by ViralSweep will be sent into Braze automatically.
+
+## Frequently asked questions
+
+### What fields does ViralSweep pass to Braze?
+
+- First name
+ 
+- Last name
+ 
+- Email address
+ 
+- Address
+ 
+- Address 2
+ 
+- City
+ 
+- State
+ 
+- Zip
+ 
+- Country
+ 
+- Birthdate
+ 
+- Phone
+ 
+- Promotion ID
+ 
+- Referral link
+ 
+- Tracking campaign name
+
+### Does ViralSweep update subscribers?
+
+Yes. If you run a promotion and ViralSweep passes someone to Braze, then you run another promotion in the future and the same person enters, that person’s information will automatically be updated in Braze (if any new information is provided). Mainly, the referral URL will be updated with the newest URL for each promotion they enter, and the promotion ID field will contain the ID of all the promotions they have entered.
+
+## Troubleshooting
+
+If you have connected to Braze and data is not being added to your account, it may be because:
+
+- Email already exists in Braze
+
+The email address entered into the promotion may already be in your Braze account, so it will not be added again; it will only be updated if new information is provided for that contact.
+
+- Email already entered into ViralSweep
+
+The email address entered into the promotion has already been entered previously, so it is not passed to Braze again. This can happen if you set up your Braze integration after you have already entered the promotion.
+
+- 
+
+New Stuff!

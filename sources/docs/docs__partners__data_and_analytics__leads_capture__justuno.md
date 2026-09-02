@@ -1,0 +1,116 @@
+---
+url: https://www.braze.com/docs/partners/data_and_analytics/leads_capture/justuno
+slug: docs__partners__data_and_analytics__leads_capture__justuno
+title: "Justuno"
+description: "Learn how to integrate Justuno with Braze so you can leverage customer data across both platforms to create more personalized experiences for all audiences."
+section: partners/data_and_analytics
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Justuno
+
+Justuno lets you create fully optimized visitor experiences for all of your audiences with dynamic segments, offering the most advanced targeting available—all without impacting site speed or increasing dev work. Analyze conversion rates by viewing custom analytics like the number of profiles created, influenced return visitor rate, and pages per session to maintain a marketing advantage in your industry. Justuno enables you to increase revenue per visitor, establish meaningful customer engagements, and grow your business. Optimize the entire audience journey end-to-end with a connected platform.
+
+## Use cases
+
+Braze allows any marketer to collect and take action on any amount of data from any source, so you can creatively engage with customers in real time, across channels from one platform.
+
+Integrating Justuno and Braze gives you the best of both worlds. You can combine the customer data saved in Braze with the visitor and customer data saved in Justuno and create more personalized experiences for all audiences. This increases the effectiveness of your marketing campaigns and customer engagements.
+
+## Prerequisites
+
+ Braze Rest API key | 
+ A Braze REST API key with the users.track and custom_attributes.get permissions.
+
+This can be created in the Braze dashboard from Settings > API Keys. | 
+
+ Braze REST endpoint | 
+ Your REST endpoint URL. Your endpoint will depend on the Braze URL for your instance. | 
+
+## Integrating Justuno with Braze
+
+### Step 1: Create custom attributes in Braze
+
+To sync user attributes from Justuno to Braze, you’ll need to create those attributes in Braze if you haven’t already. You can do so by going to Data Settings > Custom Attributes, then creating your custom attributes. For a full walkthrough, see Managing custom attributes in Braze.
+
+### Step 2: Add the Braze app to Justuno
+
+#### Step 2.1: Add it to your account
+
+To add the Braze app to your Justuno account, go to Account Settings > Apps, then search for and select the Braze app.
+
+Enter the API key and base URL you created previously, then select Connect.
+
+#### Step 2.2: Add it to your workflow
+
+To add the Braze app to your Justuno workflow, drag-and-drop the Sync to App action into your workflow, then choose Select App > Braze.
+
+### Step 3: Connect your Braze subscription groups
+
+To send profile data from Justuno to a specific Braze email or SMS Subscription Group, you’ll need to add their ID to the Braze app in your Justuno workflow.
+
+ ID Type | 
+ Required? | 
+ Description | 
+
+ Braze SMS Subscription Group ID | 
+ Yes | 
+ This ID is used to collect SMS consent from user profiles. If no ID is entered in Justuno, profiles will not have consent when Justuno pushes that profile to Braze. | 
+
+ Braze Email Subscription Group ID | 
+ No | 
+ If this ID is not entered in Justuno, Justuno will send the profile data to Braze as a user with no associated subscription groups. | 
+
+#### Step 3.1: Locate the IDs in Braze
+
+To locate these IDs in the Braze dashboard:
+
+- Go to Audience > Subscriptions.
+ 
+- For each subscription group, note the ID located in the ID column.
+
+#### Step 3.2: Add the IDs to the Braze app
+
+In your Justuno workflow, open the Braze app, then enter the IDs for each subscription group.
+
+### Step 4: Configure your attributes
+
+The following attributes are automatically synced from Justuno to Braze:
+
+- Email
+ 
+- Phone
+ 
+- First Name
+ 
+- Last Name
+ 
+- Language
+ 
+- Gender
+ 
+- Country
+
+To sync additional attributes:
+
+- In the Braze app within your workflow, select Sync Another Property.
+
+- Choose which Braze attributes you’d like to sync.
+ 
+- Match the properties in Justuno with their Braze equivalents (such as social handles, birthday, shopping preferences, survey responses, and similar). Keep in mind, these properties are considered 0 party data or 1st party data. To learn more, refer to Justuno: Visitor data collection.
+ 
+- In the workflow builder, choose to Save, Preview, or Publish your workflow.
+
+## Things to know
+
+- You must manually input the subscription group ID in the app settings.
+ 
+- The following Braze data types are not supported: Object, Object Array.
+ 
+- Implicit SMS consent is provided when Justuno’s SMS consent field is not used.
+ 
+- Explicit SMS consent is respected if the Justuno design includes the consent field.
+
+- 
+
+New Stuff!

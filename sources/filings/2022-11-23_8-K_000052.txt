@@ -1,0 +1,84 @@
+---
+form: 8-K
+filed: 2022-11-23
+period: 2022-11-17
+accession: 0001676238-22-000052
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623822000052/brz-20221117.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20221117
+FALSE000167623800016762382022-11-172022-11-17
+
+| | |
+|
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): November 17, 2022
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+| | | | | | | | | | | |
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+330 West 34th Street, Floor 18
+New York, New York 10001
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+| | | | | | | | |
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☒
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 1.01. Entry into a Material Definitive Agreement.
+
+On November 17, 2022, Braze, Inc. (the “Company”) entered into a Sublease Agreement (the “Sublease”) pursuant to which the Company agreed to lease approximately 92,300 square feet of general office space in New York, New York. The term of the Sublease commences on October 1, 2023 and will terminate on January 30, 2034. Under the Sublease, the Company's fixed rent obligation is $0.6 million per month, provided, that the Company shall be entitled to a rent abatement in the aggregate amount of $6.6 million to be applied in equal monthly installments until the abatement amount is fully exhausted. The Sublease contains customary provisions for real property subleases of this type, including specified termination rights, and is subject to and contingent upon receipt of a standard third-party consent.
+
+The foregoing summary description of the Sublease is qualified in its entirety by reference to the text of the Sublease, which the Company expects to file as an exhibit to the Company’s Annual Report on Form 10-K for the fiscal year ending January 31, 2023.
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: November 23, 2022

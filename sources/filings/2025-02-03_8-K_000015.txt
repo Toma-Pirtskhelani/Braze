@@ -1,0 +1,104 @@
+---
+form: 8-K
+filed: 2025-02-03
+period: 2025-02-01
+accession: 0001676238-25-000015
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623825000015/brz-20250201.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20250201
+FALSE000167623800016762382025-02-012025-02-01
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): February 1, 2025
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 East 28th Street, Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 2.02. Results of Operations and Financial Condition.
+
+The information contained in Section 7.01 of this Current Report on Form 8-K is incorporated herein by reference.
+
+Item 5.02. Departure of Directors or Certain Officers; Election of Directors; Appointment of Certain Officers; Compensatory Arrangements of Certain Officers.
+
+On February 1, 2025, Myles Kleeger informed Braze, Inc. (the “Company”) of his intention to resign as President and Chief Commercial Officer of the Company, effective June 1, 2025 (the “Termination Date”). Thereafter, Mr. Kleeger has agreed to provide advisory services to the Company as a consultant until November 30, 2025.
+
+On February 1, 2025, the Company entered into a transition, separation and release agreement with Mr. Kleeger (the “Transition Agreement”) in connection with his anticipated resignation. The Transition Agreement provides that Mr. Kleeger’s employment with the Company will terminate on the Termination Date, and that between February 1, 2025 and June 1, 2025 (the “Transition Period”), Mr. Kleeger will remain employed by the Company on a full-time basis as the President and Chief Commercial Officer and carry out such duties and responsibilities as requested by the Company’s Chief Executive Officer, including transitioning Mr. Kleeger’s duties and responsibilities to his successor. During the Transition Period, Mr. Kleeger will continue to receive his base salary and will remain eligible to participate in the Company’s compensation and employee benefit plans as they are made available to employees of the Company, including continued vesting of Mr. Kleeger’s stock options and restricted stock units; provided, that if Mr. Kleeger’s service under the Transition Agreement were to terminate due to his death or disability, then the portion of Mr. Kleeger’s stock options and restricted stock units that would have otherwise vested on or prior to November 30, 2025 will be accelerated to vest as of the date of Mr. Kleeger’s death or disability. The Transition Agreement contains a customary release of claims and provides that following the Transition Period, Mr. Kleeger shall provide advisory services to the Company until November 30, 2025, under a consulting agreement entered into by the parties (the “Consulting Agreement”). Pursuant to the Consulting Agreement, Mr. Kleeger will be entitled to receive (i) cash consideration of $17,000, and (ii) the continued vesting of his outstanding stock options and restricted stock units until November 30, 2025, provided, that if the Consulting Agreement is terminated for convenience by the Company or as a result of Mr. Kleeger’s death or disability, in either case, prior to November 30, 2025, then the portion of Mr. Kleeger’s stock options and restricted stock units that would have otherwise vested on or prior to November 30, 2025, will be accelerated to vest as of the date of such event.
+
+The foregoing summary of the Transition Agreement does not purport to be complete and is subject to, and is qualified in its entirety by, the full text of the Transition Agreement, a copy of which is attached hereto as Exhibit 10.1 and is incorporated herein by reference.
+
+Item 7.01 Regulation FD Disclosure.
+
+On February 3, 2025, the Company issued a press release announcing the Company’s leadership change described herein and other updates regarding the Company’s go-to-market and sales organizations. A copy of the press release is furnished as Exhibit 99.1 and is incorporated herein by reference.
+***
+
+The information contained in Items 2.02 and 7.01 and the accompanying Exhibit 99.1 hereto, shall not be deemed “filed” for purposes of Section 18 of the Securities Exchange Act of 1934, as amended (the “Exchange Act”), or otherwise subject to the liabilities of that section, nor shall it be deemed incorporated by reference in any filing made by the Company under the Securities Act of 1933, as amended, or the Exchange Act, regardless of any general incorporation language in such filings, unless expressly incorporated by specific reference in such filing.
+
+Item 9.01 Financial Statements and Exhibits.
+
+(d) Exhibits
+
+Exhibit No. Description
+10.1 Transition, Separation and Release Agreement between Braze, Inc. and Myles Kleeger, dated February 1, 2025
+
+99.1 Press Release of Braze, Inc., dated February 3, 2025
+104 Cover Page Interactive Data (embedded within the Inline XBRL document)
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: February 3, 2025

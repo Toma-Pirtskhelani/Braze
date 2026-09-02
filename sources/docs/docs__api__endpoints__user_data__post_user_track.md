@@ -1,0 +1,713 @@
+---
+url: https://www.braze.com/docs/api/endpoints/user_data/post_user_track
+slug: docs__api__endpoints__user_data__post_user_track
+title: "Create and update users"
+description: "This article outlines details about the Track user Braze endpoint."
+section: api/endpoints
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Create and update users
+
+post
+
+/users/track
+
+core endpoint
+
+Use this endpoint to record custom events and purchases and update user profile attributes.
+
+note
+
+Each custom attribute sent in a request to /users/track consumes a data point. For more information, see Data points.
+
+Braze processes the data passed through the API at face value, and you should only pass deltas (changing data) to minimize unnecessary data point logging.
+
+## Need to update users in bulk?
+
+Use the /users/track/bulk endpoint to send larger batches and reduce request volume.
+
+See me in Postman
+
+## Prerequisites
+
+To use this endpoint, you’ll need an API key with the users.track permission.
+
+Customers using the API for server-to-server calls may need to allowlist rest.iad-01.braze.com if they’re behind a firewall.
+
+## Rate limit
+
+Rate limits for this endpoint vary depending on your contract. For customers with data points in their pricing, Braze applies a burst limit of 3,000 requests per three seconds. For all other customers, limits are configured according to your contract terms. Current limits for your account can be found in the dashboard under Settings > APIs and Identifiers > API Usage Dashboard.
+
+Each /users/track request can contain up to 75 total objects combined across attributes, events, and purchases. Each object can update one user. A single user profile can be updated by multiple objects.
+
+For customers who have purchased Monthly Active Users CY 24-25, Universal MAU, Web MAU, or Mobile MAU, additional rate limits apply. For more information, reference Monthly Active Users CY 24-25 limits.
+
+Legacy rate limits
+
+For customers on legacy rate limits, each /users/track request can contain up to 75 attribute objects, 75 event objects, and 75 purchase objects. Each object can update one user, for a combined maximum of up to 225 objects per request. A single user profile can be updated by multiple objects.
+
+For more information, see API rate limits. Contact your customer success manager to request an increase.
+
+## Request body
+
+```
+
+1
+2
+
+```
+ | 
+```
+Content-Type: application/json
+Authorization: Bearer YOUR_REST_API_KEY
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+{
+ "attributes": (optional, array of attributes object),
+ "events": (optional, array of event object),
+ "purchases": (optional, array of purchase object),
+}
+
+```
+ | 
+
+### Request parameters
+
+important
+
+For each request component listed in the following table, you must include one of external_id, user_alias, braze_id, email, or phone.
+
+ Parameter | 
+ Required | 
+ Data Type | 
+ Description | 
+
+ attributes | 
+ Optional | 
+ Array of attributes objects | 
+ See user attributes object | 
+
+ events | 
+ Optional | 
+ Array of event objects | 
+ See events object | 
+
+ purchases | 
+ Optional | 
+ Array of purchase objects | 
+ See purchases object | 
+
+### Identifier resolution
+
+Each request object must include at least one identifier. The following table describes how Braze determines which identifier to use for user profile lookup.
+
+ Identifier type | 
+ Identifiers | 
+ Behavior | 
+
+ Primary | 
+ external_id, user_alias, braze_id | 
+ Used for user profile lookup. Only one primary identifier is allowed per request object—including more than one causes that object to be rejected. | 
+
+ Secondary | 
+ email, phone | 
+ Used for user profile lookup only when no primary identifier is present. If both email and phone are included without a primary identifier, email takes precedence. | 
+
+When a primary identifier is present, any email or phone values in the same request object are treated as profile attributes—not as identifiers for user lookup. For example, if a request includes both an external_id and an email:
+
+- Braze looks up the user profile by external_id.
+ 
+- The email value is set (or updated) as an attribute on the resolved profile.
+
+important
+
+Including a primary identifier that doesn’t match any existing profile can create a duplicate profile even when email or phone in the same request match an existing profile. For more information, see How do I avoid creating duplicate user profiles?.
+
+## Example requests
+
+### Update a user profile by email address
+
+You can update a user profile by email address using the /users/track endpoint.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_REST_API_KEY' \
+--data-raw '{
+ "attributes": [
+ {
+ "email": "[email protected]",
+ "string_attribute": "fruit",
+ "boolean_attribute_1": true,
+ "integer_attribute": 26,
+ "array_attribute": [
+ "banana",
+ "apple"
+ ]
+ }
+ ],
+ "events": [
+ {
+ "email": "[email protected]",
+ "app_id": "your_app_identifier",
+ "name": "rented_movie",
+ "time": "2022-12-06T19:20:45+01:00",
+ "properties": {
+ "release": {
+ "studio": "FilmStudio",
+ "year": "2022"
+ },
+ "cast": [
+ {
+ "name": "Actor1"
+ },
+ {
+ "name": "Actor2"
+ }
+ ]
+ }
+ },
+ {
+ "user_alias": {
+ "alias_name": "device123",
+ "alias_label": "my_device_identifier"
+ },
+ "app_id": "your_app_identifier",
+ "name": "rented_movie",
+ "time": "2013-07-16T19:20:50+01:00"
+ }
+ ],
+ "purchases": [
+ {
+ "email": "[email protected]",
+ "app_id": "your_app_identifier",
+ "product_id": "product_name",
+ "currency": "USD",
+ "price": 12.12,
+ "quantity": 6,
+ "time": "2017-05-12T18:47:12Z",
+ "properties": {
+ "color": "red",
+ "monogram": "ABC",
+ "checkout_duration": 180,
+ "size": "Large",
+ "brand": "Backpack Locker"
+ }
+ }
+ ]
+}'
+
+```
+ | 
+
+### Update a user profile by phone number
+
+You can update a user profile by phone number using the /users/track endpoint. This endpoint only works if you include a valid phone number.
+
+important
+
+If you include a request with both email and phone, Braze uses the email as the identifier.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_REST_API_KEY' \
+--data-raw '{
+ "attributes": [
+ {
+ "phone": "+15043277269",
+ "string_attribute": "fruit",
+ "boolean_attribute_1": true,
+ "integer_attribute": 25,
+ "array_attribute": [
+ "banana",
+ "apple"
+ ]
+ }
+ ],
+}'
+
+```
+ | 
+
+### Set subscription groups
+
+This example shows how to create a user and set their subscription group within the user attributes object.
+
+Updating the subscription status with this endpoint updates the user specified by their external_id (such as User1) and updates the subscription status of any users with the same email as that user (User1).
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_REST_API_KEY' \
+--data-raw '{
+ "attributes": [
+ {
+ "external_id": "user_identifier",
+ "email": "[email protected]",
+ "email_subscribe": "subscribed",
+ "subscription_groups": [{
+ "subscription_group_id": "subscription_group_identifier_1",
+ "subscription_state": "unsubscribed"
+ },
+ {
+ "subscription_group_id": "subscription_group_identifier_2",
+ "subscription_state": "subscribed"
+ },
+ {
+ "subscription_group_id": "subscription_group_identifier_3",
+ "subscription_state": "subscribed",
+ "use_double_opt_in_logic": true
+ }
+ ]
+ }
+ ]
+}'
+
+```
+ | 
+
+note
+
+For SMS subscription groups, when you set a group’s subscription_state to subscribed, you can include the optional use_double_opt_in_logic parameter set to true within that subscription group object to enter the user into the SMS double opt-in workflow. If this parameter is omitted or set to false when subscription_state is subscribed, the user is subscribed without entering the double opt-in workflow. This parameter is not applied when subscription_state is set to other values, such as unsubscribed.
+
+### Example request to create an alias-only user
+
+You can use the /users/track endpoint to create an alias-only user by setting the _update_existing_only key with a value of false in the body of the request. If you omit this value, Braze does not create the alias-only user profile. Using an alias-only user ensures that one profile with that alias exists. This is especially helpful when building an integration as it prevents Braze from creating duplicate user profiles.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_REST_API_KEY' \
+--data-raw '{
+ "attributes": [
+ {
+ "_update_existing_only": false,
+ "user_alias": {
+ "alias_name": "example_name",
+ "alias_label": "example_label"
+ },
+ "email": "[email protected]"
+ }
+ ],
+}'
+
+```
+ | 
+
+## Responses
+
+When using any of the aforementioned API requests, you should receive one of the following three general responses: a successful message, a successful message with non-fatal errors, or a message with fatal errors.
+
+### Successful message
+
+Successful messages are met with the following response:
+
+```
+
+1
+2
+3
+4
+5
+6
+
+```
+ | 
+```
+{
+ "message": "success",
+ "attributes_processed": (optional, integer), if attributes are included in the request, this returns an integer of the number of external_ids with attributes that Braze queued for processing,
+ "events_processed": (optional, integer), if events are included in the request, this returns an integer of the number of events that Braze queued for processing,
+ "purchases_processed": (optional, integer), if purchases are included in the request, this returns an integer of the number of purchases that Braze queued for processing,
+}
+
+```
+ | 
+
+### Successful message with non-fatal errors
+
+If your message is successful but has non-fatal errors, such as one invalid event object out of a long list of events, you receive the following response:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "message": "success",
+ "errors": [
+ {
+ <minor error message>
+ }
+ ]
+}
+
+```
+ | 
+
+For success messages, Braze still processes any data not affected by an error in the errors array.
+
+### Message with fatal errors
+
+If your message has a fatal error, you receive the following response:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "message": <fatal error message>,
+ "errors": [
+ {
+ <fatal error message>
+ }
+ ]
+}
+
+```
+ | 
+
+### Fatal error response codes
+
+For status codes and associated error messages that Braze returns if your request encounters a fatal error, reference Fatal errors & responses.
+
+If you receive the error “provided external_id is blacklisted and disallowed”, your request may have included a “dummy user.” For more information, refer to Spam blocking.
+
+### Endpoint-specific errors
+
+The following errors are specific to the /users/track endpoint and are returned in the errors array of the response. Use these to troubleshoot issues with individual objects in a request.
+
+ Error | 
+ Description | 
+
+ BAD_DEVICE_ID | 
+ The device_id for a token import must be between 8 and 255 bytes. | 
+
+ BAD_EMAIL_SUBSCRIPTION_STATE | 
+ email_subscribe must be subscribed, unsubscribed, or opted_in. | 
+
+ BAD_LOCATION_UPDATE | 
+ current_location must be an object containing longitude and latitude. | 
+
+ BAD_PUSH_SUBSCRIPTION_STATE | 
+ push_subscribe must be subscribed, unsubscribed, or opted_in. | 
+
+ BAD_PUSH_TOKEN_APP_ID | 
+ The app_id in a token import must be a valid app identifier from the current workspace. | 
+
+ BAD_PUSH_TOKEN_IMPORT | 
+ Token imports must include tokens and exclude external_id and braze_id. | 
+
+ BAD_PUSH_TOKEN_STRING | 
+ The token value in a token import must be a string. | 
+
+ BAD_PUSH_TOKEN_VALUE | 
+ push_tokens must be an array of objects. | 
+
+ BAD_SUBSCRIPTION_GROUP_ARRAY | 
+ subscription_groups must be an array. | 
+
+ BAD_SUBSCRIPTION_GROUP_HASH | 
+ Each item in the subscription_groups array must be a JSON object with subscription_group_id and subscription_state keys. | 
+
+ BAD_SUBSCRIPTION_GROUP_ID | 
+ subscription_group_id must be a valid subscription group UUID. | 
+
+ BAD_SUBSCRIPTION_GROUP_STATE | 
+ subscription_state for a subscription group must be subscribed or unsubscribed. | 
+
+ BLACKLISTED_EXTERNAL_USER_ID | 
+ The provided external_id is blocklisted and disallowed. | 
+
+ EMAIL_BAD_FORMAT | 
+ The value provided for email is not a valid email address. | 
+
+ EXTERNAL_USER_ID_TOO_LARGE | 
+ The external_id exceeds the maximum allowed length of 987 bytes. | 
+
+ INVALID_ATTRIBUTE_EMAIL_SUBSCRIPTION_INFO | 
+ email_subscription_info is not a valid attribute. | 
+
+## Frequently asked questions
+
+important
+
+Do not send legally required transactional emails to SMS gateways, as there’s a strong likelihood that those emails will not be delivered.
+
+Although emails you send using a phone number and the provider’s gateway domain (known as an MM3) can result in the email being received as an SMS (text) message, some of our email providers do not support this behavior. For example, if you send an email to a T-Mobile phone number (such as “[email protected]”), your SMS message would be sent to whoever owns that phone number on the T-Mobile network.
+
+Keep in mind that even though these emails may not be delivered to the SMS gateway, they will still count towards your email billing. To avoid sending emails to unsupported gateways, review the list of unsupported gateway domain names.
+
+### What happens when multiple profiles with the same email address are found?
+
+If the external_id exists, Braze prioritizes the most recently updated profile with an external ID for updates. If the external_id doesn’t exist, Braze prioritizes the most recently updated profile for updates.
+
+### What happens if no profile with the email address exists?
+
+Braze creates a profile and an email-only user and sets the email field to [email protected], as noted in the example request for updating a user profile by email address. Braze does not create an alias.
+
+### How do you use /users/track to import legacy user data?
+
+You may submit data through the Braze API for a user who has not yet used your mobile app to generate a user profile. If the user subsequently uses the application, all information following their identification using the SDK is merged with the existing user profile you created using the API call. Any user behavior recorded anonymously by the SDK before identification is lost upon merging with the existing API-generated user profile.
+
+The segmentation tool includes these users regardless of whether they have engaged with the app. If you want to exclude users uploaded using the User API who have not yet engaged with the app, add the Session Count > 0 filter.
+
+### How do I avoid creating duplicate user profiles?
+
+Duplicate profiles can occur when a request includes a primary identifier (such as external_id) that doesn’t match any existing profile, alongside an email or phone value that does match an existing profile. Because primary identifiers are used for user lookup, Braze creates a new profile for the unrecognized external_id instead of updating the existing email-only or phone-only profile.
+
+To avoid duplicates:
+
+- When transitioning users from email-only or phone-only profiles to identified profiles, use the /users/identify endpoint to assign an external_id to the existing profile, rather than sending both to /users/track.
+ 
+- If duplicates already exist, merge them using the /users/merge endpoint.
+
+### How does /users/track handle duplicate events?
+
+Each event object in the events array represents a single occurrence of a custom event by a user at a designated time. This means each event ingested into Braze has its own event ID, so “duplicate” events are treated as separate, unique events.
+
+### How does /users/track handle invalid nested custom attributes?
+
+When a nested custom attribute contains any invalid values (such as invalid time formats or null values), Braze drops all nested custom attribute updates in the request from processing. This applies to all nested structures within that specific attribute. To help ensure successful processing, verify that all values within nested custom attributes are valid before sending.
+
+### Are requests to /users/track guaranteed to be processed in order?
+
+When you make multiple separate API calls to /users/track in rapid succession, Braze cannot guarantee that requests are processed in the exact order they are sent or received. This is because Braze uses asynchronous processing to maximize speed and flexibility.
+
+For example, if you send multiple update requests for the same user within seconds of each other—some with null attribute values and others with valid values—the requests containing null values may be processed after requests with valid values, even if sent earlier. This can result in attribute values appearing to revert or not reflect the most recently sent update.
+
+To avoid race conditions when updating user data:
+
+- Batch updates in a single request: Include all attribute updates for a user in one API call rather than making separate consecutive calls.
+ 
+- Add delays between requests: If you must make separate calls for the same user, add a delay (a few seconds) between requests to allow the first request to complete processing before the next one is sent.
+ 
+- Avoid overlapping updates for the same field: If two requests update the same attribute with different values, send those updates in one request or separate them with a delay to reduce the chance of out-of-order results.
+
+For more information about race conditions and best practices, see Race conditions.
+
+### Why is my /users/track response slower than I expect?
+
+Successful /users/track calls are usually accepted quickly, but Braze still processes attribute, event, and purchase updates asynchronously. Perceived latency can increase when payloads are large or when network routing to your REST endpoint is slow. If you need a synchronous acknowledgment per user or stricter ordering between calls, see /users/track/sync (limited beta).
+
+### How do rate limits affect /users/track?
+
+When you approach your rate limit, you receive 429 responses. For non-429 responses on supported contracts, you can use the X-RateLimit-* response headers described in Rate limit headers for Monthly Active Users CY 24-25, Universal MAU, Web MAU, and Mobile MAU to see how much of your current window remains.
+
+### Why do I get 400 Bad Request with a bad syntax or parse error?
+
+An HTTP 400 with a syntax or parse error typically means the request body is not valid JSON. Common causes include trailing commas, comments inside JSON, single-quoted strings, an extra opening { before the payload, or sending a non-JSON body while the Content-Type header is application/json. Validate payloads with a JSON linter before sending, confirm your HTTP client JSON-encodes objects (rather than concatenating raw strings), and confirm the body is UTF-8 encoded. For other 400 responses (for example, payload size and per-request object limits), refer to Fatal errors & responses and the Endpoint-specific errors table on this page.
+
+## Monthly Active Users CY 24-25, Universal MAU, Web MAU, and Mobile MAU
+
+For customers on new pricing, rate limits are enforced at the company level. Customers can set workspace rate limits for hourly limits, but burst limits are still shared between all workspaces.
+
+For customers who have purchased Monthly Active Users CY 24-25, Universal MAU, Web MAU, or Mobile MAU, Braze manages different rate limits on its /users/track endpoint:
+
+- Hourly rate limits are set according to the expected data ingestion activity on your account, which may correspond to the number of monthly active users you have purchased, industry, seasonality, or other factors.
+ 
+- In addition to the hourly limit, Braze enforces a burst limit on the number of requests that can be sent every three seconds.
+ 
+- Each request may batch up to 75 updates combined across attribute, event, or purchase objects.
+
+Current limits based on expected ingestion can be found in the dashboard under Settings > APIs and Identifiers > API Usage Dashboard. We may modify rate limits to protect system stability or allow for increased data throughput on your account. Please contact Braze Support or your customer success manager for questions or concerns regarding the hourly or per-second request limit and the needs of your business.
+
+### Rate limit headers for Monthly Active Users CY 24-25, Universal MAU, Web MAU, and Mobile MAU
+
+All non-rate-limited (such as non-429) responses contain the following HTTP response headers that indicate the state of the hourly rate limit window to the client. Use these headers to manage your request rate:
+
+ Header name | 
+ Description | 
+
+ X-RateLimit-Limit | 
+ The number of requests allowed per time period | 
+
+ X-RateLimit-Remaining | 
+ The approximate number of requests remaining within a window | 
+
+ X-RateLimit-Reset | 
+ The number of seconds remaining before the current window resets | 
+
+Note that the RateLimit-Limit, RateLimit-Remaining, and RateLimit-Reset headers are not returned when you hit an HTTP 429 error. When the error occurs, those headers are replaced with an X-Ratelimit-Retry-After header that returns an integer indicating the number of seconds before you can start making requests.
+
+- 
+
+New Stuff!

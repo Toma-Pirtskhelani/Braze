@@ -1,0 +1,108 @@
+---
+url: https://www.braze.com/docs/user_guide/messaging/campaigns/ideas_and_strategies/new_features
+slug: docs__user_guide__messaging__campaigns__ideas_and_strategies__new_features
+title: "Feature awareness and new app version"
+description: "This reference article discusses how to keep your users knowledgeable and excited about when you release new features or versions."
+section: user_guide/messaging
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Feature awareness and new app version
+
+This reference article addresses how to use the Braze platform to keep your customers up to date on new features and versions of your app.
+
+You work hard to continually update and improve your app, and you want your users to experience these exciting new features and new app versions. Learn how to teach your users about the new features they have yet to use, and encourage them to explore the app to get the most you have to offer.
+
+Feature awareness campaigns are a great way to encourage users to stay engaged with your app as you continue to improve your app’s functionality. Keeping users up to date is a great way to keep them active, boost ratings, and ensure user engagement.
+
+## Filtering by most recent app versions
+
+Braze SDKs automatically track a user’s most recent app version. These versions can be used in filters and segments to determine which users should receive a message or campaign.
+
+note
+
+It may take time for the current app versions to populate. The app version on the user profile updates when the information is captured by the SDK, which relies on when users open their apps. If the user doesn’t open the app, the current version won’t be updated. 
+
+ These filters also won’t apply retroactively. It’s good to use “greater than” or “equal” to current and future versions, but using past version filters may cause unexpected behaviors.
+
+### App version number
+
+Use the App Version Number filter to segment users by the app’s version and build number.
+
+This filter supports numerical comparisons to target a range of app versions. For example, you can target users whose app is “less than”, “greater than”, and “equal to” app version “1.2.3”, which might be beneficial to promote a new feature which requires an app upgrade.
+
+This filter can replace the legacy “App Version Name” filter, which required explicitly listing each older version or using a regular expression.
+
+#### How it works
+
+- Each part of the major.minor.patch version sent in your app’s app version is compared as integers
+ 
+- If the major numbers are equal, Braze compares the minor numbers. If the minor numbers are equal, Braze compares the patch numbers.
+ 
+- When using “less than” or “less than or equal to” filters, if the app version doesn’t exist on a user’s profile, the filter returns true and the user is treated as older than the tested version. To avoid including users without version data, use “greater than” or “equal to” filters instead.
+
+#### Important considerations
+
+- Android apps have both a human readable versionName and an internal versionCode. The App Version Number filter uses versionCode because it is guaranteed to be incremented with each app store release.
+ 
+- This can cause confusion when your app’s versionName and versionCode get out of sync, especially since both fields can be viewed from the Braze dashboard. As a best practice, check that your app’s versionName and versionCode are incremented together.
+ 
+- If you need to filter by the human readable versionName field instead (uncommon), use the App Version Name filter.
+
+#### SDK requirements
+
+Values for this filter are collected starting with Braze Android SDK v3.6.0+ and iOS SDK v3.21.0+. Even though this filter has SDK requirements, you can still target users who are on lower (older) versions of your app using this feature.
+
+For Android, this version number is based on the Package Long Version Code for the app.
+
+For iOS, this version number is based on the Short Version String for the app.
+
+tip
+
+This filter populates values after users upgrade their apps to the supported Braze SDK Versions. Until then, the filter shows no versions when selected.
+
+#### Use case
+
+In the following scenario, let’s assume that you first upgraded to the Braze SDKs which supports this filter in version 2.0.0 of your app.
+
+Once Braze receives data from version 2.0.0 of your app, you can target users with earlier or later versions.
+
+ Filter | 
+ User’s App Version | 
+ Result | 
+
+ Less than 2.0.0 | 
+ 1.0.0 | 
+ The user is in the segment, even though their Braze SDK did not support the “App Version Number” filter. | 
+
+ Greater than 2.0.0 | 
+ 2.5.1 | 
+ The user and all future installs are in the segment. | 
+
+ Greater than 2.0.0 | 
+ 1.9.9 | 
+ The user is not in the segment. | 
+
+ Less than or equal to 2.0.0 | 
+ 3.0.1 | 
+ The user is not in the segment. | 
+
+### App version name
+
+Use the “App Version Name” filter to segment users by the app’s user-facing “build name”.
+
+This filter supports matching with “is”, “is not”, and regular expressions. For example, you can target users who have an app that is not version “1.2.3-test-build”.
+
+For Android, this version name is based on the Package Version Name for the app. For iOS, this version name is based on the Short Version String for the app.
+
+### Have not used feature
+
+When you release a new app version and introduce new features, users may not notice new content. Running a feature awareness campaign is a great way to teach users about new features or features they have never used. To do so, you must create a custom attribute that is assigned to users who have never completed a certain action within your app or use a custom event to track a particular action. You can use this attribute (or event) to segment the users you want to send the campaign to.
+
+tip
+
+Looking to retarget a specific portion of your audience? Check out Retargeting Campaigns to learn how to retarget campaigns by leveraging your user’s previous actions.
+
+- 
+
+New Stuff!

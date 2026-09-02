@@ -1,0 +1,875 @@
+---
+url: https://www.braze.com/docs/developer_guide/sdk_integration/reading_verbose_logs
+slug: docs__developer_guide__sdk_integration__reading_verbose_logs
+title: "Reading verbose logs"
+description: "Learn how to read and interpret verbose log output from the Braze SDK, including key entries for push notifications, in-app messages, Content Cards, and deep..."
+section: developer_guide/sdk_integration
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Reading verbose logs
+
+This page explains how to interpret the verbose log output from the Braze SDK. For each messaging channel, you’ll find the key log entries to look for, what they mean, and common issues to watch for.
+
+Before you start, make sure you’ve enabled verbose logging and know how to collect logs on your platform.
+
+## Sessions
+
+Sessions are the foundation of Braze analytics and message delivery. Many messaging features—including in-app messages and Content Cards—depend on a valid session starting before they can function. If sessions aren’t logging correctly, investigate this first. For more information about enabling session tracking, see Step 5: Enable user session tracking.
+
+### Key log entries
+
+- swift
+ 
+- android
+
+Session start:
+
+```
+
+1
+
+```
+ | 
+```
+Started user session (id: <SESSION_ID>)
+
+```
+ | 
+
+Session end:
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+Ended user session (id: <SESSION_ID>, duration: <DURATION>s)
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: sessionEnd(duration: <DURATION>)
+
+```
+ | 
+
+Session start:
+
+Look for the following entries:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+New session created with ID: <SESSION_ID>
+Session start event for new session received
+Completed the openSession call
+Opened session with activity: <ACTIVITY_NAME>
+
+```
+ | 
+
+Filter network requests for your configured Braze endpoint (for example, sdk.iad-01.braze.com) to see the session start (ss) event.
+
+Session end:
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+Closed session with activity: <ACTIVITY_NAME>
+Closed session with session ID: <SESSION_ID>
+Requesting data flush on internal session close flush timer.
+
+```
+ | 
+
+### What to check
+
+- Verify that a session start log appears when the app launches.
+ 
+- If you don’t see a session start, check that the SDK is properly initialized and that openSession (Android) is being called.
+ 
+- On Android, confirm that a network request is being made to the Braze endpoint. If you don’t see this, verify your API key and endpoint configuration.
+
+## Push notifications
+
+Push notification logs help you verify that device tokens are registered, notifications are delivered, and click events are tracked.
+
+### Token registration
+
+When a session starts, the SDK registers the device’s push token with Braze.
+
+- swift
+ 
+- android
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Updated push notification authorization:
+- authorization: authorized
+
+Received remote notifications device token: <PUSH_TOKEN>
+
+```
+ | 
+
+Filter for requests to your configured Braze endpoint (for example, sdk.iad-01.braze.com) and look for push_token in the request body attributes:
+
+```
+
+1
+2
+3
+4
+5
+6
+
+```
+ | 
+```
+"attributes": [
+ {
+ "push_token": "<PUSH_TOKEN>",
+ "user_id": "<USER_ID>"
+ }
+]
+
+```
+ | 
+
+Also confirm the device info includes:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+"device": {
+ "ios_push_auth": "authorized",
+ "remote_notification_enabled": 1
+}
+
+```
+ | 
+
+Look for the FCM registration log:
+
+```
+
+1
+
+```
+ | 
+```
+Registering for Firebase Cloud Messaging token using sender id: <SENDER_ID>
+
+```
+ | 
+
+Verify the following:
+
+- com_braze_firebase_cloud_messaging_registration_enabled is true.
+ 
+- The FCM sender ID matches your Firebase project.
+
+A common error is SENDER_ID_MISMATCH, which means the configured sender ID doesn’t match your Firebase project.
+
+### What to check
+
+- If push_token is missing from the request body, the token wasn’t captured. Verify push setup in your app configuration.
+ 
+- If ios_push_auth shows denied or provisional, the user hasn’t granted full push permission.
+ 
+- On Android, if you see SENDER_ID_MISMATCH, update your FCM sender ID to match your Firebase project.
+
+### Push delivery and click
+
+When a push notification is tapped, the SDK logs the processing and click events.
+
+- swift
+ 
+- android
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+
+```
+ | 
+```
+Processing push notification:
+- date: <TIMESTAMP>
+- silent: false
+- userInfo: {
+ "ab": { ... },
+ "ab_uri": "<DEEP_LINK_OR_URL>",
+ "aps": {
+ "alert": {
+ "body": "<MESSAGE_BODY>",
+ "title": "<MESSAGE_TITLE>"
+ }
+ }
+}
+
+```
+ | 
+
+Followed by the click event:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: pushClick(campaignId: ...)
+
+```
+ | 
+
+If the push contains a deep link, you’ll also see:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Opening '<URL>':
+- channel: notification
+- useWebView: false
+- isUniversalLink: false
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+BrazeFirebaseMessagingService: Got Remote Message from FCM
+
+```
+ | 
+
+Followed by the push payload and display logs. For deep links, look for the Deep Link Delegate or UriAction entries.
+
+### What to check
+
+- Verify the push payload contains the expected title, body, and any deep links (ab_uri).
+ 
+- Confirm a pushClick event is logged after tapping.
+ 
+- If the click event is missing, check that your app delegate or notification handler is properly forwarding push events to the Braze SDK.
+
+## In-app messages
+
+In-app message logs show you the full lifecycle: delivery from the server, triggering based on events, display, impression logging, and click tracking.
+
+### Message delivery
+
+When a user starts a session and is eligible for an in-app message, the SDK receives the message payload from the server.
+
+- swift
+ 
+- android
+
+Filter for responses from your configured Braze endpoint (for example, sdk.iad-01.braze.com) containing the in-app message data.
+
+The response body contains the message payload, including:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+```
+ | 
+```
+"templated_message": {
+ "data": {
+ "message": "...",
+ "type": "HTML",
+ "message_close": "SWIPE",
+ "trigger_id": "<TRIGGER_ID>"
+ },
+ "type": "inapp"
+}
+
+```
+ | 
+
+Look for the trigger event matching log:
+
+```
+
+1
+
+```
+ | 
+```
+Triggering action: <CAMPAIGN_BSON_ID>
+
+```
+ | 
+
+This confirms the in-app message was matched to a trigger event.
+
+### Message display and impression
+
+- swift
+ 
+- android
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+In-app message ready for display:
+- triggerId: (campaignId: <CAMPAIGN_ID>, ...)
+- extras: { ... }
+
+```
+ | 
+
+Followed by the impression log:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: inAppMessageImpression(triggerIds: [...])
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+handleExistingInAppMessagesInStackWithDelegate:: Displaying in-app message
+
+```
+ | 
+
+### Click and button events
+
+When a user taps a button or closes the message:
+
+- swift
+ 
+- android
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: inAppMessageButtonClick(triggerIds: [...], buttonId: "<BUTTON_ID>")
+
+```
+ | 
+
+If no further triggered messages match, you’ll also see:
+
+```
+
+1
+
+```
+ | 
+```
+No matching trigger for event.
+
+```
+ | 
+
+This is expected behavior when no additional in-app messages are configured for the event.
+
+Filter for requests to your configured Braze endpoint (for example, sdk.iad-01.braze.com) and look for events with the name sbc (button click) or si (impression) in the request body.
+
+### What to check
+
+- If the in-app message doesn’t display, verify that a session start is logged first.
+ 
+- Filter for responses from your configured Braze endpoint to confirm the message payload was delivered.
+ 
+- If impressions aren’t logging, verify you haven’t implemented a custom inAppMessageDisplay delegate that suppresses logging.
+ 
+- If “No matching trigger for event” appears, this is normal and indicates that no additional in-app messages are configured for that event.
+
+## Content Cards
+
+Content Card logs help you verify that cards are synced to the device, displayed to the user, and that interactions (impressions, clicks, dismissals) are tracked.
+
+### Card sync
+
+Content Cards sync on session start and when a manual refresh is requested. If no session is logged, no Content Cards are displayed.
+
+- swift
+ 
+- android
+
+Filter for responses from your configured Braze endpoint (for example, sdk.iad-01.braze.com) containing the card data.
+
+The response body contains the card data, including:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+```
+ | 
+```
+"cards": [
+ {
+ "id": "<CARD_ID>",
+ "tt": "<CARD_TITLE>",
+ "ds": "<CARD_DESCRIPTION>",
+ "tp": "short_news",
+ "v": 0,
+ "cl": 0,
+ "p": 1
+ }
+]
+
+```
+ | 
+
+Key fields:
+
+- v (viewed): 0 = not viewed, 1 = viewed
+ 
+- cl (clicked): 0 = not clicked, 1 = clicked
+ 
+- p (pinned): 0 = not pinned, 1 = pinned
+ 
+- tp (type): short_news, captioned_image, classic, etc.
+
+```
+
+1
+
+```
+ | 
+```
+Requesting content cards sync.
+
+```
+ | 
+
+Followed by a POST request to your configured Braze endpoint (for example, sdk.iad-01.braze.com) containing user and device information.
+
+### Impressions, clicks, and dismissals
+
+- swift
+ 
+- android
+
+Impression:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: contentCardImpression(cardIds: [...])
+
+```
+ | 
+
+Click:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: contentCardClick(cardIds: [...])
+
+```
+ | 
+
+If the card has a URL, you’ll also see:
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+Opening '<URL>':
+- channel: contentCard
+- useWebView: true
+
+```
+ | 
+
+Dismissal:
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Logged event:
+- userId: <USER_ID>
+- sessionId: <SESSION_ID>
+- data: contentCardDismissed(cardIds: [...])
+
+```
+ | 
+
+Filter for requests to your configured Braze endpoint (for example, sdk.iad-01.braze.com) and look for event names in the request body:
+
+- cci — Content Card impression
+ 
+- ccc — Content Card click
+ 
+- ccd — Content Card dismissed
+
+### What to check
+
+- No cards displayed: Verify that a session start is logged. Content Cards require an active session to sync.
+ 
+- Cards missing for new users: New users on their first session may not see Content Cards until the next session. This is expected behavior.
+ 
+- Card exceeds size limit: Content Cards over 2 KB aren’t displayed and the message is aborted.
+ 
+- Card persists after stopping campaign: Verify that the sync completed after the campaign was stopped. Content Cards are removed from the device after a successful sync. When stopping a campaign, ensure the option to remove active cards from user feeds is selected.
+
+## Deep links
+
+Deep link logs appear across push notifications, in-app messages, and Content Cards. The log structure is consistent regardless of the source channel.
+
+- swift
+ 
+- android
+
+When the SDK processes a deep link:
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+Opening '<DEEP_LINK_URL>':
+- channel: <SOURCE_CHANNEL>
+- useWebView: false
+- isUniversalLink: false
+- extras: { ... }
+
+```
+ | 
+
+Where <SOURCE_CHANNEL> is one of: notification, inAppMessage, or contentCard.
+
+For deep links, look for the Deep Link Delegate or UriAction entries in Logcat. To test deep link resolution independently, run the following command:
+
+```
+
+1
+
+```
+ | 
+```
+adb shell am start -W -a android.intent.action.VIEW -d "<YOUR_DEEP_LINK>" "<YOUR_PACKAGE_NAME>"
+
+```
+ | 
+
+This confirms whether the deep link resolves correctly outside of the Braze SDK.
+
+### What to check
+
+- Verify the deep link URL matches what you configured in the campaign.
+ 
+- If the deep link works from one channel (for example, push) but not another (for example, Content Cards), check that your deep link handling implementation supports all channels.
+ 
+- On iOS, universal links require additional handling. If universal links aren’t working from Braze channels, verify that your app implements the BrazeDelegate protocol for URL handling.
+ 
+- On Android, check that automatic deep link handling is disabled if you use a custom handler. Otherwise the default handler may conflict with your implementation.
+
+## User identification
+
+When a user is identified with an external_id, the SDK logs a change user event.
+
+- android
+ 
+- swift
+
+```
+
+1
+
+```
+ | 
+```
+changeUser called with: <EXTERNAL_ID>
+
+```
+ | 
+
+Key things to know:
+
+- Call changeUser as soon as the user logs in—the sooner, the better.
+ 
+- If a user logs out, there’s no way to call changeUser to revert them to an anonymous user.
+ 
+- If you don’t want anonymous users, call changeUser during session start or app startup.
+
+Filter for requests to your configured Braze endpoint (for example, sdk.iad-01.braze.com) and look for user identification in the request body:
+
+```
+
+1
+
+```
+ | 
+```
+"user_id": "<EXTERNAL_ID>"
+
+```
+ | 
+
+## Network requests
+
+Verbose logs include full HTTP request and response details for SDK communication with Braze servers. These are useful for diagnosing connectivity issues.
+
+### Request structure
+
+Filter for requests to your configured Braze endpoint (for example, sdk.iad-01.braze.com). The request structure includes:
+
+- swift
+ 
+- android
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+
+```
+ | 
+```
+[http] request POST: <YOUR_BRAZE_ENDPOINT>
+- Headers:
+ - Content-Type: application/json
+ - X-Braze-Api-Key: <REDACTED>
+ - X-Braze-Req-Attempt: 1
+ - X-Braze-Req-Tokens-Remaining: <COUNT>
+- Body: { ... }
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Making request(id = <REQUEST_ID>) to <YOUR_BRAZE_ENDPOINT>
+
+```
+ | 
+
+### What to check
+
+- API key: Verify XBraze-ApiKey matches your workspace’s API key.
+ 
+- Endpoint: Confirm the request URL matches your configured SDK endpoint.
+ 
+- Retry attempts: XBraze-Req-Attempt greater than 1 indicates the SDK is retrying a failed request, which may signal connectivity issues.
+ 
+- Rate limiting: XBraze-Req-Tokens-Remaining shows the remaining request tokens. A low count may indicate the SDK is approaching rate limits.
+ 
+- Missing requests: On Android, if you don’t see a request to the Braze endpoint after session start, verify your API key and endpoint configuration.
+
+## Common event abbreviations
+
+In verbose log payloads, Braze uses abbreviated event names. Here’s a reference:
+
+ Abbreviation | 
+ Event | 
+
+ ss | 
+ Session start | 
+
+ se | 
+ Session end | 
+
+ si | 
+ In-app message impression | 
+
+ sbc | 
+ In-app message button click | 
+
+ cci | 
+ Content Card impression | 
+
+ ccc | 
+ Content Card click | 
+
+ ccd | 
+ Content Card dismissed | 
+
+ lr | 
+ Location recorded | 
+
+## Troubleshooting
+
+### Geofences not triggering on Android SDK 13.1.0–15.x
+
+Braze Android SDK 13.1.0 through 15.x had a regression that could stop geofence update events from recording. On devices running Android 10 or earlier, session-start location updates could also fail. Upgrade to Android SDK 16.0.0 or later. For SDK setup, see Geofences.
+
+### When might a user have 0 sessions recorded against their profile?
+
+A user profile can show 0 sessions when you import the user through the REST API (/users/track) or CSV import without First session or Last session fields. Sessions are recorded when users interact with your app through the SDK. For more detail, see User profile has 0 sessions.
+
+### User data discrepancies when using the SDK and REST API together
+
+When you use the SDK and REST API at the same time, race conditions can cause data discrepancies. After you call changeUser(), allow the SDK to flush pending data before making critical REST API calls, avoid batching time-sensitive updates, and consider adding a short delay between SDK and API requests. For changeUser() behavior, see How changeUser() works.
+
+### Data not reaching Braze
+
+If data isn’t reaching Braze, confirm your firewall allows outbound traffic to Braze API endpoints and CDN providers. Run an MTR test and use Fastly Debug while the issue occurs. For allowlisting and connectivity troubleshooting, see API network connectivity issues.
+
+- 
+
+New Stuff!

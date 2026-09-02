@@ -1,0 +1,62 @@
+---
+url: https://www.braze.com/docs/api/postman_collection
+slug: docs__api__postman_collection
+title: "Postman and sample requests"
+description: "This reference article covers the Braze Postman Collection, what it is, how to set up and use the collection, as well as how to edit..."
+section: api/postman_collection
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Postman and sample requests
+
+Braze allows you to generate sample API requests for all of our endpoints through our Postman Collection. This reference article covers the Braze Postman Collection, what it is, how to set up and use the collection, as well as how to edit and send requests.
+
+## What is Postman?
+
+Postman is a free visual editing tool for building and testing API requests. Compared to other methods (for example, using cURL), Postman lets you edit API requests, view header information, and more. You can save collections (libraries of sample pre-made API requests). To accelerate setup with our REST API, we provide a collection with pre-made examples for all endpoints.
+
+View or download our Postman Collection by clicking Run in Postman in our Postman docs to get started.
+
+## Using the Braze Postman collection
+
+If you have a Postman account (you can download macOS, Windows, and Linux versions from the Postman website), you can open our Postman documentation in your own Postman app by clicking the orange Run in Postman button. You can then create an environment, or use our Braze REST API environment as a template, and edit the available POST and GET requests to suit your own needs.
+
+### Setting up your Postman environment
+
+The Braze Postman Collection uses a templating variable, {{instance_url}}, to substitute the REST API URL of your Braze instance into the pre-built requests, and the {{api_key}} variable for your API Key. Rather than having to manually edit all requests in the Collection, you can set up this variable in your Postman environment. You can either select our templated environment (Braze REST API Environment Template) from the dropdown and replace the variable values with your own, or you can set up your own environment.
+
+To set up your own environment, perform the following steps:
+
+- From the Workspaces tab, select Environments.
+ 
+- Click the + plus button to create a new environment.
+ 
+- Give this environment a name (for example, “Braze API Requests”) and add keys for instance_url and api_key with values corresponding to your Braze instance and Braze REST API Key.
+ 
+- Click Save.
+
+note
+
+In POST request bodies, the api_key should be encapsulated in quotes: "MY-API-KEY-EXAMPLE". In GET URLs, it should not be. We have already provided this formatting for you in this documentation’s POST request bodies, GET URLs, and environment template for YOUR-API-KEY-HERE.
+
+### Using the pre-built requests from the collection
+
+After you have configured your environment, you can use any of the pre-built requests in the collection as a template for building new API requests. To start using one of the pre-built requests, click on it within the Collections menu of Postman. This will open the request as a new tab in the main window of the Postman app.
+
+In general, there are two types of requests that Braze API endpoints accept - GET and POST. Depending on which HTTP method the endpoint uses, you’ll need to edit the pre-built request differently.
+
+#### Edit a POST request
+
+When editing a POST request, open the request and navigate to the Body section in the request editor. For readability, select the raw radio button to format the JSON request body.
+
+#### Edit a GET request
+
+When editing a GET request, edit the parameters passed in the request URL. To do so, select the Params tab and edit the key-value pairs in the fields that appear.
+
+### Send your request
+
+After your API request is ready, click Send. The request sends and the response data populates in a section underneath the request editor. From here, you can view the raw data returned from the Braze API, see the HTTP response code, see how long the request took to process, and view header information.
+
+- 
+
+New Stuff!

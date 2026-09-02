@@ -1,0 +1,560 @@
+---
+url: https://www.braze.com/docs/api/objects_filters/connected_audience
+slug: docs__api__objects_filters__connected_audience
+title: "Connected audience object"
+description: "This article explains the connected audience object, including how it works, use cases, and the different filters that create it."
+section: api/objects_filters
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Connected audience object
+
+A connected audience is a dynamic audience filter you define inline within your API request, so you can target the right users at send time without creating or managing segments in the Braze dashboard.
+
+Instead of pre-building a segment for every possible audience combination, you pass filter criteria directly in your API call. Depending on the endpoint, this object is passed as audience or custom_audience. Braze evaluates each user against those criteria in real time and delivers the message only to users who match. This means a single campaign, Canvas, or API-only message definition can serve an unlimited number of audience variations, driven entirely by your business logic.
+
+## How it works
+
+- Define your message by either creating an API-triggered campaign or Canvas in the Braze dashboard, or define message content entirely inline using the messaging objects in your API request. Use trigger properties or Canvas context for dynamic personalization.
+ 
+- Call a supported endpoint and include your connected audience filters in the audience parameter, or in custom_audience for /messages/live_activity/start. You can filter on custom attributes, push subscription status, email subscription status, and last-used-app time.
+ 
+- Braze evaluates the filters at send time, delivering the message only to users who match your criteria.
+
+tip
+
+A campaign_id isn’t required when using the audience parameter. The /messages/send and /messages/schedule/create endpoints let you define message content inline without a pre-created campaign. However, if you want to track campaign-level metrics (such as sends, clicks, or bounces) on the dashboard, include a campaign_id.
+
+Because the audience is defined per request, your backend systems can trigger contextually relevant messages in response to any business event (a price change, a weather alert, a live score update) without dashboard intervention.
+
+### Compatible endpoints
+
+You can use the connected audience object on these endpoints:
+
+- /messages/send
+ 
+- /campaigns/trigger/send
+ 
+- /canvas/trigger/send
+ 
+- /messages/schedule/create
+ 
+- /campaigns/trigger/schedule/create
+ 
+- /canvas/trigger/schedule/create
+ 
+- /messages/live_activity/start (uses custom_audience)
+
+Note that the audience parameter does not support array of objects.
+
+## Use cases
+
+Use connected audiences for scenarios where your back-end systems detect an event and need to notify a dynamically determined set of users:
+
+ Category | 
+ Example | 
+
+ Weather alerts | 
+ A weather data provider detects a severe weather event and sends push notifications to users whose preferred_city attribute matches the affected area. | 
+
+ Sports and live events | 
+ A sports app sends real-time score updates or match alerts to users whose favorite_team attribute matches one of the teams playing. | 
+
+ Content and entertainment | 
+ A streaming service notifies users whose favorite_shows array includes a series title whenever a new episode is released. | 
+
+ E-commerce | 
+ An online retailer sends price-drop or back-in-stock alerts to users whose wishlisted_products array includes the relevant product ID. | 
+
+ Travel | 
+ A travel app sends flight-delay notifications to users whose booked_flight attribute matches the affected flight number. | 
+
+ Financial services | 
+ A trading platform alerts users whose watchlist array includes a stock ticker that has crossed a price threshold. | 
+
+In each case, a single campaign or API-only message definition handles all variations. Your backend determines the filter values and passes them in the API request, so you don’t need to create a separate segment or campaign for each product, show, team, or location.
+
+## Example request
+
+The following example uses the /campaigns/trigger/send endpoint to target users who have favorited a specific show and are opted in to push notifications:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+
+```
+ | 
+```
+{
+ "campaign_id": "YOUR_CAMPAIGN_ID",
+ "audience": {
+ "AND": [
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "favorite_shows",
+ "comparison": "includes_value",
+ "value": "Example Show"
+ }
+ },
+ {
+ "push_subscription_status": {
+ "comparison": "is",
+ "value": "opted_in"
+ }
+ }
+ ]
+ },
+ "trigger_properties": {
+ "show_title": "Example Show",
+ "episode_title": "Season 3, Episode 1",
+ "deep_link": "https://example.com/shows/example-show/s3e1"
+ },
+ "broadcast": false
+}
+
+```
+ | 
+
+## Object body
+
+The connected audience object is composed of either a single connected audience filter or several connected audience filters combined with AND and OR operators.
+
+Multiple filter example:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+```
+ | 
+```
+{
+ "AND":
+ [
+ Connected Audience Filter,
+ {
+ "OR" :
+ [
+ Connected Audience Filter,
+ Connected Audience Filter
+ ]
+ },
+ Connected Audience Filter
+ ]
+}
+
+```
+ | 
+
+## Connected audience filters
+
+Combine multiple filters with AND and OR operators to create a connected audience filter.
+
+### Considerations
+
+Connected audiences cannot filter users by:
+
+- Default attributes
+ 
+- Custom events
+ 
+- Segments
+ 
+- Message engagement events
+ 
+- Nested custom attributes
+
+To use these filters, we recommend incorporating them into an audience segment and then specifying that segment in the segment_id parameter for the /messages/send endpoint. When using other endpoints, you must add the segment to the API-triggered campaign or Canvas in the Braze dashboard first. If you need to filter on nested attributes, use a standard segment instead.
+
+### Custom attribute filter
+
+This filter allows you to segment based on a user’s custom attribute. These filters contain up to three fields:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": (String) the name of the custom attribute to filter on,
+ "comparison": (String) one of the allowed comparisons to make against the provided value,
+ "value": (String, Numeric, Boolean) the value to be compared using the provided comparison
+ }
+}
+
+```
+ | 
+
+#### Allowed comparisons by data type
+
+The custom attribute’s data type determines the comparisons that are valid for a given filter.
+
+ Custom attribute type | 
+ Allowed comparisons | 
+
+ String | 
+ equals, not_equal, matches_regex, does_not_match_regex, exists, does_not_exist, is_any_of, is_none_of | 
+
+ Array | 
+ includes_value, does_not_include_value, exists, does_not_exist, is_any_of, is_none_of | 
+
+ Numeric | 
+ equals, not_equal, greater_than, greater_than_or_equal_to, less_than, less_than_or_equal_to, exists, does_not_exist | 
+
+ Boolean | 
+ equals, not_equal, exists, does_not_exist | 
+
+ Time | 
+ less_than_x_days_ago, greater_than_x_days_ago, less_than_x_days_in_the_future, greater_than_x_days_in_the_future, after, before, exists, does_not_exist | 
+
+#### Attribute comparison caveats
+
+ Comparison | 
+ Additional considerations | 
+
+ value | 
+ The value is not required when using the exists or does_not_exist comparisons. value must be an ISO 8601 datetime string when using the before and after comparisons. | 
+
+ matches_regex | 
+ When using the matches_regex comparison, the value passed must be a string. To read more about using regular expressions with Braze, refer to Regular expressions and Custom attribute data types. | 
+
+#### Multi-value comparisons
+
+Both is_any_of and is_none_of support matching against multiple values in a single comparison. These comparisons work with both string and array custom attributes.
+
+- is_any_of: Matches users whose attribute value equals any of the provided values. The value can be a single string or an array of strings.
+ 
+- is_none_of: Matches users whose attribute value does not match any of the provided values. The value can be a single string or an array of strings. Note that users without the attribute on their profile always qualify for this comparison.
+
+For array attributes:
+
+- includes_value can also accept an array of values to check if the user’s array contains any of the specified values.
+ 
+- When using is_any_of or is_none_of with array attributes, they function the same as includes_value and does_not_include_value respectively.
+
+tip
+
+For multi-value matching, use is_any_of rather than includes_value.
+
+#### Custom attribute examples
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "eye_color",
+ "comparison": "equals",
+ "value": "blue"
+ }
+}
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "favorite_foods",
+ "comparison": "includes_value",
+ "value": "pizza"
+ }
+}
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "last_purchase_time",
+ "comparison": "less_than_x_days_ago",
+ "value": 2
+ }
+}
+
+```
+ | 
+
+#### Multi-value comparison examples
+
+##### is_any_of with an array of strings
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "favorite_color",
+ "comparison": "is_any_of",
+ "value": ["red", "blue", "green"]
+ }
+}
+
+```
+ | 
+
+##### is_none_of with an array of strings
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "subscription_tier",
+ "comparison": "is_none_of",
+ "value": ["bronze", "silver"]
+ }
+}
+
+```
+ | 
+
+##### includes_value with an array (array attribute)
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "custom_attribute":
+ {
+ "custom_attribute_name": "subscribed_products",
+ "comparison": "includes_value",
+ "value": ["1001", "1002", "1003"]
+ }
+}
+
+```
+ | 
+
+This matches users whose subscribed_products array contains any of the values "1001", "1002", or "1003".
+
+### Push subscription filter
+
+This filter allows you to segment based on a user’s push subscription status.
+
+#### Filter body
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+
+```
+ | 
+```
+{
+ "push_subscription_status":
+ {
+ "comparison": (String) one of the following allowed comparisons,
+ "value": (String) one of the following allowed values
+ }
+}
+
+```
+ | 
+
+- Allowed comparisons: is, is_not
+ 
+- Allowed values: opted_in, subscribed, unsubscribed
+
+### Email subscription filter
+
+This filter allows you to segment based on a user’s email subscription status.
+
+#### Filter body
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+
+```
+ | 
+```
+{
+ "email_subscription_status":
+ {
+ "comparison": (String) one of the following allowed comparisons,
+ "value": (String) one of the following allowed values
+ }
+}
+
+```
+ | 
+
+- Allowed comparisons: is, is_not
+ 
+- Allowed values: opted_in, subscribed, unsubscribed
+
+### Last used app filter
+
+This filter allows you to segment based on when the user last used the app. These filters contain two fields:
+
+#### Filter body
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+
+```
+ | 
+```
+{
+ "last_used_app":
+ {
+ "comparison": (String) one of the allowed comparisons listed,
+ "value": (String) the value to be compared using the provided comparison
+ }
+}
+
+```
+ | 
+
+- Allowed comparisons: after, before
+ 
+- Allowed values: datetime (ISO 8601 string)
+
+- 
+
+New Stuff!

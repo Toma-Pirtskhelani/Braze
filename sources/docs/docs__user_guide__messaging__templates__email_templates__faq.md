@@ -1,0 +1,86 @@
+---
+url: https://www.braze.com/docs/user_guide/messaging/templates/email_templates/faq
+slug: docs__user_guide__messaging__templates__email_templates__faq
+title: "Frequently asked questions"
+description: "This page covers frequently asked questions about email templates and link templates."
+section: user_guide/messaging
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Frequently asked questions
+
+This page provides answers to some frequently asked questions about email templates and link templates.
+
+## Email templates
+
+### Can I add a “view this email in a browser” link to my emails?
+
+No, Braze does not offer this functionality. This is because an increasing majority of email is opened on mobile devices and modern email clients, which render images and content without any problems.
+
+Workaround: To achieve this same result, you can host the content of your email on an external landing page (such as your website), which can then be linked to from the email campaign you are building using the Link tool when editing the email body.
+
+### How do I create a custom unsubscribe link for my email templates?
+
+There is a redirection option for the unsubscribe page.
+
+You could change the unsubscribe link in the custom footer from {{${set_user_to_unsubscribed_url}}} to a link to your own website with a query parameter that includes the user ID. An example is:
+
+https://www.braze.com/unsubscribe?user_id={{${user_id}}}
+
+Next, you could call the /email/status endpoint to update the user’s subscription status. For more details, see our documentation on changing email subscription status.
+
+To save this new link, the default Braze unsubscribe tag (${set_user_to_unsubscribed_url}) must be in the footer. This means you’ll need to include the default link by “hiding” it by either placing the tag in a comment or in a hidden <div> tag.
+
+- Tag in comment example: putting tag in comment example: <!-- ${set_user_to_unsubscribed_url} -->
+ 
+- Comment in hidden <div> tag example: <div style="display:none;max-height:0px;overflow:hidden;">${set_user_to_unsubscribed_url}</div>
+
+### What happens if I edit an email template that is currently being used in a campaign or Canvas?
+
+Email templates serve as a starting point when creating an email in a campaign or Canvas. When you select a template, you can edit it within the campaign or Canvas, and those changes are independent of the original template.
+
+Edits made to an existing template won’t be reflected in campaigns or Canvases that were created using previous versions of that template. Similarly, changes made to the email within a campaign or Canvas won’t sync back to the original template. For API campaigns that include an email_template_id in the request body, Braze uses the latest version of the template at the time of send.
+
+## Link templates
+
+### Can I upload multiple link templates to my email?
+
+Yes, you can insert as many templates as you would like in your email messages. As a best practice, you should test your emails to ensure that the links are not exceeding 2,000 characters since most browsers will shorten or cut the links.
+
+### How do I preview my links with all of the tags applied?
+
+There are several ways to preview your links. After you have applied the link template, you can send a test email to yourself to view all the links.
+
+From the preview pane in a new tab, you can also open the links to view the links. You can also hover over the links in the preview pane and see them at the bottom of your browser.
+
+### How does link templating work with Liquid?
+
+Link templates are expanded and added to each URL prior to any Liquid expansion happening. If part of your URL is generated using a Liquid snippet, we recommend that the URL base and question mark (?) be hardcoded for link templates to be expanded correctly.
+
+Avoid adding the question mark (?) to your Liquid as this will cause link templates to first add a question mark (?), and then later the Liquid expansion process will add a second question mark (?).
+
+#### Hardcoded URLs versus custom attributes
+
+When you use a hardcoded URL in the HTML editor (for example, https://braze.com?12345), Braze detects that a ? already exists and automatically uses & to append your link template parameters. However, when you use a custom attribute that contains a URL with a ? (for example, {{custom_attribute.${my_url}}} where my_url is https://braze.com?12345), Braze does not check whether a ? already exists in the custom attribute’s value. In this case, the link template adds another ? before the parameters, resulting in a URL like https://braze.com?12345?utm_source=....
+
+To avoid this issue when using custom attributes that may contain query parameters, hardcode the ? or & after the custom attribute based on whether the custom attribute value includes query parameters. For example, if your custom attribute always includes a ?, use {{custom_attribute.${my_url}}}& to ensure the link template appends parameters correctly.
+
+## Link aliasing
+
+### How will enabling link aliasing impact my Content Blocks and link templates?
+
+For all new Content Blocks that are created, link aliasing is applied across workspaces since this is a company-level feature.
+
+Existing Content Blocks won’t be modified when link aliasing is enabled. While existing link templates won’t be modified, the existing link template section in a message will be removed. Check out Link aliasing in Content Blocks for more information.
+
+### Can I use Liquid conditional logic entirely within an HTML anchor tag?
+
+No, Braze link aliasing won’t recognize the HTML properly.
+
+When logic like this is used in tandem with features that need to parse the HTML (such as a preheader or link templating), the library used to scan the HTML can modify the anchor tag in a way that will prevent the proper href from being templated. The library will then determine that the HTML is invalid because it’s agnostic to the Liquid code.
+
+Instead, use Liquid logic that contains a complete anchor tag at each stage. This won’t interfere with HTML parsing because the logic includes multiple instances of valid HTML. You can also simplify your logic by assigning and then templating a variable into the appropriate anchor tag.
+
+- 
+
+New Stuff!

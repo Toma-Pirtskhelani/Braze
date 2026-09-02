@@ -1,0 +1,148 @@
+---
+url: https://www.braze.com/docs/user_guide/messaging/canvas/testing_canvases/preview_user_paths
+slug: docs__user_guide__messaging__canvas__testing_canvases__preview_user_paths
+title: "Preview user paths in Canvas"
+description: "This page covers how you can preview user paths in Canvas."
+section: user_guide/messaging
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Preview user paths in Canvas
+
+Experience the Canvas journey you’ve created for your users. This includes previewing the timing and messages your users receive. These test runs act as quality assurance that your messages are sent to the right audience, all before sending your Canvas.
+
+## Creating a test run
+
+Follow these steps to preview your user journey:
+
+- Go to your Canvas builder. Save any unsaved changes and resolve any errors.
+ 
+- Select Test Canvas in the footer.
+ 
+- Select a test user.
+ 
+- (Optional) Select a recipient for the test.
+ 
+- Select Run Test.
+
+You can run a preview if you don’t have permission to edit a Canvas, but this preview runs with unsaved changes if there are any.
+
+### Supported steps
+
+The following steps are supported:
+
+- Message
+ 
+- Audience Path
+ 
+- Decision Split
+ 
+- Delay
+ 
+- Action Path
+ 
+- Experiment Path
+ 
+- Agent
+ 
+- User Update (only in the UI editor, meaning steps using JSON editor are skipped)
+
+If the test overlaps with a step type that isn’t listed in this section, the unsupported step is skipped, and the test user continues to the next supported step.
+
+### Agent steps
+
+When a test run reaches an Agent step, Braze pauses and asks Do you want to run the agent “{agentName}”? Choose how to continue:
+
+- Yes: Optionally add context in the text field (in addition to the test user’s profile and any Canvas context already in the journey), then select Simulate response to invoke the agent. You can enter sample values in plain language—for example, describing cart contents or inbound message text—to mimic runtime context the agent would receive in production.
+ 
+- No: Braze does not invoke the agent. The step uses the agent’s configured fallback output from the Output section in Agent Console.
+
+When you select Yes and Simulate response, the agent runs for the preview user, stores its output in the Agent step’s output variable, and the test continues down the journey. Invocations from Simulate response count toward the agent’s daily invocation limit and appear in Agent Console > Logs.
+
+To test an Agent step in isolation (without running the full Canvas path), use the in-step preview in the Canvas builder. For setup details, see Test the agent in Agent step.
+
+If your Agent step depends on data from an upstream Context step, run Test Canvas so context variables are populated along the path. Seed Groups do not evaluate Context steps or context variables for seed recipients.
+
+### Canvas step details
+
+To view more details for the entrance criteria, select See more. Steps with segmentation show the met or unmet criteria. Messages also show this for delivery validations and channel eligibility. Message steps show which channels were sent versus not sent.
+
+### Liquid
+
+Braze processes Liquid logic during a test run, even if you’re not sending an actual test message. This means the abort message logic and other Liquid logic are reflected and could impact the Canvas user journey.
+
+If your preview sends the last step of your user journey instead of aborting, the preview may be using the current time as the time being tested for Liquid evaluation, not the actual time the user would be in the step based on the Canvas entry time.
+
+## Previews for timing
+
+For scheduled Canvases, the test user enters at the next scheduled entrance time. For action-based Canvases with start dates, the test user enters at the start date and time.
+
+While the default start times still apply, the entrance time is configurable in all instances, meaning you can simulate a date in the past or future. However, you can’t test before the start date or after the end date for the Canvas.
+
+Message and Delay steps show the time at which a user would progress or receive the message without needing to reconfigure the delays. Note that while the steps indicate whether Intelligent Timing is used, this preview of the user path does not calculate an estimate for a test user.
+
+For Canvases with an action trigger like “change in custom attribute value,” Braze attempts to simulate the change by temporarily setting the user’s attribute in the trigger to be blank only for the test run of the Canvas (this doesn’t affect the user profile). This is meant to test that the attribute changes from its current value.
+
+## When users enter and exit
+
+Test users enter the preview even if they aren’t eligible in real life. If they aren’t eligible, you can see why they haven’t met the criteria. When a test user enters the preview, we assume the test user has met the target audience criteria and performed the action trigger criteria. For example, for a Canvas that uses custom events in the entry criteria, the test user is assumed to have performed the custom event as expected in the entry criteria. However, if the same custom event is used elsewhere in the Canvas (like in the exit criteria), consider how this might impact your user path.
+
+Events, API triggers, custom attributes, and Canvas entry properties that are assumed to let a test user enter the Canvas are not updated in the actual user profile and do not persist beyond the test run. For example, during testing, when a custom attribute is used as a Canvas trigger, the trigger criteria is applied to the user’s preview as if they had triggered the custom attribute change.
+
+### Consideration
+
+If you test an Action Path with actions that correspond to exit criteria (including event properties), the exit criteria is triggered, and the test run ends. If you test a Message step that corresponds to exit criteria, the exit criteria is triggered, and the test run ends.
+
+At this point, you can’t select a specific event or property within an action path to trigger exit criteria (only the path as a whole). If a user could potentially meet multiple exit criteria, the first one that is processed and that they meet is shown as the result.
+
+## Experiment Paths and Canvas variants
+
+- For Canvases with top-level variants, select a variant at the start of the test.
+ 
+- For Experiment Paths, select the variant the user progresses through when the test user encounters the step.
+ 
+- For Experiment Paths using Winning Path, the preview doesn’t include the delay period when a test user waits in a Message step. Braze assumes that the user progressed through the selected path immediately.
+
+## Test sends
+
+You can opt to send test messages to an internal test group or an individual user as the test run populates. This means that only messages the user encounters along the test path are sent. The recipients receive messages with their attributes by default, but you can override these with the test user’s attributes.
+
+To send all test messages in a Canvas at once, regardless of the path, and without previewing the path, you can select Send All Test Messages in the Test Sends tab.
+
+## Responsiveness
+
+Canvas steps are responsive to timing when previewing user paths. Updates made via the User Update step are reflected in subsequent steps in the flow but are not applied to the actual user profile. The effects of a user entering a variant are reflected in future steps in a preview.
+
+Similarly, filters recognize actions that occurred as a result of the test user interacting with other steps in the Canvas. For example, this preview mode recognizes that a user encountered a Message step that was “sent” earlier in the Canvas, and it recognizes that the test user “took action” to advance through an action path.
+
+Refer to Exit criteria for more details on responsive behavior.
+
+## Connected Content
+
+Connected Content is executed if it’s included in the Canvas. This means if you test a Canvas that has Connected Content calls or Content Blocks that contain Connected Content, the Canvas may send the Connected Content calls, which would modify the data referenced in other campaigns or Canvases.
+
+When previewing user paths, consider removing the Connected Content that alters user profiles or data referenced in other Canvases or campaigns.
+
+## Webhooks
+
+Webhooks execute when test messages are sent, but not during the test run. Similar to Connected Content, consider removing webhooks that alter user profiles or data referenced in other Canvases or campaigns.
+
+## Context variables and Seed Groups
+
+For a Message step with email as the messaging channel, Seed Groups send seed copies of emails when a user reaches this step in the Canvas. These seed copies are not sent as part of the Seed Group recipients’ own Canvas journeys, so Braze does not execute Context steps or evaluate context variables for those recipients. If your email content references context variables, Seed Group recipients receive a seed copy without that data populated. To test messages that rely on context variable data, use the Test Canvas preview with test sends instead of Seed Groups.
+
+## View messages sent to users
+
+Preview user paths simulates a journey; it does not replace checking actual sends on a user profile. To review messages Braze sent to a specific user, open their profile from Audience > Search Users, then use the Messaging History and Engagement tabs.
+
+For search fields, tab details, and the 30-day Messaging History window, see User profiles.
+
+## Use case
+
+In this scenario, the Canvas is set up to target users who haven’t had a session in an app. This journey includes a Message step with a welcome email, a Delay step set for one day, and an Audience Paths step that splits into two paths: users with at least one session, and everyone else. Depending on which audience path a user falls into, the subsequent Message step is sent.
+
+Because our test user meets the Canvas entry criteria, they can enter the Canvas and go through the user journey. However, because our test user hasn’t opened the app in the last calendar day, they continue down the “Everyone else” path and receive a push notification that reads: “Last chance! Complete your first task for an exclusive bonus.”
+
+- 
+
+New Stuff!

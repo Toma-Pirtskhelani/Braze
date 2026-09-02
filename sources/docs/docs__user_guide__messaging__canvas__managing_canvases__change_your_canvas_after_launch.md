@@ -1,0 +1,240 @@
+---
+url: https://www.braze.com/docs/user_guide/messaging/canvas/managing_canvases/change_your_canvas_after_launch
+slug: docs__user_guide__messaging__canvas__managing_canvases__change_your_canvas_after_launch
+title: "Edit Canvases after launch"
+description: "This reference article covers the different aspects of a Canvas that can be changed after the initial launch."
+section: user_guide/messaging
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Edit Canvases after launch
+
+This reference article covers what can be changed in a Canvas after the initial launch.
+
+You can edit your Canvases after launch by:
+
+- Inserting new Canvas steps into the user journey
+ 
+- Adding new variants and connections
+ 
+- Adjusting variant distribution
+ 
+- Stopping or resuming all Canvas steps
+
+note
+
+Control variant distribution may only be decreased after launch.
+
+You can delete any of the following in your user journey:
+
+- Canvas steps
+ 
+- Canvas variants
+ 
+- Connections between Canvas steps
+
+If you want to edit or add more steps to your Canvas user journey, the following details apply:
+
+- Users who haven’t entered the Canvas yet are eligible for any newly created steps.
+ 
+- If your Canvas entry settings allow users to re-enter steps, users who have already passed newly created steps are eligible to re-enter.
+ 
+- Users who are currently in a launched Canvas, but haven’t reached the points of the user journey where new steps are added, are eligible to receive those newly added steps.
+
+If you delete a Delay or Action Paths step, you can optionally redirect the users currently waiting in the step into another Canvas step. For Delays, users remain in the step until the end of the delay period. For Action Paths, users remain in the step until the end of the evaluation window.
+
+Note that when you launch a Canvas initially, Braze enqueues the users for the Message step they’re at, not all subsequent messages in the Canvas. If you make an edit to the Canvas after launch, some users may already be enqueued and may not pick up the changes. If you stop the Canvas, duplicate it, then change it and launch this new version, the Canvas re-evaluates all users again, not just users that have not already been enqueued.
+
+See the Best practices section for specific editing use cases. In general, it’s best practice to avoid editing live Canvases as there may be unexpected behavior.
+
+Expand for original Canvas editor details
+
+Keep in mind the following permissible post-launch Canvas edits, depending on which workflow your Canvas was created with. If your Canvas uses the original Canvas workflow, you’ll need to clone it to Canvas Flow first to perform post-launch edits.
+
+You can’t edit or delete existing connections, and you can’t insert a step between existing connected steps. If you want to edit or add more steps to your Canvas user journey, the following details apply:
+
+- Users who haven’t entered the Canvas yet are eligible for any newly created steps.
+ 
+- If your Canvas entry settings allow users to re-enter steps, users who have already passed newly created steps are eligible to re-enter.
+ 
+- Users who are currently in a launched Canvas, but haven’t reached the newly added steps in the user journey, are eligible to receive those newly added steps.
+ 
+- If a Delay step is the last step in the Canvas, users who reach that step are automatically advanced out of the Canvas and won’t receive any newly created steps.
+
+important
+
+If you update the Delay or Window settings for a Canvas step, users currently in that step at the time of the update adhere to the delay time that was assigned when they originally entered it. Only new users entering the Canvas and those who haven’t been queued for that step yet receive the message at the updated time.
+
+Stopping a Canvas does not exit users who are waiting to receive a message. If you re-enable the Canvas and users are still waiting for the message, they receive the message (unless the time they should have been sent the message has passed, then they don’t receive it).
+
+## Canvas details
+
+You can edit the following settings and details after launching a Canvas:
+
+- Canvas name and description
+ 
+- Teams
+ 
+- Tags
+
+- Adding a tag after launch lets you retarget users in segments with filters such as Received Message from Campaign or Canvas with Tag.
+
+- Entry type, schedule, and controls
+ 
+- Subscription status
+ 
+- Rate limiting
+ 
+- Frequency capping
+ 
+- Quiet hours
+ 
+- Target audience
+
+After a Canvas has launched:
+
+- Conversion events can’t be edited.
+ 
+- The following steps can’t be added or removed, and can’t be reordered to adjust the ranking: Audience Paths, Action Paths, and Experiment Paths.
+
+- Workaround 1: Create a new Audience Path, Action Path, or Experiment Path and reconfigure the paths to that new step.
+ 
+- Workaround 2: Duplicate the Canvas to make your edits.
+
+### Individual steps
+
+For individual Canvas steps, you can edit the following details after launch:
+
+- Name
+ 
+- Message content
+ 
+- Triggers
+ 
+- Audience
+ 
+- Exception events
+ 
+- Delays (for Delay steps only)
+
+However, the step’s schedule type and control percentages are not editable after launch. For Action Paths and Audience Paths steps, the rankings and evaluation windows aren’t editable after launch.
+
+#### Send to Destination step
+
+When editing the Send to Destination step on a live Canvas, the following behaviors apply:
+
+- Changing the destination Canvas: Editing the Send to Destination step to point to a different destination Canvas follows the same general post-launch editing rules. Changes only affect users who haven’t yet reached the Send to Destination step.
+
+- Users who already passed through the step remain in the original destination Canvas — they are not re-routed.
+ 
+- Users currently queued in earlier steps (for example, waiting in a Delay step before the Send to Destination step) are evaluated against the new destination Canvas’s entry and audience criteria when they reach the step. Eligible users are sent to the new destination Canvas.
+
+- Stopped destination Canvas: If the destination Canvas is stopped while your source Canvas is still active, users who reach the Send to Destination step are not sent to the destination Canvas. This causes user drop-off for the hand-off, not a pause while the destination is stopped.
+
+- Users who can’t enter the stopped destination continue in the source Canvas if more steps follow the Send to Destination step. For more on advancement behavior, see Send to Destination.
+ 
+- You can’t launch a source Canvas with a Send to Destination step that points to a stopped destination. This behavior applies when a destination Canvas is stopped after the source Canvas is already live.
+
+### Canvas variant percentages
+
+After launching a Canvas, you can only decrease the control variant percentages. If a variant percentage is modified in Canvas, you’ll find that your users may be redistributed to other variants.
+
+Initially, these users are randomly assigned a particular variant before receiving a campaign for the first time. From then on, each successive time the campaign is received (or the user re-enters a Canvas variant), they receive the same variant unless the variant percentages are modified.
+
+If the variant percentages change, users may be redistributed to other variants. Users stay in these variants until percentages are modified again. Note that for Canvases using branching with NOT filters with random bucket numbers, users may not receive the same branch each time in their user journey when they re-enter the Canvas.
+
+#### Control groups
+
+Control groups remain consistent if the variant percentage is unchanged. If a control group’s percentage is decreased or increased, users who previously received messages wouldn’t be able to enter the control group on a later send, nor would any user in the control group ever receive a message.
+
+### Local send time
+
+Canvases scheduled to launch at a local send time can be edited up to 24 hours before the scheduled send time. This window is called the “safe zone”.
+
+tip
+
+If you intend to make larger edits that lead to creating a new Canvas copy entirely, remember to exclude users who received the first Canvas and re-adjust the Canvas schedule times to allow for time zone sending.
+
+When an entry schedule is set to enter users immediately upon launch, the Canvas launches at the closest time in increments of 5 minutes. For example, if you update a Canvas to enter users immediately at 8:31 am PST, the launch time is set to 8:30 am PST and in the company’s time zone.
+
+### Deleting variants
+
+When variants are deleted from a Canvas, the following occurs:
+
+- Steps within the variant (including those shared by other variants) are deleted.
+ 
+- The step analytics and the top-level analytics for the Canvas, such as Total Entries, Total Exits, and Conversion Rate, are deleted.
+ 
+- Users in deleted variants are exited from the steps, and any following messages are not sent.
+
+### Canvas entry properties
+
+Canvas entry properties aren’t templated into steps when sent. This means that when Canvas entry properties are edited after a Canvas has launched, these changes only apply to new users who enter the Canvas. If your Canvas allows users to re-enter the Canvas, any users who re-enter are determined by the updated Canvas entry properties.
+
+## Best practices
+
+Check out these best practices to keep in mind when editing or adding to your Canvas after it’s been launched.
+
+important
+
+In general, avoid making changes while the Canvas is active and enqueueing users.
+
+### Disconnected steps
+
+You can launch your Canvas with disconnected steps and also save these Canvases post-launch. Before disconnecting a step from your workflow, we recommend checking the analytics view of the steps for users pending.
+
+Let’s say a user is in a disconnected step of your Canvas workflow. This user advances to the subsequent step if there is one. The step’s settings dictate how the user should advance.
+
+By creating or editing disconnected steps, you can make changes to these independent steps without having to directly connect them to the rest of your Canvas. This helps with testing your steps prior to launching your Canvas again.
+
+### Experiment Path step
+
+If your Canvas has an active or in-progress Winning Path experiment and you update the active Canvas, the experiment ends. This applies even if you don’t update the Experiment Path step. To restart the experiment, disconnect the existing Experiment Path and launch a new one, or duplicate the Canvas and launch the duplicate. Otherwise, users flow through the experiment path without optimization.
+
+Existing Experiment Path steps that use Personalized Paths continue to run. Updating an active Canvas also ends an in-progress Personalized Paths experiment.
+
+### Time delays
+
+Editing Canvases with time delays can be a bit tricky, so keep in mind the following details as you make edits to your Canvases:
+
+- If you update the delay in a Delay step, only new users entering the Canvas and users who haven’t been queued for that step receive the message at the updated time delay.
+ 
+- If you delete a step with a time delay (such as Delay or Action Paths) and decide to redirect those users into another Canvas step, the users are only redirected after the step’s time delay has completed. For example, let’s say you delete a Delay step with a one-day delay and redirect those users to a Message step. In this case, the users are only redirected after the one-day delay has been completed.
+ 
+- If your Canvas has one or more Experiment Paths steps, deleting steps could invalidate the results of this step.
+
+### Stopping Canvases
+
+Stopping a Canvas does not exit users who are waiting in a step. If you re-enable the Canvas and the users are still waiting, they complete the step and move to the next step. However, if the time that the user should’ve progressed to the next step has passed, they instead exit the Canvas.
+
+For example, let’s say you have a Canvas created using the Canvas Flow workflow set to launch at 2 pm with one variant with two steps: a Delay step with a one-hour delay that goes into a Message step.
+
+A user enters this Canvas at 2:01 pm and enters the Delay step at the same time. This means the user is scheduled to move on to the next step of the user journey (the Message step) at 3:01 pm. If you stop the Canvas at 2:30 pm and re-enable the Canvas at 3:30 pm, the user exits the Canvas since it is after 3:01 pm. However, if you re-enable the Canvas at 2:40 pm, the user moves on to the Message step as expected at 3:01 pm.
+
+## Things to know
+
+The following common issues can be triggered by editing or adding more components to any other component in a Canvas after launching.
+
+important
+
+The following issues are avoidable. If you need to make edits to a Canvas after it’s been launched, we recommend first confirming that all the users who have already entered the Canvas have completed their user journey. Additionally, we suggest that you don’t delete steps that have already been processed by at least one user.
+
+- Missing reporting data (when message variants are deleted and re-added)
+ 
+- Users aren’t following the expected path
+ 
+- Messages are sent at unexpected times
+ 
+- The edits do not overwrite Currents data, so you may notice discrepancies between Canvas steps (such as canvas_step_ids that don’t exist in the Canvas due to deletion)
+ 
+- Users can receive the same message twice
+ 
+- Users won’t receive messages due to the existing rate limit
+
+- When you update the rate limit on an active Canvas, the new rate limit applies only to users who flow through the Message step after the rate limit change. Users who are already queued for a Message step retain the original rate limit that was in effect when they were enqueued. To apply a new rate limit to all users, stop the Canvas, duplicate it with the updated rate limit, and launch the new Canvas. Use a filter to prevent users who received messages from the original Canvas from entering the duplicate.
+
+- When a Canvas is automatically stopped, the post-launch drafts of the Canvas are also deleted.
+
+- 
+
+New Stuff!

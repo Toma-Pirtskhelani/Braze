@@ -1,0 +1,219 @@
+---
+url: https://www.braze.com/docs/partners/message_orchestration/attribution/branch_for_attribution
+slug: docs__partners__message_orchestration__attribution__branch_for_attribution
+title: "Branch for attribution"
+description: "This reference article outlines the partnership between Braze and Branch, a mobile linking platform that helps you acquire, engage, and measure across all devices, channels,..."
+section: partners/message_orchestration
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Branch for attribution
+
+Branch, a mobile linking platform, helps you acquire, engage, and measure across all devices, channels, and platforms by providing a holistic view of all user touchpoints.
+
+This integration is maintained by Branch.
+
+## About the integration
+
+The Braze and Branch integration will help you understand exactly when and where users were acquired as well as how to personalize their journeys through robust attribution and deep linking.
+
+## Prerequisites
+
+ Requirement | 
+ Description | 
+
+ Branch account | 
+ A Branch account is required to take advantage of this partnership. | 
+
+ iOS or Android app | 
+ This integration supports iOS and Android apps. Depending on your platform, code snippets may be required in your application. Details on these requirements can be found in step 1 of the integration process. | 
+
+ Branch SDK | 
+ In addition to the required Braze SDK, you must install the Branch SDK. | 
+
+## Integration
+
+### Step 1: Map device IDs
+
+#### Android
+
+If you have an Android app, you will need to pass a unique Braze device ID to Branch. This ID can be set in the Branch SDK’s setRequestMetadataKey() method. The following code snippet must be included before calling initSession. You must also initialize the Braze SDK before setting the request metadata in the Branch SDK.
+
+- java
+ 
+- kotlin
+
+```
+
+1
+
+```
+ | 
+```
+Branch.getInstance().setRequestMetadata("$braze_install_id", Braze.getInstance(context).deviceId); 
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Branch.getInstance().setRequestMetadata("$braze_install_id", Braze.getInstance(context).deviceId)
+
+```
+ | 
+
+#### iOS
+
+important
+
+Prior to February 2023, our Branch attribution integration used the Identifier for Vendor (IDFV) as the primary identifier to match iOS attribution data. It is not necessary for Braze customers using Objective-C to fetch the Braze device_id and send it to Branch upon install because there is no disruption of service.
+
+For those using the Swift SDK v5.7.0+, if you wish to continue using IDFV as the mutual identifier, you must ensure that the useUUIDAsDeviceId field is set to false so there is no disruption of the integration.
+
+If set to true, you must implement the iOS device ID mapping for Swift in order to pass the Braze device_id to Branch upon app install in order for Braze to appropriately match iOS attributions.
+
+- objective-c
+ 
+- swift
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+[braze deviceIdOnQueue:dispatch_get_main_queue() completion:^(NSString * _Nonnull deviceId) {
+ [[Branch getInstance] setRequestMetadataKey:@"$braze_install_id" value:deviceId];
+ // Branch init
+}];
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+braze.deviceId { deviceId in
+ Branch.getInstance.setRequestMetadata("$braze_install_id", deviceId)
+ // Branch init 
+}
+
+```
+ | 
+
+### Step 2: Get the Braze data import key
+
+In Braze, navigate to Partner Integrations > Technology Partners and select Branch.
+
+Here, you will find the REST endpoint and generate your Braze data import key. After the key is generated, you can create a new key or invalidate an existing one. The data import key and the REST endpoint are used in the next step when setting up a postback in Branch’s dashboard.
+
+### Step 3: Set up data feeds
+
+- In Branch, under the Exports section, select Data Feeds.
+ 
+- On the Data Feeds Manager page, select the Data Integrations tab at the top of the page.
+ 
+- Select Braze from the list of available data partners.
+ 
+- On the Braze export page, provide the data import key and REST endpoint that you found in the Braze dashboard and select Enable.
+
+### Step 4: Confirm the integration
+
+After Braze receives attribution data from Branch, the status connection indicator on the Branch technology partners page in Braze changes from “Not Connected” to “Connected” and includes a timestamp of the last successful request.
+
+This status changes only after Braze receives data about an attributed install. Braze ignores organic installs (excludes them from the Branch postback) and does not count them when determining if the connection is successful.
+
+## Field mapping
+
+Branch attribution fields map to Braze as follows:
+
+ Branch field | 
+ Braze field | 
+
+ Campaign | 
+ campaign | 
+
+ Channel | 
+ source | 
+
+ Ad Set Name | 
+ adgroup | 
+
+ Ad Name | 
+ ad | 
+
+## Facebook and X (formerly Twitter) attribution data
+
+Attribution data for Facebook and X (formerly Twitter) campaigns is not available through our partners. These media sources do not permit their partners to share attribution data with third parties and, therefore, our partners cannot send that data to Braze.
+
+## Branch click tracking URLs in Braze (optional)
+
+Using click tracking links in your Braze campaigns will allow you to easily see which campaigns are driving app installs and re-engagement. As a result, you’ll be able to measure your marketing efforts more effectively and make data-driven decisions on where to invest more resources for the maximum ROI.
+
+To get started with Branch click tracking links, visit their documentation. You can insert the Branch click tracking links into your Braze campaigns directly. Branch will then use their probabilistic attribution methodologies to attribute the user that has clicked on the link. We recommend appending your Branch tracking links with a device identifier to improve the accuracy of attributions from your Braze campaigns. This will deterministically attribute the user that has clicked on the link.
+
+- android
+ 
+- ios
+
+For Android, Braze allows customers to opt-in to Google Advertising ID collection (GAID). The GAID is also collected natively through the Branch SDK integration. You can include the GAID in your Branch click tracking links by utilizing the following Liquid logic:
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+{% if most_recently_used_device.${platform} == 'android' %}
+user_data_aaid={{most_recently_used_device.${google_ad_id}}}
+{% endif %}
+
+```
+ | 
+
+For iOS, both Braze and Branch automatically collect the IDFV natively through our SDK integrations. This can be used as the device identifier. You can include the IDFV in your Branch click tracking links by utilizing the following Liquid logic:
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+{% if most_recently_used_device.${platform} == 'ios' %}
+user_data_idfv={{most_recently_used_device.${id}}}
+{% endif %}
+
+```
+ | 
+
+note
+
+This recommendation is purely optional
+
+If you currently do not use any device identifiers - such as the IDFV or GAID - in your click tracking links, or do not plan to in the future, Branch will still be able to attribute these clicks through their probabilistic modeling.
+
+- 
+
+New Stuff!

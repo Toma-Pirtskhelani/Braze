@@ -1,0 +1,848 @@
+---
+url: https://www.braze.com/docs/user_guide/data/activation/attributes/nested_custom_attribute_support
+slug: docs__user_guide__data__activation__attributes__nested_custom_attribute_support
+title: "Nested custom attributes"
+description: "This reference article covers using nested custom attributes as a data type for custom attributes, including limitations and usage examples."
+section: user_guide/data
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Nested custom attributes
+
+This page covers nested custom attributes, which allow you to define a set of attributes as a property of another attribute. In other words, when you define a custom attribute object, you can define a set of additional attributes for that object.
+
+## About nested attributes
+
+Nested attributes let you build richer segments and personalize messages with data from a single custom attribute object.
+
+In the following example, the custom attribute favorite_book contains the nested attributes title, author, and publishing_date. This object can be used to target users by author, filter by publishing date, or insert the book title directly into a message:
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+"favorite_book": {
+ "title": "The Hobbit",
+ "author": "J.R.R. Tolkien",
+ "publishing_date": "1937"
+}
+
+```
+ | 
+
+## Supported data types
+
+The following data types are supported:
+
+ Data Type | 
+ Description | 
+
+ Number | 
+ A numeric value, such as 1 or 5.5. | 
+
+ String | 
+ A text value, such as "Hello" or "The Hobbit". | 
+
+ Boolean | 
+ A value that evaluates to either true or false. | 
+
+ Array | 
+ A list of values, such as ["red", "blue", "green"]. | 
+
+ Time | 
+ 
+ A timestamp value used for date and time comparisons. When filtering a nested time custom attribute, you can choose:
+
+- Day of Year: Checks only the month and day for comparison, such as 03-15.
+ 
+- Time: Compares the full timestamp, including the year, such as 2023-03-15T12:00:00Z.
+ 
+ | 
+
+ Object | 
+ A structured value with key–value pairs, such as {"author": "Tolkien"}. | 
+
+ Array of objects | 
+ 
+ A list of objects, such as [{"title": "The Hobbit"}, {"title": "Dune"}]. 
+ For more information, refer to 
+ Arrays of objects.
+ | 
+
+## Considerations
+
+- Nested custom attributes are intended for custom attributes sent through the Braze SDK or API.
+ 
+- Objects have a maximum size of 100 KB. If an update causes the object to exceed 100 KB, Braze drops the update, and the attribute is unchanged.
+ 
+- Key names and string values have a size limit of 255 characters.
+ 
+- Key names cannot contain spaces.
+ 
+- Periods (.) and dollar signs ($) aren’t supported characters in an API payload if you’re attempting to send a nested custom attribute to a user profile.
+ 
+- Not all Braze Partners support nested custom attributes. Refer to the Partner documentation to confirm if specific partner integrations support this feature.
+ 
+- Nested custom attributes cannot be used as a filter when making a Connected Audience API call.
+ 
+- By default, the Nested Custom Attributes segment filter includes object-type custom attributes, array-of-object attributes, and array-type custom attributes. When you select an attribute, the property schema selector includes array paths (using [] notation) for nested array fields. To hide top-level array custom attributes from that filter, contact Braze Support.
+ 
+- When previewing messages in the dashboard using Preview as a Custom User, you can enter mock data only as a string or array of strings — nested objects are not supported. To preview a message that references nested custom attributes, select an existing user who already has the nested attribute on their profile. For nested custom event properties, you must launch a live campaign targeted to a test user to verify rendering.
+
+## API example
+
+- create
+ 
+- update
+ 
+- delete
+
+The following is a /users/track example with a “Most Played Song” object. To capture the properties of the song, we’ll send an API request that lists most_played_song as an object, along with a set of object properties.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+```
+ | 
+```
+{
+ "attributes": [
+ {
+ "external_id": "user_id",
+ "most_played_song": {
+ "song_name": "Solea",
+ "artist_name": "Miles Davis",
+ "album_name": "Sketches of Spain",
+ "genre": "Jazz",
+ "play_analytics": {
+ "count": 1000,
+ "top_10_listeners": true
+ }
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+To update an existing object, send a POST to users/track with the _merge_objects parameter in the request. This will deep merge your update with the existing object data. Deep merging ensures that all levels of an object are merged into another object instead of only the first level. In this example, we already have a most_played_song object in Braze, and now we’re adding a new field, year_released, to the most_played_song object.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+```
+ | 
+```
+{
+ "attributes": [
+ {
+ "external_id": "user_id",
+ "_merge_objects": true,
+ "most_played_song": {
+ "year_released": 1960
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+After this request is received, the custom attribute object will now look like the following:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+```
+ | 
+```
+{"most_played_song": {
+ "song_name": "Solea",
+ "artist_name" : "Miles Davis",
+ "album_name": "Sketches of Spain",
+ "year_released": 1960,
+ "genre": "Jazz",
+ "play_analytics": {
+ "count": 1000,
+ "top_10_listeners": true
+ }
+}}
+
+```
+ | 
+
+warning
+
+You must set _merge_objects to true, or your objects will be overwritten. _merge_objects is false by default.
+
+To delete a custom attribute object, send a POST to users/track with the custom attribute object set to null.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+```
+ | 
+```
+{
+ "attributes": [
+ {
+ "external_id": "user_id",
+ "most_played_song": null
+ }
+ ]
+}
+
+```
+ | 
+
+note
+
+This approach can’t be used to delete a nested key inside an array of objects.
+
+## SDK example
+
+   iOS: 6.1.0+     Web: 4.7.0+     Android: 25.0.0+  Unity: 5.1.0+  
+
+The following samples show how to create, merge-update, and delete the same nested custom attribute object (most_played_song) across each SDK.
+
+- android sdk
+ 
+- swift sdk
+ 
+- web sdk
+ 
+- unity sdk
+
+Create
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+```
+ | 
+```
+val json = JSONObject()
+ .put("song_name", "Solea")
+ .put("artist_name", "Miles Davis")
+ .put("album_name", "Sketches of Spain")
+ .put("genre", "Jazz")
+ .put(
+ "play_analytics",
+ JSONObject()
+ .put("count", 1000)
+ .put("top_10_listeners", true)
+ )
+
+braze.getCurrentUser { user ->
+ user.setCustomUserAttribute("most_played_song", json)
+}
+
+```
+ | 
+
+Update
+
+```
+
+1
+2
+3
+4
+5
+6
+
+```
+ | 
+```
+val json = JSONObject()
+ .put("year_released", 1960)
+
+braze.getCurrentUser { user ->
+ user.setCustomUserAttribute("most_played_song", json, true)
+}
+
+```
+ | 
+
+Delete
+
+```
+
+1
+2
+3
+
+```
+ | 
+```
+braze.getCurrentUser { user ->
+ user.unsetCustomUserAttribute("most_played_song")
+}
+
+```
+ | 
+
+Create
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+```
+ | 
+```
+let json: [String: Any?] = [
+ "song_name": "Solea",
+ "artist_name": "Miles Davis",
+ "album_name": "Sketches of Spain",
+ "genre": "Jazz",
+ "play_analytics": [
+ "count": 1000,
+ "top_10_listeners": true,
+ ],
+]
+
+braze.user.setCustomAttribute(key: "most_played_song", dictionary: json)
+
+```
+ | 
+
+Update
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+let json: [String: Any?] = [
+ "year_released": 1960
+]
+
+braze.user.setCustomAttribute(key: "most_played_song", dictionary: json, merge: true)
+
+```
+ | 
+
+Delete
+
+```
+
+1
+
+```
+ | 
+```
+braze.user.unsetCustomAttribute(key: "most_played_song")
+
+```
+ | 
+
+Create
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+```
+ | 
+```
+import * as braze from "@braze/web-sdk";
+const json = {
+ "song_name": "Solea",
+ "artist_name": "Miles Davis",
+ "album_name": "Sketches of Spain",
+ "genre": "Jazz",
+ "play_analytics": {
+ "count": 1000,
+ "top_10_listeners": true
+ }
+};
+braze.getUser().setCustomUserAttribute("most_played_song", json);
+
+```
+ | 
+
+Update
+
+```
+
+1
+2
+3
+4
+5
+6
+
+```
+ | 
+```
+import * as braze from "@braze/web-sdk";
+const json = {
+ "year_released": 1960
+};
+braze.getUser().setCustomUserAttribute("most_played_song", json, true);
+
+```
+ | 
+
+Delete
+
+```
+
+1
+2
+
+```
+ | 
+```
+import * as braze from "@braze/web-sdk";
+braze.getUser().setCustomUserAttribute("most_played_song", null);
+
+```
+ | 
+
+Create
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+```
+ | 
+```
+Dictionary<string, object> attributes = new Dictionary<string, object>();
+attributes.Add("song_name", "Solea");
+attributes.Add("artist_name", "Miles Davis");
+attributes.Add("album_name", "Sketches of Spain");
+attributes.Add("genre", "Jazz");
+
+Dictionary<string, object> playAnalytics = new Dictionary<string, object>();
+playAnalytics.Add("count", 1000);
+playAnalytics.Add("top_10_listeners", true);
+attributes.Add("play_analytics", playAnalytics);
+
+AppboyBinding.SetCustomUserAttribute("most_played_song", attributes);
+
+```
+ | 
+
+Update
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+Dictionary<string, object> attributes = new Dictionary<string, object>();
+attributes.Add("year_released", 1960);
+
+AppboyBinding.SetCustomUserAttribute("most_played_song", attributes, true);
+
+```
+ | 
+
+Delete
+
+```
+
+1
+
+```
+ | 
+```
+AppboyBinding.UnsetCustomUserAttribute("most_played_song");
+
+```
+ | 
+
+## Capturing dates as object properties
+
+To capture dates as object properties, you must use the $time key. In the following example, an “Important Dates” object is used to capture the set of object properties, birthday and wedding_anniversary. The value for these dates is an object with a $time key, which cannot be a null value.
+
+note
+
+If you haven’t captured dates as object properties initially, we recommend resending this data using the $time key for all users. Otherwise, this may result in incomplete segments when using the $time attribute. However, if the value for $time in a nested custom attribute isn’t formatted correctly, the entire nested custom attribute won’t be updated.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+```
+ | 
+```
+{
+ "attributes": [ 
+ {
+ "external_id": "time_with_nca_test",
+ "important_dates": {
+ "birthday": {"$time" : "1980-01-01"},
+ "wedding_anniversary": {"$time" : "2020-05-28"}
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+note
+
+For nested custom attributes, if the year is less than 0 or greater than 3000, Braze doesn’t store these values on the user.
+
+## Liquid templating
+
+The following Liquid templating example shows how to reference the custom attribute object properties saved from the preceding API request and use them in your messaging.
+
+Use the custom_attribute personalization tag and dot notation to access properties on an object. Specify the name of the object (and position in array if referencing an array of objects), followed by a dot (period), followed by the property name.
+
+{{custom_attribute.${most_played_song}[0].artist_name}} — “Miles Davis”
+
+ {{custom_attribute.${most_played_song}[0].song_name}} — “Solea”
+
+ {{custom_attribute.${most_played_song}[0].play_analytics.count}} — “1000”
+
+To use nested custom attribute Liquid in your message:
+
+- Go to a campaign or Canvas, then open the message step where you want to add personalization.
+ 
+- In the message composer, insert the Liquid snippet where you want the value to appear.
+ 
+- Use Preview & Test with an existing user who already has the nested custom attribute on their profile to confirm that the value renders as expected.
+
+### Personalization
+
+You can use Add Personalization to insert a nested custom attribute into your message.
+
+To open Add Personalization:
+
+- Go to a campaign or Canvas, then open the message step where you want to add personalization.
+ 
+- In the message composer, select Personalization to open the Add Personalization sidebar, where you can choose personalization options.
+
+To configure nested custom attribute personalization:
+
+- In Personalization Type, select Nested Custom Attributes.
+ 
+- In Top Level Attribute, select the nested custom attribute path you want to insert.
+
+For example, select preferences.neighborhood_office.
+ 
+- Optional: In Default value, enter a fallback value for users who do not have their own value for that attribute.
+ 
+- Review the generated Liquid Snippet to confirm it matches your expected path.
+ 
+- Select Insert.
+
+For this example, Braze inserts the nested value for preferences.neighborhood_office into your message. Default values are fallbacks that your message includes for users who do not have their own value for an attribute.
+
+tip
+
+Check that a schema has been generated if you don’t see the option to insert nested custom attributes.
+
+## Generate and regenerate schemas
+
+To use nested custom attributes in segmentation and personalization, you must generate a schema for the attribute. After a schema has been generated, you can regenerate it as needed. For more detailed information on schemas, see Generate a schema using the nested object explorer.
+
+### Generate a schema
+
+After you create a nested custom attribute and send data to Braze, you can generate the schema:
+
+- Go to Data Settings > Custom Attributes.
+ 
+- Search for your nested custom attribute.
+ 
+- In the Attribute Name column for your attribute, select Generate Schema.
+
+After the schema is generated, the icon changes to a plus icon that you can select to view and manage the schema.
+
+### Regenerate a schema
+
+To regenerate the schema for your nested custom attribute:
+
+- Go to Data Settings > Custom Attributes.
+ 
+- Search for your nested custom attribute.
+ 
+- In the Attribute Name column for your attribute, select Manage schema to manage the schema.
+ 
+- A modal will appear. Select Regenerate Schema.
+
+You can’t start another regeneration while a schema job is already in progress (the option is unavailable while status is Generating). Only one schema generation job can run at a time per company. Regenerating the schema only detects new objects and does not delete objects that currently exist in the schema.
+
+important
+
+To reset the schema for an object array with an existing object, you need to create a new custom attribute. Schema regeneration doesn’t delete existing objects.
+
+If data doesn’t appear as expected after regenerating the schema, the attribute may not be ingested often enough. User data is sampled on previous data sent to Braze for the given nested attribute. If the attribute isn’t ingested enough, it won’t be picked up for the schema.
+
+## Trigger nested custom attribute changes
+
+You can trigger when a nested custom attribute object changes. This option isn’t available for changes to object arrays. If you don’t see an option to view the path explorer, check that you’ve generated a schema.
+
+For example, in an action-based campaign, you can add a new trigger action for Change Custom Attribute Value to target users who have changed their neighborhood office preferences.
+
+To configure this trigger in an action-based campaign:
+
+- Create or edit a campaign, then set the delivery type to Action-Based Delivery.
+ 
+- In the trigger settings, select Change Custom Attribute Value.
+ 
+- Select the nested custom attribute path you want to monitor.
+
+For example, select preferences.neighborhood_office.
+ 
+- Select the trigger condition you want, such as any new value.
+ 
+- Finish configuring your campaign message and audience, then launch the campaign.
+
+## Troubleshooting
+
+### Nested custom attribute values not applied consistently
+
+If you notice that nested custom attribute values are not being added to user profiles consistently, the issue is often related to data type mismatches.
+
+To diagnose and resolve this issue:
+
+- Compare user examples: Get one successful and one unsuccessful user example where the nested custom attribute should have been set.
+ 
+- Review the data structure: View and compare the custom attribute values on both profiles:
+
+- Are the properties stored under an object?
+ 
+- Are the properties stored as an array of properties?
+
+- Check the segmentation filter: Compare the stored data structure against how the nested custom attribute is referenced in your segmentation filters.
+ 
+- Verify the data type: To identify the data type of a custom attribute:
+
+- Go to Data Settings > Custom Attributes.
+ 
+- Search for the top-level custom attribute that contains the nested attribute you want to verify.
+ 
+- If the row shows Generate Schema, select it to generate the schema first.
+ 
+- After the schema is generated, select the plus icon in the Attribute Name column for that attribute.
+ 
+- In the Edit schema modal, review the nested attributes and their corresponding values in the Data type column.
+
+If you find that the data type does not match the intended format across user profiles, remove the incorrectly formatted value from the affected user profiles and resend the attribute in the correct format using the appropriate API request or SDK method.
+
+## Segmentation behavior with arrays of objects
+
+When you use multiple Nested Custom Attribute filters with AND logic to segment on an array of objects, each filter is evaluated independently across all items in the array. A user qualifies for the segment if any item in the array satisfies each individual filter—the filters don’t have to match the same item.
+
+For example, suppose a user has the following array:
+
+```
+
+1
+2
+3
+4
+5
+6
+
+```
+ | 
+```
+{
+ "orders": [
+ {"product": "Shoes", "price": 80},
+ {"product": "Hat", "price": 25}
+ ]
+}
+
+```
+ | 
+
+A segment with the following AND filters:
+
+- orders[].price is greater than 50
+ 
+- orders[].price is less than 30
+
+This user would qualify because the first filter matches the “Shoes” item (80 > 50) and the second filter matches the “Hat” item (25 < 30). Even though no single item satisfies both conditions, the user still enters the segment.
+
+If you need all conditions to match the same item within an array, use multi-criteria segmentation on the same path, or restructure your data to avoid cross-item matching.
+
+## Data points
+
+Any key that is sent consumes a data point. For example, this object initialized in the user profile counts as seven (7) data points:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+```
+ | 
+```
+{
+ "attributes": [
+ {
+ "external_id": "user_id",
+ "most_played_song": {
+ "song_name": "Solea",
+ "artist_name": "Miles Davis",
+ "album_name": "Sketches of Spain",
+ "year_released": 1960,
+ "genre": "Jazz",
+ "play_analytics": {
+ "count": 1000,
+ "top_10_listeners": true
+ }
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+note
+
+Updating a custom attribute object to null also consumes a data point.
+
+- 
+
+New Stuff!

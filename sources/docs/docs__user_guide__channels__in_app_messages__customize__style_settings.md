@@ -1,0 +1,196 @@
+---
+url: https://www.braze.com/docs/user_guide/channels/in_app_messages/customize/style_settings
+slug: docs__user_guide__channels__in_app_messages__customize__style_settings
+title: "In-app message style settings"
+description: "This reference article covers the styling options available when creating an in-app message with the drag-and-drop editor."
+section: user_guide/channels
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# In-app message style settings
+
+The drag-and-drop editing experience is divided into two sections: Build and Preview & Test. This article covers what you need to know for working within the Build tab of the editor and assumes you’ve already created an in-app message.
+
+## Message-level styles
+
+You can set certain styles to be applied across all relevant blocks in your in-app message from the Message Styles tab. For example, you may want to customize the font of all the text or the color of all links in your message.
+
+The styles in this section are used everywhere in your message except where you override it for a specific block. If your message has multiple pages, you can also override the message-level styles for individual pages, except for display type and max width.
+
+For an easier design experience, we recommend setting up message-level styles before you customize styles at the block level.
+
+To return to the Message Styles tab at any time:
+
+- Click the close X button on individual block properties
+ 
+- Select the message container, message close X button, or editor background
+
+### Custom fonts
+
+We accept the following file types for fonts: .ttf, .woff, .otf, and .woff2. For more information, see Asset files.
+
+You can add multiple variations of a font family, as some styling options may not be available for custom fonts. Currently, we don’t support adding fonts via URL.
+
+To add a custom font:
+
+- Go to the Content section in the Message styles tab.
+ 
+- Click Add custom font.
+ 
+- Upload your font using the media library.
+
+note
+
+The message-level font will only apply to the current message and any duplicated messages, but not to future templates.
+
+## Message components
+
+The drag-and-drop editor uses two key components for composing in-app messages: rows and blocks. All blocks must be placed in a row.
+
+### Close x button
+
+For Modal and Fullscreen in-app messages, you can customize the close button displayed as at the top of your message. Customization options include button position, size, fill color, background color, border style, and border radius.
+
+### Span styling
+
+Adding span styling to text within in-app messages allows for enhanced customization of message appearance, enabling the use of different text colors, fonts, and sizes. Span styling gives your users a more engaging and visually appealing experience by drawing their attention to key information and improving overall message clarity.
+
+### Rows
+
+Rows are structural units that define the horizontal composition of a section of the message by using cells.
+
+When a row is selected, you can add or remove the number of columns you need from the Column customization section to put different content elements side by side.
+
+You can also slide to adjust the size of existing columns.
+
+As a best practice, format your row and column properties before formatting any of the blocks inside the rows. There are many places where you can adjust the spacing and alignment, so starting from the foundation makes it easier to edit as you go.
+
+#### Background image
+
+You can add a background image to a row in the Row properties panel. Toggle on Background image, and then provide an image URL or select an image from the media library. Finally, configure your alt text, size, position, and whether the image repeats to create patterns across the row.
+
+### Blocks
+
+Blocks represent different types of content you can use in your message. Drag one inside an existing row segment, and it will auto-adjust to the cell width.
+
+tip
+
+Before you add blocks, set up message-level styles for the message container, font, colors, and anything else you want to customize. You can then customize individual blocks as needed. The Close Button will remain at the top section of your message so that users always have the option to dismiss the message.
+
+Every block has its settings, such as granular control on padding. The right-side panel automatically switches to a styling panel for the selected content element. For more information, see Editor block properties.
+
+As you build your in-app message, you can select a mobile, tablet, or desktop view in the toolbar to preview how your in-app message looks for your user groups. This ensures that your content is responsive, and you can make any necessary adjustments along the way.
+
+### Hide rows and blocks by device
+
+To tailor your layout for desktop versus tablet and mobile, select a row or block on the canvas, then use the Hide on toggle in the properties panel to hide it on Desktop or Tablet and smaller devices. A hidden row or block won’t appear for that device type, either when previewing your message in the drag-and-drop editor or in the live in-app message.
+
+## Creative details
+
+### Fullscreen on larger screens
+
+On a tablet or desktop browser, a fullscreen in-app message will sit in the center of the app screen. Any edits to the max width of the fullscreen message will only apply to tablet and desktop devices.
+
+### Add a background image
+
+You can add an image to the background of your message from the Message styles tab.
+
+- In the canvas area, select the background container. This is the scrollable section of your message.
+ 
+- In the Message styles tab, turn on Background image.
+ 
+- Add an image from your media library, or enter the URL where your image is hosted.
+
+tip
+
+If you’re having trouble selecting a certain block, you can use the up arrow in the block’s inline toolbar to move focus up to each parent block.
+
+#### Swap background images with Liquid
+
+To dynamically swap background images based on user data (such as custom attributes or user properties), use Liquid {% capture %} blocks to assign the correct image URL to a variable before the HTML and CSS load.
+
+Place your Liquid logic at the beginning of your message, then reference the captured variable in the background image URL field. This selects the correct image based on each user’s data.
+
+After capturing the image URL, use {{ image_url | strip }} to output the URL with any extra whitespace removed. You can then paste this Liquid into the background image URL field to dynamically display different images for different users.
+
+##### Example
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+```
+ | 
+```
+{% capture image_url %}
+{% if {{custom_attribute.${membership_tier}}} == 'gold' %}
+https://example.com/images/gold-background.png
+{% elsif {{custom_attribute.${membership_tier}}} == 'silver' %}
+https://example.com/images/silver-background.png
+{% else %}
+https://example.com/images/default-background.png
+{% endif %}
+{% endcapture %}
+{{ image_url | strip }}
+
+```
+ | 
+
+### Add Liquid
+
+To add Liquid into your in-app message, select Add Personalization from the editor toolbar. Here, you can add various personalization types such as default attributes, device attributes, custom attributes, and more.
+
+Next, take your generated Liquid snippet and insert it into your message. After designing and building your in-app message, go to Preview & Test to preview your message.
+
+### Use the AI copywriter
+
+When a text block is selected in your in-app message, select AI copywriter in the block toolbar to launch the AI-powered copywriting assistant. The AI copywriting assistant passes a brief product name or description to OpenAI’s GPT3 copy generation tool to generate human-like marketing copy for your messaging.
+
+tip
+
+You can save a few clicks by highlighting text inside the block before clicking the icon. The highlighted text will be added to the tool, and copy will be generated immediately.
+
+### Reset styles to default
+
+Properties that you have changed from their default styling are marked with an orange dot. To reset a specific property to its default style, hover over the field and select Reset to default.
+
+You can also reset all styling for a selected element by selecting the next to the properties panel name and selecting Reset to default styles.
+
+### Copy and paste styles
+
+After making changes to the styling of an element, you can copy and paste those styles to another element. When pasting styles, only the properties relevant to that element are applied.
+
+- With the element selected, select Copy or paste styles next to the properties panel name (For example, if you have a button selected, next to “Button properties”).
+ 
+- Click Copy styles and select the element where you would like to apply the copied style.
+ 
+- Select Copy or paste styles again and choose Paste styles.
+
+#### Keyboard shortcuts
+
+You can also use keyboard shortcuts to copy and paste styles:
+
+ Action | 
+ Mac | 
+ Windows | 
+
+ Copy styles | 
+ ⌘ + Shift + c | 
+ Ctrl + Shift + c | 
+
+ Paste styles | 
+ ⌘ + Shift + v | 
+ Ctrl + Shift + v | 
+
+- 
+
+New Stuff!

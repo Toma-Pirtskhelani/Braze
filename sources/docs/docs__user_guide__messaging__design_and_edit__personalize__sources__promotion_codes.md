@@ -1,0 +1,122 @@
+---
+url: https://www.braze.com/docs/user_guide/messaging/design_and_edit/personalize/sources/promotion_codes
+slug: docs__user_guide__messaging__design_and_edit__personalize__sources__promotion_codes
+title: "Promotion codes"
+description: "Learn about promotion code lists, so you can add them to your campaigns and Canvases."
+section: user_guide/messaging
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Promotion codes
+
+Learn about promotion code lists, so you can add them to your campaigns and Canvases.
+
+## About promotion codes
+
+Promotion codes let you insert unique, time-limited values into messages to drive conversions. Each list can hold up to 20 million codes, and every code can last up to six months before expiring.
+
+When Braze sends a message with a promotion code, the code is deducted before the message goes out. To ensure codes are consistent, unique, and never reused:
+
+- A failed message still consumes the code.
+ 
+- In multichannel sends, the same code is applied across all channels.
+ 
+- With conditional Liquid, all referenced lists have codes deducted, even if only one branch is shown.
+ 
+- Entering or re-entering a Canvas step consumes a new code.
+
+If you place multiple snippets from the same list in one message, Braze will apply the same code across all snippets. To avoid running out, we recommend uploading more codes than you expect to use.
+
+- example
+
+Think of promotion codes like coupons at a post office. Once the clerk pulls a coupon from the stack for your letter, it’s gone—even if the letter never arrives.
+
+For example, in the following conditional Liquid, codes from both lists (vip-deal and regular-deal) are deducted, even though each user only sees one branch:
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+{% if user.is_vip %}
+ {% promotion('vip-deal') %}
+{% else %}
+ {% promotion('regular-deal') %}
+{% endif %}
+
+```
+ | 
+
+important
+
+Promotion codes are available in in-app message campaigns as an early access feature, but can’t be sent in in-app messages in Canvas.
+
+## Next steps
+
+Looking for next steps? Start here:
+
+- Creating a promotion code list
+ 
+- Using promotion codes
+ 
+- Viewing promotion code usage
+
+## Frequently asked questions
+
+### Which messaging channels can I use with promotion codes?
+
+Promotion codes are supported for email, mobile push, web push, Content Cards, webhook, SMS, and WhatsApp. In-app message campaigns support promotion codes as an early access feature. Braze Transactional Email campaigns and in-app messages in Canvas do not support promotion codes.
+
+### Do test and seed sends count towards usage?
+
+By default, test sends and seed group email sends will use promotion codes per user, per test send. However, you can contact your Braze account manager to update this behavior to not use promotion codes during testing.
+
+### What happens when multiple messaging channels use the same promotion code snippet?
+
+If a particular user is eligible to receive a code through multiple channels, they receive the same code through each channel. Only one promotion code is used regardless of the channels received.
+
+### Can I use multiple Liquid snippets to reference the same promotion code list in one message?
+
+Yes. Braze will apply the same promotion code across all instances of that snippet in the message, ensuring the user only receives one unique code.
+
+### What happens when a promotion code list is expired or empty?
+
+Expired codes are deleted after six months.
+
+If the message should have contained a promotion code from an empty or expired list, the message will be canceled.
+
+If the message contains Liquid logic that conditionally inserts a promotion code, the message will only be canceled if it should have contained a promotion code. If the message shouldn’t have contained a promotion code, the message will send normally.
+
+### If I uploaded the wrong promotion codes, can I update them?
+
+If you’ve uploaded incorrect codes, you have two options to resolve this:
+
+- Deprecate the entire list: Stop using the current list in any campaigns, Canvases, or templates. Then upload the correct codes to a new list and switch all your messages to use the new list.
+ 
+- Exhaust the incorrect codes: Create a campaign that sends codes from the incorrect list to a placeholder user until all the wrong codes are used. After that, re-upload the correct codes to the same list, excluding the incorrect ones.
+
+For general guidance on updating a list, see Updating a promotion code list.
+
+### Does Braze track which users received or redeemed which promotion codes?
+
+When a message uses a promotion code, Braze marks that code as consumed so it can’t be sent again and updates the list’s remaining count. Braze doesn’t maintain a report of sent codes, track which specific users received each code, or track whether codes were redeemed.
+
+If you need to associate codes with users or track redemption yourself, you can:
+
+- Save promotion codes to user profiles through a User Update step. For more information, see Saving promotion codes to user profiles.
+ 
+- Send promotion code values to Currents using the message_extras Liquid tag. For more information, see Sending promotion code information to Currents.
+
+### Can I save a promotion code to a user’s profile for future messages?
+
+Yes. You can save promotion codes to a user’s profile through a User Update step. For more information, see Saving promotion codes to user profiles.
+
+- 
+
+New Stuff!

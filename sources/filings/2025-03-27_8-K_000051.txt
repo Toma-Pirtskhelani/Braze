@@ -1,0 +1,114 @@
+---
+form: 8-K
+filed: 2025-03-27
+period: 2025-03-26
+accession: 0001676238-25-000051
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623825000051/brz-20250326.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20250326
+FALSE000167623800016762382025-03-262025-03-26
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): March 26, 2025
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 East 28th Street, Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 2.02. Results of Operations and Financial Condition.
+
+On March 27, 2025, Braze, Inc. (the “Company”) issued a press release announcing its financial results for the quarter and fiscal year ended January 31, 2025. A copy of the press release is attached hereto as Exhibit 99.1 and is incorporated herein by reference.
+
+Item 3.02. Unregistered Sales of Equity Securities.
+
+In connection with the acquisition of OfferFit (the “Transaction”), discussed in Item 7.01 below, the Company agreed to issue approximately 3.80 million (subject to adjustment as described under Item 7.01 below) shares of the Company’s Class A Common Stock, par value $0.0001 per share (the “Common Stock Consideration”), a portion of which are subject to escrows and holdbacks and re-vesting pursuant to the Merger Agreement, based on the portion of Purchase Price (defined below) to be paid in common stock in the Transaction.
+
+The Common Stock Consideration will be subject to a lock-up for a twelve-month period post-closing, with one half of the total shares of Common Stock Consideration issued to the Sellers (as defined in the Merger Agreement) vesting after six-months, an additional quarter of the total shares of Common Stock Consideration vesting after nine-months, and the last quarter of the total shares of Common Stock Consideration vesting after twelve-months; provided that, with respect to any Seller who (x) owned preferred stock in OfferFit immediately prior to the consummation of the Transaction and (y) is not an officer, director, employee or individual independent contractor engaged by the Company, the Common Stock Consideration will be subject to a lock-up for a four-week period post-closing, with one quarter of the total shares of Common Stock Consideration vesting after each week for four weeks.
+
+The Common Stock Consideration is to be issued as a private placement exempt from registration pursuant to Section 4(a)(2) of the Securities Act of 1933, as amended (the “Securities Act”), and Rule 506(b) thereunder, as a transaction by an issuer not involving a public offering. Recipients of the Common Stock Consideration will be provided customary resale registration rights with respect to such shares of Common Stock Consideration pursuant to the terms and conditions of the Merger Agreement (defined below) after the closing of the Transaction.
+
+Item 7.01. Regulation FD Disclosure.
+
+On March 26, 2025, the Company entered into an Agreement and Plan of Merger (the “Merger Agreement”) with OfferFit, Inc., a Delaware corporation (“OfferFit”), Enzyme Merger Sub I, Inc., a Delaware corporation and a wholly owned subsidiary of the Company (“Merger Sub I”), Enzyme Merger Sub II, LLC, a Delaware limited liability company and a wholly owned subsidiary of the Company (“Merger Sub II” and together with Merger Sub I, the “Merger Subs”) and WT Representative LLC, a Delaware limited liability company solely in its capacity as Sellers’ representative (the “Representative”), pursuant to which the Company will acquire all outstanding shares of common stock and preferred stock of OfferFit and all outstanding options and other rights to purchase OfferFit common stock, for $325 million (the “Purchase Price”) in a combination of cash and Common Stock Consideration. OfferFit provides AI technology to enhance personalization in CRM marketing.
+
+Consummation of the Transaction is subject to the satisfaction or waiver of customary closing conditions and is expected to occur within the Company’s fiscal quarter ended July 31, 2025.
+
+The Merger Agreement contains customary representations, warranties, covenants, and post-closing indemnification obligations of the parties thereto.
+
+On March 27, 2025, the Company issued a press release announcing the Transaction. A copy of the press release is attached hereto to Exhibit 99.2 and is incorporated herein by reference.
+
+The information contained in Items 2.02, 7.01 and 9.01 in this Current Report on Form 8-K, including the accompanying Exhibits 99.1 and 99.2 hereto, shall not be deemed “filed” for purposes of Section 18 of the Securities Exchange Act of 1934, as amended (the “Exchange Act”), or otherwise subject to the liabilities of that section, nor shall it be deemed incorporated by reference in any filing made by the Company under the Securities Act, or the Exchange Act, regardless of any general incorporation language in such filings, unless expressly incorporated by specific reference in such filing.
+
+Forward-Looking Statements.
+
+This Current Report on Form 8-K contains “forward-looking statements” within the meaning of the “safe harbor” provisions of the Private Securities Litigation Reform Act of 1995, including but not limited to, statements regarding the expected timing of and benefits from the acquisition of OfferFit by the Company, and the expected performance and capabilities of its products resulting therefrom. These forward-looking statements are based on the current assumptions, expectations and beliefs of the Company, and are subject to substantial risks, uncertainties and changes in circumstances that
+
+may cause actual results, performance or achievements to be materially different from any future results, performance or achievements expressed or implied by the forward-looking statements. These risks include, among others, the risk that the Transaction may not be completed in a timely manner or at all; any restrictions or limitations imposed by regulatory authorities; the extent to which the Company achieves anticipated financial targets; the impact of management and organizational changes on OfferFit’s business; the impact on OfferFit employees and the Company’s ability to retain key personnel; the Company’s effectiveness in integrating the OfferFit platform and operations with its business; and the Company’s ability to realize its broader strategic and operating objectives. Further information on potential factors that could affect the Company’s results are included in the Company’s Quarterly Report on Form 10-Q for the fiscal quarter ended October 31, 2024, filed with the U.S. Securities and Exchange Commission on December 10, 2024, and the other public filings of the Company with the U.S. Securities and Exchange Commission. The forward-looking statements included in this Current Report on Form 8-K represent the views of the Company only as of the date of this filing, and the Company assumes no obligation, and does not intend to update these forward-looking statements, except as required by law.
+
+Item 9.01 Financial Statements and Exhibits.
+
+(d) Exhibits
+
+Exhibit No. Description
+99.1 Press Release of Braze, Inc., dated March 27, 2025
+99.2 Press Release of Braze, Inc., dated March 27, 2025
+104 Cover Page Interactive Data (embedded within the Inline XBRL document)
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: March 27, 2025

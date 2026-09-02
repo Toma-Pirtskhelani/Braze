@@ -1,0 +1,108 @@
+---
+form: 8-K
+filed: 2025-06-27
+period: 2025-06-26
+accession: 0001676238-25-000088
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623825000088/brz-20250626.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20250626
+FALSE000167623800016762382025-06-262025-06-26
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): June 26, 2025
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 East 28th Street, Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 5.07. Submission of Matters to a Vote of Security Holders.
+
+On June 26, 2025, Braze, Inc. (the “Company”) held its Annual Meeting of Stockholders (“Annual Meeting”). At the Annual Meeting, the Company’s stockholders voted on the three proposals set forth below. A more detailed description of each proposal is set forth in the Company’s Proxy Statement filed with the Securities and Exchange Commission on May 15, 2025 (the “Proxy Statement”).
+
+Proposal 1 — Election of Directors
+
+Phillip Fernandez and Fernando Machado were each elected to serve as a Class I director of the Company’s Board of Directors until the 2028 Annual Meeting of Stockholders and until his successor is duly elected or until his or her earlier resignation or removal by the following votes:
+
+Nominee |
+Votes For |
+Votes Withheld |
+Broker Non-Votes |
+Phillip Fernandez | 171,014,313 | 13,371,162 | 21,425,555 |
+Fernando Machado | 171,743,886 | 12,641,589 | 21,425,555 |
+
+Proposal 2 — Approval, on a Non-Binding, Advisory Basis, of the Compensation of the Company’s Named Executive Officers
+
+The Company’s stockholders approved, on an advisory basis, the compensation of the Company’s named executive officers, as disclosed in the Proxy Statement, by the following votes:
+
+Votes For |
+Votes Against |
+Abstentions |
+Broker Non-Votes |
+182,145,161 | 2,158,010 | 82,304 | 21,425,555 |
+
+Proposal 3 — Ratification of the Selection of Independent Registered Public Accounting Firm
+
+The Company’s stockholders ratified the selection of Ernst & Young LLP as the Company’s independent registered public accounting firm for the fiscal year ending January 31, 2026 by the following votes:
+
+Votes For | Votes Against |
+Abstentions |
+205,679,070 | 88,039 | 43,921 |
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: June 27, 2025

@@ -1,0 +1,635 @@
+---
+url: https://www.braze.com/docs/api/objects_filters/user_attributes_object
+slug: docs__api__objects_filters__user_attributes_object
+title: "User attributes object"
+description: "This reference article explains the different components of the user attributes object."
+section: api/objects_filters
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# User attributes object
+
+An API request with any fields in the attributes object creates or updates an attribute of that name with the given value on the specified user profile.
+
+Use Braze user profile field names (listed as follows or any listed in the section for Braze user profile fields) to update those special values on the user profile in the dashboard or add your own custom attribute data to the user.
+
+## Object body
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+```
+ | 
+```
+{
+ // One of "external_id" or "user_alias" or "braze_id" or "email" or "phone" is required
+ "external_id" : (optional, string) see external user ID,
+ "user_alias" : (optional, User alias object),
+ "braze_id" : (optional, string) Braze user identifier,
+ "email": (optional, string) User email address,
+ "phone": (optional, string) User phone number,
+ // Setting this flag to true puts the API in "Update Only" mode.
+ // When using a "user_alias", "Update Only" defaults to true.
+ "_update_existing_only" : (optional, boolean),
+ // See note regarding anonymous push token imports
+ "push_token_import" : (optional, boolean),
+ // Braze User Profile Fields
+ "first_name" : "Alex",
+ "email" : "[email protected]",
+ // Custom Attributes
+ "my_custom_attribute" : value,
+ "my_custom_attribute_2" : {"inc" : int_value},
+ "my_array_custom_attribute":[ "Value1", "Value2" ],
+ // Adding a new value to an array custom attribute
+ "my_array_custom_attribute" : { "add" : ["Value3"] },
+ // Removing a value from an array custom attribute
+ "my_array_custom_attribute" : { "remove" : [ "Value1" ]},
+ // Array of objects custom attribute
+ "my_array_of_objects_attribute": [{"key": "value"}, {"key": "value"}],
+ // Adding to an array of objects (nested custom attribute syntax)
+ "my_array_of_objects_attribute": { "$add": [{"key": "value"}] },
+ // Removing from an array of objects (nested custom attribute syntax)
+ "my_array_of_objects_attribute": { "$remove": [{"$identifier_key": "key", "$identifier_value": "value"}] },
+}
+
+```
+ | 
+
+- External user ID
+ 
+- User aliases
+
+note
+
+For regular array custom attributes, use add and remove (without $).
+
+For array of objects (nested custom attributes), use $add, $remove, and $update in /users/track request payloads. These operators apply object-level changes by matching identifiers ($identifier_key and $identifier_value) and support in-place updates with $new_object.
+
+Use this format when you need to append, remove, or update objects inside an existing array while preserving the rest of the array state. For full request examples, see Array of objects API example and Array of objects SDK example.
+
+To remove a profile attribute, set it to null. Some fields, such as external_id and user_alias cannot be removed after they’re added to a user profile.
+
+### Identifier resolution
+
+Unless you’re performing an anonymous push token import, each user attributes object must include at least one identifier: external_id, user_alias, braze_id, email, or phone. When possible, include only one identifier per object to avoid ambiguity about which user profile is being updated or created.
+
+Keep the following in mind when using identifiers:
+
+- external_id and user_alias are mutually exclusive. Including both in the same user attributes object returns an error. To add an alias to a user that already has an external_id, use the /users/alias/new endpoint.
+ 
+- email takes precedence over phone. If both email and phone are included in the same object, Braze uses email as the identifier. This means the attributes are applied to the user profile associated with that email address, even if the phone number belongs to a different profile.
+
+important
+
+To avoid unexpected behavior, use a single identifier per user attributes object. Providing multiple identifiers that reference different user profiles can lead to attributes being applied to the wrong profile.
+
+#### Update existing profiles only
+
+If you wish to update only existing user profiles in Braze, you should pass the _update_existing_only key with a value of true within the body of your request. If this value is omitted, Braze creates a new user profile if the external_id does not already exist.
+
+note
+
+If you are creating an alias-only user profile through the /users/track endpoint, you must set _update_existing_only to false. If you omit this value, Braze does not create the alias-only profile.
+
+#### Push token import
+
+Before you import push tokens to Braze, double check if you need to. When the Braze SDKs are put in place, they handle push tokens automatically with no need to upload them through the API.
+
+If you do find you need to upload them through the API, they can either be uploaded for identified users or anonymous users. This means that either an external_id needs to present, or the anonymous users must have the push_token_import flag set to true.
+
+note
+
+When importing push tokens from other systems, an external_id is not always available. To maintain communication with these users during your transition to Braze, you can import the legacy tokens for anonymous users without providing external_id by specifying push_token_import as true.
+
+When specifying push_token_import as true:
+
+- external_id and braze_id should not be specified
+ 
+- The attribute object must contain a push token
+ 
+- If the token already exists in Braze, the request is ignored; otherwise, Braze creates a temporary, anonymous user profile for each token to enable you to continue to message these individuals
+
+After import, as each user launches the Braze-enabled version of your app, Braze automatically moves their imported push token to their Braze user profile and cleans up the temporary profile.
+
+Braze checks once a month to find any anonymous profile with the push_token_import flag that doesn’t have a push token. If the anonymous profile no longer has a push token, Braze deletes the profile. However, if the anonymous profile still has a push token, suggesting that the actual user has yet to login to the device with said push token, Braze does nothing.
+
+For more information, refer to Migrating push tokens.
+
+#### Custom attribute data types
+
+The following data types can be stored as a custom attribute:
+
+ Data Type | 
+ Notes | 
+
+ Arrays | 
+ Custom attribute arrays are supported. When you add an element, it’s appended to the end of the array. If the element already exists, it’s moved from its current position to the end.
+
+Only unique values are stored. For example, importing ['hotdog','hotdog','hotdog','pizza'] results in ['hotdog', 'pizza'].
+
+You can set an array directly (for example, "my_array_custom_attribute":[ "Value1", "Value2" ]), add to an existing array with "my_array_custom_attribute" : { "add" : ["Value3"] }, or remove values with "my_array_custom_attribute" : { "remove" : [ "Value1" ]}.
+
+The default and maximum number of elements in an array is 500. You can update the maximum number of arrays in the Braze dashboard, under Data Settings > Custom Attributes. For more information, see Arrays. | 
+
+ Array of objects | 
+ Use an array of objects to define a list of objects where each object contains a set of attributes. Use this type to store multiple sets of related data for a user, such as hotel stays, purchase history, or preferences. 
+
+For example, define a custom attribute named hotel_stays on a user profile as an array where each object represents a separate stay, with attributes such as hotel_name, check_in_date, and nights_stayed.
+
+Arrays of objects have no limit on the number of items but do have a maximum size of 100 KB. If an update causes the array to exceed this limit, Braze drops the update, and the attribute is unchanged.
+
+For /users/track and SDK payloads, use $add, $remove, and $update for array-of-objects operations. Use add and remove (without $) for regular array custom attributes that contain scalar values. For details, see Array of objects API example, Array of objects SDK example, and Array of objects example. | 
+
+ Booleans | 
+ true or false | 
+
+ Dates | 
+ Store dates in ISO 8601 format (recommended) or in any of these formats: 
+- yyyy-MM-ddTHH:mm:ss:SSSZ 
+- yyyy-MM-ddTHH:mm:ss 
+- yyyy-MM-dd HH:mm:ss 
+- yyyy-MM-dd 
+- MM/dd/yyyy 
+- ddd MM dd HH:mm:ss.TZD YYYY 
+
+Note that “T” is a time designator, not a placeholder, and should not be changed or removed. 
+
+Date values that don’t match any of the listed formats are stored as strings on the user profile instead of as the Time data type. This means time-based segmentation filters (such as “before”, “after”, or “in the last X days”) don’t work for those attributes. For example, Mar 26 2026 06:12 PM +00:00 is stored as a string because it doesn’t match a supported format. To avoid this, use ISO 8601 format (such as 2026-03-26T18:12:00Z). 
+
+Time attributes without a time zone default to midnight UTC (and are formatted on the dashboard as the equivalent of midnight UTC in the company’s time zone). To specify a time zone, append a UTC offset to the timestamp (for example, 2024-11-10T18:00:00-05:00 for EST). If the time zone offset is missing or formatted incorrectly, the value defaults to UTC. 
+
+Times are displayed on the dashboard in your company’s time zone. For example, 2024-11-10T18:00:00-05:00 (6:00 PM EST) would appear as the equivalent time in your company’s configured time zone. 
+
+Events with timestamps in the future default to the current time. 
+
+For regular custom attributes, if the year is less than 0 or greater than 3000, Braze stores the value as a string on the user profile. | 
+
+ Floats | 
+ Float custom attributes are positive or negative numbers with a decimal point. For example, you can use floats to store account balances or user ratings for products or services. | 
+
+ Integers | 
+ You can increment integer custom attributes by assigning an object with the “inc” field and the amount to add. 
+
+Example: "my_custom_attribute_2" : {"inc" : int_value}, | 
+
+ Nested custom attributes | 
+ Nested custom attributes define a set of attributes as a property of another attribute. When you define a custom attribute object, you add a set of attributes to that object. For more information, refer to Nested custom attributes. | 
+
+ Strings | 
+ String custom attributes are sequences of characters used to store text data. For example, you can use strings to store first and last names, email addresses, or preferences. | 
+
+tip
+
+For guidance on when to use a custom event versus a custom attribute, see Custom events and Custom attributes.
+
+##### Array of objects example
+
+This array of objects allows you to create segments based on specific criteria within the stays, and personalize your messages using the data from each stay with Liquid templates.
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+{"hotel_stays": [
+ { "hotel_name": "Ocean View Resort", "check_in_date": "2023-06-15", "nights_stayed": 5 },
+ { "hotel_name": "Mountain Lodge", "check_in_date": "2023-09-10", "nights_stayed": 3 }
+]}
+
+```
+ | 
+
+For array-of-objects examples that use $add, $remove, and $update, see Array of objects API example and Array of objects SDK example.
+
+#### Braze user profile fields
+
+important
+
+The following user profile fields are case sensitive, so be sure to reference these fields in lower case.
+
+tip
+
+For a customer-facing reference of standard attributes that’s organized by category and includes guidance for SDK, API, CSV, and Cloud Data Ingestion, see Standard attributes.
+
+ User Profile Field | 
+ Data Type Specification | 
+
+ alias_name | 
+ (string) | 
+
+ alias_label | 
+ (string) | 
+
+ braze_id | 
+ (string, optional) When a user profile is recognized by the SDK, an anonymous user profile is created with an associated braze_id. The braze_id is automatically assigned by Braze, cannot be edited, and is device-specific. | 
+
+ country | 
+ (string) We require that country codes be passed to Braze in the ISO-3166-1 alpha-2 standard. Our API makes a best effort to map countries received in different formats. For example, “Australia” may map to “AU”. However, if the input doesn’t match a given ISO-3166-1 alpha-2 standard, the country value is set to NULL. 
+
+Setting country on a user by CSV import or API prevents Braze from automatically capturing this information through the SDK. | 
+
+ current_location | 
+ (object) Of the form {“longitude”: -73.991443, “latitude”: 40.753824} | 
+
+ date_of_first_session | 
+ (date at which the user first used the app) String in ISO 8601 format or in any of the following formats: 
+- yyyy-MM-ddTHH:mm:ss:SSSZ 
+- yyyy-MM-ddTHH:mm:ss 
+- yyyy-MM-dd HH:mm:ss 
+- yyyy-MM-dd 
+- MM/dd/yyyy 
+- ddd MM dd HH:mm:ss.TZD YYYY | 
+
+ date_of_last_session | 
+ (date at which the user last used the app) String in ISO 8601 format or in any of the following formats: 
+- yyyy-MM-ddTHH:mm:ss:SSSZ 
+- yyyy-MM-ddTHH:mm:ss 
+- yyyy-MM-dd HH:mm:ss 
+- yyyy-MM-dd 
+- MM/dd/yyyy 
+- ddd MM dd HH:mm:ss.TZD YYYY | 
+
+ dob | 
+ (date of birth) String in format “YYYY-MM-DD”, for example, 1980-12-21. | 
+
+ email | 
+ (string) | 
+
+ email_subscribe | 
+ (string) Available values are “opted_in” (explicitly registered to receive email messages), “unsubscribed” (explicitly opted out of email messages), and “subscribed” (neither opted in nor out). | 
+
+ email_open_tracking_disabled | 
+ (boolean) true or false accepted. Set to true to disable the open tracking pixel from being added to all future emails sent to this user. | 
+
+ email_click_tracking_disabled | 
+ (boolean) true or false accepted. Set to true to disable the click tracking for all links within a future email, sent to this user. | 
+
+ external_id | 
+ (string) A unique identifier for a user profile. After assigned an external_id, Braze identifies the user profile across a user’s devices. On the first instance of assigning an external_id to an unknown user profile, Braze migrates all existing user profile data to the new user profile. | 
+
+ facebook | 
+ hash containing any of id (string), likes (array of strings), num_friends (integer). | 
+
+ first_name | 
+ (string) | 
+
+ gender | 
+ (string) “M”, “F”, “O” (other), “N” (not applicable), “P” (prefer not to say) or null (unknown). | 
+
+ home_city | 
+ (string) | 
+
+ language | 
+ (string) we require that language be passed to Braze in the ISO-639-1 standard. For supported languages, see our list of accepted languages.
+
+Setting language on a user by CSV import or API prevents Braze from automatically capturing this information through the SDK. | 
+
+ last_name | 
+ (string) | 
+
+ marked_email_as_spam_at | 
+ (string) Date at which the user’s email was marked as spam. Appears in ISO 8601 format or in any of the following formats: 
+- yyyy-MM-ddTHH:mm:ss:SSSZ 
+- yyyy-MM-ddTHH:mm:ss 
+- yyyy-MM-dd HH:mm:ss 
+- yyyy-MM-dd 
+- MM/dd/yyyy 
+- ddd MM dd HH:mm:ss.TZD YYYY | 
+
+ phone | 
+ (string) We recommend providing phone numbers in the E.164 format. For details, refer to User phone numbers. | 
+
+ push_subscribe | 
+ (string) Available values are “opted_in” (explicitly registered to receive push messages), “unsubscribed” (explicitly opted out of push messages), and “subscribed” (neither opted in nor out). | 
+
+ push_tokens | 
+ Array of objects with app_id and token string. You may optionally provide a device_id for the device this token is associated with, for example, [{"app_id": App Identifier, "token": "abcd", "device_id": "optional_field_value"}]. If a device_id is not provided, one is randomly generated. | 
+
+ subscription_groups | 
+ Array of objects with subscription_group_id and subscription_state string, for example, [{"subscription_group_id" : "subscription_group_identifier", "subscription_state" : "subscribed"}]. Available values for subscription_state are “subscribed” and “unsubscribed”. | 
+
+ time_zone | 
+ (string) Of time zone name from IANA Time Zone Database (for example, “America/New_York” or “Eastern Time (US & Canada)”). Only valid time zone values are set. | 
+
+ twitter | 
+ Hash containing any of id (integer), screen_name (string, X (formerly Twitter) handle), followers_count (integer), friends_count (integer), statuses_count (integer). | 
+
+Language values that are explicitly set through this API take precedence over the locale information Braze automatically receives from the device.
+
+#### User attribute example request
+
+This example contains four user attribute objects, out of a total of 75 allowed attribute objects per API call.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+```
+ | 
+```
+POST https://YOUR_REST_API_URL/users/track
+Content-Type: application/json
+Authorization: Bearer YOUR-REST-API-KEY
+{
+ "attributes" : [
+ {
+ "external_id" : "user1",
+ "first_name" : "Alex",
+ "has_profile_picture" : true,
+ "dob": "1988-02-14",
+ "music_videos_favorited" : { "add" : [ "calvinharris-summer" ], "remove" : ["nickiminaj-anaconda"] }
+ },
+ {
+ "external_id" : "user2",
+ "first_name" : "Lee",
+ "has_profile_picture" : false,
+ "push_tokens": [{"app_id": "Your App Identifier", "token": "abcd", "device_id": "optional_field_value"}]
+
+ },
+ {
+ "user_alias" : { "alias_name" : "device123", "alias_label" : "my_device_identifier"},
+ "first_name" : "Yuri",
+ "has_profile_picture" : false
+ },
+ {
+ "external_id": "user3",
+ "subscription_groups" : [{"subscription_group_id" : "subscription_group_identifier", "subscription_state" : "subscribed"}]
+ }
+ ]
+}
+
+```
+ | 
+
+## Migrate push tokens
+
+If you were sending push notifications prior to integrating Braze, either on your own or through another provider, push token migration allows you to continue sending push notifications to your users with registered push tokens.
+
+### Automatic migration through SDK
+
+After you integrate the Braze SDK, push tokens for your opted-in users are automatically migrated the next time they open your app. Until then, you can’t send those users push notifications through Braze.
+
+Alternatively, you can migrate your push tokens manually, allowing you to re-engage your users more promptly.
+
+#### Web token considerations
+
+Due to the nature of web push tokens, be sure you consider the following when implementing push for web:
+
+ Consideration | 
+ Details | 
+
+ Service workers | 
+ By default, the Web SDK looks for a service worker at ./service-worker unless another option is specified, such as manageServiceWorkerExternally or serviceWorkerLocation. If your service worker isn’t set up properly, it may lead to expired push tokens for your users. | 
+
+ Expired tokens | 
+ If a user hasn’t started a web session within 60 days, their push token expires. Because Braze can’t migrate expired push tokens, you must send a push primer to re-engage them. | 
+
+### Manual migration through API
+
+Manual push token migration is the process of importing these previously-created keys into your Braze platform through the API.
+
+Programmatically migrate iOS (APNs) and Android (FCM) tokens to your platform by using the users/track endpoint. You can migrate both identified users (users with an associated external ID) and anonymous users (users without an external ID).
+
+Specify your app’s app_id during push token migration to associate the appropriate push token with the appropriate app. Each app (iOS, Android, etc.) has its own app_id, which can be found in the Identification section of the API Keys page. Be sure to use the correct platform’s app_id.
+
+important
+
+It is not possible to migrate web push tokens through the API. This is because web push tokens do not conform to the same schema as other platforms.
+
+If you are attempting to migrate web push tokens programmatically, you might see an error like the following: Received '400: Invalid subscription auth' sending to 'https://fcm.googleapis.com/fcm/send
+
+As an alternative to API migration, we recommend that you integrate the SDK and allow your token base to repopulate naturally.
+
+- external id present
+ 
+- external id missing
+
+For identified users, set the push_token_import flag to false (or omit the parameter) and specify the external_id, app_id, and token values in the user attributes object.
+
+For example:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR-API-KEY-HERE' \
+--data-raw '{
+ "attributes" : [
+ {
+ "push_token_import" : false,
+ "external_id": "example_external_id",
+ "country": "US",
+ "language": "en",
+ "YOUR_CUSTOM_ATTRIBUTE": "YOUR_VALUE",
+ "push_tokens": [
+ {"app_id": "APP_ID_OF_OS", "token": "PUSH_TOKEN_STRING"}
+ ]
+ }
+ ]
+}'
+
+```
+ | 
+
+When importing push tokens from other systems, an external_id is not always available. In this circumstance, set your push_token_import flag as true and specify the app_id and token values. Braze creates a temporary, anonymous user profile for each token to enable you to continue to message these individuals. If the token already exists in Braze, the request is ignored.
+
+For example:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR-API-KEY-HERE' \
+--data-raw '{
+ "attributes": [
+ {
+ "push_token_import" : true,
+ "email": "[email protected]",
+ "country": "US",
+ "language": "en",
+ "YOUR_CUSTOM_ATTRIBUTE": "YOUR_VALUE",
+ "push_tokens": [
+ {"app_id": "APP_ID_OF_OS", "token": "PUSH_TOKEN_STRING", "device_id": "DEVICE_ID"}
+ ]
+ },
+
+ {
+ "push_token_import" : true,
+ "email": "[email protected]",
+ "country": "US",
+ "language": "en",
+ "YOUR_CUSTOM_ATTRIBUTE_1": "YOUR_VALUE",
+ "YOUR_CUSTOM_ATTRIBUTE_2": "YOUR_VALUE",
+ "push_tokens": [
+ {"app_id": "APP_ID_OF_OS", "token": "PUSH_TOKEN_STRING", "device_id": "DEVICE_ID"}
+ ]
+ }
+ ]
+}'
+
+```
+ | 
+
+After import, when the anonymous user launches the Braze-enabled version of your app, Braze automatically moves their imported push token to their Braze user profile and cleans up the temporary profile.
+
+Braze checks once a month to find any anonymous profile with the push_token_import flag that doesn’t have a push token. If the anonymous profile no longer has a push token, Braze deletes the profile. However, if the anonymous profile still has a push token, suggesting that the actual user has yet to log in to the device with said push token, Braze does nothing.
+
+### Import iOS push tokens
+
+When migrating iOS push tokens with /users/track, the gateway field is not set on the push token. Braze assumes that tokens imported through the API are valid foreground push tokens but cannot determine which APNs environment the token belongs to.
+
+Without the gateway field, Braze uses your app’s configured fallback environment setting when sending push notifications. This can lead to BadDeviceToken errors if the token’s actual environment differs from the configured fallback. For example, a development token sent through the production gateway will fail.
+
+To avoid delivery issues:
+
+- Ensure your app’s environment setting in the Braze dashboard matches the tokens you’re importing.
+ 
+- For production apps, import only production tokens.
+ 
+- For testing environments, verify that both your app configuration and imported tokens use the development environment.
+
+note
+
+Tokens registered through the Braze SDK include the gateway field automatically, as the SDK detects the environment from your app’s entitlements.
+
+### Import Android push tokens
+
+important
+
+The following consideration applies only for Android apps. iOS apps do not require these steps because that platform has only one framework for displaying push, and push notifications render immediately as long as Braze has the necessary push tokens and certificates.
+
+If you must send Android push notifications to your users before the Braze SDK integration is complete, use key-value pairs to validate push notifications.
+
+You must have a receiver to handle and display push payloads. To notify the receiver of the push payload, add the necessary key-value pairs to the push campaign. The values of these pairs are contingent on the specific push partner you used before Braze.
+
+note
+
+For some push notification providers, Braze needs to flatten the key-value pairs so that they can be properly interpreted. To flatten key-value pairs for a specific Android app, contact your customer success manager.
+
+## Frequently asked questions
+
+### How do I find users treated as spam or blocked from messaging?
+
+Braze does not provide a dedicated spam list in the dashboard. Braze blocks individual user profiles (“dummy users”) with more than five million sessions, more than 20,000 distinct custom event names, or more than 20,000 distinct product names in purchases, and stops ingesting all inbound data for that profile from both the SDKs and the REST API. If an identifier is blocked, /users/track may return the error "provided external_id is blacklisted and disallowed". This wording is taken verbatim from the API response. To find profiles blocked for excessive sessions, create a segment with the Session Count filter set to more than 5,000,000, export the segment as a CSV, and cross-check profile fields in Engagement > Search users or with the /users/export/ids endpoint. There is no equivalent filter for distinct custom event names or product names, so contact your Braze account manager to identify profiles blocked for those reasons. To learn more, refer to Spam blocking.
+
+- 
+
+New Stuff!

@@ -1,0 +1,108 @@
+---
+form: 8-K
+filed: 2024-06-03
+period: 2024-06-03
+accession: 0001676238-24-000087
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623824000087/brz-20240603.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20240603
+FALSE000167623800016762382024-06-032024-06-03
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): June 3, 2024
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 E. 28th St., Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+330 West 34th Street, Floor 18
+New York, New York 10001
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 5.02. Departure of Directors or Certain Officers; Election of Directors; Appointment of Certain Officers; Compensatory Arrangements of Certain Officers.
+
+(a)
+
+Effective June 3, 2024, Doug Pepper, a director of Braze, Inc., or the Company, resigned from his position as a member of the Company’s board of directors, or the Board. Mr. Pepper was also a member of the Board’s audit committee. His resignation is not due to any disagreement with the Company on any matter relating to the Company’s operations, policies or practices.
+
+(d)
+
+Effective June 3, 2024, the Board appointed Yvonne Wassenaar to serve as a director of the Company. Ms. Wassenaar will serve as a Class II director whose term will expire at the Company’s 2026 annual meeting of stockholders. Ms. Wassenaar was also appointed as a member of the Board’s audit committee.
+
+There is no arrangement or understanding between Ms. Wassenaar and any other person pursuant to which she was selected as a director of the Company, and there is no family relationship between Ms. Wassenaar and any of the Company’s other directors or executive officers. The Company is not aware of any transaction involving Ms. Wassenaar requiring disclosure under Item 404(a) of Regulation S-K.
+
+Ms. Wassenaar, 55, served as chief executive officer of Puppet, Inc., an information technology automation software company, from January 2019 to May 2022. From June 2017 to September 2018, Ms. Wassenaar served as chief executive officer of Airware, an enterprise drone solutions company. From August 2014 to May 2017, Ms. Wassenaar served in various roles at New Relic, Inc., or New Relic, a public cloud-based observability platform company acquired by Francisco Partners Management, L.P. and TPG Global, LLC, most recently as chief information officer. Prior to New Relic, Ms. Wassenaar held various senior positions at VMware, Inc., a public cloud computing and virtualization technology company acquired by Broadcom Inc. Ms. Wassenaar currently serves on the board of directors of Arista Networks, Inc., a public cloud networking company, Forrester Research, Inc., a public research and advisory company, JFrog Ltd., a public software supply chain platform provider, and Rubrik, Inc,, a public zero trust data management company. Ms. Wassenaar previously served on the boards of directors of Anaplan, Inc., a public cloud-based business planning software company acquired by Thoma Bravo, LLC, and Mulesoft, Inc., a public enterprise software company acquired by Salesforce, Inc. Ms. Wassenaar also currently serves on the boards of directors of various private and non-profit institutions. Ms. Wassenaar holds a Bachelor of Arts in Economics with a specialization in computing from the University of California, Los Angeles and a Master of Business Administration from the UCLA Anderson School of Business.
+
+Ms. Wassenaar will be entitled to participate in the Company’s non-employee director compensation policy. Pursuant to such policy, upon commencement of her service as a director, Ms. Wassenaar was granted a restricted stock unit award for 5,439 shares of the Company’s Class A common stock under its 2021 Equity Incentive Plan, with the shares vesting in three equal annual installments, subject to her continued service as a director through each applicable vesting date. Additionally, in accordance with the Company’s non-employee director compensation policy, Ms. Wassenaar will be entitled to receive a $30,000 annual retainer for her service as a director, plus an additional $10,000 for her service on the Board’s audit committee. At each annual stockholder meeting (beginning with the 2024 annual meeting of stockholders), Ms. Wassenaar will be entitled to receive an additional restricted stock unit award valued at $175,000; provided that her award at the 2024 annual meeting of stockholders will be prorated for her service time as director as of such date. This annual restricted stock unit award will vest in full on the earliest of (i) the first anniversary of the grant date, or (ii) the day before the first annual stockholders meeting occurring after the grant date, subject in each case to her continued service on such vesting date. Ms. Wassenaar’s unvested restricted stock unit awards will also vest in full immediately prior to the occurrence of a change of control of the Company, subject to her continued service on such vesting date. Ms. Wassenaar has also entered into the Company’s standard form of indemnification agreement.
+
+Item 7.01. Regulation FD Disclosure.
+
+On June 3, 2024, the Company issued a press release related to the matters described in this Current Report on Form 8-K. A copy of the press release is furnished as Exhibit 99.1 to this Current Report on Form 8-K and is incorporated herein by reference.
+
+The information contained in this Item 7.01 and Item 9.01 in this Current Report on Form 8-K, including the accompanying Exhibit 99.1 hereto, shall not be deemed “filed” for purposes of Section 18 of the Securities Exchange Act of 1934, as
+
+amended, or the Exchange Act, or otherwise subject to the liabilities of that section, nor shall it be deemed incorporated by reference in any filing made by the Company under the Securities Act of 1933, as amended, or the Exchange Act, regardless of any general incorporation language in such filings, unless expressly incorporated by specific reference in such filing.
+
+Item 9.01. Financial Statements and Exhibits.
+
+(d) Exhibits
+
+Exhibit No. Description
+99.1 Press Release of Braze, Inc., dated June 3, 2024
+104 Cover Page Interactive Data (embedded within the Inline XBRL document)
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: June 3, 2024

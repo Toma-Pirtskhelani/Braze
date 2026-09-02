@@ -1,0 +1,121 @@
+---
+form: 8-K
+filed: 2026-02-02
+period: 2026-01-30
+accession: 0001676238-26-000006
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623826000006/brz-20260130.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20260130
+FALSE000167623801/3100016762382026-01-302026-01-30
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): January 30, 2026
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 East 28th Street, Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 3.03 Material Modification to Rights of Security Holders.
+
+As previously reported, on October 21, 2025, the number of outstanding shares of Class B Common Stock, par value $0.0001 per share (the “Class B Common Stock”), of Braze, Inc. (the “Company”) represented less than 10% of the aggregate number of shares of the then outstanding Class A Common Stock, par value $0.0001 per share (the “Class A Common Stock”), and Class B Common Stock of the Company. Accordingly, pursuant to the terms of the Company’s Eighth Amended and Restated Certificate of Incorporation (the “Certificate of Incorporation”) on January 30, 2026, each outstanding share of Class B Common Stock automatically converted (the “Conversion”) into one share of Class A Common Stock.
+
+The Conversion occurred pursuant to Article IV, Section D, Subsection 6(c) of the Certificate of Incorporation, which provides that each outstanding share of Class B Common Stock will convert automatically, without any further action, into one share of Class A Common Stock on the last trading day of the fiscal quarter during which the then outstanding shares of Class B Common Stock first represents less than 10% of the aggregate number of shares of the then outstanding Class A Common Stock and Class B Common Stock; provided, however, that if the first day the shares of Class B Common Stock first represent less than 10% of the aggregate number of shares of the then outstanding Class A Common Stock and Class B Common Stock occurs in the 15 days prior to the end of a fiscal quarter, the Conversion shall occur as of the last day of the following fiscal quarter. Immediately following the Conversion, there were approximately 112,689,870 shares of Class A Common Stock outstanding.
+
+Pursuant to Article IV, Section D, Subsection 9 of the Certificate of Incorporation, shares of Class B Common Stock that are converted into shares of Class A Common Stock will be retired and may not be reissued. In accordance with Section 243 of the Delaware General Corporation Law (the “DGCL”), on January 30, 2026, the Company filed a Certificate of Retirement with the Secretary of State of the State of Delaware, which has the effect of retiring all of the shares of Class B Common Stock that were issued but not outstanding following the Conversion and amending the Certificate of Incorporation such that, upon the effectiveness of the Certificate of Retirement, the Company’s total number of authorized shares of capital stock has been reduced by the number of retired shares of Class B Common Stock (the “Certificate of Retirement”).
+
+The Conversion had the following effects, among others:
+
+Voting Power. Prior to the Conversion, holders of shares of Class B Common Stock were entitled to cast ten votes per share on any matter submitted to a vote of the Company’s stockholders. As a result of the Conversion, all former holders of shares of Class B Common Stock are now holders of an equal number of shares of Class A Common Stock, which are entitled to cast only one vote per share on all matters subject to a stockholder vote. In addition, the provisions of the Certificate of Incorporation and DGCL that entitled the holders of shares of Class A Common Stock and Class B Common Stock, in certain circumstances, to separate class voting rights, are no longer applicable as a result of the Conversion.
+
+Economic Interests. Because holders of shares of Class A Common Stock are entitled to the same economic interests to which former holders of shares of Class B Common Stock were entitled before the Conversion, including with regard to dividends and distributions, liquidation rights and treatment in connection with a change of control or merger transaction, the Conversion had no material impact on the economic interests of former holders of shares of Class B Common Stock.
+
+Capitalization. The Conversion had no impact on the total number of the Company’s outstanding shares of capital stock, as the shares of Class B Common Stock converted into an equivalent number of shares of Class A Common Stock. Pursuant to Section 243 of the DGCL, the filing of the Certificate of Retirement had the effect of amending the Certificate of Incorporation such that, upon the effectiveness of the Certificate of Retirement, the Company’s total number of authorized shares of capital stock was reduced by the number of the retired shares of Class B Common Stock.
+
+Equity Incentive Plans. Upon the Conversion, outstanding options, restricted stock units or other rights issued under the Company’s employee benefit and equity incentive plans that were previously denominated in, or represented the right to receive, shares of Class B Common Stock remain unchanged, except that they are now denominated in, or represent the right to receive, shares of Class A Common Stock.
+
+The foregoing description of the Conversion is a summary only and is qualified in its entirety by reference to the full text of (a) the Certificate of Retirement, a copy of which is attached and incorporated by reference as Exhibit 3.1 hereto, and (b) the Certificate of Incorporation, a copy of which is incorporated by reference herein as Exhibit 3.2 hereto.
+
+Item 5.03 Amendments to Articles of Incorporation or Bylaws; Change in Fiscal Year.
+
+As described under Item 3.03, on January 30, 2026, the Company filed the Certificate of Retirement with the Secretary of State of the State of Delaware to effect the retirement of the shares of Class B Common Stock that were issued but not outstanding following the Conversion and to accordingly reduce the Company’s total number of authorized shares of capital stock by the number of retired shares of Class B Common Stock.
+
+The foregoing description of the Certificate of Retirement is a summary only and is qualified in its entirety by reference to the full text of (a) the Certificate of Retirement, a copy of which is attached and incorporated by reference as Exhibit 3.1 hereto, and (b) the Certificate of Incorporation, a copy of which is incorporated by reference herein as Exhibit 3.2 hereto.
+
+Item 8.01 Other Events.
+
+The Class A Common Stock will continue to trade on The Nasdaq Global Select Market under the ticker symbol “BRZE” following the Conversion and will maintain the same CUSIP number previously assigned to the Class A Common Stock.
+
+Item 9.01 Financial Statements and Exhibits.
+
+(d) Exhibits
+
+Incorporated by Reference |
+Exhibit Number | Description | Form | File No. | Exhibit | Filing Date |
+
+3.1 |
+Certificate of Retirement |
+
+3.2 |
+Amended and Restated Certificate of Incorporation of Braze, Inc. | 8-K | 001-41065 | 3.1 |
+November 23, 2021 |
+
+104 | Cover Page with Interactive Data File (formatted as Inline XBRL) |
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: January 30, 2026

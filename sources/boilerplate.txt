@@ -1,0 +1,13 @@
+# Site furniture removed from every fetched page
+# Captured once, from https://www.braze.com/docs/api/api_campaigns on 2026-09-02.
+# It repeats site-wide, so it is ONE claim, cited once - never N.
+
+Skip to content
+
+ Press Arrow down to open the documentation menu without expanding the sidebar.
+
+Press Esc to close the menu
+
+BRAZE SYSTEM STATUS
+
+Checking Braze Status

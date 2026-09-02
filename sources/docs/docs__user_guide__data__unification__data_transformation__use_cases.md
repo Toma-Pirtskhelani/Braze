@@ -1,0 +1,214 @@
+---
+url: https://www.braze.com/docs/user_guide/data/unification/data_transformation/use_cases
+slug: docs__user_guide__data__unification__data_transformation__use_cases
+title: "Data Transformation use cases"
+description: "This reference article provides some use cases for Braze Data Transformation."
+section: user_guide/data
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Data Transformation use cases
+
+Consider the following possible use cases with Braze Data Transformation and a combination of webhooks from the example external platforms.
+
+## Generating leads
+
+You host a lead generation Typeform form on your website. When new users fill out this form, you can:
+
+- Create new users in Braze.
+ 
+- Add them to one of your Braze email lists.
+ 
+- Sync some of their responses as custom attributes in Braze, as their answers are valuable first-party data that can power personalized messaging experiences for future use.
+
+## Opening service tickets
+
+When customers open customer service tickets on a platform like Zendesk, you can:
+
+- Write a custom event in Braze when a Zendesk ticket is created.
+ 
+- Write a custom event with event properties in Braze when a negative CSAT rating is provided to Zendesk.
+
+## Integrating with Braze
+
+Braze has an integration with Iterate, a customer insights and survey platform. With Data Transformation, you can save multiple survey responses under one nested custom attribute, instead of to the existing integration that saves multiple custom attributes.
+
+## Sync HubSpot contact attributes
+
+If you use HubSpot as your CRM and Braze for messaging, you can use Data Transformation to convert HubSpot webhook payloads into Braze /users/track updates.
+
+This example checks for an external_id, copies the incoming user object, and sends all included fields to Braze as custom attributes.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+```
+ | 
+```
+function toBrazeTrackPayload(userObject) {
+ if (!userObject.external_id) {
+ throw new Error("Braze requires an 'external_id' field.");
+ }
+
+ return {
+ attributes: [userObject]
+ };
+}
+
+const brazePayload = toBrazeTrackPayload(payload);
+return brazePayload;
+
+```
+ | 
+
+## Example transformation code
+
+Consider this sample payload from Typeform, a survey platform, which sends whenever a survey response is received.
+
+- basic transformation
+ 
+- advanced transformation
+
+This example takes survey answers as attributes and writes an event to indicate that the survey was completed:
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+```
+ | 
+```
+return {
+ "attributes": [ 
+ {
+ "email": payload.form_response.hidden.email_address,
+ "_update_existing_only": true,
+ "home_city": payload.form_response.answers[0].text,
+ "home_weather_rating": payload.form_response.answers[1].number
+ }
+ ],
+ "events": [ 
+ {
+ "email": payload.form_response.hidden.email_address,
+ "_update_existing_only": true,
+ "name": "weather_survey_completed",
+ "time": new Date(),
+ "properties": {
+ "form_id": payload.form_response.form_id
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+Let’s further build on the basic transformation example and introduce an if statement to categorize the user in one of the answers.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+```
+ | 
+```
+let nps_category;
+let nps_number = payload.form_response.answers[1].number;
+if (nps_number < 7) {
+ nps_category = "Detractor";
+} else if (nps_number == 7 || nps_number == 8) {
+ nps_category = "Passive";
+} else if (nps_number > 8) {
+ nps_category = "Promoter";
+}
+
+return {
+ "attributes": [ 
+ {
+ "email": payload.form_response.hidden.email_address,
+ "_update_existing_only": true,
+ "home_city": payload.form_response.answers[0].text,
+ "home_weather_NPS_category": nps_category
+ }
+ ],
+ "events": [
+ {
+ "email": payload.form_response.hidden.email_address,
+ "_update_existing_only": true,
+ "name": "weather_survey_completed",
+ "time": new Date(),
+ "properties": {
+ "form_id": payload.form_response.form_id
+ }
+ }
+ ]
+};
+
+```
+ | 
+
+- 
+
+New Stuff!

@@ -1,0 +1,50 @@
+---
+url: https://www.braze.com/docs/user_guide/audience/segments/location_targeting
+slug: docs__user_guide__audience__segments__location_targeting
+title: "Location targeting"
+description: "This how-to article will walk you through how to set up Location targeting, allowing you to segment users by location."
+section: user_guide/audience
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Location targeting
+
+This article covers how to set up location targeting so you can segment users by their most recent location.
+
+## Step 1: Create your segment
+
+Navigate to the Segments page, under Audience, to view all of your current user segments. On this page, you can create and name new segments. To get started, select Create Segment and give your segment a name.
+
+## Step 2: Customize your location
+
+After you’ve created your segment, add a Most Recent Location filter to highlight users by the last place that they used your app. You have the option of highlighting users within or outside of a standard circular region or customizable polygonal region.
+
+### Users without location data
+
+Users without location data—including users whose location was previously recorded and later cleared—match filters for most recent location outside of circle and most recent location outside of polygon. To exclude users without location data, combine the Most Recent Location filter with a Location Available filter.
+
+- circular
+ 
+- polygonal
+
+### Circular regions
+
+For circular regions, you can move the origin and adjust the location radius for your segmentation.
+
+### Polygonal regions
+
+For polygonal regions, you can more specifically designate which areas you wish to be included in your segment.
+
+## Partnership support for beacon and geofence
+
+Combining existing beacon or geofence support with our targeting and messaging features gives you more information about your users’ physical actions so you can message them accordingly. You can leverage location tracking with some of our partners:
+
+- Radar
+ 
+- Infillion
+ 
+- Foursquare
+
+- 
+
+New Stuff!

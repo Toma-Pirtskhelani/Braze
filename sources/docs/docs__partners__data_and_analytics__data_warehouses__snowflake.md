@@ -1,0 +1,207 @@
+---
+url: https://www.braze.com/docs/partners/data_and_analytics/data_warehouses/snowflake
+slug: docs__partners__data_and_analytics__data_warehouses__snowflake
+title: "Snowflake"
+description: "This article outlines the partnership between Braze and Snowflake, covering both Data Sharing (Braze to Snowflake) and Cloud Data Ingestion."
+section: partners/data_and_analytics
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Snowflake
+
+Snowflake is a purpose-built SQL cloud data warehouse provided as Software-as-a-Service (SaaS). Snowflake provides a data warehouse that is faster, easier to use, and far more flexible than traditional data warehouse offerings. With Snowflake’s unique and patented architecture, it’s easy to amass all of your data, enable rapid analytics, and derive data-driven insights for all of your users.
+
+Braze offers two integrations with Snowflake. Together, they provide a complete, bidirectional data pipeline between your Braze and Snowflake environments.
+
+## Choosing an integration
+
+### Data Sharing (Braze to Snowflake)
+
+Snowflake Secure Data Sharing gives you secure, real-time access to Braze engagement and campaign data directly in your Snowflake instance. No data is copied or transferred between accounts—all sharing is accomplished through Snowflake’s unique services layer and metadata store.
+
+Use Data Sharing when you want to:
+
+- Query Braze event and campaign data using Snowflake SQL
+ 
+- Create complex reports and perform attribution modeling
+ 
+- Join Braze data with other data in your Snowflake warehouse
+ 
+- Benchmark your engagement data across channels, industries, and device platforms
+
+For setup instructions, see Snowflake Data Sharing.
+
+### Cloud Data Ingestion (Snowflake to Braze)
+
+Cloud Data Ingestion (CDI) lets you sync data from your Snowflake instance directly into Braze. This allows you to keep user attributes, events, and purchases in Braze up to date with your source-of-truth data warehouse.
+
+Use Cloud Data Ingestion when you want to:
+
+- Sync user attributes from Snowflake to Braze user profiles
+ 
+- Send event or purchase data from Snowflake into Braze
+ 
+- Keep Braze in sync with data transformations happening in your warehouse
+ 
+- Avoid building and maintaining custom ETL pipelines from Snowflake to Braze
+
+To learn more about Snowflake’s data sharing, see Introduction to Secure Data Sharing.
+
+## Prerequisites
+
+Before you can use this feature, you’ll need to complete the following:
+
+ Requirement | 
+ Description | 
+
+ Braze access | 
+ To access this feature in Braze, you’ll need to contact your Braze account or customer success manager. | 
+
+ Snowflake account | 
+ A Snowflake account with admin permissions. For non-HIPAA customers, Snowflake Standard or Enterprise Edition is supported. For HIPAA-compliant data sharing, Business Critical Edition is required. | 
+
+## Setting up Secure Data Sharing
+
+For Snowflake, data sharing happens between a data provider and data consumer. Within this context, your Braze account is the data provider because it creates and sends the datashare—whereas your Snowflake account is the data consumer because it uses the datashare to create a database. For more details, see Snowflake: Consuming Shared Data.
+
+### Step 1: Send the datashare from Braze
+
+- In Braze, go to Partner Integrations > Data Sharing.
+ 
+- Enter your Snowflake account details and locator. To get your account locator, run SELECT CURRENT_ACCOUNT() in the destination account.
+ 
+- If you’re using a CRR share, specify the cloud provider and region.
+ 
+- When you’re finished, select Create Datashare. This will send the datashare to your Snowflake account.
+
+### Step 2: Create the database in Snowflake
+
+- After a few minutes, you should receive the inbound datashare in your Snowflake account.
+ 
+- Using the inbound datashare, create a database to view and query the tables. For example:
+
+```
+
+1
+
+```
+ | 
+```
+ CREATE DATABASE <name> FROM SHARE <provider_account>.<share_name>
+
+```
+ | 
+
+- Grant privileges to query the new database.
+
+warning
+
+If you delete and recreate a share in the Braze dashboard, you must drop the previously-created database and recreate it using CREATE DATABASE <name> FROM SHARE <provider_account>.<share_name> to query the inbound share.
+If you have multiple workspaces sharing data to the same Snowflake account, see the Snowflake Data Sharing FAQs for guidance on managing multi-workspace configurations.
+
+## Usage and visualization
+
+After the data share is provisioned, you will need to create a database from the incoming data share, making all the tables shared appear in your Snowflake instance and be queryable just like any other data you’re storing in your instance. However, keep in mind that the shared data is read-only and can only be queried but not modified or deleted in any way.
+
+Similar to Currents, you can use your Snowflake Secure Data Sharing to:
+
+- Create complex reports
+ 
+- Perform attribution modeling
+ 
+- Secure sharing within your own company
+ 
+- Map raw event or user data to a CRM (like Salesforce)
+ 
+- And more
+
+For a full list of available tables and columns, refer to the SQL table reference. Snowflake Data Sharing includes all tables in that reference, plus additional Snowflake-exclusive tables for snapshots, campaign and Canvas changelogs, agent console events, and message retry events.
+
+You can also download the raw table schemas as a text file.
+
+### User ID schema
+
+Note the following differences between Braze and Snowflake naming conventions for user IDs.
+
+ Braze schema | 
+ Snowflake schema | 
+ Description | 
+
+ braze_id | 
+ "USER_ID" | 
+ The unique identifier that is automatically assigned by Braze. | 
+
+ external_id | 
+ "EXTERNAL_USER_ID" | 
+ The unique identifier of a user’s profile that is set by the customer. | 
+
+## Important information and limitations
+
+### Breaking versus non-breaking changes
+
+#### Non-breaking changes
+
+Non-breaking changes can happen at any time and generally provide additional functionality. Examples of non-breaking changes:
+
+- Adding a new table or view
+ 
+- Adding a column to an existing table or view
+
+important
+
+Because new columns are considered non-breaking, Braze strongly recommends explicitly listing the columns of interest in each query instead of using SELECT * queries. Alternately, you might want to create views that explicitly name columns and then query those views instead of the tables directly.
+
+#### Breaking changes
+
+When possible, breaking changes are preceded by an announcement and a migration period. Examples of breaking changes include:
+
+- Removing a table or view
+ 
+- Removing a column from an existing table or view
+ 
+- Changing the type or nullability of an existing column
+
+### Snowflake regions
+
+Braze currently hosts all user-level data in the Snowflake AWS US East-1, EU-Central (Frankfurt), AP-Northeast-1 (Tokyo), AP-Southeast-2 (Sydney), and AP-Southeast-3 (Jakarta) regions. For users outside of those regions, Braze can provide data sharing to joint customers who are hosting their Snowflake infrastructure across any AWS, Azure, or GCP region.
+
+### Data retention
+
+#### Retention policy
+
+Any data older than two years will be archived and moved to long term storage. As part of the archival process, all events are anonymized and any personal identifiable information (PII) sensitive fields are stripped out (this includes optionally PII fields like properties). Archived data still contains the user_id field, which allows for per-user analytics across all events data.
+
+You will be able to query against the most recent two years of data for each event in the corresponding USERS_*_SHARED view. Additionally, each event will have a USERS_*_SHARED_ALL view which can be queried against to return both anonymized and non-anonymized data.
+
+#### Historical data
+
+The archive of historical event data in Snowflake goes back to April 2019. In the first few months of Braze storing data in Snowflake, product changes were made that may have resulted in some of that data looking slightly different or having some null values (as we weren’t passing data into every available field at this time). It’s best to assume that any results that include data before August 2019 may look slightly different from expectations.
+
+### General Data Protection Regulation (GDPR) compliance
+
+Nearly every event record Braze stores includes a few fields representing users’ personally identifiable information (PII). Some events may include email address, phone number, device ID, language, gender, and location information. If a user’s request to be forgotten is submitted to Braze, we will null out those PII fields for any event belonging to those users. This way, we’re not removing the historical record of the event, but now the event can never be tied back to a specific individual.
+
+### Querying shared data: TIME and query performance
+
+Event data in the data sharing views (for example, USERS_BEHAVIORS_CUSTOMEVENT_SHARED) is clustered on the TIME field. When you filter by when the event occurred, use TIME as the preferred filter. Queries that restrict rows using TIME are generally more performant than queries that filter on SF_CREATED_AT, because clustering aligns with event time.
+
+ Field | 
+ Meaning | 
+
+ TIME | 
+ Unix timestamp at which the event happened. Prefer this when filtering by occurrence time. | 
+
+ SF_CREATED_AT | 
+ Timestamp when the row was loaded into Snowflake (ingestion time). | 
+
+### Speed, performance, cost of queries
+
+The speed, performance, and cost of any query run on top of the data are determined by the warehouse size you use to query the data. In some cases, depending on how much data you’re accessing for analytics, you may find that you need to use a larger warehouse size for the query to be successful. Snowflake has excellent resources available about how to best determine which size to use including Overview of warehouses and Warehouse considerations
+
+For a set of example queries to reference when setting up Snowflake, check out our sample queries and ETL event pipeline setup examples.
+
+For setup instructions, see Cloud Data Ingestion: Data warehouse integrations.
+
+- 
+
+New Stuff!

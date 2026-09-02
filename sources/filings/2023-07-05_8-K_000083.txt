@@ -1,0 +1,136 @@
+---
+form: 8-K
+filed: 2023-07-05
+period: 2023-06-29
+accession: 0001676238-23-000083
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623823000083/brz-20230629.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20230629
+FALSE000167623800016762382023-06-292023-06-29
+
+| | |
+|
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): June 29, 2023
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+| | | | | | | | | | | |
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+330 West 34th Street, Floor 18
+New York, New York 10001
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+| | | | | | | | |
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 5.07. Submission of Matters to a Vote of Security Holders.
+
+On June 29, 2023, Braze, Inc. (the “Company”) held its Annual Meeting of Stockholders (“Annual Meeting”). At the Annual Meeting, the Company’s stockholders voted on the four proposals set forth below. A more detailed description of each proposal is set forth in the Company’s Proxy Statement filed with the Securities and Exchange Commission on May 17, 2023 (the “Proxy Statement”).
+
+Proposal 1 — Election of Directors
+
+Neeraj Agrawal and Doug Pepper were each elected to serve as a Class II director of the Company’s Board of Directors until the 2026 Annual Meeting of Stockholders and until his successor is duly elected or until his earlier resignation or removal by the following votes:
+
+| | | | | | | | | | | |
+
+Nominee |
+Votes For |
+Votes Withheld |
+Broker Non-Votes |
+
+Neeraj Agrawal | 273,511,974 | 5,504,184 | 19,581,954 | |
+
+Doug Pepper | 278,920,909 | 95,249 | 19,581,954 | |
+
+Proposal 2 – Approval, on a Non-Binding, Advisory Basis, of the Compensation of the Company’s Named Executive Officers
+
+Stockholders approved, on an advisory basis, the compensation of the Company’s named executive officers, as disclosed in the Proxy Statement, by the following votes:
+
+| | | | | | | | | | | |
+
+Votes For |
+Votes Against |
+Abstentions |
+Broker Non-Votes |
+278,864,453 | 84,451 | 67,254 | 19,581,954 |
+| | | |
+
+Proposal 3 – Approval, on an Advisory Basis, of the Preferred Frequency of Stockholder Advisory Votes on the Compensation of the Company's Named Executive Officers.
+
+Stockholders voted with respect to the proposal to indicate, on an advisory basis, the preferred frequency of stockholder advisory votes on the compensation of the Company's named executive officers by the following votes:
+
+| | | | | | | | | | | | | | |
+One Year |
+Two Years | Three Years |
+Abstentions |
+Broker Non-Votes |
+278,610,799 | 18,695 | 353,038 | 33,626 | 19,581,954 |
+| | | | |
+
+In light of the voting results on Proposal 3, the Company has decided to seek a non-binding advisory stockholder vote on named executive officer compensation every one year and accordingly to include the same in its proxy materials on an annual basis until the next required advisory vote on such matter.
+
+Proposal 4 — Ratification of the Selection of Independent Registered Public Accounting Firm
+
+The stockholders ratified the selection of Ernst & Young LLP as the Company’s independent registered public accounting firm for the fiscal year ending January 31, 2024 by the following votes:
+
+| | | | | | | | |
+
+Votes For |
+Votes Against |
+Abstentions |
+298,549,349 | 5,701 | 43,062 |
+| | |
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Susan Wiseman
+Susan Wiseman
+General Counsel
+
+Dated: July 5, 2023

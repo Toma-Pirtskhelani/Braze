@@ -1,0 +1,164 @@
+---
+url: https://www.braze.com/docs/user_guide/data/unification/user_data/user_profile_lifecycle
+slug: docs__user_guide__data__unification__user_data__user_profile_lifecycle
+title: "User profile lifecycle"
+description: "This reference article describes the Braze user profile lifecycle, and the various ways a user profile can be identified and referenced."
+section: user_guide/data
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# User profile lifecycle
+
+This article describes the Braze user profile lifecycle and the various ways to identify and reference a user profile. If you’re looking to better understand your customer lifecycle, check out our Braze Learning course on Mapping User Lifecycles instead.
+
+All persistent data associated with a user is stored in their user profile. After a user profile is created, either through the API or after a user is recognized by the SDK, you can assign a number of parameters to that profile to identify and reference that user.
+
+These parameters include:
+
+- braze_id (assigned by Braze)
+ 
+- external_id
+ 
+- email
+ 
+- phone
+ 
+- Any number of custom user aliases that you set
+
+## Anonymous user profiles
+
+Any user without a designated external_id is called an anonymous user. For example, these could be users who visited your website but didn’t sign up, or users who downloaded your mobile app but didn’t create a profile.
+
+Initially, when a user is recognized by the SDK, an anonymous user profile is created with an associated braze_id: a unique identifier that is automatically assigned by Braze, cannot be edited, and is device-specific. This identifier can be used to update the user profile through the API.
+
+## Identified user profiles
+
+After a user is recognizable in your app (by providing a form of user ID or email address), we suggest assigning an external_id to that user’s profile using the changeUser method (web, iOS, Android). An external_id allows you to identify the same user profile across multiple devices.
+
+Additional benefits of using an external_id include the following:
+
+- Provide a consistent user experience across multiple devices and platforms (for example, not sending lapsing user notifications to a user’s Android tablet when they are a loyal user of the iPhone app).
+ 
+- Improve the accuracy of your analytics by confirming users aren’t creating a new user profile every time they uninstall and reinstall, or install the app on a different device.
+ 
+- Enable import of user data from sources outside the app using the User Data endpoints and target users with transactional messages using our messaging endpoints.
+ 
+- Search for individual users using our “Testing” filters within the segmenter, and on the Search Users page.
+
+### Considerations for external IDs
+
+warning
+
+Don’t assign an external_id to a user profile before you can uniquely identify them. After you identify a user, you can’t revert them to anonymous.
+
+An external_id can be updated using the /users/external_ids/rename endpoint. However, any attempt to set a different external_id during a user’s session will create a new user profile with the new external_id associated with it. No data will be passed between the two profiles.
+
+#### Risk of using an email or hashed email as an external ID
+
+Using an email address or a hashed email address as your Braze external ID can simplify identity management across your data sources; however, it’s important to consider the potential risks to user privacy and data security.
+
+- Guessable information: Email addresses are easily guessable, making them vulnerable to attacks.
+ 
+- Risk of exploitation: If a malicious user alters their web browser to send someone else’s email address as their external ID, they could potentially access sensitive messages or account information.
+
+### What happens when you identify anonymous users
+
+One of two scenarios can occur when you identify anonymous users:
+
+1) An anonymous user becomes a new identified user: 
+If the external_id doesn’t yet exist in Braze, the anonymous user becomes a new identified user and retains all the same attributes and history of the anonymous user.
+
+2) An anonymous user is identified as an already existing user: 
+If the external_id already exists in Braze, then this user was previously identified as a user in the system in some other way, such as through another device (like a tablet) or imported user data.
+
+In other words, you already have a user profile for this user. In this instance, Braze will do the following:
+
+- Orphan the anonymous user
+ 
+- Merge specific user profile fields that don’t already exist on the identified user profile from the anonymous profile
+ 
+- Remove the anonymous profile from your user base so the user counts aren’t inflated
+
+If both the anonymous user and known user have a first name, the first name of the known user is maintained. If the known user has a null value and the anonymous user has a value, the anonymous user’s value is merged into the known user’s profile if the value falls under these specific user profile fields.
+
+important
+
+Not all data is merged from the anonymous profile. Push tokens and messaging history are carried over, and custom attributes, custom events, and purchase history from the anonymous profile are merged into the identified user only when those fields don’t already exist on the identified user profile. When there is conflicting data, the identified user’s values are kept. See merge behavior for the full list of fields that are and aren’t transferred.
+
+For information on how to set an external_id against a user profile, see our documentation (iOS, Android, Web).
+
+### Reporting and merged profiles
+
+When anonymous and identified profiles merge after a send, dashboard campaign summaries attribute that send to the surviving (identified) profile. Currents, Query Builder, and the Messaging History tab still attribute the send to the orphaned profile’s user ID—the ID at send time. This is expected. For the full list of fields that transfer, see merge behavior.
+
+To find that send in Currents, Query Builder, or Messaging History, look up the orphaned profile’s braze_id. A query that uses only the identified user’s braze_id does not return the pre-merge send.
+
+note
+
+Orphaned users are not eligible to receive messages.
+
+### Merging duplicate users
+
+When you identify duplicate user profiles in your workspace, you can merge them using the REST API. For more information about merging users and the available methods, see Merge duplicate users.
+
+## User aliases
+
+To refer to users by identifiers other than the Braze external_id, set user aliases against a user profile. Any alias set against a user profile will act in addition to the user’s braze_id or external_id as opposed to replacing it. There’s no limit to the number of aliases that you can set against a user profile.
+
+Each alias functions as a key-value pair that consists of two parts: an alias_label, which defines the key of the alias, and an alias_name, which defines the value. An alias_name for any single label must be unique across your user base (just like with external_id). If you try to update a second user profile with a pre-existing label and name combination, the user profile won’t be updated.
+
+### Updating user aliases
+
+An alias can be updated with a new name for a given label after it’s set either by using our User Data endpoints or passing a new name through the SDK. The user alias will then be visible when exporting that user’s data.
+
+### Tagging anonymous users
+
+User aliases also allow you to tag anonymous users with an identifier. For example, if a user provides your eCommerce site with their email address but hasn’t yet signed up, the email address can be used as an alias for that anonymous user. These users can then be exported using their aliases or referenced by the API.
+
+### Behavior of aliases on anonymous user profiles
+
+If an anonymous user profile with an alias is later recognized with an external_id, they will be treated as a normal identified user profile, but will retain their existing alias and can still be referenced by that alias.
+
+### Searching for a user alias
+
+If you know a user’s alias name and label, you can find the user in Search Users with the format alias_label:alias_name. For example, if you have an alias-only profile with the name alias_name: bobby_alias and label alias_label: m4pzOndtA-CnO0u, you can find this user by entering m4pzOndtA-CnO0u:bobby_alias.
+
+If you don’t know this information, you can call the Export user profile by identifier endpoint and find the user alias in the API response.
+
+### Setting aliases on known user profiles
+
+A user alias can also be set on a known user profile to reference a known user by another externally known ID. For example, a user may have a business intelligence tool ID (like an Amplitude ID) that you wish to reference within Braze.
+
+For information on how to set a user alias, see our documentation for each platform (iOS, Android, Web).
+
+tip
+
+Having trouble picturing how this may look for the user profile lifecycle of your customers? Visit Best practices to view user data collection best practices.
+
+## Advanced use case
+
+You can set a new user alias for existing identified user profiles through our SDK and our API using the User Data endpoints. However, user aliases can’t be set through the API for an existing unknown user profile.
+
+The user aliases are also merged in the process. However, if both the user to be orphaned and the target user have an alias with the same label, only the alias from the target user is maintained.
+
+Uninstalling and reinstalling an app will generate a new anonymous braze_id for that user.
+
+### Troubleshooting with user IDs
+
+All user IDs can be used to find and identify users within your dashboard for testing. To find your user in the Braze dashboard, refer to Adding Test Users.
+
+important
+
+Braze blocks user profiles that grow abnormally large (“dummy users”), as these profiles are generally the result of a misintegration. A profile is blocked when it exceeds any of the following thresholds:
+
+- More than 5,000,000 sessions
+ 
+- More than 20,000 distinct custom event names
+ 
+- More than 20,000 distinct product names in purchases
+
+After a profile is blocked, Braze stops ingesting all inbound data for that profile, from both the SDKs and the REST API. If you find that this has happened to a legitimate user, contact your Braze account manager. To learn more, refer to Spam blocking.
+
+- 
+
+New Stuff!

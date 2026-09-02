@@ -1,0 +1,236 @@
+---
+form: 8-K
+filed: 2021-11-23
+period: 2021-11-19
+accession: 0001193125-21-338675
+url: https://www.sec.gov/Archives/edgar/data/1676238/000119312521338675/d262820d8k.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+8-K
+1
+d262820d8k.htm
+8-K
+
+8-K
+
+UNITED STATES
+
+SECURITIES AND EXCHANGE COMMISSION
+
+WASHINGTON, D.C. 20549
+
+FORM 8-K
+
+CURRENT
+REPORT
+Pursuant to Section 13 or 15(d)
+
+of the Securities Exchange Act of 1934
+
+Date of Report (Date of earliest event reported): November 19, 2021
+
+Braze, Inc.
+(Exact name
+of Registrant as Specified in Its Charter)
+
+|
+
+|
+|
+
+|
+|
+
+Delaware |
+|
+001-41065 |
+|
+45-2505271 |
+
+(State or Other Jurisdiction
+
+of Incorporation) |
+|
+
+(Commission
+
+File Number) |
+|
+
+(IRS Employer
+
+Identification No.) |
+
+|
+|
+|
+
+330 West 34th Street, Floor 18
+
+New York, New York |
+|
+|
+|
+10001 |
+
+(Address of Principal Executive Offices) |
+|
+|
+|
+(Zip Code) |
+
+Registrant’s Telephone Number, Including Area Code: (609)
+964-0582
+Not Applicable
+
+(Former Name or Former Address, if Changed Since Last Report)
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of
+the registrant under any of the following provisions (see General Instructions A.2. below):
+
+☐ |
+
+Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425) |
+
+☐ |
+
+Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17
+CFR 240.14a-12) |
+
+☐ |
+
+Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b)) |
+
+☐ |
+
+Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c)) |
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+|
+
+|
+|
+
+|
+|
+
+Title of each class |
+|
+
+Trading
+
+Symbol(s) |
+|
+
+Name of each exchange
+
+on which registered |
+
+Class A Common Stock, par value $0.0001 per share |
+|
+BRZE |
+|
+The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of
+1933 (§ 230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§ 240.12b-2 of this chapter).
+
+Emerging growth company ☒
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or
+revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act. ☐
+
+Item 3.02 |
+
+Unregistered Sales of Equity Securities. |
+
+On November 19, 2021, Braze, Inc. (the “Company”) issued an aggregate of 216,354 shares (the
+“Shares”) of Class B common stock, par value $0.0001 per share, to two accredited investors upon the net exercise of outstanding warrants. The Shares are convertible into an equivalent number of shares of the
+Company’s Class A Common Stock, par value $0.0001 per share (the “Class A Common Stock”), in accordance with the Company’s Amended and Restated Certificate of Incorporation.
+
+The foregoing transactions did not involve any underwriters, underwriting discounts or commissions, or any public offering. The Company
+believes these transactions were exempt from registration under the Securities Act of 1933, as amended (the “Securities Act”), in reliance on Section 3(a)(9) thereof. The recipients of the securities in these transactions
+represented their intentions to acquire the securities for investment only and not with a view to or for sale in connection with any distribution thereof, and appropriate legends were placed on the share certificates issued in these transactions.
+The recipients had adequate access, through their relationships with the Company, to information about the Company. The sales of these securities were made without any general solicitation or advertising.
+
+Item 5.03 |
+
+Amendments to Articles of Incorporation or Bylaws. |
+
+Amendment and Restatement of Certificate of Incorporation
+
+On November 19, 2021, the Company filed an Amended and Restated Certificate of Incorporation (the “Restated
+Certificate”) with the Secretary of State of the State of Delaware in connection with the closing of the Company’s initial public offering of its Class A Common Stock (the “IPO”). The Company’s
+board of directors and stockholders previously approved the Restated Certificate to be effective immediately prior to the closing of the IPO. The Restated Certificate is attached hereto as Exhibit 3.1 and is incorporated herein by reference.
+
+Amendment and Restatement of Bylaws
+On
+November 19, 2021, the Company’s Amended and Restated Bylaws (the “Restated Bylaws”) became effective in connection with the closing of the IPO. The Company’s board of directors and stockholders previously
+approved the Restated Bylaws to be effective immediately prior to the closing of the IPO. The Restated Bylaws are attached hereto as Exhibit 3.2 and are incorporated herein by reference.
+
+Please see the description of the Restated Certificate and the Restated Bylaws in the section titled “Description of Capital Stock”
+in the final prospectus the Company filed with the U.S. Securities and Exchange Commission on November 18, 2021 pursuant to Rule 424(b) under the Securities Act relating to the Registration Statement on Form
+S-1, as amended (File No. 333-260428).
+
+Item 9.01 |
+
+Financial Statements and Exhibits. |
+
+(d) Exhibits
+
+|
+
+|
+|
+
+Exhibit No. |
+|
+
+Description |
+
+|
+|
+
+3.1 |
+|
+Amended and Restated Certificate of Incorporation of Braze, Inc. |
+
+|
+|
+
+3.2 |
+|
+Amended and Restated Bylaws of Braze, Inc. |
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by
+the undersigned hereunto duly authorized.
+
+|
+
+|
+|
+
+BRAZE, INC. |
+
+|
+|
+
+By: |
+|
+
+/s/ Susan Wiseman |
+
+|
+|
+Susan Wiseman |
+
+|
+|
+General Counsel |
+
+Dated: November 23, 2021

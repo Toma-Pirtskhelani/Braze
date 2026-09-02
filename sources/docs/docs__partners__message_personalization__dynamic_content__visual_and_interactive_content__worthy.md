@@ -1,0 +1,65 @@
+---
+url: https://www.braze.com/docs/partners/message_personalization/dynamic_content/visual_and_interactive_content/worthy
+slug: docs__partners__message_personalization__dynamic_content__visual_and_interactive_content__worthy
+title: "Worthy"
+description: "This reference article outlines the partnership between Braze and Worthy, a message personalization platform which allows you to create personalized, rich in-app experiences and deliver..."
+section: partners/message_personalization
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Worthy
+
+The Worthy and Braze integration lets you create personalized, rich in-app experiences using Worthy’s drag-and-drop editor and deliver them through Braze. Additionally, Worthy automatically does the following:
+
+This integration is maintained by Worthy.
+
+## About the integration
+
+- Create a Connected Content server and secured API for your messaging.
+ 
+- Construct your in-app messages with analytics and click-tracking that will appear directly in Braze.
+ 
+- Automatically export HTML via Worthy’s drag-and-drop editor to use in Custom Code in-app message campaigns in Braze, complete with the required API connections and dynamic content you configure.
+
+## Use cases
+
+- Custom welcome experiences based on user onboarding selections
+ 
+- In-app experiences for special events and promotions
+ 
+- Gathering customer feedback and ratings based on app behavior
+ 
+- Quickly testing potential app product ideas
+ 
+- Rich notices, news, and community updates
+
+## Prerequisites
+
+ Requirement | 
+ Description | 
+
+ Worthy account | 
+ A Worthy account is required to take advantage of this partnership. | 
+
+ Braze SDK | 
+ You will need to configure the Braze SDK in your mobile application to send rich in-app messages. | 
+
+## Integration
+
+### Step 1: Create personalized messaging in Worthy
+
+Navigate to your app in the Worthy dashboard, select the Message Creator, and create a personalized message you want to use to engage your users.
+
+### Step 2: Create a Braze campaign
+
+Create an in-app message campaign in Braze and set the Message Type to Custom Code.
+
+### Step 3: Copy your personalized message into Braze
+
+In the Worthy message creator, click Export and select Braze to export your personalized message for use in Braze campaigns. Copy the exported content into the HTML text box under HTML + Asset Zip in the Braze campaign editor.
+
+That’s it! You can immediately test your personalized message using the Test tab in the Braze campaign editor.
+
+- 
+
+New Stuff!

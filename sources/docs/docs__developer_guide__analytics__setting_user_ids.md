@@ -1,0 +1,398 @@
+---
+url: https://www.braze.com/docs/developer_guide/analytics/setting_user_ids
+slug: docs__developer_guide__analytics__setting_user_ids
+title: "Set user IDs"
+description: "Learn how to set user IDs through the Braze SDK."
+section: developer_guide/analytics
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Set user IDs
+
+Learn how to set user IDs through the Braze SDK. These are unique identifiers that let you track users across devices and platforms, import their data through the user data API, and send targeted messages through the messaging API. If you don’t assign a unique ID to a user, Braze assigns them an anonymous ID instead; however, you can’t use these features until you do.
+
+note
+
+For wrapper SDKs not listed, use the relevant native Android or Swift method instead.
+
+## About anonymous users
+
+After you integrate the Braze SDK, users who launch your app for the first time will be considered “anonymous” until you call the changeUser method and assign them an external_id. Once assigned, you can’t make them anonymous again. However, if they uninstall and reinstall your app, they will become anonymous again until changeUser is called.
+
+If a previously-identified user starts a session on a new device, all of their anonymous activity will automatically sync to their existing profile after you call changeUser on that device using their external_id. This includes any attributes, events, or history collected during the session on the new device.
+
+### Preventing anonymous user tracking
+
+If your use case requires that no data is collected before a user is identified, you can delay initializing the Braze SDK until the user logs in and an external_id is available. Set a flag in your code that flips to true when the user signs in, and only initialize the SDK when that flag is set.
+
+warning
+
+Only delay initialization the first time a user downloads your app (before an external_id is set). If you prevent the SDK from initializing every time a user signs out or starts a new session, it will interfere with prefetching in-app message and Content Card assets, which can lead to deliverability errors for those campaigns.
+
+## Setting a user ID
+
+To set a user ID, call the changeUser() method after the user initially logs in. IDs should be unique and follow our naming best practices.
+
+If you’re hashing a unique identifier instead, be sure to normalize the input of your hashing function. For example, when hashing an email address, remove any leading or trailing spaces and account for localization.
+
+- web
+ 
+- android
+ 
+- swift
+ 
+- cordova
+ 
+- roku
+ 
+- unity
+ 
+- react native
+
+For a standard Web SDK implementation, you can use the following method:
+
+```
+
+1
+
+```
+ | 
+```
+braze.changeUser(YOUR_USER_ID_STRING);
+
+```
+ | 
+
+If you’d like to use Google Tag Manager instead, you can use the Change User tag type to call the changeUser method. Use it whenever a user logs in or is otherwise identified with their unique external_id identifier.
+
+Be sure to enter the current user’s unique ID in the External User ID field, typically populated using a data layer variable sent by your website.
+
+- java
+ 
+- kotlin
+
+```
+
+1
+
+```
+ | 
+```
+Braze.getInstance(context).changeUser(YOUR_USER_ID_STRING);
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Braze.getInstance(context).changeUser(YOUR_USER_ID_STRING)
+
+```
+ | 
+
+- swift
+ 
+- objective-c
+
+```
+
+1
+
+```
+ | 
+```
+AppDelegate.braze?.changeUser(userId: "YOUR_USER_ID")
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+[AppDelegate.braze changeUser:@"YOUR_USER_ID_STRING"];
+
+```
+ | 
+
+note
+
+changeUser enqueues the user switch and returns immediately on the calling thread. Any attribute setters called on braze.user afterward are automatically serialized behind the operations initiated by changeUser. Reading braze.user.id blocks the calling thread until the user switch fully completes. For main-thread or latency-sensitive contexts, use the non-blocking alternatives instead.
+
+- swift
+ 
+- objective-c
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+
+```
+ | 
+```
+// Completion handler — always delivers on the main thread.
+AppDelegate.braze?.user.getId { userId in
+ print("User ID:", userId ?? "anonymous")
+}
+
+// Async/await (iOS 13.0+, tvOS 13.0+, watchOS 6.0+, macOS 10.15+)
+let userId = await AppDelegate.braze?.user.getId()
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+// Completion handler — always delivers on the main thread.
+[AppDelegate.braze.user getIdWithCompletion:^(NSString * _Nullable userId) {
+ NSLog(@"User ID: %@", userId ?: @"anonymous");
+}];
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+BrazePlugin.changeUser("YOUR_USER_ID");
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+m.Braze.setUserId(YOUR_USER_ID_STRING)
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+AppboyBinding.ChangeUser("YOUR_USER_ID_STRING");
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Braze.changeUser("YOUR_USER_ID_STRING");
+
+```
+ | 
+
+### How changeUser() works
+
+When you call changeUser(), the following behaviors apply:
+
+- Calling changeUser() with the same user ID that’s already set has no effect on session count.
+ 
+- Calling changeUser() with a different user ID automatically ends the current session and starts a new one.
+ 
+- When an anonymous user calls changeUser() with a new user ID (one that doesn’t exist in Braze yet), the anonymous profile’s data is merged into the new identified profile.
+ 
+- When an anonymous user calls changeUser() with an existing user ID, the anonymous profile’s data is not merged into the identified profile.
+
+note
+
+Calling changeUser() triggers a data flush as part of closing the current user’s session. The SDK automatically flushes any pending data for the previous user before switching to the new user, so you don’t need to manually request a data flush before calling changeUser().
+
+warning
+
+Do not assign a single, shared user ID (for example, a static default external ID) or call changeUser() when a user logs out. Doing so prevents you from re-engaging any previously logged-in users on shared devices and causes all data to be logged against a single user ID, which can cause other features to not behave as expected. Instead, keep track of all user IDs separately and ensure your app’s logout process allows for switching back to a previously logged-in user. When a new session starts, Braze automatically refreshes the data for the newly-active profile.
+
+## User aliases
+
+### How they work
+
+Although anonymous users don’t have external_ids, you can assign them a user alias instead. You should assign a user alias when you want to add other identifiers to the user but don’t know what their external_id is (for example, they aren’t logged in). With user aliases, you also can:
+
+- Use the Braze API to log events and attributes associated with anonymous users
+ 
+- Use the External User ID is blank segmentation filter to target anonymous users in your messaging
+
+### Setting a user alias
+
+A user alias consists of two parts: a name and a label. The name refers to the identifier itself, while the label refers to the type of identifier it belongs to. For example, if you have a user in a third-party customer support platform with the external ID 987654, you can assign them an alias in Braze with the name 987654 and the label support_id, so you can track them across platforms.
+
+- web
+ 
+- android
+ 
+- swift
+ 
+- rest api
+ 
+- react native
+
+```
+
+1
+
+```
+ | 
+```
+braze.getUser().addAlias(ALIAS_NAME, ALIAS_LABEL);
+
+```
+ | 
+
+- java
+ 
+- kotlin
+
+```
+
+1
+
+```
+ | 
+```
+Braze.getInstance(context).getCurrentUser().addAlias(ALIAS_NAME, ALIAS_LABEL);
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Braze.getInstance(context).currentUser?.addAlias(ALIAS_NAME, ALIAS_LABEL)
+
+```
+ | 
+
+- swift
+ 
+- objective-c
+
+```
+
+1
+
+```
+ | 
+```
+Appboy.sharedInstance()?.user.addAlias(ALIAS_NAME, ALIAS_LABEL)
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+ [[Appboy sharedInstance].user addAlias:ALIAS_NAME withLabel:ALIAS_LABEL];
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+
+```
+ | 
+```
+{
+ "alias_name" : (required, string),
+ "alias_label" : (required, string)
+}
+
+```
+ | 
+
+```
+
+1
+
+```
+ | 
+```
+Braze.addAlias("ALIAS_NAME", "ALIAS_LABEL");
+
+```
+ | 
+
+## ID Naming best practices
+
+We recommend that you create user IDs using the Universally Unique Identifier (UUID) standard, meaning they are 128-bit strings that are random and well distributed.
+
+Alternatively, you can hash an existing unique identifier (such as a name or email address) to generate your user IDs instead. If you do so, be sure to implement SDK authentication, so you can prevent user impersonation.
+
+warning
+
+Do not use a guessable value or incrementing number for your user ID. This may expose your organization to malicious attacks or data exfiltration.
+
+For added security, use SDK Authentication.
+
+While it’s essential that you correctly name your user IDs from the start, you can always rename them in the future using the /users/external_ids/rename endpoint.
+
+ ID types not recommended | 
+ Example not recommended | 
+
+ User’s visible profile ID or username | 
+ JonDoe829525552 | 
+
+ Email Address | 
+ [email protected] | 
+
+ Auto-incrementing user ID | 
+ 123 | 
+
+warning
+
+Avoid sharing details about how you create user IDs, as this may expose your organization to malicious attacks or data exfiltration.
+
+- 
+
+New Stuff!

@@ -1,0 +1,200 @@
+---
+form: 8-K
+filed: 2022-07-01
+period: 2022-06-30
+accession: 0001193125-22-187187
+url: https://www.sec.gov/Archives/edgar/data/1676238/000119312522187187/d372885d8k.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+8-K
+
+false 0001676238 0001676238 2022-06-30 2022-06-30
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+
+FORM 8-K
+
+CURRENT REPORT
+Pursuant to Section 13 or 15(d)
+of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): June 30, 2022
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+
+|
+|
+|
+|
+|
+
+Delaware |
+|
+001-41065 |
+|
+45-2505271 |
+
+(State or Other Jurisdiction
+of Incorporation) |
+|
+
+(Commission
+File Number) |
+|
+
+(I.R.S. Employer
+Identification No.) |
+
+330 West 34th Street, Floor 18
+New York, New York 10001
+(Address of principal executive offices, including zip code)
+(609) 964-0585
+(Registrant’s telephone number, including area code)
+Not Applicable
+(Former name or former address, if changed since last report)
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ |
+
+Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425) |
+
+☐ |
+
+Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12) |
+
+☐ |
+
+Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b)) |
+
+☐ |
+
+Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c)) |
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+|
+|
+|
+|
+|
+
+Title of each class |
+|
+
+Trading
+Symbol(s) |
+|
+
+Name of each exchange
+on which registered |
+
+Class A common stock, par value $0.0001 per share |
+|
+BRZE |
+|
+The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☒
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act. ☐
+
+Item 5.07. |
+
+Submission of Matters to a Vote of Security Holders. |
+
+On June 30, 2022, Braze, Inc. (the “Company”) held its Annual Meeting of Stockholders (“Annual Meeting”). At the Annual Meeting, the Company’s stockholders voted on the two proposals set forth below. A more detailed description of each proposal is set forth in the Company’s Proxy Statement filed with the Securities and Exchange Commission on May 18, 2022 (the “Proxy Statement”).
+Proposal 1 — Election of Directors
+Phillip M. Fernandez and Matthew Jacobson were each elected to serve as a Class I director of the Company’s Board of Directors until the 2025 Annual Meeting of Stockholders and until his successor is duly elected or until his earlier resignation or removal, by the following votes:
+
+|
+
+|
+|
+
+|
+|
+
+|
+|
+
+Nominee |
+|
+Votes For |
+|
+Votes Withheld |
+|
+Broker Non-Votes |
+
+Matthew Jacobson |
+|
+324,738,477 |
+|
+1,786,657 |
+|
+13,695,219 |
+
+Phillip M. Fernandez |
+|
+324,733,830 |
+|
+1,791,304 |
+|
+13,695,219 |
+
+Proposal 2 — Ratification of the Selection of Independent Registered Public Accounting Firm
+The stockholders ratified the selection of Ernst and Young LLP as the Company’s independent registered public accounting firm for the year ending January 31, 2023, by the following votes:
+
+|
+
+|
+|
+
+|
+|
+
+Votes For |
+|
+
+Votes Against |
+|
+
+Abstentions |
+
+340,207,221 |
+|
+1,662 |
+|
+11,470 |
+
+SIGNATURES
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+|
+
+|
+|
+
+BRAZE, INC. |
+
+|
+|
+
+By: |
+|
+
+/s/ Susan Wiseman |
+
+|
+|
+Susan Wiseman |
+
+|
+|
+General Counsel |
+
+Dated: July 1, 2022

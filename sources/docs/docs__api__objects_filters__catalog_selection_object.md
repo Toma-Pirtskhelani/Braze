@@ -1,0 +1,151 @@
+---
+url: https://www.braze.com/docs/api/objects_filters/catalog_selection_object
+slug: docs__api__objects_filters__catalog_selection_object
+title: "Catalog selection object"
+description: "This reference article explains the different components of the catalog selection object."
+section: api/objects_filters
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Catalog selection object
+
+When creating a catalog selection, you can provide a selection object to define the filtering, sorting, and limiting criteria for items returned from your catalog.
+
+The selection object allows you to specify which items from your catalog should be included in the selection based on filters, how they should be sorted, and how many results to return. Use this object when creating catalog selections through the API.
+
+## Object body
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+
+```
+ | 
+```
+{
+ "selection": {
+ "name": "Sale",
+ "description": "Sales Collection",
+ "external_id": "12345678",
+ "source": "Shopify",
+ "filters": [
+ {
+ "field": "collection",
+ "operator": "includes value",
+ "value": "Best Seller"
+ },
+ {
+ "field": "collection",
+ "operator": "does not include value",
+ "value": "Sale"
+ }
+ ],
+ "results_limit": 5,
+ "sort_field": "id",
+ "sort_order": "asc"
+ }
+}
+
+```
+ | 
+
+## Object details
+
+ Key | 
+ Required | 
+ Data Type | 
+ Description | 
+
+ name | 
+ Required | 
+ String | 
+ The name of the catalog selection. | 
+
+ description | 
+ Optional | 
+ String | 
+ A description of the catalog selection. | 
+
+ external_id | 
+ Optional | 
+ String | 
+ A unique identifier for the selection. | 
+
+ source | 
+ Optional | 
+ String | 
+ The source of the catalog data. For Shopify catalogs, set this to "Shopify". Accepted values are "Shopify" and "Braze". | 
+
+ filters | 
+ Required | 
+ Array of objects | 
+ An array of filter objects to apply to the catalog items. You can specify up to ten filters per request. If an empty array of filters is provided, all items from the catalog are included. | 
+
+ results_limit | 
+ Required | 
+ Integer | 
+ The maximum number of results to return. Must be a number between 1 and 50. | 
+
+ sort_field | 
+ Optional | 
+ String | 
+ The field to sort results by. This must be paired with sort_order. If both sort_field and sort_order are not present, results are returned in random order. | 
+
+ sort_order | 
+ Optional | 
+ String | 
+ The order to sort results. Accepted values are "asc" (ascending) or "desc" (descending). This must be paired with sort_field. If both sort_field and sort_order are not present, results are returned in random order. | 
+
+### Filter object
+
+Each filter object in the filters array contains the fields described in the following table.
+
+ Key | 
+ Required | 
+ Data Type | 
+ Description | 
+
+ field | 
+ Required | 
+ String | 
+ The catalog field to filter on. | 
+
+ operator | 
+ Required | 
+ String | 
+ The comparison operator to use for filtering. Examples include "includes value" and "does not include value". | 
+
+ value | 
+ Required | 
+ Varies (string, number, boolean, time) | 
+ The value to compare against. This must match the data type of the underlying catalog field (for example, string, number, boolean, time). | 
+
+note
+
+The API supports a maximum of ten filters per selection request. Filters are applied in the order they appear in the array.
+
+- 
+
+New Stuff!

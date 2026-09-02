@@ -1,0 +1,488 @@
+---
+url: https://www.braze.com/docs/user_guide/brazeai/item_recommendations/creating_recommendations/ai
+slug: docs__user_guide__brazeai__item_recommendations__creating_recommendations__ai
+title: "Create AI item recommendations"
+description: "This reference article covers how to create an AI item recommendation for items in a catalog."
+section: user_guide/brazeai
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Create AI item recommendations
+
+Learn how to create an AI recommendation engine from items in your catalog.
+
+## About AI item recommendations
+
+Use AI item recommendations to calculate the most popular products or create personalized AI recommendations for a specific catalog. After creating your recommendation, you can use personalization to insert those products into your messages.
+
+tip
+
+AI Personalized recommendations work best with at least a few hundred catalog items, at most 100,000 catalog items, and typically at least 30,000 users with purchase or interaction data. This is only a rough guide and can vary. The other recommendation types can work with less data, including when Most popular is used as a fallback.
+
+## Plan-specific AI features
+
+The following table describes the differences between the free and pro version of the AI Personalized, Most Popular, Most Recent, and Trending recommendation types:
+
+ Area | 
+ Free version | 
+ Pro version | 
+
+ User update frequency1 | 
+ Weekly | 
+ Daily | 
+
+ Model retraining frequency | 
+ Monthly | 
+ Weekly | 
+
+ Maximum recommendation models | 
+ 1 model per type2 | 
+ 100 models per type2 | 
+
+1. This is the frequency at which user-specific item recommendations are updated (AI Personalized and Most Recent only). Most Popular and Trending are global recommendations that update when the model retrains. For example, if a user purchases an item recommended based on AI item recommendations, their recommended items are updated according to this frequency.
+
+2. Available recommendation types are AI Personalized, Most Recent, Most Popular, and Trending.
+
+## Creating an AI item recommendation
+
+### Prerequisites
+
+Before you start, you must have the following:
+
+- At least one catalog to use any of the recommendation types.
+ 
+- Purchase or event data on Braze (custom events, the order placed event, or the purchase object) that includes a reference to the item and must match the catalog item IDs.
+
+### Step 1: Create a new recommendation
+
+You can create an AI item recommendation from either place in the dashboard:
+
+- from the navigation menu
+ 
+- from a catalog
+
+- Go to Analytics > AI Item Recommendation.
+ 
+- Select Create Prediction > AI Item Recommendation.
+
+You can also choose to create a recommendation directly from an individual catalog. Select your catalog from the Catalogs page, then select Create Recommendation.
+
+### Step 2: Add recommendation details
+
+Give your recommendation a name and optional description.
+
+### Step 3: Define your recommendation
+
+Select a recommendation type. Each type uses the last six months of item interaction data, such as a purchase, an order placed, or custom event data. For more detailed information and use cases for each, see Types and use cases.
+
+tip
+
+When using Most Recent or AI Personalized, users with insufficient data to create individualized recommendations receive Most Popular items as a fallback. The Most Popular fallback only returns items that exist in the linked catalog.
+
+For AI Personalized recommendations, view the Personalization rate on the Analytics page to see what percentage of users who performed the configured event in the past 24 months have personalized recommendations stored on their profile. For Most Recent recommendations, the Analytics page shows the share of users receiving Most Recent recommendations versus the Most Popular fallback.
+
+#### Step 3.1: Exclude prior purchases or interactions (optional)
+
+To avoid suggesting items that a user has already purchased or interacted with, select Do not recommend items users have previously interacted with. This option is only available when the recommendation Type is set to AI Personalized.
+
+This setting prevents messages from reusing the items a user has already bought or interacted with, provided the recommendation has been updated recently. Items purchased or interacted with between recommendation updates may still appear. For the free version of item recommendations, updates happen weekly. For the pro version of AI item recommendations, updates happen every 24 hours.
+
+For example, when using the pro version of AI item recommendations, if a user purchases something and then receives a marketing email within 30 minutes, the item they just purchased might not be excluded from the email in time. However, any messages sent after 24 hours won’t include that item.
+
+#### Step 3.2: Select a catalog
+
+If not already populated, select the catalog that this recommendation will pull items from.
+
+#### Step 3.3: Add a selection (optional)
+
+If you’d like more control over your recommendation, choose a selection to apply custom filters. Selections filter recommendations by specific columns in your catalog, such as brand, size, or location. Selections that contain Liquid can’t be used in your recommendation.
+
+tip
+
+If you can’t find your selection, make sure it’s set up in your catalog first.
+
+### Step 4: Select the interaction to drive recommendations
+
+Select the event you want this recommendation to optimize for. This event is usually a purchase, but it can also be any interaction with an item.
+
+tip
+
+When configuring AI item recommendations, your choice of event is important. Your triggering event determines who gets an AI-generated recommendation—AI item recommendations are generated for users who have completed the event you configure, so this choice directly determines who receives recommendations. Select an event that covers the full audience segment you want to reach.
+
+At the same time, balance coverage against relevance. Top-of-funnel events (like Product Viewed) tend to capture a broader audience but be less connected to business outcomes, whereas bottom-of-funnel events (like Purchased) tend to produce more targeted, business-relevant recommendations. The best event is one that balances coverage with influence on the bottom line.
+
+You can optimize for:
+
+- Purchase events with the Purchase Object
+ 
+- Custom events that represent a purchase
+ 
+- Custom events that represent any other item interaction (such as product views, clicks, or media plays)
+ 
+- Orders placed with the order placed event
+
+If you choose Custom Event, select your event from the list.
+
+note
+
+Custom events must have sufficient data before they appear in the event list. If your custom event doesn’t appear, it may be because the Braze backend hasn’t yet processed it or it lacks enough data for model training. AI recommendations rely on historical data to generate insights, so newly created or rarely triggered events won’t be available until more data is collected.
+
+### Step 5: Choose the corresponding property name
+
+To create a recommendation, you need to tell Braze which field of your interaction event (order placed event, purchase object, or custom event) has the unique identifier that matches an item’s id field in the catalog. Not sure? View requirements.
+
+Select this field for the Property Name.
+
+The Property Name field pre-populates with a list of fields sent through the SDK to Braze. If enough data is provided, these properties are also ranked in order of probability to be the correct property. Select the one that corresponds to the id field of the catalog.
+
+#### Requirements
+
+There are some requirements for selecting your property:
+
+- Must map to the id field of your selected catalog.
+ 
+- If you selected Order Placed Event or are using eCommerce events to train item recommendations: Enter products.product_id for the product ID.
+
+- The field can be inside an array of products, or end with an array of IDs. In either case, each product ID will be treated as a separate, sequential event with the same timestamp.
+
+- If you selected Purchase Object: Must be the product_id or a field of your interaction event’s properties.
+ 
+- If you selected Custom Event: Must be a field of your custom event’s properties.
+ 
+- Nested fields must be typed into the Property Name dropdown in dot notation with the format of event_property.nested_property. For example, if selecting the nested property district_name within the event property location, you would enter location.district_name. For more on nested properties in custom events, see Nested objects.
+
+#### Example mappings
+
+The following example mappings both refer to this sample catalog:
+
+ Example mappings
+
+ id | 
+ title | 
+ price | 
+
+ ADI-BL-7 | 
+ Adidas Black Size 7 | 
+ 100.00 USD | 
+
+ ADI-RD-8 | 
+ Adidas Red Size 8 | 
+ 100.00 USD | 
+
+ ADI-WH-9 | 
+ Adidas White Size 9 | 
+ 100.00 USD | 
+
+ ADI-PP-10 | 
+ Adidas Purple Size 10 | 
+ 75.00 USD | 
+
+- custom event
+ 
+- purchase object
+ 
+- order placed event
+
+Let’s say you want to use the custom event added_to_cart so that you can recommend similar products before the customer checks out. The event added_to_cart has an event property of product_sku.
+
+Then the product_sku property must include at least one of the values from the id column in the sample catalog: “ADI-BL-7”, “ADI-RD-8”, “ADI-WH-9”, or “ADI-PP-10”. You don’t need events for every catalog item, but you need some of them so that the recommendation engine has enough content to work with.
+
+##### Example custom event object
+
+This event has "product_sku": "ADI-BL-7", which matches the first item in the sample catalog.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+
+```
+ | 
+```
+{
+ "events": [
+ {
+ "external_id": "user1",
+ "app_id": "your-app-id",
+ "name": "added_to_cart",
+ "time": "2024-07-16T19:20:30+01:00",
+ "properties": {
+ "product_sku": "ADI-BL-7"
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+##### Example custom event object with an array of products
+
+If your event properties contain multiple products in an array, each product ID will be treated as a separate, sequential event. This event can use the property products.sku to match the first and third items in the sample catalog.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+```
+ | 
+```
+{
+ "events": [
+ {
+ "external_id": "user1",
+ "app_id": "your-app-id",
+ "name": "added_to_cart",
+ "time": "2024-07-16T19:20:30+01:00",
+ "properties": {
+ "transaction_id": "2ff3f9a9-8803-4c3a-91da-14adbf93dc99",
+ "products": [
+ { "sku": "ADI-BL-7" },
+ { "sku": "ADI-WH-9" }
+ ]
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+##### Example custom event object with a nested object containing a product ID array
+
+If your product IDs are values in an array instead of objects, you can use the same notation and each product ID will be treated as a separate, sequential event. This can flexibly be combined with nested objects in the following event by configuring the property as purchase.product_skus to match the first and third items in the sample catalog.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+```
+ | 
+```
+{
+ "events": [
+ {
+ "external_id": "user1",
+ "app_id": "your-app-id",
+ "name": "added_to_cart",
+ "time": "2024-07-16T19:20:30+01:00",
+ "properties": {
+ "transaction_id": "13791e08-7c22-4f6c-8cc6-832c76af3743",
+ "purchase": {
+ "product_skus": ["ADI-BL-7", "ADI-WH-9"]
+ }
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+A purchase object is passed through the API when a purchase has been made.
+
+In terms of mapping, a similar logic applies for purchase objects as it does for custom events, except you can choose between using the purchase object’s product_id or a field in the properties object.
+
+Remember, you don’t need events for every catalog item, but you do need some of them so that the recommendation engine has enough content to work with.
+
+##### Example purchase object mapped to product ID
+
+This event has "product_id": "ADI-BL-7, which maps to the first item in the catalog.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+```
+ | 
+```
+{
+ "purchases": [
+ {
+ "external_id": "user1",
+ "app_id": "11ae5b4b-2445-4440-a04f-bf537764c9ad",
+ "product_id": "ADI-BL-7",
+ "currency": "USD",
+ "price": 100.00,
+ "time": "2024-07-16T19:20:30+01:00",
+ "properties": {
+ "color": "black",
+ "checkout_duration": 180,
+ "size": "7",
+ "brand": "Adidas"
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+##### Example purchase object mapped to a properties field
+
+This event has a property of "sku": "ADI-RD-8", which maps to the second item in the catalog.
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+```
+ | 
+```
+{
+ "purchases": [
+ {
+ "external_id": "user1",
+ "app_id": "11ae5b4b-2445-4440-a04f-bf537764c9ad",
+ "product_id": "shoes",
+ "currency": "USD",
+ "price": 100.00,
+ "time": "2024-07-16T19:20:30+01:00",
+ "properties": {
+ "sku": "ADI-RD-8",
+ "color": "red",
+ "checkout_duration": 180,
+ "size": "8",
+ "brand": "Adidas"
+ }
+ }
+ ]
+}
+
+```
+ | 
+
+##### Example order placed object mapped to product ID
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+```
+ | 
+```
+{
+ "name": "ecommerce.order_placed",
+ "properties": {
+ "order_id": "order_123",
+ "total_value": 200.0,
+ "currency": "USD",
+ "products": [
+ {
+ "product_id": "ADI-BL-7",
+ "product_name": "Adidas Black Size 7",
+ "variant_id": "ADI-BL-7-default",
+ "quantity": 1,
+ "price": 100.0
+ }
+ ],
+ "source": "storefront"
+ }
+}
+
+```
+ | 
+
+### Step 6: Train the recommendation
+
+When you’re ready, select Create Recommendation. This process can take anywhere from 10 minutes to 36 hours to complete. You will receive an email update when the recommendation is successfully trained or an explanation of why the creation may have failed.
+
+You can find the recommendation on the Predictions page, where you can then edit or archive it as needed. Recommendations will automatically retrain once every week (paid) or month (free).
+
+- 
+
+New Stuff!

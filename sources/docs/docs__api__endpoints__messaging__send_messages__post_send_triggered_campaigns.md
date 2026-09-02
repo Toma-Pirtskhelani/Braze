@@ -1,0 +1,420 @@
+---
+url: https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_triggered_campaigns
+slug: docs__api__endpoints__messaging__send_messages__post_send_triggered_campaigns
+title: "Send campaign messages using API-triggered delivery"
+description: "This article outlines details about the Send campaigns using API-triggered delivery Braze endpoint."
+section: api/endpoints
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Send campaign messages using API-triggered delivery
+
+post
+
+/campaigns/trigger/send
+
+core endpoint
+
+Use this endpoint to send immediate, one-off messages to designated users using API-triggered delivery.
+
+API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom using your API.
+
+If you’re targeting a segment, a record of your request is stored in the Developer Console. To send messages with this endpoint, you must have a campaign ID created when you build an API-triggered campaign.
+
+See me in Postman
+
+## Prerequisites
+
+To use this endpoint, you’ll need to generate an API key with the campaigns.trigger.send permission.
+
+## Rate limit
+
+When using Connected Audience filters in your request, we apply a rate limit of 250 requests per minute to this endpoint. Otherwise, if specifying an external_id, this endpoint has a default rate limit of 250,000 requests per hour shared between the endpoints documented in API rate limits.
+
+Braze endpoints support batching API requests. A single request to the messaging endpoints can reach any of the following:
+
+- Up to 50 specific external_ids, each with individual message parameters
+ 
+- An audience segment of any size, defined in the request as a connected audience object
+
+Braze endpoints support batching API requests. A single request to the messaging endpoints can reach any of the following:
+
+- Up to 50 specific external_ids, each with individual message parameters
+ 
+- An audience segment of any size, defined in the request as a connected audience object
+
+## Request body
+
+```
+
+1
+2
+
+```
+ | 
+```
+Content-Type: application/json
+Authorization: Bearer YOUR-REST-API-KEY
+
+```
+ | 
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+
+```
+ | 
+```
+{
+ "campaign_id": (required, string) see campaign identifier,
+ "send_id": (optional, string) see send identifier,
+ "trigger_properties": (optional, object) personalization key-value pairs that apply to all users in this request,
+ "broadcast": (optional, boolean) see broadcast -- defaults to false on 8/31/17, must be set to true if "recipients" is omitted,
+ "audience": (optional, connected audience object) see connected audience,
+ // Including 'audience' sends to only users in the audience
+ "recipients": (optional, array; if not provided and broadcast is not set to `false`, message sends to the entire segment targeted by the campaign)
+ [
+ {
+ // Either "external_user_id" or "user_alias" or "email" is required. Requests must specify only one.
+ "user_alias": (optional, user alias object) user alias of user to receive message,
+ "external_user_id": (optional, string) external identifier of user to receive message,
+ "email": (optional, string) email address of user to receive message,
+ "prioritization": (optional, array) prioritization array; required when using email,
+ "trigger_properties": (optional, object) personalization key-value pairs that apply to this user (these key-value pairs override any keys that conflict with the parent trigger_properties),
+ "send_to_existing_only": (optional, boolean) defaults to true, can't be used with user aliases; if set to `false`, an attributes object must also be included,
+ "attributes": (optional, object) fields in the attributes object create or update an attribute of that name with the given value on the specified user profile before the message is sent and existing values are overwritten
+ }
+ ],
+ "attachments": (optional, array) array of JSON objects that define the files you need attached, defined by "file_name", "url", and optionally "basic_auth_credential",
+ [
+ {
+ "file_name": (required, string) the name of the file you want to attach to your email, excluding the extension (for example, ".pdf"). Attach files up to 2 MB. This is required if you use "attachments",
+ "url": (required, string) the corresponding URL of the file you want to attach to your email. The file name's extension is detected automatically from the URL defined, which should return the appropriate "Content-Type" as a response header. This is required if you use "attachments",
+ "basic_auth_credential": (optional, string) the name of the stored basic authentication credential to use when the attachment URL requires a login,
+ }
+ ]
+}
+
+```
+ | 
+
+## Request parameters
+
+ Parameter | 
+ Required | 
+ Data Type | 
+ Description | 
+
+ campaign_id | 
+ Required | 
+ String | 
+ See campaign identifier. | 
+
+ send_id | 
+ Optional | 
+ String | 
+ See send identifier. | 
+
+ trigger_properties | 
+ Optional | 
+ Object | 
+ See trigger properties. Personalization key-value pairs apply to all users in this request. | 
+
+ broadcast | 
+ Optional | 
+ Boolean | 
+ You must set broadcast to true when sending a message to the entire segment configured as the campaign’s target audience in the Braze dashboard. This parameter defaults to false (as of August 31, 2017). 
+
+ If broadcast is set to true, a recipients list cannot be included. However, use caution when setting broadcast: true, as unintentionally setting this flag may cause you to send your message to a larger-than-expected audience. | 
+
+ audience | 
+ Optional | 
+ Connected audience object | 
+ See connected audience. When you include audience, the message is sent only to users who match the defined filters, such as custom attributes and subscription statuses. | 
+
+ recipients | 
+ Optional | 
+ Array | 
+ See recipients object.
+
+If send_to_existing_only is false, an attributes object must be included.
+
+You can update a user’s subscription group status by including subscription_groups in the nested attributes object. For more details, refer to User attributes object.
+
+If recipients is not provided and broadcast is set to true, the message is sent to the entire segment configured as the campaign’s target audience in the Braze dashboard.
+
+If email is the identifier, you must include prioritization in the recipients object. | 
+
+ attachments | 
+ Optional | 
+ Array | 
+ If broadcast is set to true, then the attachments list cannot be included. 
+
+When an attachment URL requires a login, include basic_auth_credential on that attachment and set it to the name of a stored basic authentication credential. To set up a credential, refer to Authentication for email file attachments. | 
+
+### Recipient resolution behavior
+
+This section discusses how Braze picks a user profile for sending and what happens when one profile is not selected.
+
+A user’s subscription group status can be updated using the inclusion of a subscription_groups parameter within the attributes object. For more details, refer to User attributes object.
+
+#### Recipient limits and profile creation
+
+Learn more about how recipient limits and profile creation work for this endpoint.
+
+- The recipients array may contain up to 50 objects, with each object containing a single external_user_id string and a trigger_properties object.
+ 
+- When send_to_existing_only is true (the default), Braze sends the message only to existing users.
+ 
+- When send_to_existing_only is false and an attributes object is provided, Braze creates a new user if one doesn’t exist.
+ 
+- Net-new profiles need attributes with send_to_existing_only: false. Braze runs the pre-send create or update from the attributes object in the same recipient. If you set send_to_existing_only to false but omit attributes (or send an empty object), Braze does not hydrate profile data the same way, so you do not get the combined “create or update user, then send” behavior this pattern is meant for.
+ 
+- Email and SMS addressing. For most Email or SMS API-triggered sends to someone who is not already in Braze, include the delivery fields you need inside attributes (for example email, or the phone attributes your workspace uses for SMS). You can also set subscription group membership or subscription status there when opt-in state must change in the same call.
+ 
+- Campaign eligibility. After the profile exists or updates, that user must still match the campaign’s dashboard target audience and channel send rules (for example opted in for email) or Braze does not send the message.
+ 
+- Setting send_to_existing_only to false is not supported for user aliases. New alias-only users can’t be created through this endpoint. To send to an alias-only user, that user must already exist in Braze.
+
+#### Email identifier and prioritization ties
+
+When you identify recipients by email, Braze uses prioritization. Braze sends only when prioritization returns one profile.
+
+- If you use email as the identifier, Braze resolves the recipient using prioritization.
+ 
+- If prioritization returns a tie, Braze does not send.
+ 
+- Braze sends after the tie is broken and prioritization returns one profile. For example, if profile updates change one user’s ordering fields, Braze sends once prioritization can uniquely identify a profile (see Retry behavior and send_to_existing_only).
+ 
+- Braze also does not send when prioritization returns no profiles.
+
+#### Retry behavior and send_to_existing_only
+
+Learn what happens when prioritization does not return exactly one profile.
+
+- When prioritization does not return exactly one user profile, Braze retries resolution up to 40 times. This retry behavior is expected.
+ 
+- The send_to_existing_only setting does not change prioritization tie behavior. The same tie and retry behavior applies whether this setting is true or false.
+
+If you trigger an email-only campaign for a recipient identified by external_user_id or user_alias, and that user profile has no email address at the time of the call, Braze retries the send for up to approximately 2 hours. This covers the common pattern of creating a user and setting their email address in close succession. To send without delay, include the email attribute inside recipients[].attributes so the address is set in the same call as the trigger.
+
+note
+
+The segment_id parameter is not supported for this endpoint. To target a segment, configure the segment in the campaign’s target audience settings in the Braze dashboard and use "broadcast": true, or use the audience parameter with Connected Audience filters.
+
+## Example request
+
+```
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+
+```
+ | 
+```
+curl --location --request POST 'https://rest.iad-01.braze.com/campaigns/trigger/send' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR-REST-API-KEY' \
+--data-raw '{
+ "campaign_id": "campaign_identifier",
+ "send_id": "send_identifier",
+ "trigger_properties": "",
+ "broadcast": false,
+ "audience": {
+ "AND": [
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "eye_color",
+ "comparison": "equals",
+ "value": "blue"
+ }
+ },
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "favorite_foods",
+ "comparison": "includes_value",
+ "value": "pizza"
+ }
+ },
+ {
+ "OR": [
+ {
+ "custom_attribute": {
+ "custom_attribute_name": "last_purchase_time",
+ "comparison": "less_than_x_days_ago",
+ "value": 2
+ }
+ },
+ {
+ "push_subscription_status": {
+ "comparison": "is",
+ "value": "opted_in"
+ }
+ }
+ ]
+ },
+ {
+ "email_subscription_status": {
+ "comparison": "is_not",
+ "value": "subscribed"
+ }
+ },
+ {
+ "last_used_app": {
+ "comparison": "after",
+ "value": "2019-07-22T13:17:55+0000"
+ }
+ }
+ ]
+ },
+ "recipients": [
+ {
+ "user_alias": {
+ "alias_name" : "example_name",
+ "alias_label" : "example_label"
+ },
+ "external_user_id": "external_user_identifier",
+ "trigger_properties": "",
+ "send_to_existing_only": true,
+ "attributes": {
+ "first_name" : "Alex"
+ }
+ }
+ ],
+ "attachments": [
+ {
+ "file_name" : "YourFileName",
+ "url" : "https://exampleurl.com/YourFileName.pdf",
+ "basic_auth_credential": "company_basic_auth_credential_name"
+ }
+ ]
+}'
+
+```
+ | 
+
+## Response details
+
+Message-sending endpoint responses include the message’s dispatch_id for reference back to the dispatch of the message. The dispatch_id is the ID of the message dispatch, a unique ID for each transmission sent from Braze. When using this endpoint, you receive a single dispatch_id for an entire batched set of users. For more information on dispatch_id check out our documentation on Dispatch ID behavior.
+
+If your request encounters a fatal error, refer to Errors and responses for the error code and description.
+
+## Attributes object for campaigns
+
+Braze has a messaging object called attributes that lets you add, create, or update attributes and values for a user before you send them an API-triggered campaign. Using the campaign/trigger/send endpoint as this API call processes the user attributes object before it processes and sends the campaign. This helps minimize the risk of there being issues caused by race conditions.
+
+tip
+
+Looking for the Canvas version of this endpoint? Check out Sending Canvas messages using API-triggered delivery.
+
+### Why doesn’t Liquid render when I put it directly in my JSON body?
+
+When your request body is valid JSON, Braze evaluates any Liquid in the payload on the server. If you embed Liquid as raw strings, quote and escape those strings so the body stays valid JSON—for example, escape double quotes inside strings. If the body fails JSON parsing, Braze returns a 400 before it evaluates any Liquid. When supported, pass dynamic values through trigger_properties instead of embedding Liquid directly in the payload.
+
+- 
+
+New Stuff!

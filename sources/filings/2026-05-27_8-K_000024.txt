@@ -1,0 +1,104 @@
+---
+form: 8-K
+filed: 2026-05-27
+period: 2026-05-25
+accession: 0001676238-26-000024
+url: https://www.sec.gov/Archives/edgar/data/1676238/000167623826000024/brz-20260525.htm
+fetched: 2026-09-02
+evidence: audited (SEC EDGAR)
+---
+
+brz-20260525
+FALSE000167623800016762382026-05-252026-05-25
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+Washington, D.C. 20549
+FORM 8-K
+CURRENT REPORT
+Pursuant to Section 13 or 15(d) of The Securities Exchange Act of 1934
+Date of Report (date of earliest event reported): May 25, 2026
+______________________________________________________________
+
+Braze, Inc.
+(Exact name of registrant as specified in its charter)
+______________________________________________________________
+
+Delaware |
+001-41065 |
+45-2505271 |
+
+(State or Other Jurisdiction of Incorporation) |
+(Commission File Number) |
+(I.R.S. Employer Identification No.) |
+
+63 Madison Building
+28 East 28th Street, Floor 12
+New York, New York 10016
+(Address of principal executive offices, including zip code)
+
+(609) 964-0585
+(Registrant's telephone number, including area code)
+
+Not Applicable
+(Former name or former address, if changed since last report)
+______________________________________________________________
+
+Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions:
+
+☐ Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425)
+☐ Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12)
+☐ Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b))
+☐ Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c))
+
+Securities registered pursuant to Section 12(b) of the Act:
+
+Title of each class | Trading Symbol(s) | Name of each exchange on which registered |
+Class A common stock, par value $0.0001 per share | BRZE | The Nasdaq Stock Market LLC |
+
+Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter).
+Emerging growth company ☐
+
+If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act.
+☐
+
+Item 2.02. Results of Operations and Financial Condition.
+
+On May 27, 2026, Braze, Inc. (the “Company”) issued a press release announcing its financial results for the fiscal quarter ended April 30, 2026. A copy of the press release is attached hereto as Exhibit 99.1 and is incorporated herein by reference.
+
+The information contained in this Item 2.02 and Exhibit 99.1 in this Current Report on Form 8-K, including the accompanying Exhibit 99.1 hereto, shall not be deemed “filed” for purposes of Section 18 of the Securities Exchange Act of 1934, as amended (the “Exchange Act”), or otherwise subject to the liabilities of that section, nor shall it be deemed incorporated by reference in any filing made by the Company under the Securities Act of 1933, as amended, or the Exchange Act, regardless of any general incorporation language in such filings, unless expressly incorporated by specific reference in such filing.
+
+Item 5.02 Departure of Directors or Certain Officers; Election of Directors; Appointment of Certain Officers; Compensatory Arrangements of Certain Officers.
+
+(c)
+
+On May 25, 2026, the Board of Directors (the “Board”) of the Company appointed Pankaj Malik, who currently serves as the Company’s Chief Accounting Officer, as the Company's Interim Chief Financial Officer, effective as of May 29, 2026. Mr. Malik will also continue to serve as the Company’s Chief Accounting Officer.
+
+Mr. Malik is 44 years old and has served as the Company's Chief Accounting Officer since June 2021. Prior to joining Braze, he served as the Vice President and Global Controller at Impact.com, a partnership management software company, in 2020. He previously served as the Vice President and Global Controller at UiPath, an automation software company from 2018 to 2019. From 2015 to 2018, Mr. Malik held various roles, including Director of Strategy and Business Management at HP, a personal computing hardware company. Mr. Malik received his CA from The Institute of Chartered Accountants of India (ICAI) and is a certified public accountant.
+
+In connection with his appointment, on May 26, 2026, Mr. Malik and the Company entered into a confirmatory offer letter (the “Offer Letter”), pursuant to which Mr. Malik is entitled to receive an annual base salary of $409,013 and is eligible to earn an annual discretionary performance-based bonus under the Company’s Senior Leadership Performance-Based Compensation Plan and other bonus practices in place from time to time. The annual target amount of such bonus is equal to $205,000, provided, that the actual amount of such bonus will be determined based on Mr. Malik’s individual and Company performance.
+
+The foregoing summary of the Offer Letter does not purport to be complete and is subject to, and is qualified in its entirety by, the full text of the Offer Letter, a copy of which is attached hereto as Exhibit 10.1 and is incorporated herein by reference.
+
+There are no arrangements or understandings between Mr. Malik and any other persons pursuant to which he was appointed as Interim Chief Financial Officer of the Company. There are no family relationships between Mr. Malik and any director or executive officer of the Company and he has no direct or indirect material interest in any transaction required to be disclosed pursuant to Item 404(a) of Regulation S-K promulgated by the SEC.
+
+Item 9.01 Financial Statements and Exhibits.
+
+(d) Exhibits
+
+Exhibit No. Description
+10.1 Confirmatory Offer Letter, by and between Braze, Inc. and Pankaj Malik, dated May 26, 2026
+99.1 Press Release of Braze, Inc., dated May 27, 2026
+104 Cover Page Interactive Data (embedded within the Inline XBRL document)
+
+SIGNATURES
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized.
+
+BRAZE, INC.
+
+By: /s/Isabelle Winkles
+Isabelle Winkles
+Chief Financial Officer
+
+Dated: May 27, 2026

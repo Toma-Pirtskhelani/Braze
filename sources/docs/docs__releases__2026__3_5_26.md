@@ -1,0 +1,220 @@
+---
+url: https://www.braze.com/docs/releases/2026/3_5_26
+slug: docs__releases__2026__3_5_26
+title: "March 5, 2026 release"
+description: "This article contains release notes for 3/5/2026."
+section: releases/2026
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# March 5, 2026 release
+
+## Data & Reporting
+
+### New data center
+
+ General availability
+
+Braze has launched a new data center: JP-01. You can sign up for region-specific data centers when setting up your Braze account.
+
+### Context variables
+
+ General availability
+
+Context variables are temporary pieces of data you can create and use within a user’s journey through a specific Canvas. Each time a user enters the Canvas—even if they have entered it before—the context variables will be redefined based on the latest entry data and Canvas setup. This approach allows each Canvas entry to maintain its own independent context, allowing users to have multiple active states within the same journey while retaining the specific context for each state.
+
+### Cloud Data Ingestion sources
+
+ Early access
+
+Cloud Data Ingestion has a new UI that separates sources from syncs, letting you reuse a single source across any number of syncs. This reduces duplicate configuration and simplifies setup when you have multiple syncs. If you have existing syncs, they’re automatically migrated to the new sources-and-syncs structure with no downtime. To get started, go to Cloud Data Ingestion > Sources to view, edit, or create sources, then select a source from the dropdown when creating a sync.
+
+### Additional fields for Currents and Data Share events
+
+ General availability
+
+Currents and Data Share events now include the following new fields to deepen the data available for analytics and downstream systems:
+
+- agentconsole.AgentExecuted: Added error (string)—a description of any error that occurred.
+ 
+- agentconsole.ToolInvocation: Added request_id (string)—a unique ID for the overall LLM request and complete execution.
+ 
+- users.messages.rcs.InboundReceive: Added canvas_variation_name (string)—the name of the Canvas variation the user received.
+
+### Campaign and Canvas fields for Snowflake Data Share
+
+ General availability
+
+Snowflake Data Share now includes additional fields reflecting Campaign and Canvas information across 66 existing tables, including:
+
+- campaign_name
+ 
+- canvas_name
+ 
+- canvas_step_name
+ 
+- canvas_variation_name
+ 
+- message_variation_name
+ 
+- conversion_behavior
+ 
+- experiment_split_name
+
+### CSV pre-import validation and error reporting
+
+ General availability
+
+CSV user imports now support pre-import validation and detailed error reporting. Before importing, select Validate file before importing on the Import Users page—Braze will scan your file and generate a report identifying rows that will fail entirely (errors) and rows that will succeed with some values skipped (warnings). You can download the report, fix your CSV, and re-upload, or proceed as-is. After the import completes, a downloadable report of any rows that failed is also available, with the exact reason for each issue.
+
+### Messaging diagnostics dashboard
+
+ Early access
+
+The Messaging Diagnostics dashboard provides a high-level breakdown of message sending outcomes, allowing you to spot trends and diagnose potential issues in your messaging setup. This dashboard can help you understand why messages from your campaigns or Canvases may not have been sent as expected.
+
+## BrazeAITM
+
+### Braze Agents in Agent Console
+
+ General availability
+
+Braze Agents are AI-powered helpers you can create inside Braze. Agents can generate content, make intelligent decisions, and enrich your data so you can deliver more personalized customer experiences. When you create an agent, you define its purpose and set guardrails for how it should behave. After it’s live, the agent can be deployed in Braze to generate personalized copy, make real-time decisions, or update catalog fields.
+
+## Orchestration
+
+### Granular user permissions
+
+ Early access
+
+Braze is introducing granular permissions, a more flexible way to manage user access. Refer to Migrating to granular permissions to learn about the migration process, including how legacy permissions map to granular permissions.
+
+### Channel-based rate limiting
+
+ General availability
+
+When setting a delivery speed rate limit for a multi-channel campaign or Canvas, you can choose to set either a shared rate limit or a channel-based limit. When a multichannel campaign or Canvas uses channel-based rate limiting, the rate limit applies to each of the selected channels. For example, you can set your campaign or Canvas to send a maximum of 5,000 webhooks and 2,500 SMS messages per minute across the campaign or Canvas.
+
+### Canvas Context step
+
+ General availability
+
+Canvas Context steps let you create and update one or more variables for a user as they move through a Canvas. For example, if you have a Canvas that manages seasonal discounts, you can use a context variable to store a different discount code each time a user enters the Canvas.
+
+## Channels & Touchpoints
+
+### Translate locales in Content Blocks
+
+ Early access
+
+After adding locales to your workspace, you can target users in different languages all within a Content Block.
+
+## Partnerships
+
+### Algolia - Search Recommendations
+
+Algolia is a search and discovery platform that helps developers build fast, relevant, and scalable search experiences. With a powerful API-first approach, Algolia combines advanced ranking algorithms with AI-driven insights for seamless site search, navigation, and personalized content discovery.
+
+### Anthropic - AI Model Provider
+
+Anthropic is an AI safety and research company developing Claude, a next-generation AI assistant built to be helpful, honest, and safe for a wide range of language tasks.
+
+### Canva - Message Personalization - Creative Studio
+
+Canva syncs your images in Canva directly to the Braze Media library, streamlining your creative workflow and keeping your visual assets up to date across all your messaging channels.
+
+### DOTS.ECO - Rewards
+
+DOTS.ECO lets you reward users with real-world environmental impact through trackable digital certificates. Each certificate can include metadata like a shareable certificate URL and image URL, so users can view (and revisit) their proof of impact.
+
+### Figma - Message Personalization - Creative Studio
+
+Figma is a collaborative design platform that allows you to build, design, and prototype products. Use this integration to send images and visual assets from Figma directly into the Braze media library.
+
+### Flybuy - Message Personalization - Location
+
+Flybuy by Radius Networks is the leading omnichannel location platform leveraging AI-powered technology to optimize speed of service across pickup, delivery, drive-thru, and dine-in. Through its integrated Marketing Suite, Flybuy also enables brands to deliver hyper-targeted, moment-based messages, helping to drive engagement, increase check size, and support broader loyalty initiatives.
+
+### Google Gemini - AI Model Provider
+
+Google Gemini is Google’s family of AI models that combines advanced reasoning across text, code, and images to help brands deliver smarter, more personalized experiences.
+
+### Limbik - Message Personalization - Personalization Engines
+
+Limbik is your AI resonance layer—predicting how real audiences interpret and respond to messages, concepts, and AI outputs before they reach the market. Powered by continuous primary research across 60+ countries and 25+ languages, Limbik delivers human-validated synthetic audiences—digital populations that simulate real audience response at machine speed and with research-grade accuracy (95% confidence, 1.5% to 3% margin of error). Limbik gives you the ability to immediately ensure your messaging resonates with what your target audience believes and feels.
+
+### Linkrunner - Message Orchestration - Attribution
+
+Linkrunner is a mobile attribution and analytics platform that helps you track and analyze your user acquisition campaigns.
+
+### Mailizio - Message Orchestration - Templates
+
+Mailizio is an email creation and management platform that makes it easy to design reusable, brand-safe content using an intuitive visual editor. With Mailizio’s integration to Braze, you can export your content blocks and email templates, then automatically generate in-app messages from those same assets, enabling fast and fully controlled campaign deployment.
+
+### Open Loyalty - Data and Analytics - Loyalty
+
+Open Loyalty is a cloud-based loyalty program platform that lets you build and manage customer loyalty and rewards programs. The Braze and Open Loyalty integration syncs loyalty data—such as points balance, tier changes, and expiry warnings—directly into Braze in real-time. This lets you trigger personalized messages (Email, Push, SMS) when a user’s loyalty status changes.
+
+### OpenAI - AI Model Provider
+
+OpenAI creates advanced AI models, like GPT, that enable natural language understanding and generation, empowering brands to build and scale meaningful customer interactions.
+
+### Shopgate - Channels
+
+Shopgate is a mobile commerce and omnichannel platform that helps merchants create shopping apps and improve the efficiency of brick-and-mortar stores through fulfillment tools and clienteling, meaning personalized in-store customer support based on customer data.
+
+### Splio - Data and Analytics - Cohort Import
+
+Splio is an audience-building tool that lets you increase the number of campaigns and revenue without harming customer experience, and provides analytics to track the performance of CRM campaigns both online and offline.
+
+## SDK
+
+### SDK breaking updates
+
+The latest SDK updates have been released. Breaking updates are listed in the SDK updates section; all other updates can be found in the corresponding SDK changelogs.
+
+- Android SDK 41.1.1
+ 
+- Flutter SDK 17.1.0
+ 
+- Swift SDK 14.0.2
+ 
+- Xamarin SDK 9.0.0
+
+- Updated the Android binding from Braze Android SDK 37.0.0 to 41.0.0.
+ 
+- Updated the iOS binding from Braze Swift SDK 13.3.0 to 14.0.1.
+ 
+- Added new transitive NuGet dependencies required by the Braze Android SDK:
+
+- Xamarin.AndroidX.DataStore.Preferences (1.1.7.1)
+ 
+- Xamarin.KotlinX.Serialization.Json.Jvm (1.9.0.2)
+ 
+- Xamarin.Kotlin.StdLib has been updated from 2.0.21.3 to 2.3.0.1. If your project explicitly pins this package to an older version, you will need to update it to avoid restore errors.
+
+- Removed the News Feed feature.
+
+- This feature was removed from the native Android SDK in version 38.0.0.
+ 
+- This feature was removed from the native Swift SDK in version 14.0.0.
+
+- The BRZInAppMessageDismissalReason.BRZInAppMessageDismissalReasonWipeData enum case has been renamed to BRZInAppMessageDismissalReason.WipeData.
+
+- Expo Plugin 4.0.0
+
+- This version requires 19.0.0 of the Braze React Native SDK.
+ 
+- (Android) Fixed a memory leak in the data persistence layer.
+ 
+- (Android) Added support for Braze.getInitialPushPayload() to handle push notification deep links when the app is launched from a terminated state. This resolves an issue where deep links from push notifications were not handled on Android when the app was cold started.
+
+- React Native SDK 19.0.0
+
+- Updates the native Swift SDK version bindings from Braze Swift SDK 13.3.0 to 14.0.1.
+ 
+- Updates the native Android SDK version bindings from Braze Android SDK 40.0.2 to 41.0.0.
+
+- 
+
+New Stuff!

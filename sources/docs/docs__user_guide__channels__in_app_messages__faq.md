@@ -1,0 +1,279 @@
+---
+url: https://www.braze.com/docs/user_guide/channels/in_app_messages/faq
+slug: docs__user_guide__channels__in_app_messages__faq
+title: "Frequently asked questions"
+description: "This article provides answers to frequently asked questions about In-App Messages."
+section: user_guide/channels
+fetched: 2026-09-02
+evidence: company-own (technical)
+---
+# Frequently asked questions
+
+This article provides answers to some frequently asked questions about in-app messages.
+
+## What is an in-browser message and how does it differ from an in-app message?
+
+In-browser messages are in-app messages sent to web browsers. To create an in-browser message, make sure to select Web Browser under the Send To field when creating your in-app message campaign or Canvas.
+
+## Does an in-app message display if a device is offline?
+
+It depends. Because in-app messages are delivered at session start, the device is able to download the payload prior to going offline, the in-app message can still be displayed while offline. If the payload is not downloaded, then the in-app message does not display.
+
+## If a user already has an in-app message payload on their device and the message expiration is changed, does the expiration update on their device?
+
+When a user starts a session, Braze checks if changes have been made to any in-app messages that they are eligible for and updates them accordingly. So if the expiration has changed and they log a session, then the in-app message is sent to the device with the updated information.
+
+## How do I set up Quiet Hours for an in-app message campaign?
+
+The Quiet Hours feature isn’t available for use with in-app message campaigns. This feature is used to prevent messages from being sent to your users during specific hours. For in-app message campaigns, your users receive in-app messages only if they are active within the app.
+
+As a workaround to send in-app messages during a specific time, use the following sample Liquid code. This allows the message to be aborted if the in-app message is displayed after 7:59 pm or before 8 am at the specified time zone.
+
+```
+
+1
+2
+3
+4
+5
+
+```
+ | 
+```
+{% assign time = 'now' | time_zone: ${time_zone} %}{% assign hour = time | date: '%H' | plus: 0 %}
+{% if hour > 19 or hour < 8 %}
+{% abort_message("Outside allowed time window") %}
+{% endif %}
+MESSAGE HERE
+
+```
+ | 
+
+## Can users receive an in-app message again after they dismiss it?
+
+### Campaigns
+
+For in-app message campaigns, you can allow users to become eligible to receive the campaign again by turning on re-eligibility in Delivery Controls (Allow users to become re-eligible to receive campaign). How soon they can receive it again depends on the re-eligibility window you set and how Braze recorded the prior send. See Re-eligibility for campaigns and Canvas for campaign behavior, including how re-eligibility relates to message receipt.
+
+If re-eligibility is off, users generally won’t receive that same campaign again based on qualifying criteria alone after they’ve received it.
+
+### Canvases
+
+For in-app messages sent from a Canvas, whether a user can see the message again depends on Canvas entry controls (such as allowing users to re-enter the Canvas) and your step configuration—not only the campaign delivery controls.
+
+## When is eligibility for an in-app message calculated?
+
+Eligibility for an in-app message is calculated at the time of delivery. If an in-app message is scheduled to send at 7 am, then eligibility is checked for this in-app message at 7 am.
+
+When the in-app message appears, the eligibility depends on when the in-app message is downloaded and triggered.
+
+## Why is my archived in-app message campaign still delivering in-app message impressions?
+
+This can occur for users who met the segment criteria when the in-app message campaign was active.
+
+To prevent this, during your campaign setup, select Re-evaluate campaign eligibility before displaying.
+
+## Why don’t I see opens for in-app messages?
+
+In-app messages do not use an Opens metric. Braze logs Impressions when the message becomes visible on screen and Clicks when users interact with the message body or buttons. If a multichannel export or report includes in-app message rows, compare Impressions and Clicks instead of email-style opens. For definitions, see In-app message reporting.
+
+## Can multiple in-app messages display in the same session?
+
+Yes, but only one in-app message can display per occurrence of a trigger event. If multiple in-app message campaigns share the same trigger (for example, session start), only the highest-priority message displays each time that trigger occurs. For session start triggers, this means only one message can display per session, and the next opportunity to show another eligible message is the next session.
+
+When multiple messages share the same priority level, the most recently created message displays first. For session start triggers, the next most recent message displays in a subsequent session; for other trigger types, the next most recent message displays the next time that trigger event occurs, which may be within the same session or a later session.
+
+To control the display order within a priority bucket, go to the delivery settings for any of the campaigns and select Set Exact Priority, then drag and drop campaigns into the desired order. For more details, refer to Choose a priority.
+
+## How are in-app message impressions and clicks logged?
+
+See In-app message reporting for how impressions and clicks are logged by user action. For examples specific to fullscreen messages created with the traditional editor, refer to Fullscreen message metrics by user action.
+
+## How does Braze calculate an in-app message expiration set to “after 1 day(s)”?
+
+Braze calculates an expiration time of one day as 24 hours after users are eligible to receive a message.
+
+## What are templated in-app messages?
+
+In-app messages are delivered as templated in-app messages when Re-evaluate campaign eligibility before displaying is selected or if any of the following Liquid tags exist in the message:
+
+- canvas_entry_properties
+ 
+- connected_content
+ 
+- SMS variables such as {sms.${*}}
+ 
+- catalog_items
+ 
+- catalog_selection_items
+ 
+- event_properties
+
+Braze also uses templated delivery for idle in-app message campaigns (campaigns that are still active but no longer sending or no longer needed). These campaigns continue to follow their configured audience and trigger rules.
+
+Braze may also use templated delivery to protect app performance. If preparing Liquid content delays a session response by more than a few seconds, Braze defers the remaining work. Those messages render when triggered.
+
+This means that during session start, the device receives the trigger of that in-app message instead of the entire message. When the user triggers the in-app message, the user’s device makes a network request to fetch the actual message.
+
+note
+
+The message is not delivered if the device doesn’t have access to the internet. The message might not be delivered if the Liquid logic takes too long to resolve.
+
+To reduce the amount of Liquid that Braze processes at session start, see Optimize in-app message performance.
+
+## How does abort behavior work for in-app messages?
+
+At Braze, an abort occurs when a user takes an action that makes them eligible to receive a message, but they don’t receive the message because its Liquid logic marks them as ineligible. For example:
+
+- Sam performs an action which should trigger an email campaign.
+ 
+- The email’s body contains Liquid logic that says if a custom attribute score is less than 50, do not send this email.
+ 
+- Sam’s custom attribute score is 20.
+ 
+- Braze recognizes that Sam shouldn’t receive this email, and the email is aborted.
+ 
+- An abort event is logged.
+
+However, because in-app messages are a pull channel, aborts work a little differently for them.
+
+### Standard in-app message abort behavior
+
+In-app messages are pulled in by the device at session start and cached on the device, so regardless of Internet connection quality, the message can be delivered instantly to the user. For example, if a user receives five in-app messages within their session, they receive all five on session start. The messages are cached locally and appear when their defined trigger events occur (session start, user clicks a button which logs a custom event, or other).
+
+In other words, the logic that determines if an in-app message should be aborted occurs before the trigger has occurred. To demonstrate this, let’s say Sam from the email example is subscribed to push notifications.
+
+- Sam starts a session by launching a Braze-powered app on their phone.
+ 
+- Based on the audience criteria of the active campaigns in the workspace, Sam could be eligible for five different campaigns. All five are pulled into their phone and cached.
+ 
+- Sam has not performed any actions that would trigger these messages, but they could receive those messages in the session.
+ 
+- The Liquid in two of the in-app messages has rules that exclude Sam from receiving the message (such as their score custom attribute not being high enough).
+ 
+- Sam is not sent the two in-app messages that exclude them, but they are sent the other three messages.
+ 
+- No abort events are logged.
+
+Braze doesn’t log any abort events in Sam’s case because this doesn’t fulfill the definition of an abort; Sam did not perform any actions that would trigger the messages. For in-app messages, users never actually perform the trigger before Braze determines they shouldn’t see the message.
+
+### Templated in-app message abort behavior
+
+Templated in-app messages force the SDK to reevaluate if a message should display when the trigger event occurs. This has a different abort behavior. To demonstrate, consider this example:
+
+- Sam starts a Braze session by launching a Braze-powered app on their phone.
+ 
+- The audience criteria of the active campaigns say Sam could be eligible for a templated in-app message, so the trigger information is sent to their device without the message payload.
+ 
+- Sam selects a button that logs a custom event, triggering the templated in-app message.
+ 
+- Sam’s device makes a network request to fetch the in-app message.
+ 
+- The message’s Liquid logic leads to an abort, so Braze logs this as an abort; Sam performed the trigger action prior to this evaluation.
+
+### Comparing in-app message abort behavior
+
+This table compares the in-app message flows that Sam experienced:
+
+ In-app message | 
+ Abort behavior | 
+
+ Standard | 
+ An abort event was not logged because Sam didn’t perform any actions that would trigger a message.
+
+Standard in-app messages don’t log aborts because the definition of an abort is “didn’t see the message despite performing the trigger action.” Because in-app messages are delivered to the device before the trigger actions occur, it doesn’t make sense to consider in-app messages omitted because of Liquid logic. | 
+
+ Templated | 
+ An abort event was logged because Sam performed the trigger action to trigger the templated in-app message, but received an abort in the Liquid templating. 
+
+Templated in-app messages log aborts because the Liquid evaluation occurs after the trigger action has been performed. | 
+
+### When does Connected Content run for in-app messages?
+
+For templated in-app messages, Connected Content and other Liquid tags resolve when the trigger event occurs and the device requests the message payload—not when the user clicks a button inside the message. Each templated fetch can include Connected Content calls for that display.
+
+If your HTML references REST data returned by Connected Content, that data is available for the session in which the message was templated. Multiple buttons can reference the same Connected Content response without triggering additional calls on click.
+
+### What is the maximum delay after a trigger for in-app message campaigns?
+
+In-app message campaigns can delay delivery after the trigger event by up to two hours (7,200 seconds). The delay options are Immediately and After a delay. For a longer wait, add a Delay step before an in-app message step in a Canvas. For delay setup, see Action-based delivery.
+
+### Why is there a delay before my in-app message displays?
+
+Standard in-app messages display as soon as the cached payload is ready after the trigger event. On Android and iOS, large images or other CDN-hosted assets referenced in the message can add a short delay while those resources finish downloading before the in-app message appears.
+
+Templated in-app messages and campaigns with Re-evaluate campaign eligibility before displaying selected require an additional network request after the trigger before the message appears. This can add a short delay (typically under 100 ms on a stable connection). For more information, see Choose users to target.
+
+### Why does my in-app message look different from the dashboard preview?
+
+Delivered in-app messages can differ from the dashboard preview when:
+
+- Your integration applies custom styling or overrides default in-app message UI on certain platforms
+ 
+- Preview uses a test user profile with different attributes than the recipient
+ 
+- Templated content resolves differently at send time than in preview mode
+
+Use Send test messages with a test user whose profile matches your target audience when validating appearance.
+
+### Why does a multi-page in-app message use the same background on every page?
+
+When Background Image is enabled on one page of a multi-page in-app message, that background applies to all pages in the message. To use different backgrounds per page, use a custom HTML block with JavaScript to swap images between pages.
+
+### How do I test web in-app messages?
+
+Web in-app message test sends require push to be enabled on the test device because the test flow delivers a push notification that opens the app or site where the in-app message displays. The same push-based test path applies on any platform where push is not configured with Braze, though missing push is most often encountered on web because many mobile integrations already have push enabled. Use a live campaign to an internal test segment instead. For steps, see Send test messages.
+
+### Do in-app messages require push integration?
+
+In-app messages do not require push notifications to function in production. In-app messages are delivered through the Braze SDK and appear during an active app session without needing push integration.
+
+However, test sends for in-app messages do require push to be enabled on your test devices. This is because test in-app messages are delivered through a push notification that triggers the in-app message display. The test user must have push enabled and must tap the test push notification to view the in-app message.
+
+For production campaigns, users see in-app messages based on your campaign triggers (such as session start or custom events) without push being involved.
+
+### Why do extra or unrendered characters appear in my in-app message?
+
+Copying text from another app (such as a word processor or webpage) can insert invisible or non-printing characters into your message body. Those characters may show up as stray symbols or break Liquid and HTML in custom messages.
+
+To fix stray or unrendered characters, re-type the affected text in the Braze editor, or delete the unwanted characters directly rather than selecting and replacing only the visible text. For custom HTML messages with special characters, add <meta charset="UTF-8"> inside your HTML <head>. See Character encoding for details.
+
+## Why is the close button hidden on full-screen HTML in-app messages on Android?
+
+On devices with edge-to-edge displays (including Android 15+), full-screen HTML in-app messages can draw behind the system status bar and hide a close control at the top of the layout.
+
+Braze Android SDK version 37.0.0 and later apply window insets to HTML in-app messages by default so controls stay in the safe area. If users still see overlap, upgrade to the latest Braze Android SDK.
+
+On older SDK versions, developers could enable BrazeConfig.setIsHtmlInAppMessageApplyWindowInsetsEnabled(true) before this behavior became the default.
+
+## What should I know when customizing drag-and-drop in-app messages?
+
+The drag-and-drop editor supports modal and full-screen display types. You build content inside those containers with editor blocks.
+
+Keep in mind:
+
+- Links and deep links: Each on-click action has one URL field by default. Use Liquid in the URL to vary links by device, app type, or user attributes. On the Message container, you can also turn on platform-specific on-click behavior to set different links per platform.
+ 
+- Opacity and backgrounds: Opacity on the message container affects the full message background. Individual blocks can set their own background colors. For finer control, add custom CSS in a Custom Code block.
+ 
+- Message width: The Message container maximum width cannot be set under 325 px in the editor, which keeps content readable on smaller screens. Use custom CSS if you need a narrower layout.
+ 
+- Platform-specific backgrounds: A single message uses the same background image and colors on web and mobile. You cannot set different backgrounds per platform in the editor.
+ 
+- Multi-page messages: Background images and message-level on-click actions apply across all pages in a multi-page message. To use different full images on each page, add buttons that link to the next page.
+ 
+- Message-level styles: Message-level styles apply to the entire message.
+ 
+- Background images: Background images stretch to fit the modal.
+
+For more editor considerations, see In-app message prep guide.
+
+## What does “Event was published, but no subscribers were found” mean in Android SDK logs?
+
+This log line is usually not an error. It often appears when Braze publishes an internal event (such as NoMatchingTriggerEvent) and no in-app message or Content Card listener is subscribed at that moment.
+
+If you see this log when you expect a custom event to trigger an in-app message, confirm the event is logged, the user is in the campaign or Canvas audience, and that Content Cards are synced when the message depends on them.
+
+- 
+
+New Stuff!
