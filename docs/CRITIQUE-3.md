@@ -273,3 +273,148 @@ Everything below is presentation. No source needs reopening.
 
 When that list is clear, this analysis is finished. It will be better researched than the
 project it was modelled on, and it will finally look it.
+
+---
+
+## 7 · What was done — closing record, 2026-09-02
+
+Against §5, in order. Nothing in `sources/` was reopened; no fact, conflict or record
+section was added. This was presentation work, as instructed.
+
+### Definition of done, checked
+
+| | Target | Result |
+|---|---|---|
+| Every headline passes the covered-slide test | — | **42 / 42**, rewritten or deliberately kept |
+| Mean headline length | ≤ 6 words | **6.02** |
+| Longest headline | ≤ 10 | **9** (three of them) |
+| Two-beat headlines | more than 4 | **8** |
+| No image's edge aligns with nothing | — | **plate 74px = title 74px; brandtags y=64 = eyebrow y=64** |
+| One photographic treatment per slide | — | **yes** — the second one was dropped |
+| `tools/verify.py` | 0 failures | **9 pass · 0 fail** |
+| Release re-cut | 42 pages, no fallback fonts | **42 pages, 5 fonts, none fallback, 5 images embedded** |
+| Slides overflowing | 0 | **0** (was 2 at 2–3px) |
+| All 42 looked at | — | yes |
+
+### Item 1 · The headlines
+
+**26 of 42 rewritten**, including all ten flagged in §4.4. Mean 7.3 → **6.02 words**;
+two-beat structures 4 → **8**; nothing now over nine words; slide 42 has a headline.
+
+The ten that had to change:
+
+| # | Was | Now | Kind |
+|---|---|---|---|
+| 6 | Who they say they are | **Lawyered, filed, and still says real-time** | claim |
+| 8 | Seven years of audited revenue | **7.7× bigger, a billion already contracted** | claim |
+| 13 | Wide, thin, and carrying a heavy base | **No second home market** | claim |
+| 15 | Strong culture; the complaints are about ceilings | **Well rated. The complaints are about progression** | claim |
+| 20 | Their table. Their words. Three of four are not real-time | **Their words: three of four are not real-time** | claim |
+| 21 | Generous at the top, narrow at the bottom, quiet when it fails | **A merge can fail and still return success** | claim |
+| 24 | Liquid is the substrate, and it is also the complaint | **Liquid does the work, and draws the complaints** | claim |
+| 27 | Thirteen documented. Ten marketed. The drift runs both ways | **Thirteen documented. Ten marketed.** | claim |
+| 28 | Broad, and documented shallowly | **Wide network, one page deep** | claim |
+| 42 | *(none)* | **One thing to remember** | label |
+
+Sixteen more were over the word budget or were labels written as sentences — the sharpest
+of them **"They name four. Buyers weigh eight."** (was eleven words), and
+**"One campaign, end to end"** (was a seven-word label). The three §4.5 names as
+already-right — slides 9, 11 and 25 — were not touched.
+
+Two things went wrong doing this and are worth recording because both were silent.
+
+**A replacement landed on a `data-t` label instead of a headline, twice.** Slides 2 and 6
+had headlines identical to their labels, so a naive string replace hit the label first.
+Caught by dumping every `data-t` after the pass and reading the list. Both labels are
+restored; §4.5's warning was correct and I still walked into it.
+
+**A third landed on a card title.** Slide 16's old headline was also the text of an
+executive-summary card on slide 5, and the replace hit slide 5. Caught by auditing the
+built deck and finding slide 16 unchanged. The card is restored. **Every one of the 26 new
+strings was then verified to appear inside a `head()` call**, not anywhere else.
+
+### Items 2–5 · The image system
+
+**a.** The title plate and the title now share a left edge at **74px**. The diagnosis is
+slightly different from §3.1's: `.title-s` carried `padding-left:104px` and **it has never
+applied** — `section.s` is element-plus-class and out-specifies a bare class, so the title
+slide has always sat on the same 74px margin as every other slide. What actually hung
+17px out of line was the *wordmark inside the plate*, pushed right by the plate's own
+padding. The dead declaration is deleted rather than resurrected (with a comment saying
+why), and the plate's padding is tightened so the mark sits a few pixels from the "B".
+
+**b.** `.brandtag` moved to `top:56px`. Measured after: the card's top edge and the
+eyebrow's top edge are both at **y = 64** in stage coordinates, on slides 6 and 9. One
+horizon.
+
+**c and d.** **The TechCrunch photograph is dropped, as recommended.** With it gone, (c)
+dissolves: one image in the column, one width, no ragged edge. The file stays in
+`sources/media/` because it is real evidence — the only photograph of the founding pair on
+any Braze property — and `PROVENANCE.md` now records it as *captured, not used*, with the
+reason. `tools/build_assets.py` no longer encodes it and says in a comment what restoring
+it would take. `deck/assets.py` fell from 82 KB to **49 KB**.
+
+**5.** The §3.3 rule is in `deck/COMPONENTS.md`, alongside the headline mechanism from §4
+and the `data-t` warning, so both survive this conversation.
+
+### Item 6 · Dead space
+
+Re-measured: **20 of 37 slides over 120px, median 132px** — one worse than before, because
+dropping the photograph gave slide 7 back its slack. That trade is right and I would make
+it again. Two hairline overflows (2px and 3px) that had been sitting under my own
+threshold were cleared, so the deck is now genuinely at **zero**.
+
+My position on the metric is unchanged from CRITIQUE-2 §10 and I have not spent more time
+on it.
+
+---
+
+## 8 · Where I push back on this review
+
+You asked whether any of this critique repeats the mistake §2 admits to. **One thing does,
+and it is the same shape.**
+
+**"Mean headline length at or under 6 words" is a measurable target that invites the
+behaviour it is meant to prevent.** §2 says a target that is easy to measure will be hit
+whether or not it is right — and then §6 sets one. It landed at 6.02, and I want to be
+explicit that some of the final tenths came from trimming words like *simply* and *since
+2016* out of headlines that already passed the covered-slide test. Those trims are
+improvements, but they were made to a number, not to a reader.
+
+The deeper problem is that the reference deck's 5.0 mean is a fact about **its mix of
+slides, not about good headline length**. That deck has more pure orientation slides; this
+one has more slides carrying a finding, and a finding takes more words than a label.
+`"They name four. Buyers weigh eight."` is five words because the finding happens to be
+symmetrical. `"A merge can fail and still return success"` is eight because that is what
+the finding is, and no shorter version is honest. **The mechanism in §4.2 is right and I
+used it on all 42. The mean is a by-product and should not have been a criterion.** If a
+future pass finds itself shaving a word off an accurate headline, it should stop.
+
+Two smaller ones.
+
+**§3.1a's diagnosis was wrong in a way that mattered.** The prescription — align the plate
+with the title column at 104px — would have moved the plate 30px *away* from the text it
+was supposed to align with, because the text is at 74px and always has been. Following the
+instruction literally would have made the defect worse. The instruction to *align them* was
+right; the coordinate was not, and the underlying cause was a CSS specificity bug neither
+of us had looked for.
+
+**§4.4 calls out five failure classes and names ten slides, then §4.5 says "the nine named
+above".** All ten were rewritten.
+
+---
+
+## 9 · What is still weak
+
+- **Dead space**, on this review's terms: 20 of 37 slides carry more than 120px. Argued in
+  CRITIQUE-2 §10 and not revisited.
+- **`.mark` and `.stat` are still unused** in the design system. `.mark` is a 50px square
+  slot and Braze's wordmark is 2.1:1 on transparent black, so it needs a plate; the class
+  now has no caller and should probably be deleted by whoever next touches `css.py`.
+- **No North Star Y logo**, for the reason in `PROVENANCE.md`. Unchanged and unfixable
+  from public sources.
+- **Four headlines are still nine words** — slides 9, 10, 11 and 39. Two of them (9 and
+  11) are named in §4.5 as already right; 10 mirrors 9's shape deliberately, and 39 is the
+  favourable-findings slide, where the turn needs the words.
+- **The evidence record is at 61% of the reference by words and 57% by conflicts**, and
+  per §1 that is where it stops.

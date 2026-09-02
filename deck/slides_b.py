@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *                                   # noqa: F403,E402
-from assets import CEO, FOUNDERS, LOGO, OFFERFIT    # noqa: F401,E402
+from assets import CEO, LOGO, OFFERFIT              # noqa: F401,E402
 
 # ── 4 DIVIDER ────────────────────────────────────────────────────────────────
 add(f'''<section class="s div-s" data-g="s" data-t="Part I: The company">
@@ -80,7 +80,7 @@ growth, but improving efficiency and three years of positive operating cash flow
 # ── 6 WHO THEY SAY THEY ARE ──────────────────────────────────────────────────
 add(f'''<section class="s" data-g="w" data-t="Who they say they are">
   <div class="brandtag" style="width:118px"><img src="{LOGO}" alt="Braze wordmark"></div>
-  {head("Their story &middot; in their own words", "Who they say they are")}
+  {head("Their story &middot; in their own words", "Lawyered, filed, and still says real-time")}
   <div class="body">
     <div class="quote"><div class="qbody">&ldquo;Our platform empowers <strong>real-time engagement</strong> between brands and their
       customers &hellip; made possible by our proprietary, enterprise-grade <strong>stream processing
@@ -113,6 +113,12 @@ argument.""",
 # half a governance answer: control is who holds the votes AND who holds the seats.
 # The portrait is the first named human being in this analysis. It is Braze's own
 # investor-relations headshot, and it is captioned with the title Braze gives it.
+# The 2011 TechCrunch photograph was here and has been dropped. It was sourced properly
+# and it stays in sources/media/ as evidence, but it put a second photographic treatment on
+# a slide that already had one: a clean 120px circle above a 216px rectangular screen-grab,
+# two widths, a ragged right edge, and cropped lettering along the top of a low-resolution
+# original. One well-placed portrait says more than a portrait plus a bad snapshot - and its
+# caption was an admission that the source cannot say which founder is which.
 _gov_left = ('<div>' + figurehead(
     CEO, "Bill Magnuson",
     "Chairman &middot; CEO &middot; President &middot; Cofounder",
@@ -120,10 +126,6 @@ _gov_left = ('<div>' + figurehead(
     "&mdash; and President too since June 2025, when the previous President resigned "
     "and the role was not refilled. One person, four titles.",
     "Cofounder Jon Hyman is still CTO, an officer since 2011.")
-    + f'<div class="photoblock"><img src="{FOUNDERS}" alt="Braze&rsquo;s CEO and CTO at '
-      'TechCrunch Disrupt NYC, 2011"><div class="photocap">The CEO and CTO at TechCrunch '
-      'Disrupt, 2011, published by Braze &mdash; which does not say which is which.'
-      '</div></div>'
     + '</div>')
 
 _gov_right = ('<div><div class="klabel colhead">AND WHO HOLDS THE SEATS</div>'
@@ -185,7 +187,7 @@ respond to a shareholder, both halves matter.""",
 
 # ── 8 HOW THEY GOT THIS BIG ──────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="How they got this big">
-  {head("Capital &middot; and what it bought", "Seven years of audited revenue")}
+  {head("Capital &middot; and what it bought", "7.7&times; bigger, a billion already contracted")}
   <div class="body">
     {bars([("FY2020", 96.4), ("FY2021", 150.2), ("FY2022", 238.0), ("FY2023", 355.4),
            ("FY2024", 471.8), ("FY2025", 593.4), ("FY2026", 738.2, "strong")], unit="m")}
@@ -404,7 +406,7 @@ quickly.""",
 
 # ── 12 WHO USES IT ───────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Who uses it">
-  {head("Customers &middot; three rosters, never merged", "How many customers depends on who is counting")}
+  {head("Customers &middot; three rosters, never merged", "How many customers depends on who counts")}
   <div class="body">
     {figs([("2,609", "the 10-K&rsquo;s defined metric, 31 Jan 2026"),
            ("333", "customers at $500k+ ARR &mdash; up from 202 in FY2024"),
@@ -450,7 +452,7 @@ _geo_right = '<div>' + cards([
     cols=1) + '</div>'
 
 add(f'''<section class="s" data-g="s" data-t="Where they operate">
-  {head("Geography &middot; audited, not inferred", "Wide, thin, and carrying a heavy base")}
+  {head("Geography &middot; audited, not inferred", "No second home market")}
   <div class="body">
     {split(_geo_left, _geo_right, ratio="0.7fr 1.7fr")}
   </div>
@@ -512,7 +514,7 @@ behind it — the raw-data export that fixes it is a paid add-on called Currents
 
 # ── 15 WHAT EMPLOYEES SAY ────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="m" data-t="What employees say">
-  {head("Glassdoor &middot; and the careers board", "Strong culture; the complaints are about ceilings")}
+  {head("Glassdoor &middot; and the careers board", "Well rated. The complaints are about progression")}
   <div class="body">
     {figs([("4.1<em>/5</em>", "524 ratings"), ("82%", "would recommend"),
            ("90%", "approve of the CEO"), ("71%", "positive business outlook")], size="sm")}
@@ -585,7 +587,7 @@ _cmp_buyer = ('<div><div class="klabel colhead">GARTNER&rsquo;S BUYER-DERIVED SH
                       accent=("Oracle", "Optimove", "Blueshift", "MoEngage", "CleverTap")) + '</div>')
 
 add(f'''<section class="s" data-g="m" data-t="Who they compete with">
-  {head("Competition &middot; two lists", "Buyers weigh them against twice as many vendors as they name")}
+  {head("Competition &middot; two lists", "They name four. Buyers weigh eight.")}
   <div class="body">
     {split(_cmp_named, _cmp_buyer)}
     <div class="ruleband">

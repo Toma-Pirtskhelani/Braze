@@ -31,7 +31,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > documentation disagree, I will show you both.
 
 ### 02 · How we approach it
-*On screen:* Method · how this is built — **How we approach it**
+*On screen:* Method · how this is built — **Four parts, three rules**
 
 > Four parts. **Who the company is. How the product actually works. Where the strategy is
 > going. And what we still cannot answer.**
@@ -54,7 +54,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > was being built.
 
 ### 03 · How we grade
-*On screen:* Method · evidence grading — **Three grades, one bar at the foot of every slide**
+*On screen:* Method · evidence grading — **Every claim takes its weakest source**
 
 > Three grades on the slides, five in the record behind them.
 
@@ -116,7 +116,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > **Five. Their competitive set is wider than they say it is.**
 
 ### 06 · Who they say they are
-*On screen:* Their story · in their own words — **Who they say they are**
+*On screen:* Their story · in their own words — **Lawyered, filed, and still says real-time**
 
 > This is Braze describing Braze, in the 10-K.
 
@@ -169,7 +169,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > respond to a shareholder, both halves matter.
 
 ### 08 · How they got this big
-*On screen:* Capital · and what it bought — **Seven years of audited revenue**
+*On screen:* Capital · and what it bought — **7.7× bigger, a billion already contracted**
 
 > Revenue, seven audited years: ninety-six million to seven hundred and thirty-eight.
 > **Seven point seven times in six years.**
@@ -308,7 +308,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > quickly.
 
 ### 12 · Who uses it
-*On screen:* Customers · three rosters, never merged — **How many customers depends on who is counting**
+*On screen:* Customers · three rosters, never merged — **How many customers depends on who counts**
 
 > Three customer counts and they must never be merged.
 
@@ -329,7 +329,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > hundred and thirty-three. More big logos, each growing more slowly.
 
 ### 13 · Where they operate
-*On screen:* Geography · audited, not inferred — **Wide, thin, and carrying a heavy base**
+*On screen:* Geography · audited, not inferred — **No second home market**
 
 > Geography, audited, from the segment note — not inferred from customer domains, which
 > is what you would be doing with a private vendor.
@@ -367,7 +367,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > behind it — the raw-data export that fixes it is a paid add-on called Currents.
 
 ### 15 · What employees say
-*On screen:* Glassdoor · and the careers board — **Strong culture; the complaints are about ceilings**
+*On screen:* Glassdoor · and the careers board — **Well rated. The complaints are about progression**
 
 > Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
 > per cent approve of the CEO.
@@ -412,7 +412,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > gap.**
 
 ### 16 · Who they compete with
-*On screen:* Competition · two lists — **Buyers weigh them against twice as many vendors as they name**
+*On screen:* Competition · two lists — **They name four. Buyers weigh eight.**
 
 > Two lists. On the left, the four competitors Braze names in its own 10-K. On the right,
 > the vendors Gartner reports buyers *also considered* — derived from the buyers, not from
@@ -479,7 +479,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > will say so too.
 
 ### 18 · How one campaign works
-*On screen:* The whole thing · end to end — **What actually happens when a campaign runs**
+*On screen:* The whole thing · end to end — **One campaign, end to end**
 
 > This is the loop. Data arrives, the profile updates, segments recompute, the journey
 > decides, content is composed, the message goes out, the response comes back.
@@ -515,7 +515,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > came from — which is the next slide.
 
 ### 20 · Stage 1: Data
-*On screen:* Stage 1 · data and freshness — **Their table. Their words. Three of four are not real-time**
+*On screen:* Stage 1 · data and freshness — **Their words: three of four are not real-time**
 
 > Here is the slide six callback.
 
@@ -560,7 +560,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > project produced.
 
 ### 21 · Stage 2: Identity
-*On screen:* Stage 2 · identity — **Generous at the top, narrow at the bottom, quiet when it fails**
+*On screen:* Stage 2 · identity — **A merge can fail and still return success**
 
 > Identity is generous at the top and narrow at the bottom. Unlimited aliases on a
 > profile — but a warehouse-driven segment can only be built on **one** identifier type,
@@ -579,7 +579,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > time.
 
 ### 22 · Stage 3: Decisioning
-*On screen:* Stage 3 · decisioning — **Two engines, two databases, one of them bought**
+*On screen:* Stage 3 · decisioning — **Two engines, two databases, one bought**
 
 > Decisioning runs on two engines sitting on two different databases, and Braze publishes
 > which is which.
@@ -615,7 +615,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > to learn.
 
 ### 24 · Stage 5: Content
-*On screen:* Stage 5 · content and personalisation — **Liquid is the substrate, and it is also the complaint**
+*On screen:* Stage 5 · content and personalisation — **Liquid does the work, and draws the complaints**
 
 > Content is Liquid — the templating language — plus Connected Content for live API calls
 > at send time, Content Blocks for reuse, and catalogs for item-level personalisation.
@@ -649,7 +649,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > hoping email deliverability was a single point of failure you could attack, it is not.
 
 ### 26 · Stage 7: Interaction
-*On screen:* Stage 7 · interaction and the loop back — **The response comes back, and it is billed differently**
+*On screen:* Stage 7 · interaction and the loop back — **The response comes back, billed differently**
 
 > The loop closes. Responses come back as engagement events, and here Braze does something
 > genuinely customer-friendly: **engagement tracking is free.** Opens, clicks, push
@@ -668,7 +668,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > thing.** That is when you can be confident it is real.
 
 ### 27 · Channels
-*On screen:* Channels · counted from both ends — **Thirteen documented. Ten marketed. The drift runs both ways**
+*On screen:* Channels · counted from both ends — **Thirteen documented. Ten marketed.**
 
 > Thirteen channels are documented. That is broad, not narrow — I went in expecting the
 > opposite and the evidence killed it.
@@ -687,7 +687,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > talking to each other**, which is exactly the seam this whole method looks for.
 
 ### 28 · Integrations
-*On screen:* Integrations · the Alloys network — **Broad, and documented shallowly**
+*On screen:* Integrations · the Alloys network — **Wide network, one page deep**
 
 > Braze claims over a hundred and fifty technology partners, which they call Alloys.
 > That is their number and I have graded it as a claim.
@@ -706,7 +706,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > layer, Canvas, Liquid and the identity model are built.
 
 ### 29 · Infrastructure
-*On screen:* Infrastructure · the status page as a disclosure — **Fifteen clusters, seven subsystems each — and one exception**
+*On screen:* Infrastructure · the status page as a disclosure — **Fifteen clusters, seven subsystems — and one exception**
 
 > The status page is an architecture disclosure Braze made by accident.
 
@@ -731,7 +731,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > And US 08 is marked differently, because that is the next part.
 
 ### 30 · Analytics
-*On screen:* Analytics · what you can measure — **The most consistent complaint in the corpus**
+*On screen:* Analytics · what you can measure — **Reporting is the most consistent complaint**
 
 > Analytics is where the review corpus is most consistent, across panels that have nothing
 > to do with each other.
@@ -751,7 +751,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > around 2am Eastern.** The billing meter is not real-time either.
 
 ### 31 · The AI, honestly
-*On screen:* The AI · five independent lenses — **Bought recently, and running on other people’s models**
+*On screen:* The AI · five independent lenses — **Bought recently, running on other people’s models**
 
 > This is the slide most likely to go wrong, so I am going to be careful.
 
@@ -828,7 +828,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > not, and if you disagree with either list, that is the conversation worth having today.
 
 ### 33 · Where the money goes
-*On screen:* Seven audited years · where revenue goes — **Decelerating and getting more efficient at the same time**
+*On screen:* Seven audited years · where revenue goes — **Decelerating and getting more efficient at once**
 
 > Seven audited years of where the money goes, and this slide killed the hypothesis I
 > wrote before I read anything.
@@ -852,7 +852,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > The loss is real; it is mostly equity, and shareholders are carrying it.
 
 ### 34 · What comes next
-*On screen:* Unannounced · three sources, one answer — **One instance is not on the same cloud as the others**
+*On screen:* Unannounced · three sources, one answer — **One instance is not on the same cloud**
 
 > This is the finding nobody else in your market will have, and it is also the one I am
 > most careful about.
@@ -905,7 +905,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > why it is the first thing on the next-steps slide.
 
 ### 35 · What protects them
-*On screen:* Defensibility · the so-what test — **Three things a competitor cannot simply copy**
+*On screen:* Defensibility · the so-what test — **Three things a competitor cannot copy**
 
 > What actually protects them, under the "so what would a competitor do about it" test.
 
@@ -945,7 +945,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > had named. That is what a well-written backlog does.
 
 ### 37 · Deep dive: how real-time is it
-*On screen:* Deep dive — **“Is it really real-time?” — answered properly**
+*On screen:* Deep dive — **“Is it real-time?” — answered properly**
 
 > The deep dive. I picked this after the research, from what turned out to be both
 > contested and answerable.
@@ -994,7 +994,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > for us than any claim we could make.
 
 ### 38 · Reliability, measured
-*On screen:* The operational record · a decade of it, public — **451 incidents since 2016, and the rate is falling**
+*On screen:* The operational record · a decade of it, public — **451 incidents, and the rate is falling**
 
 > A decade of incidents, because they publish a status page and most vendors do not.
 
@@ -1060,7 +1060,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > we said so.
 
 ### 40 · What we could not answer
-*On screen:* The honest residue — **Four gaps, and what would close each one**
+*On screen:* The honest residue — **Four gaps, and what would close them**
 
 > Four things I could not answer, stated plainly.
 
@@ -1121,6 +1121,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > and whether the 2026 incident rate settles.
 
 ### 42 · Close
+*On screen:* Close — **One thing to remember**
 
 > One thing to remember.
 

@@ -49,7 +49,7 @@ will say so too.""",
 
 # ── 18 HOW ONE CAMPAIGN WORKS ────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="How one campaign works">
-  {head("The whole thing &middot; end to end", "What actually happens when a campaign runs")}
+  {head("The whole thing &middot; end to end", "One campaign, end to end")}
   <div class="body">
     {flow([("01", "Data arrives", "SDK, API, or a warehouse sync"),
            ("02", "Profile updated", "MongoDB &mdash; and it is billed per attribute"),
@@ -150,7 +150,7 @@ _ingest_svg = (
   + '</svg></div>')
 
 add(f'''<section class="s" data-g="s" data-t="Stage 1: Data">
-  {head("Stage 1 &middot; data and freshness", "Their table. Their words. Three of four are not real-time")}
+  {head("Stage 1 &middot; data and freshness", "Their words: three of four are not real-time")}
   <div class="body">
     {_ingest_svg}
     <p>Warehouse syncs run &ldquo;from every 15 minutes to once per month&rdquo;. Going faster is not self-serve:
@@ -203,7 +203,7 @@ project produced.""",
 
 # ── 21 STAGE 2 · IDENTITY ────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 2: Identity">
-  {head("Stage 2 &middot; identity", "Generous at the top, narrow at the bottom, quiet when it fails")}
+  {head("Stage 2 &middot; identity", "A merge can fail and still return success")}
   <div class="body">
     {figs([("unlimited", "aliases per profile"),
            ("1", "alias per label &mdash; unique across the base"),
@@ -235,7 +235,7 @@ time.""",
 
 # ── 22 STAGE 3 · DECISIONING ─────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 3: Decisioning">
-  {head("Stage 3 &middot; decisioning", "Two engines, two databases, one of them bought")}
+  {head("Stage 3 &middot; decisioning", "Two engines, two databases, one bought")}
   <div class="body">
     {split(
       '<div><div class="klabel colhead">RULE-BASED &mdash; MONGODB</div>'
@@ -301,7 +301,7 @@ to learn.""",
 
 # ── 24 STAGE 5 · CONTENT ─────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 5: Content">
-  {head("Stage 5 &middot; content and personalisation", "Liquid is the substrate, and it is also the complaint")}
+  {head("Stage 5 &middot; content and personalisation", "Liquid does the work, and draws the complaints")}
   <div class="body">
     {figs([("123", "focused doc pages on Liquid templating"),
            ("43", "on Connected Content"),
@@ -366,7 +366,7 @@ hoping email deliverability was a single point of failure you could attack, it i
 
 # ── 26 STAGE 7 · INTERACTION ─────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 7: Interaction">
-  {head("Stage 7 &middot; interaction and the loop back", "The response comes back, and it is billed differently")}
+  {head("Stage 7 &middot; interaction and the loop back", "The response comes back, billed differently")}
   <div class="body">
     {figs([("71", "focused doc pages on Webhooks"),
            ("5 min", "Currents export cadence &mdash; or every 15,000 events"),
@@ -410,7 +410,7 @@ thing.** That is when you can be confident it is real.""",
 
 # ── 27 CHANNELS ──────────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Channels">
-  {head("Channels &middot; counted from both ends", "Thirteen documented. Ten marketed. The drift runs both ways")}
+  {head("Channels &middot; counted from both ends", "Thirteen documented. Ten marketed.")}
   <div class="body">
     {split(
       '<div><div class="klabel colhead">DOCUMENTED, WITH NO MARKETING PAGE</div>'
@@ -446,7 +446,7 @@ talking to each other**, which is exactly the seam this whole method looks for."
 
 # ── 28 INTEGRATIONS ──────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="m" data-t="Integrations">
-  {head("Integrations &middot; the Alloys network", "Broad, and documented shallowly")}
+  {head("Integrations &middot; the Alloys network", "Wide network, one page deep")}
   <div class="body">
     {figs([("150+", "technology partners &mdash; their claim"),
            ("322", "partner documentation pages"),
@@ -508,7 +508,7 @@ _subsystems = ('<div><div class="klabel colhead">THE SEVEN SUBSYSTEMS, IDENTICAL
                  'lists AWS regions for the same six territories. <strong>There is no US 09.</strong></p></div>')
 
 add(f'''<section class="s" data-g="s" data-t="Infrastructure">
-  {head("Infrastructure &middot; the status page as a disclosure", "Fifteen clusters, seven subsystems each &mdash; and one exception")}
+  {head("Infrastructure &middot; the status page as a disclosure", "Fifteen clusters, seven subsystems &mdash; and one exception")}
   <div class="body">
     {split('<div>' + _clusters_map + _map_legend + '</div>', _subsystems, ratio="1.25fr 0.75fr")}
   </div>
@@ -538,7 +538,7 @@ And US 08 is marked differently, because that is the next part.""",
 
 # ── 30 ANALYTICS ─────────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Analytics">
-  {head("Analytics &middot; what you can measure", "The most consistent complaint in the corpus")}
+  {head("Analytics &middot; what you can measure", "Reporting is the most consistent complaint")}
   <div class="body">
     {figs([("36%", "of recent TrustRadius reviewers call reporting limited and unintuitive", "neg"),
            ("140", "G2 reviews tagged &lsquo;Missing Features&rsquo;"),
@@ -571,7 +571,7 @@ around 2am Eastern.** The billing meter is not real-time either.""",
 
 # ── 31 THE AI, HONESTLY ──────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="The AI, honestly">
-  {head("The AI &middot; five independent lenses", "Bought recently, and running on other people&rsquo;s models")}
+  {head("The AI &middot; five independent lenses", "Bought recently, running on other people&rsquo;s models")}
   <div class="body">
     {split(
       '<div><div class="klabel colhead">LENS 1 &mdash; FOCUSED DOCUMENTATION PAGES</div>'

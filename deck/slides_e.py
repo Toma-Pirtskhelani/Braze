@@ -40,7 +40,7 @@ had named. That is what a well-written backlog does.""",
 
 # ── 37 DEEP DIVE ─────────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Deep dive: how real-time is it">
-  {head("Deep dive", "&ldquo;Is it really real-time?&rdquo; &mdash; answered properly")}
+  {head("Deep dive", "&ldquo;Is it real-time?&rdquo; &mdash; answered properly")}
   <div class="body">
     {flow([("ASK", "Which path?", "The answer differs by a factor of hundreds"),
            ("SDK / API", "Near-real-time", "Their words, with &lsquo;async processing&rsquo; attached"),
@@ -110,7 +110,7 @@ for us than any claim we could make.""",
 # record and reached no slide in the first draft. An analysis that only found problems
 # was not an analysis, so it is on the slide now.
 add(f'''<section class="s" data-g="s" data-t="Reliability, measured">
-  {head("The operational record &middot; a decade of it, public", "451 incidents since 2016, and the rate is falling")}
+  {head("The operational record &middot; a decade of it, public", "451 incidents, and the rate is falling")}
   <div class="body">
     {bars([("2019", 49), ("2020", 57), ("2021", 48), ("2022", 39),
            ("2023", 60, "weak"), ("2024", 43), ("2025", 27, "strong"),
@@ -227,7 +227,7 @@ we said so.""",
 
 # ── 40 WHAT WE COULD NOT ANSWER ──────────────────────────────────────────────
 add(f'''<section class="s" data-g="m" data-t="What we could not answer">
-  {head("The honest residue", "Four gaps, and what would close each one")}
+  {head("The honest residue", "Four gaps, and what would close them")}
   <div class="body">
     {tiles([("", "Does satisfaction fall with customer size?",
              "The one hypothesis that could not be tested at all. <strong>All three review sites paywall exactly that breakdown</strong>, and only 7 of 860 coded records carry a segment. <em>Closed by:</em> paid panel access, or an investor-day disclosure"),
@@ -317,7 +317,12 @@ and whether the 2026 incident rate settles.""",
     "s", "What to research next")
 
 # ── 41 CLOSE ─────────────────────────────────────────────────────────────────
+# The close slide had no headline at all - the big() line was doing the job, which reads
+# fine on screen and leaves the slide unlabelled in the grid overview and in any structural
+# read of the deck. A four-word Kind A label above it sets the payoff up rather than
+# competing with it.
 add(f'''<section class="s" data-g="s" data-t="Close">
+  {head("Close", "One thing to remember")}
   <div class="body" style="display:flex;flex-direction:column;justify-content:center;height:100%">
     {big("Their documentation is more honest than anyone&rsquo;s marketing &mdash; including their own.",
          "Every hard limit in this deck came from a page Braze wrote for its own engineers: three of four ingestion paths labelled &ldquo;not real-time&rdquo;, a fifteen-minute warehouse floor, an export limit cut tenfold on a dated boundary, and a merge that returns success when it has quietly declined. None of it is hidden. All of it is unread.")}

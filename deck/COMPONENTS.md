@@ -75,6 +75,32 @@ it reads as a warning, not a grade.
 **One idea per slide.** If it takes two sentences to say what the slide is for, it is
 two slides.
 
+**Images sit on the same grid as type.** An image's left edge aligns with the text column
+it belongs to, or its right edge aligns with the slide's right margin — never neither. Its
+top edge aligns with the eyebrow, the headline, or the first line of the body it sits
+beside. **One slide carries one photographic treatment.** Two images in one column share
+one width.
+
+That rule was written after breaking all four halves of it at once: a brand plate whose
+mark sat 14px right of the title beneath it, logo badges floating ten pixels off the
+eyebrow's horizon, and a 120px circular portrait stacked above a 216px rectangular
+photograph in the same column — two shapes, two widths, a ragged right edge. Everything
+was correctly sourced and none of it was correctly placed. **Sourcing an image and
+positioning it are separate jobs and the second one is not automatic.**
+
+**Headlines are one of two kinds, and you decide which before writing.** A **label** is a
+2–5 word noun phrase with no verb, for a slide whose job is orientation — plain to the
+point of boring, because the content carries the interest. A **claim** is 5–9 words that
+state the finding itself rather than its topic, and it lands hardest as two short beats
+with a turn between them. Then the test: **read the headline with the slide covered.** If
+a stranger cannot say what it is about (label) or what it argues (claim), rewrite it.
+Never invent a finding to earn a claim headline — a boring accurate label beats an
+exciting claim the slide cannot support.
+
+**The headline and the `data-t` label are different strings.** The label appears in the
+grid overview and the footer and stays short and navigational; the headline is what the
+room reads. Changing one does not mean changing the other.
+
 **Content stays inside the safe area.** The stage is 1280×720 with 56px top and 74px
 side padding; the usable body height is about 632px. Overflow is silent until the room
 sees it.

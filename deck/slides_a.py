@@ -63,7 +63,7 @@ documentation disagree, I will show you both.""",
 
 # ── 2 METHOD ─────────────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="How we approach it">
-  {head("Method &middot; how this is built", "How we approach it")}
+  {head("Method &middot; how this is built", "Four parts, three rules")}
   <div class="body">
     {flow([("PART I", "The company", "who owns it &middot; what it costs &middot; who buys it"),
            ("PART II", "The product", "seven stages of one campaign"),
@@ -106,7 +106,7 @@ was being built.""",
 # Note the top grade differs from the private-vendor version of this deck: for a
 # listed company, audited filings outrank everything, including their documentation.
 add(f'''<section class="s" data-g="s" data-t="How we grade">
-  {head("Method &middot; evidence grading", "Three grades, one bar at the foot of every slide")}
+  {head("Method &middot; evidence grading", "Every claim takes its weakest source")}
   <div class="body">
     <div class="tiles" style="grid-template-columns:repeat(3,1fr);gap:18px">
       <div class="tile grade" style="border-left:3px solid var(--strong)">

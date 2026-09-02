@@ -39,7 +39,7 @@ not, and if you disagree with either list, that is the conversation worth having
 
 # ── 33 WHERE THE MONEY GOES ──────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Where the money goes">
-  {head("Seven audited years &middot; where revenue goes", "Decelerating and getting more efficient at the same time")}
+  {head("Seven audited years &middot; where revenue goes", "Decelerating and getting more efficient at once")}
   <div class="body">
     {split(
       '<div><div class="klabel colhead">SALES &amp; MARKETING AS A SHARE OF REVENUE</div>'
@@ -95,7 +95,7 @@ _next_tiles = tiles([
     ], cols=3)
 
 add(f'''<section class="s" data-g="s" data-t="What comes next">
-  {head("Unannounced &middot; three sources, one answer", "One instance is not on the same cloud as the others")}
+  {head("Unannounced &middot; three sources, one answer", "One instance is not on the same cloud")}
   <div class="body">
     {_next_tiles}
     <div class="ruleband">
@@ -159,7 +159,7 @@ why it is the first thing on the next-steps slide.""",
 
 # ── 35 COMPETITIVE ADVANTAGES ────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="What protects them">
-  {head("Defensibility &middot; the so-what test", "Three things a competitor cannot simply copy")}
+  {head("Defensibility &middot; the so-what test", "Three things a competitor cannot copy")}
   <div class="body">
     {cards([("Contracted revenue, not pipeline",
              "<strong>$1,033.0m of remaining performance obligation</strong> &mdash; 1.40&times; current revenue, already signed. You cannot displace what is not up for renewal. This is the strongest of the three.", "g"),

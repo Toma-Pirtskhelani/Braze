@@ -41,7 +41,12 @@ strong{color:var(--vellum);font-weight:600}
 .mono{font-family:var(--mono)}
 
 /* title */
-.title-s{justify-content:center;padding-left:104px;padding-right:104px}
+/* NOTE: this used to read padding-left:104px and it never applied - `section.s` is
+   element+class and out-specifies a bare class, so the title slide has always sat on
+   the same 74px margin as every other slide. That is the right answer: the plate, the
+   wordmark, the source strip and the byline all share one left edge. The dead
+   declaration is removed rather than resurrected, so nobody re-derives it. */
+.title-s{justify-content:center}
 .title-s .mark{width:50px;margin-bottom:24px}
 .title-s h1{font-size:108px;line-height:.94}
 .title-s .subject{font-family:var(--mono);font-size:18px;letter-spacing:.28em;text-transform:uppercase;
@@ -68,7 +73,9 @@ strong{color:var(--vellum);font-weight:600}
 .demo a{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;word-break:break-all}
 
 /* brand assets */
-.brandtag{position:absolute;top:52px;right:74px;background:#fff;border-radius:10px;
+/* top:56 puts the card's top edge on the eyebrow's top edge - one shared horizon on
+   every slide that carries a logo. Measured in stage coordinates, not guessed. */
+.brandtag{position:absolute;top:56px;right:74px;background:#fff;border-radius:10px;
   padding:14px 16px;display:grid;place-items:center}
 .brandtag img{display:block;width:100%;height:auto}
 .plate{background:#fff;border-radius:10px;padding:16px 18px;display:grid;place-items:center;flex:none}
@@ -85,7 +92,10 @@ strong{color:var(--vellum);font-weight:600}
 .brandmark circle,.brandmark path{vector-effect:non-scaling-stroke}
 /* The title-slide plate. Sized to the wordmark rather than to the 50px .mark slot,
    which was built for a square glyph and crushes a 2.1:1 wordmark to nothing. */
-.titleplate{width:132px;padding:12px 14px;margin-bottom:26px}
+/* Padded tighter than the plate default so the wordmark inside sits within a few pixels
+   of the "B" of Braze below it. The plate is an object with an edge, but the thing the
+   eye aligns is the mark, not the card. */
+.titleplate{width:126px;padding:12px 9px;margin-bottom:26px}
 /* A photograph with its caption attached, so the caveat travels with the image. */
 .photoblock{margin-top:8px;max-width:216px}
 .photoblock img{display:block;width:100%;height:auto;border-radius:5px;border:1px solid var(--line2)}
@@ -193,7 +203,7 @@ strong{color:var(--vellum);font-weight:600}
 /* Row pitch was 26px track + 13px gap. On an 8- or 11-row chart that alone pushed three
    slides past the safe line. 24 + 10 reads identically at presentation size and gives a
    tall chart back ~40px. */
-.bars{display:grid;gap:10px}
+.bars{display:grid;gap:9px}
 .barrow{display:flex;align-items:center;gap:14px}
 .bl{font-family:var(--mono);font-size:11px;color:var(--barlab);width:172px;flex:none;letter-spacing:.04em;line-height:1.3}
 .bt{flex:1;height:24px;background:var(--line);border-radius:3px;overflow:hidden}
@@ -240,7 +250,7 @@ strong{color:var(--vellum);font-weight:600}
 .split .logos{gap:7px}
 .split .logo{padding:11px 8px}
 .split .tiles{gap:9px}
-.split .tile{padding:12px 16px}
+.split .tile{padding:11px 16px}
 .split .tile .tt{margin-top:8px}
 
 .logo{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 8px;
@@ -316,7 +326,7 @@ strong{color:var(--vellum);font-weight:600}
 .body > .tiles{gap:16px}
 .body > .flow{gap:9px}
 .body > .logos{gap:11px}
-.body > .figrow{gap:20px}
+.body > .figrow{gap:18px}
 
 /* chrome */
 #ledger{position:absolute;left:74px;right:74px;bottom:32px;display:flex;gap:3px;align-items:flex-end;height:11px}

@@ -41,12 +41,14 @@ ASSETS = [
     ("CEO", "ceo-magnuson.png", 260, "jpg",
      "Bill Magnuson, from Braze's own investor-relations leadership page, where the "
      "alt text reads 'Chairman, Chief Executive Officer, President, and Cofounder'."),
-    ("FOUNDERS", "founders-2011-techcrunch-disrupt.png", 560, "jpg",
-     "Braze's CEO and CTO at TechCrunch Disrupt NYC in 2011, published by Braze on "
-     "its own /company page under 'How it started'. Deliberately NOT captioned "
-     "left-to-right: the source labels the pair 'CEO and CTO' and does not say which "
-     "is which, and guessing would be an identification the evidence does not carry."),
 ]
+
+# NOT ENCODED, deliberately. sources/media/founders-2011-techcrunch-disrupt.png is a real,
+# properly sourced Braze-published photograph and it stays in sources/ as evidence - but it
+# is not in the deck. It put a second photographic treatment on slide 7 next to a circular
+# portrait, at a different width, from a low-resolution original with cropped lettering
+# along its top edge. One photographic treatment per slide; see deck/COMPONENTS.md.
+# Re-adding it is one line here plus one in slides_b.py, if a later pass disagrees.
 
 
 def trim(im):
