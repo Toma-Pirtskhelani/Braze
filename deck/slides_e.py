@@ -49,11 +49,11 @@ add(f'''<section class="s" data-g="s" data-t="Deep dive: how real-time is it">
            ("EXPORT", "5 minutes", "And Currents is a paid add-on")],
           mark={2: "s", 3: "w", 4: "w", 5: "m"})}
     {cards([("Why this is the question that matters",
-             "Most enterprise buyers&rsquo; customer data lives in a warehouse. For them the honest answer is fifteen minutes, and it is not a setting they can change.", "g"),
+             "Most enterprise buyers keep customer data in a warehouse. For them the honest answer is fifteen minutes, and it is not a setting they can change.", "g"),
             ("Why it is not a gotcha",
-             "Braze publishes this themselves, in a comparison table, and the SDK path genuinely is near-real-time. The word covers two architectures &mdash; it is not a false claim.", "g"),
+             "Braze publishes this table themselves, and the SDK path genuinely is near-real-time. One word, two architectures &mdash; not a false claim.", "g"),
             ("What to actually ask them",
-             "&ldquo;Which ingestion path will <em>my</em> data take, and what is the latency on that path?&rdquo; The answer is in their documentation before the meeting.", "a")],
+             "&ldquo;Which ingestion path will <em>my</em> data take, and what is the latency on it?&rdquo; <strong>The answer is in their own documentation before the meeting.</strong>", "a")],
            cols=3)}
   </div>
 </section>''',
@@ -110,7 +110,7 @@ for us than any claim we could make.""",
 # record and reached no slide in the first draft. An analysis that only found problems
 # was not an analysis, so it is on the slide now.
 add(f'''<section class="s" data-g="s" data-t="Reliability, measured">
-  {head("The operational record &middot; a decade of it, public", "451 incidents, and the rate is falling")}
+  {head("The operational record &middot; a decade of it, public", "A decade of reliability, measured")}
   <div class="body">
     {bars([("2019", 49), ("2020", 57), ("2021", 48), ("2022", 39),
            ("2023", 60, "weak"), ("2024", 43), ("2025", 27, "strong"),
@@ -169,23 +169,16 @@ _fav = cards([
      "so the marketing and the maintenance record agree. One soft spot: <span class='mono'>braze-roku-sdk</span>, "
      "181 days idle with 38 Roku doc pages still live.", "g"),
     ("H9 &middot; &ldquo;Incident rate has risen with scale&rdquo;",
-     "<strong>Killed.</strong> Incidents peaked at 60 in 2023 and fell to <strong>27 in 2025</strong>, the "
-     "quietest full year on the status page &mdash; over a period when revenue grew 7.7&times;. "
-     "With its caveat attached: 2026 runs at roughly double the 2025 monthly rate through August, and one "
-     "year is not a trend.", "g")], cols=3)
+     "<strong>Killed.</strong> Incidents peaked at 60 in 2023 and fell to <strong>27 in 2025</strong>, "
+     "the quietest full year on the status page, while revenue grew 7.7&times;. Caveat attached: 2026 "
+     "runs at about double the 2025 monthly rate.", "g")], cols=3)
 
 add(f'''<section class="s" data-g="s" data-t="Where the evidence went their way">
   {head("The hypotheses that died &middot; in Braze&rsquo;s favour", "Three things we expected to find, and did not")}
   <div class="body">
     {_fav}
-    <div class="ruleband">
-      <div class="klabel">WHY THIS SLIDE EXISTS</div>
-      <p>Ten hypotheses were written <strong>before any source was read</strong>, so they could be graded
-      honestly afterwards. Four were killed, three of them favourably; one could not be tested at all.
-      <strong>A set of hypotheses that all confirmed would have meant they were written to confirm.</strong>
-      Everything critical in this deck should be read against the fact that these three were looked for and
-      were not there.</p>
-    </div>
+    <p><strong>Slide 2 promised this.</strong> Ten hypotheses were written before any source was read;
+    four came back wrong. A set that all confirmed would have meant they were written to confirm.</p>
   </div>
 </section>''',
 """I want this slide in the deck more than almost any other, and it is the one that would
@@ -227,16 +220,16 @@ we said so.""",
 
 # ── 40 WHAT WE COULD NOT ANSWER ──────────────────────────────────────────────
 add(f'''<section class="s" data-g="m" data-t="What we could not answer">
-  {head("The honest residue", "Four gaps, and what would close them")}
+  {head("The honest residue", "What we could not answer")}
   <div class="body">
     {tiles([("", "Does satisfaction fall with customer size?",
-             "The one hypothesis that could not be tested at all. <strong>All three review sites paywall exactly that breakdown</strong>, and only 7 of 860 coded records carry a segment. <em>Closed by:</em> paid panel access, or an investor-day disclosure"),
+             "The one hypothesis we could not test. <strong>All three review sites paywall that breakdown.</strong> <em>Closed by:</em> paid panel access"),
             ("", "What else is in the certificate estate?",
-             "The host list is <strong>partial</strong> &mdash; 833 hosts through a rate-limited fallback after crt.sh returned errors all day. Everything found stands; <strong>nothing is claimed about what is absent</strong>. <em>Closed by:</em> an API token"),
+             "The host list is <strong>partial</strong> &mdash; 833 hosts through a rate-limited fallback. Everything found stands; <strong>nothing is claimed about what is absent</strong>. <em>Closed by:</em> an API token"),
             ("", "Can the customer roster be checked independently?",
-             "The only roster outside the 10-K is <strong>178 self-published customer stories</strong>, which is a marketing selection and not a sample. Independent detection was <strong>not attempted</strong>, and that is recorded as a gap rather than a zero. <em>Closed by:</em> tag crawls, CT records naming customer subdomains, or job ads naming Braze in the stack"),
+             "The only roster outside the 10-K is <strong>178 self-published stories</strong> &mdash; marketing, not a sample. Independent detection was <strong>not attempted</strong>. <em>Closed by:</em> tag crawls, or job ads naming Braze in the stack"),
             ("", "Actual pricing, and why the export limit was cut",
-             "No vendor publishes a rate card, and the 10&times; cut to the profile-lookup limit on 22 August 2024 is documented without explanation. <em>Closed by:</em> a procurement award, a customer contract, a changelog entry")],
+             "No vendor publishes a rate card, and the 10&times; cut to the profile-lookup limit is documented without explanation. <em>Closed by:</em> a procurement award or a customer contract")],
            cols=2)}
   </div>
 </section>''',
@@ -278,18 +271,17 @@ add(f'''<section class="s" data-g="s" data-t="What to research next">
   {head("Backlog &middot; prioritised", "Four questions worth the next week")}
   <div class="body">
     {cards([("1 &middot; Ask about US-08",
-             "The highest-value single answer in the backlog. It decides whether slide 35 is an infrastructure observation or a procurement question. <strong>Route:</strong> the DPA schedule a customer receives, or ask them directly.", "g"),
+             "The highest-value single answer available. <strong>Route:</strong> the DPA schedule a customer already receives, or ask them.", "g"),
             ("2 &middot; Buy one panel&rsquo;s segment data",
-             "It closes the only hypothesis that went unresolved, and satisfaction-by-size is the question your sales team will ask first. <strong>Route:</strong> paid G2 or Gartner access.", "g")],
+             "It closes the only unresolved hypothesis, and it is the question your sales team asks first. <strong>Route:</strong> paid G2 or Gartner access.", "g")],
            cols=2)}
     {cards([("3 &middot; Detect the customer base independently",
-             "The only roster outside the audited count is 178 stories Braze chose to publish. Tag crawls, certificate records and job ads naming the stack would give a roster nobody curated. <strong>Route:</strong> a crawl, and it is not cheap.", "g"),
+             "The only roster outside the audited count is 178 stories Braze chose to publish. <strong>Route:</strong> tag crawls or job ads naming the stack. Not cheap.", "g"),
             ("4 &middot; Re-run this in ninety days",
-             "Every number here is reproducible by script. The two to watch: whether the gross-margin decline continues, and whether the 2026 incident rate settles or climbs.", "g")],
+             "Every number here is reproducible by script. Watch the gross-margin decline and the 2026 incident rate.", "g")],
            cols=2)}
-    <p>The full backlog &mdash; eight open questions, each with what would close it &mdash; is in
-    <span class="mono">docs/QUESTIONS.md</span>, and every finding in this deck resolves to a row in
-    <span class="mono">docs/FACTS.md</span> with a source path and a capture date.</p>
+    <p><strong>So the first two are worth a week and would change what we say; the last is worth an hour
+    a quarter.</strong> The full backlog is in <span class="mono">docs/QUESTIONS.md</span>.</p>
   </div>
 </section>''',
 """If you gave me another week, this is the order.
@@ -324,8 +316,8 @@ and whether the 2026 incident rate settles.""",
 add(f'''<section class="s" data-g="s" data-t="Close">
   {head("Close", "One thing to remember")}
   <div class="body" style="display:flex;flex-direction:column;justify-content:center;height:100%">
-    {big("Their documentation is more honest than anyone&rsquo;s marketing &mdash; including their own.",
-         "Every hard limit in this deck came from a page Braze wrote for its own engineers: three of four ingestion paths labelled &ldquo;not real-time&rdquo;, a fifteen-minute warehouse floor, an export limit cut tenfold on a dated boundary, and a merge that returns success when it has quietly declined. None of it is hidden. All of it is unread.")}
+    {big("Their strongest asset is a contract, not a capability.",
+         "A billion dollars of next year is already signed, so most of the base is not winnable this year. They are growing slower and spending less to do it, so they can fund a fight. And the capability they paid $303.2m for runs on models anyone can rent, with no API of its own. <strong>So compete on the renewal date and on the things they bought rather than built &mdash; not on the demo.</strong>")}
     {figs([("1,352", "documentation pages read"),
            ("451", "incidents"),
            ("845", "public issues"),

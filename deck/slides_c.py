@@ -59,9 +59,9 @@ add(f'''<section class="s" data-g="s" data-t="How one campaign works">
            ("06", "Message delivered", "email and SMS via named third parties"),
            ("07", "Response logged", "and it flows back to step 1")],
           key={1, 6})}
-    <p>Seven stages. <strong>The two picked out are where the evidence turned out to be interesting</strong>
-    &mdash; how fresh the data is at stage one, and who physically sends the message at stage six. Everything
-    in between is competent and largely as advertised, and I will say so as we go.</p>
+    <p>Seven stages, and the two picked out are the ones worth arguing about: how fresh the data is
+    going in, and who physically sends the message going out. <strong>Everything between them is
+    competent, so a pitch that attacks the middle will not land &mdash; aim at the ends.</strong></p>
   </div>
 </section>''',
 """This is the loop. Data arrives, the profile updates, segments recompute, the journey
@@ -88,13 +88,15 @@ add(f'''<section class="s" data-g="s" data-t="How data moves">
     <div class="ruleband">
       <div class="klabel">STATE THIS FAIRLY &mdash; IT IS NOT A LOCK-IN STORY</div>
       {tiles([("", "The asymmetry is real",
-               "Writing reaches ~4.5m objects a minute. Reading profiles back by identifier reaches ~12,500 a minute for a customer who joined after August 2024"),
+               "Writing reaches ~4.5m objects a minute. Reading profiles back reaches ~12,500 for a customer who joined after August 2024"),
               ("", "But they are different operations",
-               "Writing event objects versus reading whole profiles. The ratio shows where priority sits, not like-for-like throughput"),
+               "Event objects versus whole profiles. The ratio shows where priority sits, not like-for-like throughput"),
               ("", "And bulk export exists",
-               "Segment export to cloud storage sits under the default 250,000/hour limit. The sanctioned bulk route is generous")],
+               "Segment export to cloud storage sits under a 250,000/hour limit. The sanctioned bulk route is generous")],
              cols=3)}
     </div>
+    <p><strong>So getting off Braze is a project, not a setting.</strong> Price the migration work into
+    any switching conversation, and make the bulk route &mdash; not the profile API &mdash; the plan.</p>
   </div>
 </section>''',
 """Data in, data out.
@@ -210,10 +212,12 @@ add(f'''<section class="s" data-g="s" data-t="Stage 2: Identity">
            ("5", "identifier types accepted on ingest"),
            ("1", "identifier type for warehouse segments", "neg")], size="sm")}
     {cards([("A merge can decline and still report success",
-             "&ldquo;If both profiles have invalid phone numbers, Braze does not merge them &hellip; <strong>The endpoint still returns 202 Accepted with a success message</strong>, so the HTTP response does not indicate that the merge was skipped.&rdquo;", "r"),
+             "&ldquo;If both profiles have invalid phone numbers, Braze does not merge them &hellip; <strong>The endpoint still returns 202 Accepted with a success message.</strong>&rdquo;", "r"),
             ("Reporting splits after a merge",
-             "Dashboard summaries attribute a pre-merge send to the surviving profile. Currents &mdash; their paid data-export feed &mdash; along with Query Builder and Messaging History, attribute it to the orphaned one. Both are right by their own rules, and they disagree.", "a")],
+             "The dashboard attributes a pre-merge send to the surviving profile. Currents &mdash; their paid data-export feed &mdash; attributes it to the orphaned one. Both are right by their own rules, and they disagree.", "a")],
            cols=2)}
+    <p><strong>So an engineering team should test a merge failure on day one</strong> &mdash; send two
+    profiles with bad phone numbers and check the profile, not the response code.</p>
   </div>
 </section>''',
 """Identity is generous at the top and narrow at the bottom. Unlimited aliases on a
@@ -235,24 +239,24 @@ time.""",
 
 # ── 22 STAGE 3 · DECISIONING ─────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 3: Decisioning">
-  {head("Stage 3 &middot; decisioning", "Two engines, two databases, one bought")}
+  {head("Stage 3 &middot; decisioning", "Deciding who gets a message")}
   <div class="body">
     <p><strong>Two systems decide who gets a message, and they sit on two different databases
     that do not talk to each other.</strong> One follows rules you write; the other runs models.</p>
     {split(
       '<div><div class="klabel colhead">RULE-BASED &mdash; MONGODB</div>'
-      + tiles([("", "Segmentation", "Custom events, attributes, purchases and most targeting"),
+      + tiles([("", "Segmentation", "Custom events, attributes and most targeting"),
                ("", "Segment Extensions", "SQL, but served from Snowflake"),
-               ("", "Global Control Group", "Holdouts &mdash; people deliberately left un-messaged, to measure lift")], cols=1)
+               ("", "Global Control Group", "Holdouts &mdash; people left un-messaged, to measure lift")], cols=1)
       + '</div>',
       '<div><div class="klabel colhead">MODEL-BASED &mdash; SNOWFLAKE</div>'
-      + tiles([("", "Predictive Suite", "Churn and event prediction &mdash; 7 focused doc pages"),
+      + tiles([("", "Predictive Suite", "Churn and event prediction"),
                ("", "AI item recommendations", "Snowflake-backed"),
                ("", "Decisioning Studio", "Was OfferFit until June 2025")], cols=1)
       + '</div>')}
-    <p><strong>The split has a customer-visible consequence Braze flags itself:</strong>
-    &ldquo;Removing data from one system does not automatically remove it from the other.&rdquo;
-    Deleting bad event data means doing it in MongoDB, separately from anything Snowflake-backed.</p>
+    <p>Braze flags the consequence itself: &ldquo;Removing data from one system does not automatically
+    remove it from the other.&rdquo; <strong>So deleting bad data means deleting it twice</strong> &mdash;
+    and a deletion request that only clears one side is a compliance problem, not a tidiness one.</p>
   </div>
 </section>''',
 """Decisioning runs on two engines sitting on two different databases, and Braze publishes
@@ -283,6 +287,8 @@ add(f'''<section class="s" data-g="m" data-t="Stage 4: Building">
       Being able to trigger contextual push notifications, in-app messages, and emails from live event
       streams &mdash; <strong>without needing engineering for every small tweak</strong> &mdash; is a huge win.&rdquo;</div>
       <div class="qd">Enterprise IT manager, G2 &middot; 5/5 &middot; August 2026</div></div>
+    <p><strong>So do not attack Canvas.</strong> It is the thing their customers like most, and a pitch
+    that calls it weak will be contradicted by the room.</p>
   </div>
 </section>''',
 """This is the slide where I tell you what is good, because an analysis that only finds
@@ -303,7 +309,7 @@ to learn.""",
 
 # ── 24 STAGE 5 · CONTENT ─────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 5: Content">
-  {head("Stage 5 &middot; content and personalisation", "Liquid does the work, and draws the complaints")}
+  {head("Stage 5 &middot; content and personalisation", "Composing the message")}
   <div class="body">
     {figs([("123", "focused doc pages on Liquid templating"),
            ("43", "on Connected Content"),
@@ -314,6 +320,8 @@ add(f'''<section class="s" data-g="s" data-t="Stage 5: Content">
             ("What reviewers say about it",
              "&ldquo;Liquid personalization and Connected Content also make it straightforward to scale truly dynamic messaging&rdquo; &mdash; and, from the same reviewer, &ldquo;a challenging learning curve around Liquid syntax&rdquo; for non-technical users.", "a")],
            cols=2)}
+    <p><strong>So ask who writes the messages.</strong> If the answer is marketers rather than engineers,
+    the learning curve is a real cost and it lands on the team you are selling to.</p>
   </div>
 </section>''',
 """Content is Liquid — the templating language — plus Connected Content for live API calls
@@ -344,10 +352,10 @@ add(f'''<section class="s" data-g="s" data-t="Stage 6: Delivery">
                "WhatsApp", "LINE", "KakaoTalk", "Landing pages", "Live notif."], cols=2)
       + '</div>',
       ratio="1.15fr 0.85fr")}
-    <p><strong>Say what the disclosure names, not what exists.</strong> Absence here is not proof of no
-    intermediary &mdash; APNs, FCM and the WhatsApp/LINE/Kakao business APIs may sit outside the
-    definition of a sub-processor. What is certain is that <strong>email has three interchangeable
-    senders</strong>, which is deliberate redundancy on their highest-volume channel.</p>
+    <p>Absence is not proof of no intermediary &mdash; APNs, FCM and the WhatsApp, LINE and Kakao business
+    APIs may sit outside the definition. <strong>So a buyer cannot establish from this document who touches
+    their messages on eleven of thirteen channels.</strong> That is a question to put to them, not a gap to
+    assume the worst about &mdash; and on email, three interchangeable senders is deliberate redundancy.</p>
   </div>
 </section>''',
 """This is the slide that only exists because they are legally obliged to publish it.
@@ -368,28 +376,25 @@ hoping email deliverability was a single point of failure you could attack, it i
 
 # ── 26 STAGE 7 · INTERACTION ─────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Stage 7: Interaction">
-  {head("Stage 7 &middot; interaction and the loop back", "The response comes back, billed differently")}
+  {head("Stage 7 &middot; interaction and the loop back", "When the customer replies")}
   <div class="body">
     {figs([("71", "focused doc pages on Webhooks"),
            ("5 min", "Currents export cadence &mdash; or every 15,000 events"),
            ("add-on", "Currents is &ldquo;an optional Braze add-on&rdquo;", "neg"),
            ("free", "engagement events are not billed as data points")], size="sm")}
     <p>Inbound and two-way handling is real: webhooks are a first-class documented channel, and
-    engagement tracking &mdash; opens, clicks, push receipts &mdash; is explicitly excluded from data-point
-    billing. <strong>But getting the raw event stream back out is a paid add-on that exports on a
-    five-minute cadence</strong>, which is the mechanism behind the reporting complaint on slide 15.</p>
+    engagement tracking &mdash; opens, clicks, push receipts &mdash; is excluded from data-point billing.</p>
     <div class="ruleband">
       <div class="klabel">WEBHOOKS IS THE MOST UNDER-SOLD THING IN THE PLATFORM</div>
       {tiles([("", "Fifth-deepest channel in the product",
-               "71 focused documentation pages puts Webhooks above WhatsApp, Content Cards, Banners and every "
-               "channel except email, in-app, SMS and push."),
-              ("", "And it has no marketing page at all",
-               "One of the five documented channels sold under no name. A prospect judging Braze from its product "
-               "pages would not know this exists."),
+               "71 focused pages &mdash; behind only email, in-app, SMS and push, and sold under no name at all."),
               ("", "Which cuts both ways for us",
-               "It is a real integration surface we should not pretend is absent &mdash; and it is one Braze&rsquo;s "
-               "own sellers are least likely to lead with.")],
-             cols=3)}
+               "A real integration surface we should not pretend is absent &mdash; and one their own sellers "
+               "are least likely to lead with.")],
+             cols=2)}
+      <p style="margin-top:14px"><strong>So the round trip costs more than the outbound leg.</strong>
+      Getting the raw stream back is a paid add-on on a five-minute cadence &mdash; budget for it when you
+      compare list prices.</p>
     </div>
   </div>
 </section>''',
@@ -415,18 +420,20 @@ add(f'''<section class="s" data-g="s" data-t="Channels">
   {head("Channels &middot; counted from both ends", "Thirteen documented. Ten marketed.")}
   <div class="body">
     {split(
-      '<div><div class="klabel colhead">DOCUMENTED, WITH NO MARKETING PAGE</div>'
-      + logos(["Banners", "Transactional email", "Landing pages", "Live notifications", "Webhooks"], cols=1,
-              accent=("Landing pages",))
+      '<div><div class="klabel colhead">DEEP &mdash; FOCUSED DOCUMENTATION PAGES</div>'
+      + bars([("Email", 347), ("In-app messages", 115), ("SMS / MMS / RCS", 89), ("Push", 73),
+              ("Webhooks", 71), ("WhatsApp", 56), ("Content Cards", 47)])
       + '</div>',
-      '<div><div class="klabel colhead">MARKETED, BUT MISSING FROM THEIR OWN DOCS CHANNEL INDEX</div>'
-      + logos(["KakaoTalk"], cols=1, accent=("KakaoTalk",))
-      + '<p style="margin-top:18px">Four KakaoTalk documentation pages exist &mdash; setup, message creation, click '
-        'tracking, reporting &mdash; and a product page at <span class="mono">/product/kakaotalk-messenger</span>. '
-        'The channels index mentions it <strong>zero</strong> times.</p></div>',
+      '<div><div class="klabel colhead">THIN &mdash; REAL, BUT NOT COMPARABLE</div>'
+      + bars([("Banners", 28), ("Landing pages", 21), ("LINE", 11), ("Web push", 11),
+              ("Live notifications", 8), ("KakaoTalk", 5), ("Transactional email", 4)])
+      + '</div>',
       ratio="1fr 1fr")}
-    <p><strong>Landing pages is the one to notice</strong>: eleven user-guide pages plus three partner pages,
-    a substantial documented capability sold under no name at all.</p>
+    <p>Thirteen channels is broad &mdash; broader than several specialists on slide 17. But <strong>three
+    are the product and ten are completeness</strong>: email alone outweighs the next three combined.
+    <strong>So compete on the thin ones.</strong> A prospect buying for KakaoTalk or LINE is buying five
+    and eleven pages of documentation, not the platform email buyers get. One line on the drift: five of
+    these ship with no marketing page, and Webhooks &mdash; fifth deepest &mdash; is one of them.</p>
   </div>
 </section>''',
 """Thirteen channels are documented. That is broad, not narrow — I went in expecting the
@@ -454,10 +461,10 @@ add(f'''<section class="s" data-g="m" data-t="Integrations">
            ("322", "partner documentation pages"),
            ("~810", "average words per partner page"),
            ("~2,708", "average words per developer-guide page")], size="sm", focus=2)}
-    <p>The integration network is real and wide. But the documentation shape says something about its
-    depth: <strong>the partner section is the second-largest in the corpus by page count and close to the
-    thinnest by words per page</strong> &mdash; a lot of short entries, roughly one per partner. The developer
-    guide, a third the size, carries more than three times the words per page.</p>
+    <p>The network is real and wide, but its documentation is <strong>second-largest by page count and
+    close to thinnest by words per page</strong> &mdash; one short entry per partner. <strong>So treat 150+
+    as a directory, not a depth claim: test the two integrations you actually need before believing
+    it.</strong></p>
     {cards([("What is bought", "Delivery (Twilio, Infobip, SendGrid, SparkPost, SES), warehousing (Snowflake, Databricks, BigQuery), models (Anthropic, OpenAI, Google) &mdash; all from the sub-processor list", "g"),
             ("What is built", "The ingestion layer, Canvas, Liquid, the identity model, Currents, and the integration surface itself", "g")],
            cols=2)}
@@ -506,8 +513,9 @@ _map_legend = ('<div class="maplegend">'
 _subsystems = ('<div><div class="klabel colhead">THE SEVEN SUBSYSTEMS, IDENTICAL IN EVERY CLUSTER</div>'
                + logos(["Dashboard", "SDK Data Collection", "Data Processing", "REST APIs",
                         "Outbound Messaging", "Currents", "Cloud Data-Ingestion"], cols=1)
-               + '<p style="margin-top:14px">Corroborated independently: the sub-processor disclosure '
-                 'lists AWS regions for the same six territories. <strong>There is no US 09.</strong></p></div>')
+               + '<p style="margin-top:12px">The sub-processor disclosure lists AWS regions for the same '
+                 'six territories. <strong>So data residency is available in six places and nowhere else '
+                 '&mdash; ask which cluster before the contract.</strong></p></div>')
 
 add(f'''<section class="s" data-g="s" data-t="Infrastructure">
   {head("Infrastructure &middot; the status page as a disclosure", "Fifteen clusters, seven subsystems &mdash; and one exception")}
@@ -540,17 +548,19 @@ And US 08 is marked differently, because that is the next part.""",
 
 # ── 30 ANALYTICS ─────────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Analytics">
-  {head("Analytics &middot; what you can measure", "Reporting is the most consistent complaint")}
+  {head("Analytics &middot; what you can measure", "What you can measure")}
   <div class="body">
     {figs([("36%", "of recent TrustRadius reviewers call reporting limited and unintuitive", "neg"),
            ("140", "G2 reviews tagged &lsquo;Missing Features&rsquo;"),
            ("27", "focused doc pages on the Global Control Group"),
            ("2am ET", "when your billing dashboard refreshes &mdash; daily, cached")], size="sm")}
     {cards([("What is genuinely there",
-             "Holdouts and a Global Control Group for incrementality, campaign and Canvas analytics endpoints, KPI endpoints, and a Snowflake data share that avoids copying data at all.", "g"),
+             "Holdouts and a Global Control Group for incrementality, campaign and KPI endpoints, and a Snowflake data share that avoids copying data at all.", "g"),
             ("What reviewers keep hitting",
-             "&ldquo;The out-of-the-box reporting still feels too basic unless you export raw data through paid add-ons like Currents&rdquo; &mdash; and, separately, a wish for &ldquo;more robust native reporting on long-term retention cohorts&rdquo;.", "r")],
+             "&ldquo;The out-of-the-box reporting still feels too basic unless you export raw data through paid add-ons like Currents.&rdquo;", "r")],
            cols=2)}
+    <p><strong>So ask a prospect what they report on today, and who builds it.</strong> If the answer
+    involves exporting to a warehouse, they are already paying for the add-on that fixes this.</p>
   </div>
 </section>''',
 """Analytics is where the review corpus is most consistent, across panels that have nothing
@@ -575,17 +585,20 @@ around 2am Eastern.** The billing meter is not real-time either.""",
 add(f'''<section class="s" data-g="s" data-t="The AI, honestly">
   {head("The AI &middot; five independent lenses", "Bought recently, running on other people&rsquo;s models")}
   <div class="body">
+    {flow([("2011&ndash;", "The platform", "segmentation, journeys, Liquid &mdash; a decade of it"),
+           ("Jun 2025", "The engine, bought", "OfferFit, $303.2m, renamed Decisioning Studio"),
+           ("Now", "The models, rented", "Anthropic, OpenAI and Google, named in their own disclosure")],
+          key={2, 3})}
     {split(
-      '<div><div class="klabel colhead">LENS 1 &mdash; FOCUSED DOCUMENTATION PAGES</div>'
-      + bars([("Email", 347), ("Canvas", 249), ("Segmentation", 242), ("Liquid", 123),
-              ("Recommendations", 73), ("BrazeAI brand", 32), ("Decisioning Studio", 22, "medium"),
+      '<div><div class="klabel colhead">AND WHAT EACH LAYER MEASURES &mdash; FOCUSED DOC PAGES</div>'
+      + bars([("Email", 347), ("Canvas", 249), ("Segmentation", 242),
+              ("Recommendations", 73), ("Decisioning Studio", 22, "medium"),
               ("Agents", 17, "medium"), ("Predictive Suite", 7, "weak")])
       + '</div>',
       '<div><div class="klabel colhead">LENSES 2&ndash;5</div>'
-      + tiles([("", "0 of 135 API endpoints", "28 namespaces. None of them AI, prediction, agent or decisioning"),
-               ("", "3 external model suppliers", "Anthropic, OpenAI and Google &mdash; named in their own sub-processor disclosure"),
-               ("", "The engine was bought", "Decisioning Studio was OfferFit until June 2025. $303.2m"),
-               ("", "Reviewers name copywriting", "Two G2 reviewers say the AI copy needs &ldquo;a careful human hand&rdquo;. None mentions decisioning")], cols=1)
+      + tiles([("", "0 of 135 API endpoints", "28 namespaces, none of them AI or decisioning"),
+               ("", "Reviewers name copywriting", "Two G2 reviewers say the AI copy needs &ldquo;a careful human hand&rdquo;"),
+               ("", "So the useful question is one line", "&ldquo;Can I call your AI from my own systems?&rdquo; Today the documented answer is no &mdash; which is what a data-science team needs to hear before they plan around it")], cols=1)
       + '</div>',
       ratio="1.05fr 0.95fr")}
   </div>

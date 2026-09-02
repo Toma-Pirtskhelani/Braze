@@ -44,7 +44,7 @@ MARK = f'<img class="titlemark" src="{LOGO}" alt="Braze">'
 add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
   {MARK}
   <div class="subject">Competitor analysis</div>
-  <p class="lede">A customer engagement platform &mdash; and a public company, which changes what can be known.</p>
+  <p class="lede">Growing slower every year, spending less to do it &mdash; and its newest capability was bought, not built.</p>
   <div class="srcstrip">{_src}</div>
   <div class="byline"><span><strong>Toma Pirtskhelani &middot; Product Manager</strong></span><span>Public sources only &middot; September 2026</span></div>
 </section>''',
@@ -80,6 +80,8 @@ add(f'''<section class="s" data-g="s" data-t="How we approach it">
               ("Gaps become a backlog",
                "Anything needing a non-public source goes on the open-questions list, and grows as you add to it.", "r")],
              cols=3)}
+      <p style="margin-top:14px"><strong>And ten expectations were written down before any of this was
+      read. Four turned out wrong &mdash; slide 40 shows which.</strong></p>
     </div>
   </div>
 </section>''',
@@ -108,7 +110,7 @@ was being built.""",
 # Note the top grade differs from the private-vendor version of this deck: for a
 # listed company, audited filings outrank everything, including their documentation.
 add(f'''<section class="s" data-g="s" data-t="How we grade">
-  {head("Method &middot; evidence grading", "Every claim takes its weakest source")}
+  {head("Method &middot; evidence grading", "How to judge every claim here")}
   <div class="body">
     <div class="tiles" style="grid-template-columns:repeat(3,1fr);gap:18px">
       <div class="tile grade" style="border-left:3px solid var(--strong)">

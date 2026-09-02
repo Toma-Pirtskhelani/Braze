@@ -250,8 +250,8 @@ strong{color:var(--vellum);font-weight:600}
 /* A split column is a narrower, taller frame than a full-width body, and the default
    card paddings overflow it on the two slides that stack seven logos or four tiles down
    one side. Tightened only inside .split, so full-width uses keep their air. */
-.split .logos{gap:7px}
-.split .logo{padding:11px 8px}
+.split .logos{gap:5px}
+.split .logo{padding:10px 8px}
 .split .tiles{gap:9px}
 .split .tile{padding:11px 16px}
 .split .tile .tt{margin-top:8px}

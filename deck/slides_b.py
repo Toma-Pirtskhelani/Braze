@@ -49,23 +49,21 @@ add(f'''<section class="s" data-g="s" data-t="The four documents">
   {head("What this rests on", "Four documents a company cannot write freely")}
   <div class="body">
     {cards([("The 10-K",
-             "Their <strong>audited annual report to the US regulator</strong>, filed once a year. Signed by the "
-             "chief executive and the finance chief, audited by Ernst &amp; Young, and wrong at legal risk. "
-             "<strong>Seven years of them.</strong>", "g"),
+             "Their <strong>audited annual report to the US regulator</strong>. Signed by the chief executive "
+             "and the finance chief, and wrong at legal risk. <strong>Seven years of them.</strong>", "g"),
             ("The proxy statement",
-             "Filed before the annual shareholder meeting. It has to name <strong>every executive officer and "
-             "director</strong>, what each is paid, and who owns the company. It is the only place people appear.", "g")],
+             "Filed before the shareholder meeting. Must name <strong>every executive officer and "
+             "director</strong>, their pay, and who owns the company.", "g")],
            cols=2)}
     {cards([("The sub-processor disclosure",
-             "A public list of <strong>every outside supplier that touches customer data</strong>. Data-protection law "
+             "A public list of <strong>every outside supplier that touches customer data</strong>. The law "
              "obliges them to keep it complete, so it names middlemen no marketing page would.", "g"),
             ("The status page",
-             "A live record of <strong>every outage since 2016</strong>, written during the outage. Nobody writes a "
-             "status page to look good, which is exactly why it is worth reading.", "g")],
+             "A live record of <strong>every outage since 2016</strong>, written during the outage. Nobody "
+             "writes one of these to look good.", "g")],
            cols=2)}
     <p><strong>None of these is marketing.</strong> Three are filed under legal penalty and the fourth is
-    written under pressure &mdash; which is why, wherever this deck and Braze&rsquo;s website disagree, the
-    documents win.</p>
+    written under pressure &mdash; so wherever this deck and Braze&rsquo;s website disagree, the documents win.</p>
   </div>
 </section>''',
 """Before any findings, thirty seconds on where this comes from — because four documents do
@@ -98,20 +96,20 @@ add(f'''<section class="s" data-g="s" data-t="Five things">
   {head("Executive summary", "If you remember five things")}
   <div class="body">
     {cards([("Braze grades its own data delays, and three of four are slow",
-             "Their documentation labels three of the four ways data gets in <strong>&ldquo;not real-time&rdquo;</strong>. "
-             "It is their table, not our characterisation.", "g"),
+             "Their documentation labels three of the four ways data gets in "
+             "<strong>&ldquo;not real-time&rdquo;</strong>. Their table, not our characterisation.", "g"),
             ("The AI decisioning engine was bought, not built",
-             "OfferFit, acquired June 2025 for <strong>$303.2m</strong> and renamed AI Decisioning Studio. "
-             "The models come from Anthropic, OpenAI and Google.", "g"),
+             "OfferFit, acquired June 2025 for <strong>$303.2m</strong>. The models come from Anthropic, "
+             "OpenAI and Google.", "g"),
             ("One instance is not on the same cloud as the others",
-             "The addresses Braze tells you to allowlist &mdash; to permit through your firewall &mdash; for "
-             "<strong>US-08</strong> belong to Microsoft. Every other instance&rsquo;s belong to Amazon.", "a")],
+             "The addresses Braze tells you to allowlist for <strong>US-08</strong> belong to Microsoft. "
+             "Every other instance&rsquo;s belong to Amazon.", "a")],
            cols=3)}
     {cards([("They are slowing down and getting more efficient at the same time",
-             "Growth has halved since FY2023, and the share of revenue spent on sales and marketing fell "
-             "further. <strong>Three straight years of positive cash flow.</strong>", "g"),
+             "Growth has halved since FY2023 while sales spend fell further. <strong>Three straight years "
+             "of positive cash flow.</strong>", "g"),
             ("Braze names four competitors. Buyers compare them against eight",
-             "And the five extra names on the buyer&rsquo;s list are specialists Braze never mentions.", "g")],
+             "The five extra names are specialists Braze never mentions.", "g")],
            cols=2)}
   </div>
 </section>''',
@@ -180,30 +178,26 @@ argument.""",
 _gov_left = ('<div>' + figurehead(
     CEO, "Bill Magnuson",
     "Chairman &middot; CEO &middot; President &middot; Cofounder",
-    "CTO from July 2011, chief executive since January 2017, chairman of the board "
-    "&mdash; and President too since June 2025, when the previous President resigned "
-    "and the role was not refilled. One person, four titles.",
+    "CTO from July 2011, chief executive since 2017, chairman &mdash; and President too "
+    "since June 2025, when the previous President resigned. One person, four titles.",
     "Cofounder Jon Hyman is still CTO, an officer since 2011.")
     + '</div>')
 
 _gov_right = ('<div><div class="klabel colhead">AND WHO HOLDS THE SEATS</div>'
               + tiles([("", "Seven seats, six independent",
-                        "Magnuson is the exception, as President and CEO. <strong>Phillip Fernandez is Lead "
-                        "Independent Director</strong> &mdash; the role a board creates when its chair is not."),
-                       ("", "The chair is the chief executive",
-                        "The proxy defends combining them rather than glossing it: separating them &ldquo;has the "
-                        "potential to give rise to divided leadership&rdquo;."),
+                        "Magnuson is the exception. <strong>Phillip Fernandez is Lead Independent "
+                        "Director</strong> &mdash; the role a board creates when its chair is not."),
                        ("", "And the board is classified",
                         "Three staggered classes, so only about <strong>a third stands in any year</strong>. "
                         "The super-voting stock is gone; this is not."),
                        ("", "The votes, after January",
-                        "Class B converted <strong>30 January 2026</strong>; super-voting ended. Largest holder "
-                        "<strong>6.0%</strong>, the CEO <strong>4.9%</strong>, the Battery partner "
-                        "<strong>5.1%</strong> &mdash; <strong>no blocking position left.</strong>")], cols=1)
+                        "Class B converted <strong>30 January 2026</strong>. Largest holder <strong>6.0%</strong>, "
+                        "the CEO <strong>4.9%</strong>, the Battery partner <strong>5.1%</strong> &mdash; "
+                        "<strong>no blocking position left.</strong>")], cols=1)
               + '</div>')
 
 add(f'''<section class="s" data-g="s" data-t="Origins">
-  {head("Origins &middot; and who controls it now", "Two of three cofounders still run it")}
+  {head("Origins &middot; and who controls it now", "Origins, and who controls it now")}
   <div class="body">
     {split(_gov_left, _gov_right, ratio="0.95fr 1.05fr")}
   </div>
@@ -329,11 +323,9 @@ add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
     <div class="ruleband">
       <div class="klabel">WHAT THE PURCHASE-PRICE ALLOCATION TELLS YOU</div>
       <p>Only <strong>$66.6m of the $303.2m was identifiable</strong>, and $56.7m of that is the software
-      itself &mdash; so Braze bought a capability and the people who built it, not a revenue stream. The
-      trademark was valued at <strong>$0.9m</strong>: nobody expected the OfferFit name to survive, and it
-      did not. And the technology amortises <strong>to cost of revenue over six years</strong>, which is why
-      an AI acquisition lands in gross margin &mdash; and why the drag runs to 2031 rather than washing out
-      next year.</p>
+      &mdash; so Braze bought a capability and its people, not revenue. The trademark went at
+      <strong>$0.9m</strong>: nobody expected the name to survive. <strong>So the margin drag runs to 2031,
+      and any AI pricing they quote has to carry it.</strong></p>
     </div>
   </div>
 </section>''',
@@ -433,11 +425,11 @@ add(f'''<section class="s" data-g="s" data-t="What it costs">
     <div class="ruleband">
       <div class="klabel">AND THE MECHANIC UNDERNEATH IT &mdash; FROM THEIR DOCUMENTATION</div>
       {tiles([("", "You are billed per data point",
-               "&ldquo;a session start, session end, custom event, or purchase recorded, as well as <strong>any attribute set</strong> on an end user profile&rdquo; &mdash; each one counts separately"),
+               "&ldquo;a session start, session end, custom event, or purchase recorded, as well as <strong>any attribute set</strong>&rdquo; &mdash; each counts separately"),
               ("", "Engagement is free",
-               "Push tokens, device info, email opens and push clicks are <strong>not</strong> counted. That is a genuinely customer-friendly boundary"),
+               "Opens, clicks, push tokens and device info are <strong>not</strong> counted. A genuinely customer-friendly boundary"),
               ("", "Their own advice is to send less",
-               "&ldquo;<strong>Don&rsquo;t waste data points. Only update changing data!</strong>&rdquo; &mdash; a platform sold on streaming everything, priced so that you send less of it")],
+               "&ldquo;<strong>Don&rsquo;t waste data points. Only update changing data!</strong>&rdquo; &mdash; a platform sold on streaming everything, priced so you send less")],
              cols=3)}
     </div>
   </div>
@@ -465,7 +457,7 @@ quickly.""",
 
 # ── 12 WHO USES IT ───────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Who uses it">
-  {head("Customers &middot; three rosters, never merged", "How many customers depends on who counts")}
+  {head("Customers &middot; three rosters, never merged", "Three ways to count a customer")}
   <div class="body">
     {figs([("2,609", "the 10-K&rsquo;s defined metric, 31 Jan 2026"),
            ("333", "customers at $500k+ ARR &mdash; up from 202 in FY2024"),
@@ -507,7 +499,7 @@ _geo_right = '<div>' + cards([
     ("Set against the footprint",
      "<strong>15 regional clusters</strong> and <strong>15 legal entities across 14 territories</strong> &mdash; from the status page and the sub-processor disclosure respectively.", "g"),
     ("So what",
-     "Forty-five per cent of revenue is international and none of it concentrates. That is a wide, thin footprint carrying a heavy infrastructure and legal base.", "a")],
+     "A wide, thin footprint on a heavy fixed base. <strong>No single non-US market is large enough that losing it would show</strong> &mdash; so outside the US you compete market by market, and so do they.", "a")],
     cols=1) + '</div>'
 
 add(f'''<section class="s" data-g="s" data-t="Where they operate">
@@ -573,7 +565,7 @@ behind it — the raw-data export that fixes it is a paid add-on called Currents
 
 # ── 15 WHAT EMPLOYEES SAY ────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="m" data-t="What employees say">
-  {head("Glassdoor &middot; and the careers board", "Well rated. The complaints are about progression")}
+  {head("Glassdoor &middot; and the careers board", "What employees say")}
   <div class="body">
     {figs([("4.1<em>/5</em>", "524 ratings"), ("82%", "would recommend"),
            ("90%", "approve of the CEO"), ("71%", "positive business outlook")], size="sm")}
@@ -582,18 +574,17 @@ add(f'''<section class="s" data-g="m" data-t="What employees say">
       rates&rdquo;</strong>.</div>
       <div class="qd">Glassdoor company page &middot; captured signed-in, 2 September 2026</div></div>
     {tiles([("", "Not pay &mdash; progression",
-             "The proxy puts median employee pay at <strong>$164,000</strong>. This is not a low-paying "
-             "company, so &ldquo;limited upward mobility&rdquo; is a complaint about the ceiling, not the floor"),
+             "Median employee pay is <strong>$164,000</strong>. Not a low-paying company, so this is a "
+             "complaint about the ceiling, not the floor"),
             ("", "Still hiring hard",
-             "<strong>296 open roles</strong> across 15 hiring departments &mdash; including Bucharest, which matches a Romanian entity in the sub-processor list")],
+             "<strong>296 open roles</strong> across 15 departments &mdash; including Bucharest, matching a Romanian entity in the sub-processor list")],
            cols=2)}
     <div class="ruleband">
       <div class="klabel">AND WHAT THEY ARE HIRING FOR &mdash; THE FORWARD-LOOKING HALF</div>
       <p>Sales <strong>89</strong> &middot; Engineering <strong>57</strong> &middot; Customer Experience
-      <strong>38</strong> &middot; Marketing 24 &middot; Solutions Consulting 23 &middot; Partnerships 16.
-      <strong>Go-to-market is 72.0% of the board against 19.6% for engineering and product &mdash; roughly
-      3.7 to one.</strong> A requisition is an intention, not a person, and this is not a spend ratio &mdash;
-      but it points the same way as slide 13&rsquo;s retention figures.</p>
+      <strong>38</strong>. <strong>Go-to-market is 72.0% of the board against 19.6% for engineering and
+      product.</strong> So they are buying new logos rather than building &mdash; and that is where they
+      will meet you.</p>
     </div>
   </div>
 </section>''',
@@ -671,8 +662,8 @@ add(f'''<section class="s" data-g="m" data-t="Who they compete with">
       <div class="klabel">THE GAP IS THE FINDING</div>
       <p><strong>The brighter names on each side are the ones the other list does not have.</strong>
       Three of their four appear on the buyer list, so this is not a vendor misreading its market &mdash;
-      but <strong>five vendors buyers compare them against appear nowhere in the 10-K</strong>, and they are
-      mostly mobile-engagement specialists rather than the suites Braze positions against.</p>
+      but five vendors buyers compare them against appear nowhere in the 10-K. <strong>So those five are
+      the ones to watch: Braze is not positioning against them, and will not have an answer ready.</strong></p>
     </div>
   </div>
 </section>''',

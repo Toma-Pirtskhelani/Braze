@@ -53,7 +53,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > was being built.
 
 ### 03 · How we grade
-*On screen:* Method · evidence grading — **Every claim takes its weakest source**
+*On screen:* Method · evidence grading — **How to judge every claim here**
 
 > Three grades on the slides, five in the record behind them.
 
@@ -158,7 +158,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > argument.
 
 ### 08 · Origins
-*On screen:* Origins · and who controls it now — **Two of three cofounders still run it**
+*On screen:* Origins · and who controls it now — **Origins, and who controls it now**
 
 > Founded 2011. Public since November 2021. And now the part this slide is actually for,
 > because until this pass it answered only half its own question.
@@ -334,7 +334,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > quickly.
 
 ### 13 · Who uses it
-*On screen:* Customers · three rosters, never merged — **How many customers depends on who counts**
+*On screen:* Customers · three rosters, never merged — **Three ways to count a customer**
 
 > Three customer counts and they must never be merged.
 
@@ -393,7 +393,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > behind it — the raw-data export that fixes it is a paid add-on called Currents.
 
 ### 16 · What employees say
-*On screen:* Glassdoor · and the careers board — **Well rated. The complaints are about progression**
+*On screen:* Glassdoor · and the careers board — **What employees say**
 
 > Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
 > per cent approve of the CEO.
@@ -615,7 +615,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > time.
 
 ### 23 · Stage 3: Decisioning
-*On screen:* Stage 3 · decisioning — **Two engines, two databases, one bought**
+*On screen:* Stage 3 · decisioning — **Deciding who gets a message**
 
 > Decisioning runs on two engines sitting on two different databases, and Braze publishes
 > which is which.
@@ -651,7 +651,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > to learn.
 
 ### 25 · Stage 5: Content
-*On screen:* Stage 5 · content and personalisation — **Liquid does the work, and draws the complaints**
+*On screen:* Stage 5 · content and personalisation — **Composing the message**
 
 > Content is Liquid — the templating language — plus Connected Content for live API calls
 > at send time, Content Blocks for reuse, and catalogs for item-level personalisation.
@@ -685,7 +685,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > hoping email deliverability was a single point of failure you could attack, it is not.
 
 ### 27 · Stage 7: Interaction
-*On screen:* Stage 7 · interaction and the loop back — **The response comes back, billed differently**
+*On screen:* Stage 7 · interaction and the loop back — **When the customer replies**
 
 > The loop closes. Responses come back as engagement events, and here Braze does something
 > genuinely customer-friendly: **engagement tracking is free.** Opens, clicks, push
@@ -767,7 +767,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > And US 08 is marked differently, because that is the next part.
 
 ### 31 · Analytics
-*On screen:* Analytics · what you can measure — **Reporting is the most consistent complaint**
+*On screen:* Analytics · what you can measure — **What you can measure**
 
 > Analytics is where the review corpus is most consistent, across panels that have nothing
 > to do with each other.
@@ -1030,7 +1030,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > for us than any claim we could make.
 
 ### 39 · Reliability, measured
-*On screen:* The operational record · a decade of it, public — **451 incidents, and the rate is falling**
+*On screen:* The operational record · a decade of it, public — **A decade of reliability, measured**
 
 > A decade of incidents, because they publish a status page and most vendors do not.
 
@@ -1096,7 +1096,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > we said so.
 
 ### 41 · What we could not answer
-*On screen:* The honest residue — **Four gaps, and what would close them**
+*On screen:* The honest residue — **What we could not answer**
 
 > Four things I could not answer, stated plainly.
 

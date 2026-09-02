@@ -50,10 +50,11 @@ add(f'''<section class="s" data-g="s" data-t="Where the money goes">
       + bars([("FY2021", 55.9), ("FY2022", 58.5), ("FY2023", 49.3),
               ("FY2024", 32.7), ("FY2025", 25.8), ("FY2026", 24.4, "medium")], unit="%")
       + '</div>')}
-    <p>This killed the hypothesis it was built to test. The expectation was decelerating growth
-    <em>propped up by</em> sales spend. <strong>The evidence says the opposite: S&amp;M has fallen more than
-    twelve points as a share of revenue since FY2023, to its lowest in the series, while growth halved.</strong>
-    Operating cash flow turned positive in FY2024 and has grown every year since &mdash; to $71.4m.</p>
+    <p>The expectation was decelerating growth <em>propped up by</em> sales spend. The evidence says the
+    opposite: <strong>S&amp;M fell more than twelve points as a share of revenue since FY2023 while growth
+    halved</strong>, and operating cash flow has been positive and rising since FY2024. <strong>So do not
+    plan around them running out of money, or buying growth back.</strong> They can fund a price fight, and
+    the loss line will not stop them.</p>
   </div>
 </section>''',
 """Seven audited years of where the money goes, and this slide killed the hypothesis I
@@ -81,17 +82,11 @@ The loss is real; it is mostly equity, and shareholders are carrying it.""",
 # ── 34 WHAT COMES NEXT ───────────────────────────────────────────────────────
 _next_tiles = tiles([
     ("", "1 &middot; Two company documents",
-     "The sub-processor list (1 June 2026) names <strong>Amazon and Google</strong> as hosting providers. "
-     "The 10-K names <strong>&ldquo;Amazon Web Services and Rackspace&rdquo;</strong>. "
-     "<strong>Neither names Microsoft.</strong>"),
+     "The sub-processor list names <strong>Amazon and Google</strong>. The 10-K names <strong>Amazon and Rackspace</strong>. <strong>Neither names Microsoft.</strong>"),
     ("", "2 &middot; Their own documentation",
-     "Braze publishes the IPs you must allowlist, per instance. Every address listed for "
-     "<strong>US-08 is registered to Microsoft Corporation</strong>. Every other instance &mdash; "
-     "US-10, AU-01, ID-01, JP-01, KR-01 &mdash; is Amazon. Checked against ARIN."),
+     "Every address Braze lists for <strong>US-08 is registered to Microsoft</strong>. Every other instance is Amazon. Checked against ARIN."),
     ("", "3 &middot; Certificate transparency",
-     "50 hosts sit on region codes <span class='mono'>p-aze-us</span>, <span class='mono'>s-aze-us</span>, "
-     "<span class='mono'>d-aze-us</span> &mdash; matching no AWS region identifier, where every other code "
-     "does. They include <span class='mono'>sdk-us08</span> and <span class='mono'>subcenter-08</span>."),
+     "50 hosts sit on <span class='mono'>aze</span> region codes matching no AWS identifier, where every other code does &mdash; including <span class='mono'>sdk-us08</span>."),
     ], cols=3)
 
 add(f'''<section class="s" data-g="s" data-t="What comes next">
@@ -100,9 +95,9 @@ add(f'''<section class="s" data-g="s" data-t="What comes next">
     {_next_tiles}
     <div class="ruleband">
       <div class="klabel">HOW TO SAY THIS &mdash; AND HOW NOT TO</div>
-      <p><strong>State the three observations and stop.</strong> A hosting arrangement may sit outside a
-      sub-processor listing for reasons not visible from outside. Saying they failed to disclose would be a
-      legal conclusion this evidence does not support. <em>The question is for them, not a conclusion for us.</em></p>
+      <p>A hosting arrangement may sit outside a sub-processor listing for reasons not visible from
+      outside, and saying they failed to disclose would be a legal conclusion this evidence does not
+      support. <strong>So put it to them as a question: which entity operates my instance?</strong></p>
     </div>
   </div>
 </section>''',
@@ -164,14 +159,14 @@ add(f'''<section class="s" data-g="s" data-t="What protects them">
     {cards([("Contracted revenue, not pipeline",
              "<strong>$1,033.0m of remaining performance obligation</strong> &mdash; 1.40&times; current revenue, already signed. You cannot displace what is not up for renewal. This is the strongest of the three.", "g"),
             ("Ten years of streaming plumbing",
-             "MongoDB, Snowflake, Kafka and Redis under fifteen regional clusters, with a decade of incident history to show it holds. Copyable in principle; expensive and slow in practice.", "g"),
+             "MongoDB, Snowflake, Kafka and Redis under fifteen clusters, with a decade of incidents to show it holds. Copyable in principle; slow in practice.", "g"),
             ("Marketer independence from engineering",
              "The thing reviewers actually praise: changing a journey without filing a ticket. That is a workflow habit, and habits are stickier than features.", "g")],
            cols=3)}
     <div class="ruleband">
       <div class="klabel">AND WHAT DOES NOT PROTECT THEM</div>
       {cards([("The AI",
-               "Bought for $303.2m, running on Anthropic, OpenAI and Google models, with no API surface of its own. Anyone can buy the same models. This is a feature race, not a moat.", "r"),
+               "Bought for $303.2m, running on models anyone can rent, with no API of its own. A feature race, not a moat.", "r"),
               ("The channel roster",
                "Broad and well built &mdash; and matched by several of the five specialists buyers shortlist them against but they never name.", "a")],
              cols=2)}

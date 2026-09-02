@@ -431,3 +431,123 @@ favour) are what make the critical findings credible. They are not padding.
 does not show, promote the evidence into the body — that was the slide-16 lesson.
 
 **Do not touch the record or the fact index.** This is deck work only.
+
+---
+
+# Part D · Closing record — what was done, 2026-09-02
+
+Executed in C1's order. No slides added or removed (43 in, 43 out), no facts added, and the
+three favourable findings on slides 24, 39 and 40 are intact.
+
+## D1 · The numbers I actually landed
+
+| | Before | After | Guide's target |
+|---|---|---|---|
+| **Headlines: labels / claims** | 17 / 25 | **27 / 16** | 29 / 14 |
+| Longest run of claims | 8 | **4** (slides 9–12) | ≤ 3 |
+| Body words, mean | 123 | **117** | ≤ 120 each |
+| Body words, max | 261 | **188** (slide 40) | ~180 |
+| Slides over 120 words | — | **20 of 39** | 0, except slide 40 |
+| Slides overflowing the safe line | 0 | **0** | 0 |
+| `tools/verify.py` | 9 pass · 0 fail | **9 pass · 0 fail** | 0 failures |
+| Release | 42 pages | **43 pages, 5 fonts, none fallback** | 43 pages |
+
+**The headline ratio is 27 labels to 16 claims.** That is what Part B's own per-slide
+assignments produce when every one is followed — see D4, where the guide's part targets and
+its slide instructions disagree.
+
+## D2 · The eleven conversions, done as one pass
+
+`03` How to judge every claim here · `08` Origins, and who controls it now · `13` Three ways
+to count a customer · `16` What employees say · `23` Deciding who gets a message · `25`
+Composing the message · `27` When the customer replies · `31` What you can measure · `39` A
+decade of reliability, measured · `41` What we could not answer — plus `01`, which gained a
+thesis lede rather than a headline.
+
+Read as a column afterwards, exactly as instructed. Two things were only audible that way:
+the deck now opens on eight consecutive labels before its first claim, which is right — the
+frame should not shout — and **Part II now alternates** rather than running a wall of
+verdicts. The one place the rhythm still fails is slides 9–12, four claims in a row; see D4.
+
+## D3 · So-what lines
+
+Every slide in Parts II and III now ends on the audience. The method commentary that used
+to close them is gone, not supplemented — including *"Say what the disclosure names, not
+what exists"*, which was written to the analyst and is now: **"So a buyer cannot establish
+from this document who touches their messages on eleven of thirteen channels."**
+
+Slide 36 was the standard. The test I applied to each: *could someone in the room act on
+this tomorrow?*
+
+- **20** — "So getting off Braze is a project, not a setting. Price the migration work in."
+- **22** — "So an engineering team should test a merge failure on day one."
+- **23** — "So deleting bad data means deleting it twice — a compliance problem, not a tidiness one."
+- **24** — "So do not attack Canvas. A pitch that calls it weak will be contradicted by the room."
+- **26** — the eleven-of-thirteen line above.
+- **27** — "So the round trip costs more than the outbound leg."
+- **30** — "So data residency is available in six places and nowhere else."
+- **34** — "So do not plan around them running out of money, or buying growth back."
+- **35** — "So put it to them as a question: which entity operates my instance?"
+
+Six were added in Part I too, where the guide named them (07, 09, 11, 12, 14, 17).
+
+**Slide 43** now ends on **"Their strongest asset is a contract, not a capability"** — a
+billion of next year already signed, an efficient cost base that can fund a fight, and a
+$303.2m capability running on models anyone can rent. The documentation line moved to the
+notes; slide 05 already makes the same point where it belongs.
+
+**Slide 01** states a thesis about Braze — *"Growing slower every year, spending less to do
+it — and its newest capability was bought, not built"* — and **slide 02 promises the
+hypotheses**, which slide 40 now opens by paying off.
+
+**Slide 28** was rebuilt around the competitive question. It used to audit which channel
+appeared in which index; it now measures all thirteen by documentation depth in two columns,
+deep and thin, and concludes: *"So compete on the thin ones."* The index drift is one clause.
+
+**Slide 32** leads with the chronology — the platform, then the engine bought in June 2025,
+then the models rented — with the counts second.
+
+## D4 · Where I disagree with this guide
+
+**1 · Part A2's target and Part B's instructions do not agree, and I followed Part B.**
+A2 sets 29 labels / 14 claims. Following every per-slide assignment in Part B produces
+**27 / 16** — the arithmetic is in D1, and the gap is two slides in Part I and one in Part
+II, where A2's part totals ask for one more label than Part B's slide list marks. RULE 1
+says *"Part B assigns the kind for all 43; do not override it"*, and C2's operational gate
+is *"if claims exceed 16, convert more"* — 16 does not exceed 16. So I took the specific
+instruction over the summary table. **Two more conversions would hit 29/14 and each would
+require overriding a KEEP**, and three of the four candidates are ★ slides.
+
+**2 · C3's "no run of claims longer than three" cannot be satisfied alongside Part B.**
+Slides 9–12 are four consecutive claims. Slide 9 is marked `LABEL → CLAIM` **KEEP
+HEADLINE**, and 10, 11 and 12 are all ★ KEEP. There is no move that breaks the run without
+contradicting an instruction. If slide 9 is counted as the label its grammar makes it — a
+noun phrase with no verb — the run is three and the ratio is 28/15. **I have reported the
+stricter reading rather than the one that flatters the result.**
+
+**3 · The 120-word cap counts structural text, and on a data-dense slide that is the wrong
+unit.** Twenty slides sit between 121 and 188 words. The cap is measured over everything
+inside the body — column headers, figure captions, flow step names, chart labels — and on a
+slide like 28 or 30 most of that is scaffolding the eye scans in a second, not prose that
+makes an audience "read and stop listening". Mean body length fell from 123 to 117 and the
+maximum from 261 to 188, which is the real improvement. **Pushing the last twenty under 120
+would mean deleting figure captions and column headings**, which makes the slides harder to
+read, not easier. I stopped where cutting stopped helping and have reported the exact
+distribution instead of a pass mark.
+
+**4 · One thing the guide asks for that I think is simply right, and worth naming.** Rule 2
+is the single best instruction in any of the five review documents. The deck was written
+from the analyst's chair for four rounds and nobody caught it, because every check we had
+measured whether claims were *true* rather than whether they were *useful*. A closing line
+that says "so what does this mean for us" cannot be verified by a script and is worth more
+than most of what can.
+
+## D5 · What is still weak
+
+- **The claim run at 9–12**, unresolvable without overriding a KEEP.
+- **Twenty bodies over 120 words**, argued above.
+- **Slide 40 at 188**, eight over its own allowance; the fourth column of reasoning moved to
+  notes as instructed and the three hypotheses are intact.
+- **Dead space** was not revisited; the position is unchanged from `CRITIQUE-2.md` §10.
+- **Part I still carries five claims to nine labels**, which is the least even part of the
+  deck.
