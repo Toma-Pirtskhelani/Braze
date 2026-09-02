@@ -51,20 +51,92 @@ have opened more than a handful of files without running `rg -c` first, stop and
 
 ---
 
-## Degradation — what to do when a source is unavailable
+## Blocked sources — the escalation ladder
 
-**Never wait for a human. Substitute, then record the substitution.**
+Review sites block scripted access. **Every blocked source goes through three tiers, in
+order.** Never skip a tier, and never stop at one without recording why.
+
+### Tier 1 · script
+
+Already attempted, and it fails. G2, Gartner Peer Insights, TrustRadius and Glassdoor all
+returned **HTTP 403** on 2026-09-01. Do not spend time retrying them from a script.
+
+### Tier 2 · the operator's own browser
+
+The `claude-in-chrome` tools drive a **real Chrome session that is already signed in**.
+This works where a script cannot, because it has real cookies and a real fingerprint.
+
+```
+Load the browser tools in ONE call:
+  ToolSearch("select:mcp__claude-in-chrome__tabs_context_mcp,
+             mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__get_page_text,
+             mcp__claude-in-chrome__tabs_create_mcp,mcp__claude-in-chrome__tabs_close_mcp")
+```
+
+Then, per panel: `tabs_context_mcp` → `tabs_create_mcp` → `navigate` to the url in the
+paste target → `get_page_text` → write the text into the file **below the PASTE line** →
+set `status: captured` and today's date → close the tab.
+
+Paginate where the site paginates. Decline cookie banners rather than accepting them.
+**Do not log in, do not accept terms, do not solve a CAPTCHA** — if any of those stand in
+the way, that is a Tier 3 case.
+
+### Tier 3 · ask the operator to paste
+
+The targets already exist and already say what to capture:
+
+```
+sources/panels/g2.md           sources/panels/glassdoor.md
+sources/panels/gartner.md      sources/panels/jobs.md
+sources/panels/trustradius.md
+```
+
+Ask **once**, name the files, and say in one line what each would add. Then **carry on
+with everything that does not depend on panels.** Do not block the run waiting for a
+paste — `tools/code_reviews.py` skips unfilled targets by design, so a missing panel
+never becomes a zero in a percentage.
+
+Run `python3 tools/panels_status.py` at any time for the current state and the ladder.
+
+### Substitutions for everything else
 
 | Blocked | Substitute | What you lose, and must say |
 |---|---|---|
-| G2 / Gartner / TrustRadius (403) | `tools/fetch_issues.py` — 1,000+ unsolicited public issues, dated, with resolution times | Issue authors are developers, not buyers. It tells you about the SDK surface, not the dashboard, and it is not a satisfaction measure |
-| Glassdoor (403) | Careers board by function; `DEF 14A` compensation | Sentiment is unavailable. Say so; do not infer it |
+| Any review panel | `tools/fetch_issues.py` — 1,000+ unsolicited public issues, dated, with resolution times | Issue authors are developers, not buyers. It describes the SDK surface, not the dashboard, and it is **not** a satisfaction measure |
+| Glassdoor | Careers board by function; `DEF 14A` compensation | Sentiment is unavailable. Say so; do not infer it |
 | crt.sh (502) | Cert Spotter, with `CERTSPOTTER_TOKEN` | Possibly a partial host list. Say the list is partial |
 | Both CT sources | Nothing equivalent | Record the absence. **Do not claim there is nothing unannounced** — you did not look |
 | A price anywhere | Revenue ÷ disclosed customer count | A bound, not a price. Say "bounded at", never "costs" |
 
 Every substitution goes in `logs/fetch-failures.md` **and** in the deck's open-questions
 slide. A gap you have written down is evidence; a gap you have not is a mistake.
+
+---
+
+## Model gates — where to stop and switch
+
+The two halves of this project want different things from a model.
+
+| Phase | Work | Model |
+|---|---|---|
+| 0–1 · setup, capture, extract | Run tools in order, handle a 403, retry a timeout, paste a panel. Mechanical, long, reversible | **Sonnet 5** |
+| **GATE** | `tools/handoff.py` writes the report and stops | — |
+| 2–6 · read, triangulate, write | Deciding a gap is a finding. Refusing to pick between two figures. Killing a hypothesis. Choosing what not to say | **Opus 5** |
+| 7 · release | Run the release script, check the PDF | either |
+
+**The gate is not a formality.** Everything before it can be redone — rerun a tool,
+refetch a page. Everything after it ends up in front of an audience, and a cheaper model
+will make those calls *plausibly and wrongly*, which is worse than making them slowly.
+
+At the end of collection, run:
+
+```bash
+python3 tools/handoff.py
+```
+
+It writes `logs/handoff-report.md` — what was collected, what is missing and why that is
+not blocking, and the six decisions that now need judgement — then prints the prompt to
+open the next session with. **Stop there and tell the operator to switch.**
 
 ---
 

@@ -125,3 +125,33 @@ The lesson is now in `docs/METHOD.md`: **a checker that cries wolf gets ignored 
 against a known-good corpus before trusting its failures.** And the corollary, which is
 cheaper than it sounds: run your own rules against your own finished work, even when you
 are certain it will pass.
+
+---
+
+## 2026-09-02 (later) — the operator's path, and the model gate
+
+Three requirements from the operator, each of which exposed something missing.
+
+**A named escalation ladder for blocked sources.** "Substitute, never wait" was too blunt:
+it skipped the operator's own browser, which reaches pages a script cannot because it
+carries a real signed-in session. The ladder is now explicit — **script → claude-in-chrome
+against the operator's Chrome → ask them to paste, once** — and the third tier is
+pre-built: `sources/panels/{g2,gartner,trustradius,glassdoor,jobs}.md` exist, name their
+URL, say exactly what to capture, and carry a `status: EMPTY` marker.
+`tools/panels_status.py` reports the state and the next tier. `code_reviews.py` skips
+unfilled targets, so an empty panel can never enter a denominator as a real one with zero
+themes — which would have dragged every percentage down silently.
+
+**A model gate.** Collection is mechanical, long and reversible; analysis is judgement and
+ends up in front of an audience. `tools/handoff.py` now terminates the pipeline: it writes
+`logs/handoff-report.md` with what was collected, what is missing and why that does not
+block, and the six decisions that need judgement — then prints the prompt to open the next
+session with. `run_all.py` ends there rather than continuing.
+
+**An operator's entry point.** `START-HERE.md` carries the four prompts to paste, in
+order, with the one step that may need a human called out explicitly.
+
+**Bug found while testing:** `code_reviews.py` crashed with an IndexError when every panel
+was still a template — the exact state an agent hits on its first run. It now exits with an
+explanation and a pointer to the ladder, and says plainly that nothing downstream is
+blocked because `fetch_issues.py` already covers the customer-voice requirement.

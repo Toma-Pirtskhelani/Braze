@@ -21,7 +21,8 @@ command.
 
 | You want to… | Open |
 |---|---|
-| **Run the research** | **[`TODO.md`](TODO.md)** — the whole run, phase by phase, with a *done when* for each |
+| **Start the research** | **[`START-HERE.md`](START-HERE.md)** — the four prompts to paste, in order |
+| Follow the run phase by phase | [`TODO.md`](TODO.md) — every phase, with a *done when* for each |
 | **Run it as an agent, alone** | **[`AGENTS.md`](AGENTS.md)** — the loop, the budgets, what to substitute when a source is blocked |
 | Know what makes Braze different | [`docs/STRATEGY.md`](docs/STRATEGY.md) — read this before phase 0 |
 | Know where to pull from | [`docs/SOURCES.md`](docs/SOURCES.md) — every source, verified, with what it yields |
@@ -50,7 +51,7 @@ export CERTSPOTTER_TOKEN=...                # optional: lifts CT rate limiting
 python3 deck/build_deck.py                  # sanity check -> "slides: 3"
 ```
 
-Then follow [`TODO.md`](TODO.md) from phase 1.
+Then follow [`START-HERE.md`](START-HERE.md) — it carries the exact prompts.
 
 Google Chrome is needed only for the PDF release step at the very end.
 
@@ -96,14 +97,20 @@ reads the built deck, and `build_record.py` derives the slide map from it too.
 
 ---
 
-## It runs without a human
+## It runs without a human, and it stops when it should
 
-No step in this repository waits for a person. The review sites that block scripted
+No step in this repository blocks on a person. The review sites that block scripted
 access (G2, Gartner, TrustRadius, Glassdoor all return 403) are handled by
-**substitution, not by waiting**: `fetch_issues.py` captures 1,000+ unsolicited, dated
-public issues as the customer-voice corpus instead. [`AGENTS.md`](AGENTS.md) carries the
-loop, the budgets, the degradation rules, and the three cases — and only three — where
-an agent should stop and ask.
+**a three-tier ladder**: script → your own signed-in browser via the claude-in-chrome
+tools → ask you to paste into files that already exist and already say what to capture.
+And none of it is load-bearing, because `fetch_issues.py` captures 1,000+ unsolicited,
+dated public issues as the customer-voice corpus regardless.
+
+There is one deliberate stop. Collection is mechanical and wants a fast model; analysis
+is judgement and wants a capable one. `tools/handoff.py` ends the pipeline with a report
+of what was collected and what now needs deciding, and tells you to switch.
+[`AGENTS.md`](AGENTS.md) carries the ladder, the model gates, the budgets, and the three
+cases — and only three — where an agent should stop and ask.
 
 ---
 
@@ -114,6 +121,8 @@ an agent should stop and ask.
 | **14 extraction tools** | All dependency-free; every one tested against the live source |
 | **An orchestrator** | `tools/run_all.py` — the whole pipeline, idempotent, with a status report |
 | **A self-check** | `tools/verify.py` — ten rules the analysis must satisfy, `--strict` for a gate |
+| **A model gate** | `tools/handoff.py` — ends collection with a report and a switch instruction |
+| **Panel escalation** | `tools/panels_status.py` + pre-created paste targets in `sources/panels/` |
 | **The deck design system** | `deck/lib.py`, `css.py`, `icons.py` + a working scaffold and [`deck/COMPONENTS.md`](deck/COMPONENTS.md) |
 | **A record generator** | `deck/build_record.py` — enforces one-fact-one-home and derives the slide map from the deck |
 | **The PDF release pipeline** | `tools/make_release.sh`, including the non-obvious static-font fix documented inline |
@@ -126,7 +135,9 @@ an agent should stop and ask.
 ## Layout
 
 ```
-CLAUDE.md        operating rules for an agent working here — read first
+START-HERE.md    the four prompts to paste, in order — start here
+CLAUDE.md        operating rules for an agent working here
+AGENTS.md        the unattended loop: budgets, escalation ladder, model gates
 README.md        you are here
 TODO.md          the research run, phase by phase
 RETRIEVAL.md     how to search the corpus without loading it

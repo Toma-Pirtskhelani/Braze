@@ -59,6 +59,7 @@ PRAISE = [
     ("AI features",         r"\bai\b|machine learning|predictive|recommend"),
 ]
 
+MARK = "PASTE BELOW THIS LINE"
 RATING = re.compile(r"\b([0-5](?:\.\d)?)\s*(?:/|out of)\s*5|\b([0-5](?:\.\d)?)\s*stars?\b", re.I)
 SIZE = re.compile(r"\b(enterprise|mid.?market|small.?business|\bsmb\b)\b", re.I)
 
@@ -82,10 +83,17 @@ def main():
             "TrustRadius / Glassdoor through a real browser session, save the text into\n"
             "sources/panels/<site>.txt with a capture date at the top, then rerun.")
 
-    rows = []
+    rows, skipped = [], []
     for fn in files:
         text = open(os.path.join(PANELS, fn), encoding="utf-8", errors="replace").read()
         panel = os.path.splitext(fn)[0]
+        # An unfilled paste target must never be coded: it would enter the denominator
+        # as a real panel with zero themes and quietly drag every percentage down.
+        if re.search(r"^status:\s*EMPTY", text, re.M):
+            skipped.append(panel)
+            continue
+        if MARK in text:                            # drop the instructions above the line
+            text = text.split(MARK, 1)[1]
         for i, rec in enumerate(records(text, splitter), 1):
             low = rec.lower()
             rm = RATING.search(rec)
@@ -102,6 +110,17 @@ def main():
                 "praise": "|".join(prai),
                 "evidence": "third-party (review panel)",
             })
+
+    if not rows:
+        raise SystemExit(
+            "Nothing to code: every panel in sources/panels/ is still an empty paste\n"
+            "target%s.\n\n"
+            "This is a normal early state, not an error. Run:\n"
+            "    python3 tools/panels_status.py\n"
+            "for the escalation ladder — browser first, then ask the operator.\n\n"
+            "tools/fetch_issues.py already covers the customer-voice requirement from a\n"
+            "source that needs no human, so nothing downstream is blocked by this."
+            % (" (%s)" % ", ".join(skipped) if skipped else ""))
 
     with open(config.out("review_coding.csv"), "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
@@ -124,7 +143,9 @@ def main():
         w.writeheader()
         w.writerows(theme_rows)
 
-    print("panels: %s" % ", ".join(files))
+    print("panels coded: %s" % ", ".join(sorted({r["panel"] for r in rows})))
+    if skipped:
+        print("panels still empty (not coded, not counted): %s" % ", ".join(skipped))
     print("records coded: %d\n" % n)
     for kind in ("complaint", "praise"):
         print("%s themes:" % kind)

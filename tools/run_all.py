@@ -54,15 +54,21 @@ STEPS = [
     (4, "build script",    ["deck/make_script.py"],      True,  None),
     (4, "build record",    ["deck/build_record.py"],     False, None),
     (4, "verify",          ["tools/verify.py"],          False, None),
+    (4, "panel status",    ["tools/panels_status.py"],   False, None),
+    (4, "handoff",         ["tools/handoff.py"],         False, None),
 ]
 
 # Phase 4 steps declare no output file on purpose: the deck, the script and the record
 # must be REBUILT every run, or a stale artefact silently survives a content change.
+#
+# The pipeline ENDS at the handoff gate. Phases 1-3 are collection - mechanical, long,
+# and reversible. Everything after the gate is judgement, and wants a different model.
+# See tools/handoff.py for why that boundary is drawn there.
 
 PHASE_NAMES = {1: "capture — cheap, exhaustive, and mostly instant",
                2: "capture — the long fetches",
                3: "extract and measure",
-               4: "build and verify"}
+               4: "check, and stop at the model gate"}
 
 
 def exists(rel):
@@ -155,8 +161,10 @@ def write_report(results, stopped=None):
         for _, name, _, _, tail in bad:
             lines.append("- **%s** — %s" % (name, tail[:150]))
     else:
-        lines.append("Everything ran. Next: `python3 tools/verify.py`, then start "
-                     "phase 2 of `TODO.md` — reading the documentation.")
+        lines.append("Collection is complete. **Stop here and read "
+                     "`logs/handoff-report.md`.** What follows is judgement rather than "
+                     "throughput, and wants a more capable model — the report names the "
+                     "decisions and carries the prompt to open the next session with.")
 
     with open(p, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")

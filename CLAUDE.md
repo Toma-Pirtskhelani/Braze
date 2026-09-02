@@ -27,6 +27,7 @@ for something already recorded wastes context and risks resurrecting a corrected
 
 | Looking for | Open |
 |---|---|
+| **How the operator starts a run** | [`START-HERE.md`](START-HERE.md) |
 | What to do next | [`TODO.md`](TODO.md) |
 | **How to run this unattended** | [`AGENTS.md`](AGENTS.md) — budgets, degradation rules, when to stop |
 | How to write a slide | [`deck/COMPONENTS.md`](deck/COMPONENTS.md) |
@@ -108,6 +109,8 @@ python3 tools/extract_api.py         # API pages     -> api_endpoints
 python3 tools/capability_count.py    # docs + API    -> capabilities
 python3 tools/code_reviews.py        # panels        -> review coding
 python3 tools/build_timeline.py      # everything    -> timeline
+python3 tools/panels_status.py       # which panels are captured, and the ladder
+python3 tools/handoff.py             # end collection: report + switch models
 
 python3 deck/build_deck.py           # slides_*.py   -> deck/braze-deck.html
 python3 deck/make_script.py          # the deck      -> docs/PRESENTATION-SCRIPT.md

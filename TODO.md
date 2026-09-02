@@ -11,8 +11,14 @@ these phases should be done.
 the analysis. Phases 6–7 are the presentation, and they will take as long as everything
 before them combined.
 
+If you are the operator, [`START-HERE.md`](START-HERE.md) has the prompts to paste.
+
 An agent running this alone should read [`AGENTS.md`](AGENTS.md) first: it carries the
-budgets, the stopping conditions, and what to substitute when a source is unavailable.
+budgets, the escalation ladder for blocked sources, the model gates, and the stopping
+conditions.
+
+**Phases 0–1 are collection and want a fast model. Phases 2–6 are judgement and want a
+capable one.** `tools/handoff.py` ends phase 1 with a report and a switch instruction.
 
 ---
 
@@ -80,12 +86,22 @@ access. They are *enrichment*, not a dependency: `fetch_issues.py` captures 1,00
 unsolicited, dated, public issues as the customer-voice corpus instead, and
 `code_reviews.py` codes it like any other panel.
 
-Capture the panels **if** a browser session is available — Gartner's shortlists (who
-buyers actually compared them against) are the single highest-value field on any review
-page. If not, note the absence and move on. See *Degradation* in [`AGENTS.md`](AGENTS.md).
+Pre-created paste targets already exist in `sources/panels/`, each naming its URL and what
+to capture. Work the ladder: **script → the operator's signed-in browser via
+claude-in-chrome → ask them to paste, once.** `python3 tools/panels_status.py` reports the
+state and the next tier. `code_reviews.py` skips unfilled targets, so a missing panel never
+becomes a zero in a percentage.
+
+Gartner is the one worth chasing: its shortlists say who buyers actually compared them
+against, and no other source has that. See *the escalation ladder* in
+[`AGENTS.md`](AGENTS.md).
+
+- [ ] `python3 tools/handoff.py` → `logs/handoff-report.md`, then **stop and switch to a
+      more capable model.** Everything after this point ends up in front of an audience
 
 **Done when:** `logs/run-status.md` shows no **required** failure, `data/` has ten or more
-CSVs, and every optional failure is written down in `logs/fetch-failures.md`.
+CSVs, every optional failure is written down in `logs/fetch-failures.md`, and the handoff
+report has been read.
 
 **Do not skip the failure log.** A gap you have written down is evidence; a gap you have
 not is a mistake.

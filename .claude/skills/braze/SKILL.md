@@ -14,8 +14,13 @@ ls data/*.csv 2>/dev/null | wc -l        # how much has been extracted
 ls sources/docs/*.md 2>/dev/null | wc -l # how much of the corpus exists
 ```
 
-If the answer is zero, say so and offer to run the capture — do not answer from
-recollection. The value of this evidence base is that nothing in it is asserted.
+If the answer is zero, say so and offer to run the capture (`python3 tools/run_all.py`) —
+do not answer from recollection. The value of this evidence base is that nothing in it is
+asserted.
+
+**If you are asked to run the research:** collection is phases 0–1 and wants a fast model;
+analysis is phases 2–6 and wants a capable one. `tools/handoff.py` ends collection with a
+report and a switch instruction. `START-HERE.md` carries the operator's prompts.
 
 ---
 
@@ -129,7 +134,7 @@ Say so, then point at the right source rather than guessing:
 | What was provisioned and never announced | `data/subdomains.csv`, newest first |
 | Whether a platform is maintained | `data/sdk_releases.csv` by repo and date |
 | What breaks, and how often | `data/incidents.csv` |
-| What customers say | `sources/panels/`, coded by `tools/code_reviews.py` |
+| What customers say | `data/issues.csv` (scriptable, unsolicited) and `sources/panels/`, coded by `tools/code_reviews.py`. Run `panels_status.py` to see which panels exist |
 | Who buyers shortlist them against | Gartner Peer Insights shortlists — the highest-value field on any review page |
 | Anything after the capture date | Not covered. Offer to re-run the relevant tool |
 
