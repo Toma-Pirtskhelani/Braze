@@ -14,6 +14,7 @@ scratch/
 
 # per-run pipeline state; provenance lives in logs/executed-plan.md
 logs/run-status.md
+logs/run_all.stdout.log
 
 # personal machine-specific Claude Code config — not for a shared repo
 .claude/settings.local.json
