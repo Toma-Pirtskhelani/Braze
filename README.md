@@ -58,7 +58,7 @@ what would close the gap.
 | Understand the process | [`docs/METHOD.md`](docs/METHOD.md) — seven phases, and seven mistakes not to repeat |
 | Know what the deck must answer | [`docs/DECK-SPEC.md`](docs/DECK-SPEC.md) — 41 slides, question by question |
 | Quote a number *(once research has run)* | [`docs/FACTS.md`](docs/FACTS.md) — canonical value, grade, source. Stop there |
-| **See what is still weak** | [`docs/CRITIQUE-3.md`](docs/CRITIQUE-3.md) — current outside review · [`-2`](docs/CRITIQUE-2.md) · [`-1`](docs/CRITIQUE.md) |
+| **See what is still weak** | [`docs/CRITIQUE-4.md`](docs/CRITIQUE-4.md) — current · [`-3`](docs/CRITIQUE-3.md) · [`-2`](docs/CRITIQUE-2.md) · [`-1`](docs/CRITIQUE.md) |
 | Search the corpus without loading it | [`RETRIEVAL.md`](RETRIEVAL.md) |
 
 If you are an agent working here, read [`CLAUDE.md`](CLAUDE.md) first.
