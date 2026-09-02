@@ -21,6 +21,7 @@
 | What must each slide answer? | [`DECK-SPEC.md`](DECK-SPEC.md) |
 | How is the evidence record structured? | [`RECORD-SPEC.md`](RECORD-SPEC.md) |
 | What still needs answering? | [`QUESTIONS.md`](QUESTIONS.md) |
+| **How do I make the deck better?** | [`EDITING-GUIDE.md`](EDITING-GUIDE.md) — architecture, then all 43 slides |
 | **How does this compare to the reference deck?** | [`COMPARISON.md`](COMPARISON.md) — slide by slide, as a spoken presentation |
 | **What is wrong with the finished analysis?** | [`CRITIQUE-4.md`](CRITIQUE-4.md) — current, from the operator's read-through · [`-3`](CRITIQUE-3.md) · [`-2`](CRITIQUE-2.md) · [`-1`](CRITIQUE.md) |
 | What is being counted as a capability? | [`CAPABILITY-TAXONOMY.tsv`](CAPABILITY-TAXONOMY.tsv) |
