@@ -21,7 +21,7 @@
 | What must each slide answer? | [`DECK-SPEC.md`](DECK-SPEC.md) |
 | How is the evidence record structured? | [`RECORD-SPEC.md`](RECORD-SPEC.md) |
 | What still needs answering? | [`QUESTIONS.md`](QUESTIONS.md) |
-| **What is wrong with the finished analysis?** | [`CRITIQUE-2.md`](CRITIQUE-2.md) — current review · [`CRITIQUE.md`](CRITIQUE.md) — the first round |
+| **What is wrong with the finished analysis?** | [`CRITIQUE-3.md`](CRITIQUE-3.md) — current · [`CRITIQUE-2.md`](CRITIQUE-2.md) · [`CRITIQUE.md`](CRITIQUE.md) |
 | What is being counted as a capability? | [`CAPABILITY-TAXONOMY.tsv`](CAPABILITY-TAXONOMY.tsv) |
 | What do I say over each slide? | `PRESENTATION-SCRIPT.md` *(generated)* |
 | How do I write a slide? | [`../deck/COMPONENTS.md`](../deck/COMPONENTS.md) |
