@@ -70,8 +70,9 @@ will earn one.
 35. What does the company itself say could go wrong, in the risk factors?
 36. What does a decade of incident history show about reliability at scale?
 37. Which supported platforms are actually maintained, judged by release cadence?
-38. What does the twelve-cluster regional architecture imply for a buyer with data
-    residency requirements?
+38. What does the fifteen-cluster regional architecture imply for a buyer with data
+    residency requirements? (the setup-time "twelve" was wrong; see the corrections
+    table in `FACTS.md`)
 
 ---
 
@@ -105,6 +106,14 @@ Recorded so they are not silently dropped. Each carries what *would* close it.
 | 49 | Which features customers actually use | No vendor publishes adoption. A user survey would be primary research |
 | 50 | Roadmap beyond announced releases | CT logs and job postings hint; nothing confirms |
 | 51 | Win/loss rates against named competitors | Requires being in the deals |
+| 52 | **Why does the sub-processor disclosure of 1 June 2026 name only Amazon and Google as hosting providers, when the allowlist IPs Braze publishes for instance US-08 are all registered to Microsoft Corporation?** | An updated sub-processor list, the DPA schedule a customer receives, or a direct answer from Braze. Do not infer a disclosure failure from outside — see `CONFLICTS.md` C-03 |
+| 53 | Is the `aze` region code in certificate transparency Azure, and is US-08 a distinct class of instance (single-tenant, enterprise, or a specific customer's)? | A Braze statement, a customer on US-08, or a wider CT capture with a `CERTSPOTTER_TOKEN` |
+| 54 | Does customer satisfaction fall as company size rises? (hypothesis 7, unresolved) | Paid access to the G2, Gartner or TrustRadius rating-by-company-size breakdowns, all three of which are paywalled. An investor-day segment disclosure would also close it |
+| 55 | Why was the `/users/export/ids` rate limit cut from 2,500 to 250 requests per minute for customers onboarding on or after 22 August 2024, and were existing customers told? | A changelog entry, a support answer, or a customer who onboarded either side of that date |
+| 56 | What is the exact split of open roles by department? | The Greenhouse board API (`job-boards.greenhouse.io/braze`), or a working pass over the board's Department filter. Only the 15-department taxonomy and a front-of-list sample were captured |
+| 57 | Can the customer roster be verified independently of the 178 self-selected customer stories? | Tag crawls of customer sites, CT records naming customer subdomains, or job ads naming Braze in the stack. Not attempted in this run |
+| 58 | What else is in the certificate-transparency estate? | The captured host list is **partial** — 833 hosts from Cert Spotter, rate-limited, with crt.sh returning 502 throughout. A `CERTSPOTTER_TOKEN` would widen it. **No claim is made that anything is absent from CT; the list was not exhaustive** |
+| 59 | Does the FY2026 gross-margin decline continue, and how much of it is the AI cost base rather than acquisition amortisation? | FY2027 10-K, or quarterly cost-of-revenue detail. The company attributes it to acquisition costs plus "increased costs related to our tech stack" without splitting the two |
 
 ---
 

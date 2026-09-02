@@ -19,8 +19,8 @@ Before the deliverable ships, every row here needs one of three outcomes:
 
 | Source | Error | Status |
 |---|---|---|
-| `crt.sh/?q=%25.braze.com&output=json` | HTTP 502 Bad Gateway, sustained | **Outstanding.** crt.sh is frequently down; retry. Cert Spotter is the fallback |
-| `api.certspotter.com/v1/issuances` | HTTP 429 after ~1 page | **Partial.** Anonymous callers are rate-limited; a free `CERTSPOTTER_TOKEN` lifts it |
+| `crt.sh/?q=%25.braze.com&output=json` | HTTP 502 Bad Gateway, sustained | **Substituted, 2026-09-02.** Retried on 2026-09-02 and still 502. Cert Spotter returned 833 hosts, which carried the US-08 infrastructure finding, so nothing downstream was blocked. The host list is **partial** and is stated as partial wherever it is used — see `docs/FACTS.md` §4.7 and the open-questions slide |
+| `api.certspotter.com/v1/issuances` | HTTP 429 after ~1 page | **Substituted and stated as partial, 2026-09-02.** 833 hosts captured without a token. A free `CERTSPOTTER_TOKEN` would widen it. Every claim resting on this list says the list is partial; no claim is made that anything is *absent* from CT |
 | `g2.com/products/braze/reviews` | HTTP 403 | Resolved via Tier 2 browser, 2026-09-02 — see Run log below |
 | `gartner.com/reviews/.../braze` | HTTP 403 | Resolved via Tier 2 browser, 2026-09-02 — shortlist captured — see Run log below |
 | `trustradius.com/products/braze/reviews` | HTTP 403 | Resolved via Tier 2 browser, 2026-09-02 — see Run log below |

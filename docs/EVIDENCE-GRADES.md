@@ -71,10 +71,24 @@ fetch, the corpus was still overwhelmingly self-declared; what changed was that 
 had become *technical* self-declaration, which fails differently and much more visibly
 than marketing copy does.
 
-| grade | volume |
-|---|---|
-| audited | _pending_ |
-| infrastructure | _pending_ |
-| documented | _pending_ |
-| third-party | _pending_ |
-| claimed | _pending_ |
+Filled 2026-09-02, from the capture that produced this analysis.
+
+| grade | volume | what it is |
+|---|---|---|
+| **audited** | 737 filings indexed, 56 fetched as full text; 7 fiscal years of XBRL across 29 key concepts, 0 restated | 10-K, 10-Q, 8-K, DEF 14A, and `data/financials*.csv` |
+| **infrastructure** | 833 certificate-transparency hosts (**partial** — crt.sh 502, Cert Spotter rate-limited); 8 RDAP registry lookups | `data/subdomains.csv`, `sources/external/rdap-instance-ip-ownership_2026-09-02.json` |
+| **documented** | 1,352 documentation pages (1,565,479 words); 135 API endpoints; 137 repos; 494 SDK releases; 451 incidents; 845 public issues; 1 compelled sub-processor disclosure | `sources/docs/`, `sources/clean/`, and the derived tables in `data/` |
+| **third-party** | 4 review panels — 2,837 ratings in aggregate (G2 1,702, Glassdoor 524, TrustRadius 348, Gartner 263); **14 individual review records captured** | `sources/panels/`, coded by `tools/code_reviews.py` |
+| **claimed** | 6,366 site URLs, including 178 customer stories and 2,618 resource pages | `data/site_inventory.csv` |
+
+**The honesty check this table exists for.** The corpus is still overwhelmingly
+self-declared — but the bulk of it is now *technical* self-declaration, which fails
+differently and much more visibly than marketing copy does. A documentation page that is
+wrong generates a support ticket; a marketing page that is wrong generates nothing.
+
+Two figures in it deserve to be read carefully rather than quoted. The
+certificate-transparency host list is **partial**, so it supports claims about what was
+provisioned and none at all about what is absent. And the third-party row has two
+numbers on purpose: 2,837 is the base the *sites* computed their ratings over, and 14 is
+what was captured here. Percentages in this analysis are quoted against the second
+number and say so.

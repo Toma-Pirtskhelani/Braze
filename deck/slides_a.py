@@ -22,11 +22,11 @@ from lib import *                                   # noqa: F403,E402
 # figure here was verified reachable on 2026-09-01 and is re-checkable in one command.
 # Update the counts as the corpus grows; never put a finding in this strip.
 SOURCES = [("Their documentation",   "1,352 pages"),
-           ("Their site inventory",  "6,366 URLs"),
            ("SEC filings",           "737 documents"),
            ("Audited financials",    "FY2019 &rarr; now"),
            ("Public code",           "137 repos"),
-           ("Status page",           "451 incidents")]
+           ("Status page",           "451 incidents"),
+           ("Sub-processors",        "17 disclosed")]
 _src = ''.join(f'<div class="srcitem"><div class="sn">{n}</div><div class="sv">{v}</div></div>'
                for n, v in SOURCES)
 
@@ -35,14 +35,14 @@ add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
   <div class="subject">Competitor analysis</div>
   <p class="lede">A customer engagement platform &mdash; and a public company, which changes what can be known.</p>
   <div class="srcstrip">{_src}</div>
-  <div class="byline"><span><strong>&mdash;</strong></span><span>Public sources only &middot; &mdash;</span></div>
+  <div class="byline"><span><strong>41 slides &middot; every figure traceable to a source path</strong></span><span>Public sources only &middot; captured 1&ndash;2 September 2026</span></div>
 </section>''',
 """This is a competitor analysis of **Braze**.
 
-[Replace this note once the research is done. The one line that should survive: Braze
-is a **listed company**, and that changes the nature of the evidence. Where a private
-vendor gives you claims, Braze files audited accounts four times a year under legal
-penalty.]
+The one thing to know before we start: Braze is a **listed company**, and that changes
+the nature of the evidence. Where a private vendor gives you claims, Braze files audited
+accounts four times a year under legal penalty — and publishes a status page, a public
+code repository, and a sub-processor list it is legally obliged to keep complete.
 
 Everything here comes from sources you can check yourself. **Their own technical
 documentation. Their SEC filings. Their public code. Their status page. And customer

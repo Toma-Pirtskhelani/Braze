@@ -1,0 +1,104 @@
+{
+  "captured": "2026-09-02",
+  "query": "ARIN RDAP https://rdap.arin.net/registry/ip/<ip>",
+  "source_of_the_ip_lists": "sources/docs/docs__user_guide__data__unification__cloud_ingestion__connected_sources.md \u2014 Braze's own per-instance allowlist for Cloud Data Ingestion Connected Sources",
+  "why": "To establish, from an independent registry rather than from recognition of an address range, who owns the infrastructure behind each documented Braze instance.",
+  "finding": "Every IP checked for instance US-08 is registered to Microsoft Corporation. Every IP checked for every other instance (US-10, AU-01, KR-01, and the generic US block) is registered to an Amazon entity.",
+  "results": {
+    "US-08": [
+      {
+        "ip": "52.151.246.51",
+        "net_name": "MSFT",
+        "range": "52.145.0.0-52.191.255.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "52.170.163.182",
+        "net_name": "MSFT",
+        "range": "52.145.0.0-52.191.255.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "40.76.166.157",
+        "net_name": "MSFT",
+        "range": "40.74.0.0-40.125.127.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "40.76.166.170",
+        "net_name": "MSFT",
+        "range": "40.74.0.0-40.125.127.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "40.76.166.167",
+        "net_name": "MSFT",
+        "range": "40.74.0.0-40.125.127.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "40.88.51.74",
+        "net_name": "MSFT",
+        "range": "40.74.0.0-40.125.127.255",
+        "org": "Microsoft Corporation"
+      },
+      {
+        "ip": "52.154.67.17",
+        "net_name": "MSFT",
+        "range": "52.145.0.0-52.191.255.255",
+        "org": "Microsoft Corporation"
+      }
+    ],
+    "US-10": [
+      {
+        "ip": "100.25.232.164",
+        "net_name": "AMAZON-IAD",
+        "range": "100.24.0.0-100.31.255.255",
+        "org": "Amazon Data Services Northern Virginia"
+      },
+      {
+        "ip": "3.123.166.46",
+        "net_name": "AMAZO-ZFRA",
+        "range": "3.120.0.0-3.123.255.255",
+        "org": "A100 ROW GmbH"
+      }
+    ],
+    "AU-01": [
+      {
+        "ip": "13.210.1.145",
+        "net_name": "AMAZO-SYD",
+        "range": "13.210.0.0-13.211.255.255",
+        "org": "Amazon Corporate Services Pty Ltd"
+      }
+    ],
+    "KR-01": [
+      {
+        "ip": "43.200.215.4",
+        "net_name": "AMAZON-AS-AP",
+        "range": "43.200.0.0-43.207.255.255",
+        "org": "IRT-AMAZON-AS-AP1"
+      }
+    ],
+    "other US instances (from the generic block)": [
+      {
+        "ip": "54.156.35.251",
+        "net_name": "AMAZON",
+        "range": "54.144.0.0-54.221.255.255",
+        "org": "Amazon Technologies Inc."
+      },
+      {
+        "ip": "52.54.89.238",
+        "net_name": "AT-88-Z",
+        "range": "52.0.0.0-52.79.255.255",
+        "org": "Amazon Technologies Inc."
+      },
+      {
+        "ip": "18.205.178.15",
+        "net_name": "AT-88-Z",
+        "range": "18.32.0.0-18.255.255.255",
+        "org": "Amazon Technologies Inc."
+      }
+    ]
+  },
+  "evidence": "infrastructure (independent registry)"
+}

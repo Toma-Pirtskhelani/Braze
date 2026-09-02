@@ -14,45 +14,68 @@
 #   - when you change a pattern, rerun and note the change — a number that moved
 #     because the pattern moved is not a finding.
 
+# ── REVISED 2026-09-02, after the corpus was read ───────────────────────────────
+# The starter patterns above the line were category words written before the corpus
+# existed. This revision replaces them with BRAZE'S OWN PRODUCT NAMES wherever one
+# exists, because a product name is a far higher-signal pattern than a category word.
+# Numbers moved between the two runs BECAUSE THE PATTERN SET MOVED, not because the
+# product changed — recorded in docs/FACTS.md "Numbers that were wrong and are now
+# right" and never to be read as a finding.
+#
+# The AI rows are split deliberately into shipped ML / generative / agentic, each
+# anchored on the Braze product name, because the whole point of slide 31 is that they
+# are separate, separately-counted things.
+
 channel	Email	\bemail\b|\bemails\b|email campaign|deliverability
-channel	SMS	\bsms\b|\bmms\b|short code|10dlc|toll.free
-channel	RCS	\brcs\b|rich communication
+channel	SMS / MMS / RCS	\bsms\b|\bmms\b|\brcs\b|short code|10dlc|toll.free
 channel	WhatsApp	whatsapp
 channel	Push (mobile)	push notification|apns|\bfcm\b|mobile push|rich push
-channel	Push (web)	web push|browser push|service worker
-channel	In-app message	in.app message|\biam\b|in.app messaging
-channel	Content card	content card|news feed|feed card
-channel	In-browser / on-site	in.browser|on.site message|web personali[sz]ation|overlay
-channel	Line	\bline\b messaging|line channel
-channel	Voice / call	voice call|outbound call|\bivr\b|telephon
-channel	Direct mail / offline	direct mail|postcard|offline channel
-channel	Wallet / pass	wallet pass|apple wallet|google wallet
+channel	In-app messages	in.app message|\biam\b|in.app messaging
+channel	Content Cards	content card
+channel	Banners	\bbanner\b|banner card
+channel	LINE	line channel|line message|line official account|line user
+channel	KakaoTalk	kakaotalk|kakao
+channel	Webhooks	webhook
+channel	Transactional email	transactional email
+channel	Landing pages	landing page
+channel	Live notifications	live notification|live activit
+channel	Web push	web push|browser push|service worker
 
-orchestration	Journey orchestration	canvas|journey|orchestrat|workflow builder
-orchestration	Triggered campaigns	action.based|trigger|event.triggered
-orchestration	Scheduling & frequency	frequency cap|quiet hour|rate limit|send time
-orchestration	A/B testing	\ba/b\b|multivariate|winning variant|experiment
-orchestration	Holdout & incrementality	holdout|control group|incremental|lift test
+orchestration	Canvas (journeys)	\bcanvas\b|canvas flow|journey orchestrat
+orchestration	Triggered campaigns	action.based deliver|\btrigger\b|event.triggered
+orchestration	Scheduling & frequency	frequency cap|quiet hour|send time|rate limit
+orchestration	Experimentation	\ba/b\b|multivariate|winning variant|experiment
+orchestration	Global Control Group	global control group|holdout|control group|incremental
 
-data	Customer profile / CDP	user profile|custom attribute|customer data platform|\bcdp\b
-data	Identity resolution	identity resolution|external.?id|alias|merge.*profile|user merge
-data	Segmentation	segment|audience|filter.*users
-data	Catalog / product data	catalog|product feed|item data
-data	Ingestion & streaming	ingest|stream|\betl\b|data pipeline|currents|webhook
-data	Warehouse integration	snowflake|bigquery|redshift|databricks|warehouse
-data	Data governance & privacy	\bgdpr\b|\bccpa\b|consent|data retention|right to be forgotten|\bpii\b
+data	User profile	user profile|custom attribute|nested attribute
+data	Identity (external_id / alias)	external.?id|user alias|alias_label|identity resolution|user merge
+data	Segment Extensions	segment extension|sql segment
+data	Segmentation	segment|audience filter
+data	Catalogs	\bcatalog\b|catalogs|product feed|item data
+data	Cloud Data Ingestion (CDI)	cloud data ingestion|\bcdi\b|connected source
+data	Currents	\bcurrents\b
+data	Snowflake data share	snowflake|data share
+data	Warehouse integration	bigquery|redshift|databricks|data warehouse
+data	Data points (billing)	data point
+data	Privacy & retention	\bgdpr\b|\bccpa\b|consent|data retention|right to be forgotten|\bpii\b
 
-ai	Predictive ML	predictive|propensity|churn.*model|\bltv\b|machine learning
-ai	Recommendations	recommend|next best|affinity
-ai	Generative AI	generative|\bllm\b|large language model|prompt|copywrit.*ai
-ai	Agentic AI	\bagent\b|agentic|autonomous|\bmcp\b|model context protocol
-ai	Send-time optimisation	send.time optimi|intelligent timing|\bsto\b
-ai	Channel optimisation	intelligent channel|channel optimi
+ai	BrazeAI (umbrella brand)	brazeai|braze ai
+ai	Predictive Suite (shipped ML)	predictive suite|predictive churn|predictive event|propensity|\bltv\b
+ai	Intelligent Timing / Channel	intelligent timing|intelligent channel|send.time optimi
+ai	Recommendations	personalized item recommend|recommend|next best|affinity
+ai	Generative AI	generative|\bllm\b|large language model|\bprompt\b|ai copywrit|image generat
+ai	Decisioning Studio	decisioning studio|winning path|personalized variant
+ai	Agents	braze agent|\bagentic\b|ai agent|\bmcp\b|model context protocol
 
 platform	REST API	\bapi\b|endpoint|rest\b
 platform	SDKs	\bsdk\b|android|\bios\b|react native|flutter|unity|cordova
-platform	Partner integrations	integration|partner|connector|\bipaas\b
+platform	Liquid templating	\bliquid\b|liquid tag|personalization tag
+platform	Connected Content	connected content
+platform	Content Blocks	content block
+platform	Feature Flags	feature flag
+platform	Partner integrations (Alloys)	integration|partner|connector|\balloys\b
 platform	Analytics & reporting	report|dashboard|funnel|retention.*report|analytics
 platform	Deliverability & compliance	deliverab|spam|dmarc|\bdkim\b|\bspf\b|opt.out|unsubscribe
-platform	Roles & permissions	permission|\brbac\b|role|\bsso\b|\bsaml\b|scim
-platform	Reliability & scale	uptime|\bsla\b|cluster|latency|throughput|rate limit
+platform	Subscription management	subscription group|preference center|subscription state
+platform	Roles & permissions	permission|\brbac\b|\brole\b|\bsso\b|\bsaml\b|scim
+platform	Reliability & scale	uptime|\bsla\b|cluster|latency|throughput

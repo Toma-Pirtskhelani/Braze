@@ -104,12 +104,17 @@ def md(text):
             out.append("<h%d>%s</h%d>" % (lvl + 1, inline(m.group(2)), lvl + 1))
             i += 1
             continue
-        para = []
-        while i < len(lines) and lines[i].strip() and not re.match(r"^([-*>|#])", lines[i]):
+        # A paragraph runs until a blank line or the start of another block. The guard
+        # below matters: a paragraph may legitimately BEGIN with an inline marker -
+        # "**Question 58 bounds chapter 4.5.** The host list is partial..." starts with
+        # an asterisk but is not a list. Without forcing progress on the first line the
+        # loop consumes nothing, `i` never advances, and the build hangs silently.
+        para = [lines[i].strip()]
+        i += 1
+        while i < len(lines) and lines[i].strip() and not re.match(r"^([-*>|#])\s", lines[i]):
             para.append(lines[i].strip())
             i += 1
-        if para:
-            out.append("<p>%s</p>" % inline(" ".join(para)))
+        out.append("<p>%s</p>" % inline(" ".join(para)))
     return "\n".join(out)
 
 

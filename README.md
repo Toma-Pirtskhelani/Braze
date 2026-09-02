@@ -1,19 +1,48 @@
-# Braze — competitor analysis environment
+# Braze — competitor analysis
 
-A **research environment**, not yet a research result. Everything needed to run a
-rigorous, fully sourced competitive analysis of **Braze** (NASDAQ: BRZE) and produce two
-deliverables: a presentable deck and an evidence record where every claim is graded and
-traceable.
+A rigorous, fully sourced competitive analysis of **Braze** (NASDAQ: BRZE), plus the
+environment that produced it. Two deliverables, both in [`dist/`](dist/): a 41-slide deck
+and an evidence record where every claim is graded and traceable to a source path.
 
-**This repository contains no findings about Braze, deliberately.** It contains the
-method, the verified source catalogue, the extraction tooling, the deck design system,
-and the specifications for what gets built. The findings arrive when you run it.
+**The research has run.** It ran on 2026-09-01 and 2026-09-02.
 
-That line matters. A bootstrap repository pre-loaded with half-remembered facts is worse
-than an empty one, because a later run will trust them. The only Braze-specific numbers
-here describe *sources* — how many filings exist, how many documentation pages, how many
-incidents are logged — and each was verified on 2026-09-01 and is re-checkable in one
-command.
+```
+1,352 documentation pages          737 SEC filings, 56 read in full
+7 fiscal years of audited XBRL     451 incidents, 2016 → 2026
+845 unsolicited public issues      833 certificate-transparency hosts (partial)
+137 repositories, 494 releases     17 disclosed sub-processors
+4 review panels, coded             189 canonical facts, every one sourced
+```
+
+Everything above is re-derivable. `python3 tools/run_all.py` rebuilds the whole corpus;
+`python3 tools/verify.py` checks the analysis against ten rules it claims to follow.
+
+**What the analysis found**, in one line each — with the full versions in
+[`docs/FACTS.md`](docs/FACTS.md) and [`deck/evidence-record.html`](deck/evidence-record.html):
+
+- Braze's own documentation labels **three of its four ingestion paths "not real-time"**,
+  with a fifteen-minute floor on warehouse syncs. Their marketing, and the 10-K, lead
+  with real-time. Both are true of different paths — see `CONFLICTS.md` C-01.
+- The **AI decisioning engine was bought**: OfferFit, June 2025, $303.2m, renamed AI
+  Decisioning Studio. The models come from Anthropic, OpenAI and Google, all three named
+  in Braze's own compelled sub-processor disclosure.
+- **One instance is not on the same cloud as the others.** The allowlist IPs Braze
+  publishes for US-08 are registered to Microsoft; every other instance's are Amazon; the
+  sub-processor disclosure names only Amazon and Google. Recorded as an observation and
+  an open question, not as a conclusion.
+- Growth has halved since FY2023 **while sales and marketing fell from 56.7% of revenue
+  to 44.3%** — decelerating and getting more efficient at once. That killed the
+  hypothesis it was written to test.
+- Of ten hypotheses written before the corpus was read, **four were evidenced, four were
+  killed, one was partly evidenced and one could not be tested at all** —
+  [`docs/STRATEGY.md`](docs/STRATEGY.md) records how each one ended.
+
+**The discipline that makes it worth trusting.** Every number carries a source path, an
+evidence grade and a capture date. Where two sources disagree, both are recorded and
+neither is chosen — the ruling on what to say out loud is in
+[`docs/CONFLICTS.md`](docs/CONFLICTS.md). Where a number moved, the old value stays
+visible in the corrections table. Where public sources ran out, that is written down with
+what would close the gap.
 
 ---
 

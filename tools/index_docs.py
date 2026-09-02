@@ -76,11 +76,15 @@ def main():
     sec = Counter(r["section"].split("/")[0] for r in rows)
     with open(config.out("docs_sections.csv"), "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["section", "docs", "words", "code_blocks"])
+        # every CSV in data/ carries an evidence column - tools/verify.py enforces it,
+        # because a derived table with no provenance is indistinguishable from a
+        # hand-made one, which is exactly what data/ must never contain
+        w.writerow(["section", "docs", "words", "code_blocks", "evidence"])
         for s in sorted(sec, key=lambda s: -sec[s]):
             grp = [r for r in rows if r["section"].split("/")[0] == s]
             w.writerow([s, len(grp), sum(r["words"] for r in grp),
-                        sum(r["code_blocks"] for r in grp)])
+                        sum(r["code_blocks"] for r in grp),
+                        "company-own (technical), measured"])
 
     print("documents: {:,} | words: {:,}".format(len(rows), sum(r["words"] for r in rows)))
     print("code blocks: %d | tables (cells): %d"

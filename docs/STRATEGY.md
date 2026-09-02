@@ -181,6 +181,30 @@ produced the two strongest technical findings in the deck.
 
 ---
 
+## How the ten ended — resolved 2026-09-02
+
+Every hypothesis below is either **evidenced** with a source path or **explicitly
+killed**. Four were killed, and three of those four killed *favourably* — the evidence
+went the other way and says something good about Braze. That distribution is the point:
+a set of hypotheses that all confirmed would have meant they were written to confirm.
+
+| # | Verdict | What the evidence said | Where |
+|---|---|---|---|
+| H1 | **Killed** | Growth is decelerating (49.3% → 24.4% over FY2023→FY2026), but S&M as a share of revenue fell faster, 56.7% → 44.3%. Sales spend is *not* holding; deceleration comes with improving efficiency, and operating cash flow turned positive in FY2024 and has grown every year since | `FACTS.md` §2.1, §2.2 |
+| H2 | **Evidenced** | Agents 17 focused pages and Decisioning Studio 22, against Canvas 249; 0 of 135 published API endpoints in any AI namespace; and the decisioning engine was bought on 2 June 2025 (OfferFit, $303.2m) rather than built. "Newer" is proven by the acquisition date. "Thinner" is stated as counts, never as a verdict | `FACTS.md` §6, §3.1; `CONFLICTS.md` C-04 |
+| H3 | **Evidenced — the strongest of the ten** | Every hard limit found came from documentation and appears in no marketing page: three of four ingestion paths labelled "Not real-time"; a 15-minute warehouse floor; the profile-lookup export limit cut 10× for customers onboarding after 2024-08-22; 75 objects per ingest request; a merge that returns 202 Accepted when it has silently declined; "removing data from one system does not automatically remove it from the other"; and "Don't waste data points. Only update changing data!" | `FACTS.md` §4.2, §4.3, §4.5, §4.6 |
+| H4 | **Killed — favourably** | All nine SDK repos that publish releases shipped within 13 days of the capture. The one platform whose repo is archived, Unreal, has also had its documentation removed entirely — zero doc pages, zero site pages. The maintenance record matches the marketing. The single soft spot is `braze-roku-sdk`: 181 days idle while 38 Roku doc pages stay live | `FACTS.md` §4.9 |
+| H5 | **Evidenced — but not where expected** | The regional clusters themselves are well handled. The customer-visible constraint is the *storage* split: MongoDB holds events, attributes and profiles while Snowflake holds SQL Segment Extensions, Prediction Suite and recommendations, and their own docs warn that "removing data from one system does not automatically remove it from the other". Clusters do surface to customers as per-instance allowlist IPs | `FACTS.md` §4.4, §4.7 |
+| H6 | **Killed** | The channel set is broad, not narrow: 13 documented channels including WhatsApp, LINE, KakaoTalk, RCS, Banners, Landing pages, Live notifications and Webhooks. The finding inverts — five documented channels have no marketing page, and one marketed channel (KakaoTalk) is missing from their own docs channel index | `FACTS.md` §5.1; `CONFLICTS.md` C-02 |
+| H7 | **Not resolved — untestable from public sources** | All three review sites paywall the rating-by-company-size breakdown; only 7 of 860 coded records carry a segment at all, far too few to test anything. The nearest audited proxy is a different measure and points mildly the other way: dollar-based net retention for customers ≥$500k ARR is *above* the all-customer figure (110% vs 109% in FY2026) — though that gap has closed from 3 points to 1 since FY2024. Recorded as an open question with what would close it | `FACTS.md` §2.4, §8.3; `QUESTIONS.md` #54 |
+| H8 | **Partially evidenced** | Not a clean miss: 3 of the 4 competitors the 10-K names (Adobe, Salesforce, Iterable) do appear on Gartner's buyer-derived shortlist. But the shortlist is twice as long, and the 5 it adds — Oracle, Optimove, Blueshift, MoEngage, CleverTap — appear nowhere in the 10-K. The omission runs one way: Braze names suite vendors and Klaviyo; buyers also weigh five specialists | `FACTS.md` §8.2 |
+| H9 | **Killed — favourably** | Incidents peaked in 2023 at 60 and fell to 27 in 2025, the quietest full year on the status page, while revenue grew 7.7× from FY2020 to FY2026. Rate per unit of scale has fallen sharply. Stated with its caveat: 2026 to date runs at roughly double the 2025 monthly rate | `FACTS.md` §4.8 |
+| H10 | **Evidenced** | Certificate transparency shows 50 hosts on a `aze` region code matching no AWS identifier, tied by hostname to instance 08; the allowlist IPs Braze publishes for US-08 are all registered to Microsoft Corporation where every other instance's are Amazon; and the sub-processor disclosure of 1 June 2026 names only Amazon and Google as hosting providers. What it *means* is not knowable from outside and is recorded as a question, not a conclusion | `FACTS.md` §4.7; `CONFLICTS.md` C-03; `QUESTIONS.md` #52 |
+
+**Tally: 4 evidenced · 4 killed · 1 partially evidenced · 1 untestable.**
+
+---
+
 ## What "similar or deeper" means, concretely
 
 The reference deck's 41 slides each answered one question. The Braze deck must answer
