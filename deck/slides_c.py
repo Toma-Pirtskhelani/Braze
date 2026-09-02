@@ -104,18 +104,43 @@ came from — which is the next slide.""",
     "s", "How data moves")
 
 # ── 20 STAGE 1 · DATA ────────────────────────────────────────────────────────
+# An inline SVG rather than four cards. The point of this slide is that four lanes arrive
+# at the same profile store at wildly different speeds, and a diagram shows that in one
+# look where a card grid makes the reader assemble it. Colours are the grade tokens, so
+# the three "not real-time" lanes read as one group without a legend.
+# The mono detail line uses ASCII "->" rather than an arrow glyph on purpose: the static
+# WOFF that make_release.sh inlines for the PDF is the latin subset, which has no U+2192
+# in JetBrains Mono, and Chrome silently substitutes Menlo for that one character. The
+# release check catches it as a fallback font; the screen render looks fine either way.
+def _lane(y, label, detail, latency, note, tone):
+    col = {"w": "var(--weak)", "s": "var(--strong)"}[tone]
+    sub = (f'<text x="353" y="{y+38}" fill="var(--dim)" font-size="10.5" '
+           f'font-family="JetBrains Mono, monospace" text-anchor="middle">{note}</text>') if note else ''
+    return (
+      f'<rect x="2" y="{y}" width="250" height="46" rx="5" fill="var(--panel)" stroke="{col}" stroke-width="1.2"/>'
+      f'<text x="16" y="{y+20}" fill="var(--vellum)" font-size="14" font-family="Libre Franklin, sans-serif" font-weight="600">{label}</text>'
+      f'<text x="16" y="{y+37}" fill="var(--dim)" font-size="11" font-family="JetBrains Mono, monospace">{detail}</text>'
+      f'<line x1="252" y1="{y+23}" x2="454" y2="{y+23}" stroke="{col}" stroke-width="1.4" stroke-dasharray="{"5 4" if tone=="w" else "0"}"/>'
+      f'<polygon points="454,{y+19} 462,{y+23} 454,{y+27}" fill="{col}"/>'
+      f'<text x="353" y="{y+17}" fill="{col}" font-size="12" font-family="JetBrains Mono, monospace" text-anchor="middle">{latency}</text>'
+      + sub)
+
+_ingest_svg = (
+  '<div class="mapwrap"><svg viewBox="0 0 700 236" preserveAspectRatio="xMidYMid meet" '
+  'style="width:100%;max-width:700px;height:auto;display:block">'
+  + _lane(2,   "Standard CDI sync",   "warehouse -&gt; profile",  "&ldquo;Not real-time&rdquo;",  "15 min floor", "w")
+  + _lane(60,  "CDI Segments",        "warehouse, zero-copy",      "&ldquo;Not real-time&rdquo;",  "",             "w")
+  + _lane(118, "CDI Canvas triggers", "warehouse -&gt; journey",  "&ldquo;Not real-time&rdquo;",  "15 min floor", "w")
+  + _lane(176, "/users/track &middot; SDKs", "app, server, stream", "&ldquo;Near-real-time&rdquo;", "", "s")
+  + '<rect x="466" y="2" width="232" height="220" rx="6" fill="var(--panel)" stroke="var(--line2)" stroke-width="1.2"/>'
+  + '<text x="582" y="100" fill="var(--vellum)" font-size="15" font-family="Libre Franklin, sans-serif" font-weight="600" text-anchor="middle">Braze user profile</text>'
+  + '<text x="582" y="122" fill="var(--dim)" font-size="11.5" font-family="JetBrains Mono, monospace" text-anchor="middle">MongoDB &middot; billed per attribute</text>'
+  + '</svg></div>')
+
 add(f'''<section class="s" data-g="s" data-t="Stage 1: Data">
   {head("Stage 1 &middot; data and freshness", "Their table. Their words. Three of four are not real-time")}
   <div class="body">
-    {cards([("Standard CDI sync",
-             "&ldquo;<strong>Not real-time</strong>; minimum 15-minute sync cadence&rdquo;", "r"),
-            ("CDI Segments",
-             "&ldquo;<strong>Not real-time</strong>; refreshes on your Segment Extension schedule&rdquo;", "r"),
-            ("CDI Canvas triggers",
-             "&ldquo;<strong>Not real-time</strong>; bounded by sync schedule (minimum 15 minutes)&rdquo;", "r"),
-            ("/users/track and the SDKs",
-             "&ldquo;<strong>Near-real-time</strong> (async processing)&rdquo;", "g")],
-           cols=4)}
+    {_ingest_svg}
     <p>Warehouse syncs run &ldquo;from every 15 minutes to once per month&rdquo;. Going faster is not self-serve:
     <em>&ldquo;contact your customer success manager or use REST API ingestion.&rdquo;</em>
     <strong>If your customer data lives in a warehouse, fifteen minutes is the floor.</strong></p>
@@ -127,14 +152,41 @@ Braze publishes a comparison of its four ingestion paths and **grades the latenc
 one itself**. Three of the four carry the words "not real-time". The fourth says
 "near-real-time, async processing".
 
-This is not me characterising their product. This is their table.
+This is not me characterising their product. This is their table, redrawn.
+
+Look at what the diagram makes obvious that a list does not: **all four lanes end in the
+same place.** The same user profile, the same MongoDB store, billed the same way per
+attribute. What differs is only how long the data waits before it gets there — and for
+three of the four lanes the answer is a scheduled job with a fifteen-minute floor.
+
+That shared destination is the reason the distinction is worth your attention rather than
+being a technicality. If the four paths ended in four different systems you would expect
+four different latencies and think nothing of it. They do not. It is one profile store,
+one billing meter, one segmentation engine reading from it — and the freshness of what
+that engine sees depends entirely on which door your data came through. Two customers on
+identical contracts can get materially different behaviour out of the same product.
 
 And the practical sentence for a prospect: **if your customer data lives in a warehouse,
 fifteen minutes is the floor** — and going faster is not something you can switch on. You
-have to call your customer success manager, or re-plumb onto the API.
+have to call your customer success manager, or re-plumb onto the API. That second option
+is not a configuration change; it is an engineering project, and it moves the work from
+Braze's side of the boundary to yours. Worth pricing that honestly when you compare: the
+comparison is not licence against licence, it is licence-plus-integration-work against
+licence.
 
-The fair framing, which I would use in front of them: real-time is true of the SDK path.
-It is one word covering two architectures. Ask which one you are buying.""",
+Now the fairness, and I want it in the same breath rather than as a footnote. **Braze
+published this table themselves.** They did not have to grade their own ingestion paths
+and they did it in plain words. The SDK and API path genuinely is near-real-time, and the
+qualifier they attach to it — async processing — is more honest than most of this
+category manages. Nothing here is a false claim, and if I present it as one I will be
+corrected in the room and deserve to be.
+
+What is true is that one word is covering two architectures. So the question is not "is
+it real-time", because they will say yes and they will be right. The question is
+**which path will my data take, and what is the latency on that path** — and the answer
+is in their own documentation before the meeting starts. We come back to this on the
+deep-dive slide, because it turned out to be the single most useful question this whole
+project produced.""",
     "s", "Stage 1: Data")
 
 # ── 21 STAGE 2 · IDENTITY ────────────────────────────────────────────────────
@@ -402,38 +454,61 @@ layer, Canvas, Liquid and the identity model are built.""",
     "m", "Integrations")
 
 # ── 29 INFRASTRUCTURE ────────────────────────────────────────────────────────
+# The map earns its place here rather than on the revenue-geography slide: these are the
+# fifteen named clusters from the status page, pinned at the regions their own endpoint
+# hostnames give (iad = Ashburn VA, fra = Frankfurt, and the AWS region codes in CT for
+# the rest). US-08 is not pinned separately: nothing in the corpus places it in a specific
+# US region, and inventing a coordinate for the one cluster slide 34 is about would be the
+# worst possible place to guess. The legend points at it in words instead of in colour.
+_clusters_map = worldmap([
+    (-77.5, 38.9, "US &times;9", "m", "left"),
+    (  8.7, 50.1, "EU &times;2", "m", "above"),
+    (139.7, 35.7, "JP 01",       "m", "right"),
+    # Seoul and Tokyo are 12 degrees apart, which is narrower than two pin halos at this
+    # projection. Labelling KR above rather than left keeps both readable without moving
+    # either pin off its actual longitude.
+    (127.0, 37.6, "KR 01",       "m", "above"),
+    (106.8, -6.2, "ID 01",       "m", "below"),
+    (151.2,-33.9, "AU 01",       "m", "below"),
+])
+_map_legend = ('<div class="maplegend">'
+               '<span><i class="lg lg-m"></i>15 clusters, 6 territories</span>'
+               '<span><i class="lg lg-s"></i>7 identical subsystems in every one</span>'
+               '<span class="lgnote">one of the nine US clusters is the exception &mdash; slide 34</span>'
+               '</div>')
+_subsystems = ('<div><div class="klabel colhead">THE SEVEN SUBSYSTEMS, IDENTICAL IN EVERY CLUSTER</div>'
+               + logos(["Dashboard", "SDK Data Collection", "Data Processing", "REST APIs",
+                        "Outbound Messaging", "Currents", "Cloud Data-Ingestion"], cols=1)
+               + '<p style="margin-top:14px">Corroborated independently: the sub-processor disclosure '
+                 'lists AWS regions for the same six territories. <strong>There is no US 09.</strong></p></div>')
+
 add(f'''<section class="s" data-g="s" data-t="Infrastructure">
   {head("Infrastructure &middot; the status page as a disclosure", "Fifteen clusters, seven subsystems each &mdash; and one exception")}
   <div class="body">
-    {split(
-      '<div><div class="klabel colhead">THE SEVEN SUBSYSTEMS IN EVERY CLUSTER</div>'
-      + logos(["Dashboard", "SDK Data Collection", "Data Processing", "REST APIs",
-               "Outbound Messaging", "Currents", "Cloud Data-Ingestion"], cols=1)
-      + '</div>',
-      '<div><div class="klabel colhead">THE FIFTEEN CLUSTERS</div>'
-      + logos(["US 01", "US 02", "US 03", "US 04", "US 05", "US 06", "US 07", "US 08",
-               "US 10", "EU 01", "EU 02", "AU 01", "ID 01", "JP 01", "KR 01"], cols=5,
-              accent=("US 08",))
-      + '<p style="margin-top:16px">Corroborated independently: the sub-processor disclosure lists AWS regions for '
-        'the US, EU, Australia, Indonesia, Japan and South Korea &mdash; the same six geographies. '
-        '<strong>There is no US 09.</strong></p></div>',
-      ratio="0.8fr 1.2fr")}
+    {split('<div>' + _clusters_map + _map_legend + '</div>', _subsystems, ratio="1.25fr 0.75fr")}
   </div>
 </section>''',
 """The status page is an architecture disclosure Braze made by accident.
 
-Fifteen regional clusters, and every one exposes the same seven subsystems. That is a
-functional decomposition of the entire product, published live and updated during
-outages. Notice that Currents and Cloud Data Ingestion are first-class subsystems, not
-features.
+Fifteen regional clusters across six territories, and every one exposes the same seven
+subsystems. That is a functional decomposition of the entire product, published live and
+updated during outages. Notice that Currents and Cloud Data Ingestion appear as
+first-class subsystems rather than as features — which tells you they can fail
+independently, and the incident record on slide 38 shows they do.
 
 The geography checks out against a completely unrelated document: the sub-processor
-disclosure lists AWS regions for the same six territories.
+disclosure lists AWS regions for the same six territories. Two sources, no relationship
+between them, same answer.
 
-Two small things. There is no US 09 — they run one to eight, then ten. I do not know
+For a buyer with data-residency obligations this map is the answer to the question they
+actually have. Not "do you support the EU" — everyone says yes — but "which of your
+clusters would my data sit in, and what else is in that cluster". Fifteen named clusters
+is a real answer.
+
+Two things to hold. There is no US 09 — they run one to eight, then ten. I do not know
 why, and I am not going to invent a reason.
 
-And US 08 is highlighted, because that is the next slide.""",
+And US 08 is marked differently, because that is the next part.""",
     "s", "Infrastructure")
 
 # ── 30 ANALYTICS ─────────────────────────────────────────────────────────────
@@ -496,7 +571,8 @@ evidence does not need it.
 Here is what five independent lenses say instead.
 
 **Documentation.** Predictive Suite has seven focused pages. Agents seventeen.
-Decisioning Studio twenty-two. Canvas has two hundred and forty-nine.
+Decisioning Studio twenty-two. Canvas has two hundred and forty-nine. "Focused" means the
+page is about the thing rather than mentioning it.
 
 **The API.** Of a hundred and thirty-five published endpoints across twenty-eight
 namespaces, the number in an AI, prediction, agent or decisioning namespace is **zero**.
@@ -508,7 +584,37 @@ namespaces, the number in an AI, prediction, agent or decisioning namespace is *
 **And customers.** Reviewers talk about AI copywriting, and two of them independently say
 it needs a human pass. Nobody in the sample mentions decisioning at all.
 
+Now the caveats, because a documentation count is easy to over-read and I would rather
+raise the objection than be handed it. **A new product is under-documented by
+construction.** Decisioning Studio is fifteen months old inside Braze; Canvas has had a
+decade. And **some things are genuinely short to document** — Intelligent Timing is a
+toggle with a model behind it. So read these as *surface area*, which is what they
+measure, and not as a verdict on quality, which they cannot.
+
+Lens two is the one I would actually put in front of a technical buyer, because it has
+consequences they will hit. No AI namespace means the AI features cannot be orchestrated
+from outside the product: you cannot trigger a prediction, retrieve a recommendation or
+configure an agent programmatically. They cannot be tested in a CI pipeline the way a
+campaign trigger can. And they cannot be composed with the customer's own models. For an
+organisation that already runs data science, that is the difference between a platform
+capability and a black box.
+
+On the models, the fair framing matters. Using foundation models from suppliers is
+ordinary — almost nobody trains their own, and three rather than one is a sensible hedge.
+What is unusual is only that Braze is legally obliged to name them. So the narrow, firm
+claim is this: **any suggestion that Braze's AI is proprietary at the model layer is
+contradicted by Braze's own compelled disclosure.** What *is* proprietary is the
+integration, the data model the models see, and the decisioning logic they paid three
+hundred million for — a real asset, and I am not diminishing it.
+
 So the defensible sentence is: real, shipping, recently and largely acquired, running on
-three suppliers' models, with no API of its own. Every clause sourced separately. Let the
-audience draw the conclusion.""",
+three named suppliers' models, with no API of its own, documented at a fraction of the
+depth of the established platform. Every clause sourced separately, from a different kind
+of source, and no clause leaning on another.
+
+What it does not support is "their AI is thin". That sentence is unfalsifiable, the
+evidence does not need it, and the first prospect who opens the product and sees a working
+decisioning engine will disprove it for us. The sourced version survives that
+demonstration. And the genuinely useful question, which falls straight out of lens two, is
+one line: **can I call your AI from my own systems?** Today the documented answer is no.""",
     "s", "The AI, honestly")

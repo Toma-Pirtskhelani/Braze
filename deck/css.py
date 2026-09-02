@@ -17,7 +17,10 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
   background:radial-gradient(130% 95% at 50% -12%,#1B2029 0%,#0B0E14 72%)}
 #stage{width:1280px;height:720px;position:relative;transform-origin:center center;
   background:var(--ink);box-shadow:0 44px 130px -30px rgba(0,0,0,.92),0 0 0 1px var(--line)}
-section.s{position:absolute;inset:0;padding:56px 74px 88px;opacity:0;visibility:hidden;
+/* Bottom padding was 88px, which left 45px of clear air between the content box and the
+   top of the ledger and pushed five slides into overflow for the sake of it. 74px keeps
+   31px of clearance - still more than the ledger needs - and buys every slide 14px. */
+section.s{position:absolute;inset:0;padding:56px 74px 74px;opacity:0;visibility:hidden;
   transition:opacity .3s ease,transform .3s ease;transform:translateY(8px);display:flex;flex-direction:column}
 section.s.on{opacity:1;visibility:visible;transform:none}
 @media (prefers-reduced-motion:reduce){section.s{transition:none}}
@@ -32,7 +35,7 @@ h3{font-family:var(--body);font-weight:600;font-size:15px;color:var(--vellum);te
 .head h2{margin-top:13px;max-width:24ch}
 .head .kick{margin-top:13px;font-size:18px;line-height:1.45;color:var(--slate);max-width:70ch;font-weight:400;text-wrap:balance}
 .head .kick strong{color:var(--vellum);font-weight:600}
-.body{flex:1;min-height:0;display:flex;flex-direction:column;gap:18px;justify-content:center}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;justify-content:center}
 p{font-size:16px;line-height:1.55;color:var(--slate);text-wrap:balance}
 strong{color:var(--vellum);font-weight:600}
 .mono{font-family:var(--mono)}
@@ -55,7 +58,8 @@ strong{color:var(--vellum);font-weight:600}
   font-size:15px;color:var(--dim)}
 .title-s .byline strong{color:var(--vellum);font-weight:600}
 
-.ruleband{border-top:1px solid var(--line2);padding-top:26px;margin-top:20px}
+/* .body already spaces its children with gap, so the 20px margin here was double-counted. */
+.ruleband{border-top:1px solid var(--line2);padding-top:22px;margin-top:4px}
 .ruleband .klabel{display:block;margin-bottom:14px}
 
 /* self-guided demo links */
@@ -76,6 +80,9 @@ strong{color:var(--vellum);font-weight:600}
 .figurehead .fnote{font-size:14px;color:var(--slate);line-height:1.45;margin-top:9px}
 .figurehead .fedu{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dim);
   line-height:1.6;margin-top:10px}
+
+.brandmark{display:block;margin-bottom:20px}
+.brandmark circle,.brandmark path{vector-effect:non-scaling-stroke}
 
 /* divider */
 .div-s{justify-content:center;padding-left:104px}
@@ -176,10 +183,13 @@ strong{color:var(--vellum);font-weight:600}
 .num .nd{font-size:13.5px;color:var(--dim);line-height:1.4;margin-top:5px}
 
 /* bars */
-.bars{display:grid;gap:13px}
+/* Row pitch was 26px track + 13px gap. On an 8- or 11-row chart that alone pushed three
+   slides past the safe line. 24 + 10 reads identically at presentation size and gives a
+   tall chart back ~40px. */
+.bars{display:grid;gap:10px}
 .barrow{display:flex;align-items:center;gap:14px}
 .bl{font-family:var(--mono);font-size:11px;color:var(--barlab);width:172px;flex:none;letter-spacing:.04em;line-height:1.3}
-.bt{flex:1;height:26px;background:var(--line);border-radius:3px;overflow:hidden}
+.bt{flex:1;height:24px;background:var(--line);border-radius:3px;overflow:hidden}
 .bf{height:100%;border-radius:3px}
 .bv{font-family:var(--mono);font-size:15px;width:62px;text-align:right;flex:none;color:var(--slate)}
 
@@ -217,6 +227,15 @@ strong{color:var(--vellum);font-weight:600}
 
 /* logos */
 .logos{display:grid;gap:9px}
+/* A split column is a narrower, taller frame than a full-width body, and the default
+   card paddings overflow it on the two slides that stack seven logos or four tiles down
+   one side. Tightened only inside .split, so full-width uses keep their air. */
+.split .logos{gap:7px}
+.split .logo{padding:11px 8px}
+.split .tiles{gap:11px}
+.split .tile{padding:14px 16px}
+.split .tile .tt{margin-top:8px}
+
 .logo{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 8px;
   text-align:center;font-size:13.5px;color:var(--slate);font-weight:500}
 .logo.acc{border-color:var(--medium);color:var(--vellum)}
@@ -228,6 +247,22 @@ strong{color:var(--vellum);font-weight:600}
 .card h3{margin-bottom:8px} .card p{font-size:14.5px;text-wrap:balance}
 
 .quote{font-family:var(--disp);font-size:19px;line-height:1.32;color:var(--vellum);margin-top:10px;text-wrap:balance}
+
+/* Sparse slides fill their frame instead of floating in it.
+   A body carrying only one or two blocks leaves 150-290px of the stage unused, and a
+   centred lump of small type in an empty frame reads as an unfinished slide rather
+   than as a restrained one. Nothing is added to fix that: the hero element is simply
+   sized to the space it has. Quantity query - ":nth-child(-n+2):last-child" matches a
+   body whose last child is among its first two, i.e. one with two children or fewer.
+
+   The bound is deliberately TWO and not three. A three-block body is usually already
+   near full - a chart, a figure row and a rule band - and scaling its type pushed five
+   slides into overflow, where content spills past the safe line and collides with the
+   footer. Anything wider than this needs measuring, not guessing. */
+.body:has(> :nth-child(-n+2):last-child) > .quote{font-size:29px;line-height:1.3}
+.body:has(> :nth-child(-n+2):last-child) > p{font-size:19px;line-height:1.55}
+.body:has(> :nth-child(-n+2):last-child) .fig.sm .fv{font-size:52px}
+.body:has(> :nth-child(-n+2):last-child) .fig .fl{font-size:12px}
 /* the quote body is a BLOCK. It was briefly given class="q", which is the question-backlog
    flex row - that turned every <strong> inside a quote into a flex item on one nowrap line. */
 .quote .qbody{display:block}
@@ -255,6 +290,7 @@ strong{color:var(--vellum);font-weight:600}
 .maplegend .lg{width:8px;height:8px;border-radius:50%;display:block;flex:none}
 .maplegend .lg-s{background:var(--strong)} .maplegend .lg-m{background:var(--medium)}
 .maplegend .lg-w{background:var(--weak)}
+.maplegend .lgnote{font-style:italic;letter-spacing:.03em;opacity:.8}
 
 /* chrome */
 #ledger{position:absolute;left:74px;right:74px;bottom:32px;display:flex;gap:3px;align-items:flex-end;height:11px}

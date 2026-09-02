@@ -30,12 +30,22 @@ SOURCES = [("Their documentation",   "1,352 pages"),
 _src = ''.join(f'<div class="srcitem"><div class="sn">{n}</div><div class="sv">{v}</div></div>'
                for n, v in SOURCES)
 
+# A mark for the ANALYSIS, not for Braze. Reproducing a vendor's own logo on a competitive
+# teardown reads as impersonation; an abstract glyph does the same layout job with none of
+# that. The arcs echo the dot-grid world map on slide 29 so the deck has one visual idea.
+MARK = ('<svg class="brandmark" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">'
+        '<circle cx="22" cy="22" r="20.5" fill="none" stroke="var(--line2)" stroke-width="1.1"/>'
+        '<path d="M22 4.5 A17.5 17.5 0 0 1 22 39.5" fill="none" stroke="var(--strong)" stroke-width="2.2"/>'
+        '<path d="M22 9.5 A12.5 12.5 0 0 0 22 34.5" fill="none" stroke="var(--medium)" stroke-width="2.2"/>'
+        '<circle cx="22" cy="22" r="3.1" fill="var(--vellum)"/></svg>')
+
 add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
+  {MARK}
   <h1>Braze</h1>
   <div class="subject">Competitor analysis</div>
   <p class="lede">A customer engagement platform &mdash; and a public company, which changes what can be known.</p>
   <div class="srcstrip">{_src}</div>
-  <div class="byline"><span><strong>41 slides &middot; every figure traceable to a source path</strong></span><span>Public sources only &middot; captured 1&ndash;2 September 2026</span></div>
+  <div class="byline"><span><strong>__SLIDECOUNT__ slides &middot; every figure traceable to a source path</strong></span><span>Public sources only &middot; captured 1&ndash;2 September 2026</span></div>
 </section>''',
 """This is a competitor analysis of **Braze**.
 

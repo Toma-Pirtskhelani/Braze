@@ -109,16 +109,42 @@ instance. Every address for US-08 is registered to **Microsoft Corporation**. Ev
 address for every other instance is Amazon. I checked all of them against ARIN's registry
 rather than recognising ranges by eye, and that lookup is saved in the repository.
 
-**Three.** Certificate transparency shows fifty hosts on a region code that matches no
-AWS identifier, and the hostnames on it include sdk-us08 and subcenter-08.
+**Three.** Certificate transparency — the public log every issued TLS certificate lands
+in, which nobody at Braze curates — shows fifty hosts on region codes p-aze-us, s-aze-us
+and d-aze-us. Every other region code in that set maps to an AWS region identifier. These
+three map to none. And the hostnames sitting on them include sdk-us08 and subcenter-08.
 
-Now the discipline. **I am not telling you Braze failed to disclose something.** That is
-a legal conclusion and this evidence does not support it. There may be a perfectly good
-reason.
+Why the triangulation is the point, rather than any one of the three. Each source on its
+own has an innocent explanation. A sub-processor list can lag a change. An IP registry
+lookup can catch a transitional address. A certificate naming convention can mean nothing
+at all. What is hard to explain away is that three sources with **no relationship to each
+other** — a compelled legal disclosure, a customer-facing allowlist, and a public
+cryptographic log — all point at the same instance, and only at that instance. That is the
+shape of a real finding rather than an artefact, and it is why this one is on a slide.
 
-What I am telling you is that three unrelated sources say US-08 runs somewhere the
-disclosure does not mention — and if you are in a procurement conversation against Braze,
-that is a question worth someone asking.""",
+One word on method, because someone will ask. I did not recognise IP ranges by eye — every
+address Braze publishes for every instance was resolved against ARIN's registry, and the
+raw lookups are in the repository to re-run. Recognising ranges by sight is how people get
+this wrong, and getting this one wrong would be expensive.
+
+Now the discipline, and it is the most important sentence on the slide. **I am not telling
+you Braze failed to disclose something.** That is a legal conclusion and this evidence
+does not support it. A hosting arrangement may sit outside a sub-processor listing for
+reasons that are entirely proper and simply not visible from where we are standing — a
+different contracting entity, a category that does not process personal data, a
+transitional arrangement. I do not know, and neither does anyone in this room.
+
+What I am telling you is narrower and still valuable: **three unrelated sources agree that
+one instance runs somewhere the disclosure does not mention.** State those three
+observations and stop.
+
+And that restraint is the commercially useful move, not a hedge. If we assert
+non-disclosure, we have made a claim about their compliance that they can rebut in one
+sentence, and we lose everything else in this deck along with it. If we hand a prospect
+three sourced observations and let them ask, the question lands with the only people who
+can answer it. **The question is for them; it is not a conclusion for us.** It is also, on
+my reckoning, the highest-value single answer available in this whole analysis, which is
+why it is the first thing on the next-steps slide.""",
     "s", "What comes next")
 
 # ── 35 COMPETITIVE ADVANTAGES ────────────────────────────────────────────────

@@ -156,19 +156,40 @@ thirty-three million dollars of remaining performance obligation** — revenue t
 contracted and not yet recognised. That is one point four times the current year's
 revenue, already signed.
 
-If you are competing with Braze for a renewal, that is the number telling you how much
-of their base is locked in and for how long.
+Let me reframe what that actually means for us, because it is routinely under-used. RPO
+is not pipeline and it is not a forecast; it is signed business sitting inside contract
+terms, with an auditor's signature on the total. **Roughly a year and a half of Braze's
+current revenue is not available for us to compete for** — not because those customers
+would refuse to move, but because they are not up for renewal. That changes the question
+from "can we win this account" to "when does it come up", and for most of their base the
+answer this year is: it does not.
 
 Now the band at the bottom, and I want it on the slide rather than in my pocket. **Braze
 disclosed a material weakness in internal control over financial reporting** at the last
-year end — ineffective IT general controls over user access and change management on the
-systems that produce these numbers. Their CEO and CFO signed that disclosure controls
-were not effective.
+year end — ineffective IT general controls over user access and program change management
+on the systems that produce these numbers. Their CEO and CFO signed that disclosure
+controls were not effective at the reasonable assurance level.
 
 **And in the same breath, because either half alone misleads:** it produced no identified
-misstatement, nothing was restated, and the auditor still attested. Every number I am
-about to show you stands. But the control environment behind them was judged not
-effective by the people who signed it, and remediation has no published completion date.
+misstatement, nothing was restated, and Ernst & Young still issued an attestation report
+on internal control.
+
+If someone asks how much that should change their confidence in these figures, the honest
+answer is: less than the phrase "material weakness" sounds, and more than zero. A material
+weakness is a statement about the *probability* that an error could occur and go
+undetected. It is not a finding that one did. And here every independent check came back
+clean — no misstatement identified, nothing restated, an auditor attestation, and
+separately we ran a mechanical sweep across twenty-nine reported XBRL concepts looking for
+any figure Braze had quietly superseded in a later filing. We found none. Three
+confirmations that the outputs are sound, against one disclosure that the process
+producing them is not yet controlled to standard.
+
+Two things not to do with it. **Do not turn it into a claim about customer data
+security.** It is scoped to financial-reporting systems and says nothing about the
+platform — and for a company whose product is data infrastructure, that is exactly the
+leap an audience will make for you unless you close it off. And do not leave it out: a
+briefing that omits this and then gets asked about it by a prospect's finance team has
+spent its credibility for nothing.
 
 I missed this on my first pass through the filing. It is the reason the money part of
 this deck carries a band that the product part does not.""",
@@ -186,6 +207,15 @@ add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
            ("77%", "of the price was goodwill"),
            ("$56.7m", "developed technology, amortised to cost of revenue"),
            ("2 Jun 2025", "closed")], size="sm")}
+    <div class="ruleband">
+      <div class="klabel">WHAT THE PURCHASE-PRICE ALLOCATION TELLS YOU</div>
+      <p>Only <strong>$66.6m of the $303.2m was identifiable</strong>, and $56.7m of that is the software
+      itself &mdash; so Braze bought a capability and the people who built it, not a revenue stream. The
+      trademark was valued at <strong>$0.9m</strong>: nobody expected the OfferFit name to survive, and it
+      did not. And the technology amortises <strong>to cost of revenue over six years</strong>, which is why
+      an AI acquisition lands in gross margin &mdash; and why the drag runs to 2031 rather than washing out
+      next year.</p>
+    </div>
   </div>
 </section>''',
 """This is the single most useful sentence in the filings.
@@ -233,10 +263,38 @@ performance, over the two years after completion.
 **They earned none of it.** The FY2026 filing records the contingent consideration
 reduced to zero because the sellers did not satisfy the earn-out qualifications.
 
-I want to be careful here, because this is the kind of fact that is easy to over-read.
-It does not say the acquisition failed. It says the revenue targets set in June 2023
-were not met. If you sell against Braze in Australia or New Zealand, that is worth
-knowing and it is not on any website.""",
+I want to spend a moment on how to read that, because it is the fact in this deck most
+easily over-read, and the reasoning matters more than the number.
+
+An earn-out is a price-setting device for a disagreement. The buyer thinks the business
+will do X. The seller thinks it will do more. Rather than argue about it, they agree the
+seller gets paid the difference if the seller turns out to be right. **So a zero payout
+tells you one thing precisely: the revenue trajectory the sellers signed up to in June
+2023 did not happen.** And it tells you that from the buyer's own audited filing, in a
+document where getting it wrong has legal consequences. No website was ever going to say
+this.
+
+Here is what it does **not** say. It does not say the acquisition failed, and the filings
+do not say that either. Braze still owns the business. They still run an AU-01 cluster —
+you will see it on the infrastructure slide. And they have never taken an impairment
+against the twenty-eight point four million of goodwill from that deal, which they would
+have had to disclose. A perfectly benign reading is available: earn-out targets are where
+optimism gets priced, they are often set aggressively on purpose, and the business may be
+performing adequately just not at the seller's number.
+
+Two details close the loop. The two point eight million indemnification holdback was
+**released in full**, which means nobody made an indemnity claim against the sellers — so
+whatever happened was a performance shortfall, not a dispute about what was sold. And the
+results of the acquired business were recorded as "not material" to the consolidated
+statements, which is what you would expect of a regional reseller and tells you the
+shortfall never threatened the group numbers.
+
+So the sentence I would actually say out loud is the narrow one: **Braze paid twenty-six
+point eight million for direct control of Australia and New Zealand, structured up to
+half the potential value as performance-contingent, and the performance conditions were
+not met.** If you sell against them in that region, the public record contains no
+evidence of the acceleration the deal was priced for. That is worth knowing, and it is
+the most useful thing on this slide.""",
     "s", "Acquisition: North Star Y")
 
 # ── 11 WHAT IT COSTS ─────────────────────────────────────────────────────────
@@ -396,8 +454,16 @@ add(f'''<section class="s" data-g="m" data-t="What employees say">
             ("", "What their own summary names",
              "Management effectiveness and &ldquo;clarity in direction&rdquo;; &ldquo;limited upward mobility and discrepancies in compensation relative to market rates&rdquo;"),
             ("", "Still hiring hard",
-             "Roughly 284&ndash;300 open roles across 15 functions and 26 locations &mdash; including Bucharest, which matches a Romanian entity in the sub-processor list")],
+             "<strong>296 open roles</strong> across 15 hiring departments &mdash; including Bucharest, which matches a Romanian entity in the sub-processor list")],
            cols=3)}
+    <div class="ruleband">
+      <div class="klabel">AND WHAT THEY ARE HIRING FOR &mdash; THE FORWARD-LOOKING HALF</div>
+      <p>Sales <strong>89</strong> &middot; Engineering <strong>57</strong> &middot; Customer Experience
+      <strong>38</strong> &middot; Marketing 24 &middot; Solutions Consulting 23 &middot; Partnerships 16.
+      <strong>Go-to-market is 72.0% of the board against 19.6% for engineering and product &mdash; roughly
+      3.7 to one.</strong> A requisition is an intention, not a person, and this is not a spend ratio &mdash;
+      but it points the same way as slide 12&rsquo;s retention figures.</p>
+    </div>
   </div>
 </section>''',
 """Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
@@ -411,10 +477,36 @@ because it is interesting.
 The complaints in Glassdoor's own summary are about ceilings rather than conditions:
 management clarity, limited upward mobility, and compensation against market.
 
-And they are hiring hard — roughly three hundred open roles across fifteen functions.
+And they are hiring hard: **two hundred and ninety-six open roles across fifteen
+departments**, taken from their own Greenhouse board rather than counted off the careers
+page.
+
+The band at the bottom is the part I would actually use. **Sales eighty-nine.
+Engineering fifty-seven. Customer Experience thirty-eight.** Add the go-to-market
+functions up and they are seventy-two per cent of the board, against under twenty per
+cent for engineering and product — **roughly three and a half to one.** The single
+largest department is Sales, on its own bigger than engineering and product combined.
+
+Read that against slide twelve. Retention says expansion inside the existing base is
+slowing and growth is moving to new logos. A hiring board that is three-quarters
+go-to-market is what executing that shift looks like from outside — and it is a *leading*
+indicator where retention is a lagging one.
+
+Two limits on how hard I would push it. **A requisition is an intention, not a person**;
+a board is a plan and plans get cut. And this is not a spend ratio — a sales req costs
+less than a senior engineering one, so three and a half to one in headcount sits
+comfortably with the audited two to one in money on slide thirty-three. Different
+measures, same direction, which is what corroboration actually looks like.
+
 One small corroboration I like: the board lists Bucharest, and the sub-processor
 disclosure lists a Braze entity in "Ireland and Romania". Two unrelated documents
-describing the same thing is how you know both are real.""",
+describing the same thing is how you know both are real.
+
+Worth saying how this number got here, because it is a method point. The first pass
+recorded the department split as uncapturable — the board's filter would not drive under
+automation — and wrote it down as an open question. It was published as JSON the whole
+time. **When a page will not yield, look for the API behind it before you record a
+gap.**""",
     "m", "What employees say")
 
 # ── 16 WHO THEY COMPETE WITH ─────────────────────────────────────────────────
@@ -444,14 +536,39 @@ Braze.
 Three names are shared. So this is not a company misreading its own market, and I will
 not claim it is.
 
-**The asymmetry is the finding.** The buyer list is twice as long, and the five extra —
-Oracle, Optimove, Blueshift, MoEngage, CleverTap — are named nowhere in the filing. Four
-of those five are mobile-engagement specialists, not suites.
+Note also that the asymmetry only runs one way. Klaviyo is on Braze's list and not on the
+buyers'; everything else Braze names, buyers confirm. So the hypothesis we went in with —
+that Braze would turn out to be shortlisted against a completely different set of vendors
+— was only **partly** borne out, and I want that on the record as partly rather than as a
+win.
 
-If you built a competitive briefing only from Braze's own comparison pages, you would
-walk into the room missing five of the eight vendors in it.
+**The asymmetry that remains is the finding.** The buyer list is twice as long, and the
+five extra — Oracle, Optimove, Blueshift, MoEngage, CleverTap — are named nowhere in the
+filing.
 
-One more thing from the same source, and it is in Braze's favour: where Gartner's
-reviewers rate Braze above Salesforce and Adobe, they name the same two things both
-times — service and support, and ease of integration.""",
+The character of those five is what matters, more than the count. Oracle is another suite.
+But Optimove, Blueshift, MoEngage and CleverTap are mobile-engagement and CDP
+**specialists**. And that changes the conversation, because Braze's own competitive frame
+is "none of our competitors offer a comparable comprehensive solution" — they are arguing
+they are broader than the suites. The buyer's frame includes a second, different question:
+*is this better than a focused specialist at the one thing I actually need?* Those require
+different answers. A briefing assembled only from Braze's own comparison pages prepares
+you beautifully for the first conversation and walks you straight into the second.
+
+Two things in Braze's favour from the same source, and I want them said with the same
+weight as the criticism.
+
+**First**, where Gartner's reviewers rate Braze above the two largest alternatives, they
+name the same things twice: service and support, and ease of integration and deployment —
+with evaluation and contracting added against Salesforce. That is independent,
+buyer-sourced, and consistent: Braze is easier to buy from and easier to deploy than Adobe
+or Salesforce. If we are going to quote Gartner when it helps us, we quote it here too.
+
+**Second**, three of their four names are on the buyer list. This is a company that
+understands its own market. Anyone hoping to find that Braze is confused about who it
+competes with should stop looking; the evidence says the opposite.
+
+The practical use of this slide is a shortlist, not a scoreboard. In an active deal, the
+five specialists are who else is in the room — and their presence tells you the buyer is
+weighing depth against breadth, which is the axis to prepare for.""",
     "m", "Who they compete with")

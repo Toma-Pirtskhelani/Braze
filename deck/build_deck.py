@@ -59,6 +59,11 @@ for _s in S:
 
 sections = '\n'.join(s["html"] for s in S)
 
+# The title slide states how many slides this deck has. Hardcoding it means it goes
+# stale the first time a chapter is added, and a deck that miscounts itself on slide 1
+# undermines every count that follows it. Substituted here, where the number is known.
+sections = sections.replace('__SLIDECOUNT__', str(len(S)))
+
 # guard: `.s` selects slides, so no other element may carry a bare `s` class
 _bad = [m.group(0)[:70] for m in re.finditer(r'<(?!section)[a-z]+[^>]*class="([^"]*)"', sections)
         if 's' in m.group(1).split()]

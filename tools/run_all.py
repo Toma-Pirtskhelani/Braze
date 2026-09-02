@@ -39,6 +39,7 @@ STEPS = [
     (1, "status page",     ["tools/status_history.py"],  False, "data/incidents.csv"),
     (1, "github org",      ["tools/github_org.py"],      False, "data/repos.csv"),
     (1, "cert transparency", ["tools/ct_probe.py"],      False, "data/subdomains.csv"),
+    (1, "careers board",   ["tools/careers_board.py"],  False, "data/careers_departments.csv"),
 
     (2, "filing documents", ["tools/fetch_filings.py"],  False, "sources/filings"),
     (2, "issue trackers",  ["tools/fetch_issues.py"],    False, "data/issues.csv"),

@@ -249,3 +249,131 @@ Ranked by how much each changes the quality of what the audience receives.
 Everything in section 8 is presentation work on top of an evidence base that is already
 sound — which is the good kind of problem, because none of it requires going back to the
 sources.
+
+---
+
+## 10 · What was done — closing record, 2026-09-02
+
+Written after the work, against section 8 in the order given. Every claim below is
+re-checkable: `python3 tools/verify.py` for the gates, `bash tools/make_release.sh` for
+the artefacts.
+
+### The gates, after
+
+| Gate | Before | After |
+|---|---|---|
+| `tools/verify.py` | 9 passed · 0 failed | **9 passed · 0 failed** · 1 standing manual warning |
+| Evidence record | 8,375 words · 8 sub-headings | **16,275 words · 61 sub-headings** |
+| Conflicts, all with rulings | 5 | **9** |
+| `FACTS.md` rows | 189 | **219** |
+| Deck | 41 slides | **42 slides** |
+| Speaker notes | mean 138 · longest 268 | **mean 209 · longest 554** |
+| Slides overflowing the safe line | 5 (undetected) | **0** |
+| PDF | 41 pages, fallback fonts checked | **42 pages · 42 slides · no fallback fonts** |
+
+Reference-project comparators, for calibration rather than as targets: record 28,530
+words and 95 sub-sections, 21 conflicts, notes mean 238 and longest 858. The record is
+now at 57% of the reference by words where it was at 29%, and the notes exceed it on the
+strongest slides while sitting below it on the mean — which is the right shape, because
+this deck has more slides that are a single sourced fact.
+
+### Item by item
+
+**1 · Record chapters to ~2,000 words — done, and not by padding.** Seven chapters
+rewritten; `04-platform.md` left alone as the density model. What was added is the
+reasoning that connects facts that were already there: how to read a purchase-price
+allocation and why a $0.9m trademark valuation tells you the name was never going to
+survive (§3.1); why a zero earn-out is precise about one thing and silent about
+everything else (§3.2); how much a material weakness should actually move your confidence,
+and the three independent checks that came back clean (§2.1b); what "ultimate parent-level
+entity" does to the $283,000 price bound (§7.1); why the retention figures describe a
+business shifting from expansion to acquisition (§7.2). Two chapters landed under 2,000
+and are left there — `03-acquisitions.md` at 1,640 and `06-ai.md` at 1,731 — because the
+argument finished. `01-company.md` at 1,877 likewise.
+
+**2 · Dedicated conflicts pass — done.** Four new conflicts, each with a ruling: **C-06**
+the review panels disagreeing with themselves on their own denominators; **C-07** the 10-K
+and the proxy giving different headcounts for the same date, on different definitions;
+**C-08** "customer" meaning ultimate parent entity, which changes what the price bound
+measures; **C-09** the fifteen group entities including a majority-held VIE. None of these
+were visible without going looking, which is the argument for the sweep.
+
+**3 · Visual language — done.** `worldmap()` now carries the cluster geography on slide 29;
+slide 20 is an inline SVG of four ingestion lanes converging on one profile store, which is
+the shape of the finding rather than a list of it; the title slide carries an abstract mark.
+The mark is deliberately **not** Braze's logo — reproducing a vendor's own branding on a
+competitive teardown reads as impersonation, and an abstract glyph does the same layout job.
+
+**4 · Notes on the strongest slides — done, seven not six.** Slides 8 (material weakness),
+10 (earn-out), 15 (hiring), 16 (Gartner shortlist), 20 and 37 (real-time), 31 (AI
+provenance), 34 (US-08), 39 (the favourable kills). Each carries the reasoning, the
+counter-argument, and what not to say. The rule applied throughout: a note earns its length
+by containing something the slide cannot show — usually the fairness, usually the sentence
+that stops the finding being over-read.
+
+**5 · The airy slides — partially done, and the metric was not chased.** Sparse bodies now
+scale their hero element to the frame through a CSS quantity query rather than being
+padded with content, and the worst case fell from 289px of unused height to 247px. But 20
+slides still sit above the 120px threshold, and that is a deliberate stop: filling them
+further would mean either inflating type past the point where it reads well, or adding
+content for the sake of area, which is the padding the brief forbids. What *was* fixed is
+more serious than the airiness and was not in the critique — see "what the critique missed"
+below.
+
+**6 · Small defects — all done.** The stale "Empty, and it will not stay that way" line is
+gone. The record has a real corrections log at §8.2, now six numbered rows. `DECK-SPEC.md`
+says fifteen clusters in both the table and the prose, and its slide-31 row says five lenses
+rather than four. `QUESTIONS.md` is worked: all 45 pre-research questions now carry where
+they were answered, seven are marked answered **in part** with the missing half named, and
+two (#43, #44) are marked not attempted rather than quietly dropped.
+
+**7 · Favourable findings — done, with a slide of its own.** New slide 39, *"Three things we
+expected to find, and did not"*: H1 the efficiency result, H4 the SDK maintenance record, H9
+the falling incident rate — each with its caveat attached in the same breath, because a
+favourable finding stripped of its caveat is exactly as dishonest as an unfavourable one.
+Recorded in the evidence record at §8.0 with the reasoning that matters more than the three
+findings: four failures out of ten hypotheses is what genuine priors look like, and a set
+that all confirmed would have meant they were written to confirm.
+
+**8 · Careers board — done, and it closed an open question.** `tools/careers_board.py` pulls
+the Greenhouse board as unauthenticated JSON. **296 open roles across 15 hiring departments:
+Sales 89, Engineering 57, Customer Experience 38. Go-to-market is 72.0% of the board against
+19.6% for engineering and product — 3.7 to one.** Read against §7.2's retention figures it is
+a leading indicator of the shift from expansion to acquisition, and it is stated with two
+limits: a requisition is an intention rather than a person, and headcount ratio is not spend
+ratio (the audited figure is 1.96:1, §2.3). Question 56 is closed, the correction is logged,
+and the transferable lesson is in the record: **when a page will not yield, look for the API
+behind it before recording a gap.**
+
+### Nothing was rejected outright
+
+Every item was worked. Item 5 is the only one stopped short of its stated target, for the
+reason given above; the judgement is recorded here rather than left as a silent shortfall.
+
+### What the critique missed, and what this pass found
+
+Two things worth more than several of the items above, neither of which was in the review.
+
+**Five slides were overflowing their frame.** Content on slides 8, 14, 29, 31 and 38 ran past
+the safe line into the footer. My own self-review had checked `scrollWidth`/`scrollHeight` on
+the *section* and found nothing, because the section clips at the stage boundary — the
+overflow was on the inner `.body`. Checking the wrong element returned a clean result and I
+believed it. Fixed by tightening the bar-chart row pitch, removing a double-counted margin
+under `.ruleband`, and reducing card padding inside split columns. **All 42 slides now
+report zero overflow.**
+
+**The title slide said "41 slides" as a hardcoded string.** It was correct until this pass
+added one. A deck that miscounts itself on slide 1 undermines every count that follows, so
+it is now a `__SLIDECOUNT__` token substituted by `build_deck.py` from the assembled deck
+and cannot drift again.
+
+Two smaller ones, both caught only by looking at the rendered slide rather than the markup:
+a legend key on slide 29 pointed at a colour nothing on the map used, and an arrow glyph
+inside the new SVG pulled Menlo into the PDF as a fallback font because JetBrains Mono's
+latin subset has no U+2192.
+
+And one stale claim that the closing question closed: slide 40 still listed the hiring split
+as an open gap **after** item 8 had answered it. It would have been a false statement in
+front of an audience, made by the same pass that produced the answer. It is replaced with
+question 57, and the note now says out loud that a fifth gap was on that slide until the
+Greenhouse API closed it.

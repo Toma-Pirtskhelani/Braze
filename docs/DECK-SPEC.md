@@ -1,14 +1,19 @@
-# Deck specification — 41 slides, question by question
+# Deck specification — 42 slides, question by question
 
 The reference deck answered 41 questions about a competitor. This maps every one of
 them onto Braze, names the evidence that answers it, and marks whether Braze can be
 answered at **parity**, **deeper** (stronger evidence available here), or by a
 **substitute** question when the original does not apply.
 
+One slide is an addition rather than a mapping: **#39, the hypotheses that died in
+Braze's favour.** It has no reference-deck counterpart and was added after the first
+draft, because three favourable results reached the evidence record and none of them
+reached the deck — which is the bias the hypothesis method exists to catch.
+
 **Nothing below is a finding.** Every "answer" column names *where the answer will come
 from*, not what it is. Fill the slides from `docs/FACTS.md` once the research has run.
 
-Structure: **1 title · 4 part dividers · 36 content slides = 41.** Keep that shape —
+Structure: **1 title · 4 part dividers · 37 content slides = 42.** Keep that shape —
 the dividers do real work, giving the audience a breath and restating what the next
 part is for.
 
@@ -77,11 +82,11 @@ every capability claim to attach to a moment a customer would actually notice.
 | 26 | Stage 7 · Interaction | What happens when the customer replies? | Inbound, webhook, two-way channel docs | = |
 | 27 | Channels | How many channels, and which are never marketed? | Docs enumeration vs marketing. **Absence of a channel is a finding** | = |
 | 28 | Integrations | What connects, and is the layer built or bought? | Partner docs + sub-processor list + `braze-inc` integration repos | ↑ |
-| 29 | Infrastructure | What is it built on, and what does that constrain? | Sub-processors + **status-page component groups: 12 named regional clusters** | ↑ |
+| 29 | Infrastructure | What is it built on, and what does that constrain? | Sub-processors + **status-page component groups: 15 named regional clusters** | ↑ |
 | 30 | Analytics | What can you actually measure? | Reporting docs, export limits, incrementality/holdout support | = |
-| 31 | The AI, honestly | What is real, what is new, what is renamed? | **Four lenses: focused-page counts, endpoint counts, review vocabulary, analyst coverage** | = |
+| 31 | The AI, honestly | What is real, what is new, what is renamed? | **Five lenses: focused-page counts, endpoint counts, named model suppliers, the acquisition date, review vocabulary** | = |
 
-**#29 is the clearest upgrade in Part II.** The status page names twelve regional
+**#29 is the clearest upgrade in Part II.** The status page names fifteen regional
 clusters and 132 components — an architecture disclosure the vendor made by accident,
 and one no competitor's marketing will confirm or deny.
 
@@ -130,9 +135,10 @@ Add at most one, and only if it changes what a competitor would do.
 |---|---|---|---|---|
 | 37 | Deep dive | One hard question, answered properly | Pick from the backlog once the research is in — see below | ⇄ |
 | 38 | Reliability, measured | What does a decade of incidents show? | **451 incidents, 2016 → 2026, with durations.** No reference-deck equivalent | ⇄ |
-| 39 | What we could not answer | Where do public sources run out? | Honest enumeration, with what would close each gap | = |
-| 40 | Questions backlog | What should be researched next, and in what order? | `docs/QUESTIONS.md`, prioritised | = |
-| 41 | Close | What is the one thing to remember? | One line. Earned, not asserted | = |
+| 39 | Where the evidence went their way | Which hypotheses died in Braze's favour? | **The ten hypotheses in `docs/STRATEGY.md`, written before any source was read.** Added after the first draft: three favourable kills reached the record and no slide | ⇄ |
+| 40 | What we could not answer | Where do public sources run out? | Honest enumeration, with what would close each gap | = |
+| 41 | Questions backlog | What should be researched next, and in what order? | `docs/QUESTIONS.md`, prioritised | = |
+| 42 | Close | What is the one thing to remember? | One line. Earned, not asserted | = |
 
 **#37 is the reference deck's "how hard is a BSP, really?" slot** — a single hard
 question the audience will actually ask, answered with enough depth that nobody follows
@@ -169,7 +175,7 @@ Carried from the reference deck, where they were arrived at the hard way.
 
 ## Definition of done
 
-- [ ] 41 slides build clean; `build_deck.py` reports no missing notes
+- [ ] 42 slides build clean; `build_deck.py` reports no missing notes
 - [ ] Every number on every slide resolves to a row in `docs/FACTS.md`
 - [ ] Every slide's grade matches its weakest source
 - [ ] `make_script.py` regenerated; script and deck agree by construction

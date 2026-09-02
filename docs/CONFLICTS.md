@@ -141,6 +141,98 @@ Then give the counts and let the audience judge.
 
 ---
 
+### C-06 · How many reviews is each panel's rating based on?
+
+Found in a dedicated conflicts sweep on 2026-09-02. Each panel disagrees **with itself**.
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | Glassdoor: **563 reviews** on the company-search result | `sources/panels/glassdoor.md:56` | third-party | 2026-09-02 |
+| B | Glassdoor: **524 ratings** on the company page itself | `sources/panels/glassdoor.md:71` | third-party | 2026-09-02 |
+| C | Gartner: **263 Ratings** on the overview | `sources/panels/gartner.md:45` | third-party | 2026-09-02 |
+| D | Gartner: **267 Verified Reviews** on the reviews tab | `sources/panels/gartner.md:55` | third-party | 2026-09-02 |
+| E | TrustRadius: **348 Reviews and Ratings** in the header | `sources/panels/trustradius.md:42` | third-party | 2026-09-02 |
+| F | TrustRadius: **162 Reviews** in the list header under the default filter | `sources/panels/trustradius.md:64` | third-party | 2026-09-02 |
+
+**Why they differ:** almost certainly definitional rather than erroneous — a *rating*
+(a star score with no text) is not a *review* (a star score with a body), and a default
+filter may exclude older or unverified entries. None of the three sites explains its own
+distinction on the page. The gaps are small on Gartner (4) and Glassdoor (39) and very
+large on TrustRadius (186 of 348, or 53%).
+
+**Ruling:** quote each site's **headline rating with its own headline base**, in one
+breath, and never mix a base from one surface with a rating from another. Say
+**"4.5 out of 5 across 1,702 reviews on G2, 4.5 across 263 ratings on Gartner, 8.8 out
+of 10 across 348 on TrustRadius"** — and if challenged on the base, say that the sites'
+own surfaces disagree with each other by up to half, which is a fact about review panels
+rather than about Braze. This is also why nothing in this analysis quotes a percentage
+off the 14 review bodies actually captured.
+
+---
+
+### C-07 · How many people work at Braze?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | **1,988 full-time employees** as at 2026-01-31 | `sources/filings/2026-03-25_10-K_000013.txt:590` | audited | 2026-03-25 |
+| B | The proxy's pay-ratio population on the **same date** is "all of our full-time **and part-time** employees… We did not include any independent contractors" — and is **never sized** | `sources/filings/2026-05-18_DEF-14A_021908.txt:5769` | audited | 2026-05-18 |
+
+**Why they differ:** they count different populations for different statutory purposes.
+The 10-K's Human Capital disclosure counts full-time heads; Item 402(u) requires a median
+drawn from full-time *and* part-time employees. Both are correct and neither is the whole
+company: contractors are excluded from both, and the part-time count is disclosed nowhere.
+No independent headcount — LinkedIn, or a third-party estimate — was captured in this run,
+so there is no outside number to triangulate against either.
+
+**Ruling:** say **"1,988 full-time employees as at 31 January 2026"** and never "1,988
+people" or "headcount of 1,988". If someone quotes a larger number from LinkedIn, the
+answer is not that they are wrong: it is that **Braze publishes one population and the
+larger figure counts another**, and the company has not sized the gap. Quote the
+definition with the number, every time.
+
+---
+
+### C-08 · What is a "customer"?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | 2,609 — where a customer is "the separate and distinct, **ultimate parent-level entity** that has an active subscription" | `sources/filings/2026-03-25_10-K_000013.txt:1379,1381` | audited | 2026-03-25 |
+| B | 178 published customer stories, which are **brands and properties**, not parent entities | `data/site_inventory.csv` | claimed | 2026-09-01 |
+
+**Why they differ:** the 10-K metric deliberately rolls a corporate group up to one line.
+A holding company running ten retail brands on Braze counts once. The marketing roster
+counts the brand, because the brand is what a reader recognises. Neither is wrong; they
+are answering different questions, and the ratio between them is unknowable from outside.
+
+**Ruling:** this changes what the price bound means, so say it whenever the bound is said:
+**"Revenue divided by customers is about two hundred and eighty-three thousand dollars —
+but a 'customer' is an ultimate parent entity, so that figure spans a single-brand startup
+and a group running ten brands on one contract. It is a bound, not a price, and it is a
+bound per corporate group."** Never present 2,609 and 178 as comparable, and never
+describe 178 as a sample of 2,609.
+
+---
+
+### C-09 · Are the fifteen group entities all Braze?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | The sub-processor disclosure lists **15 "Braze Group" entities** across 14 territories, presented as one group | `sources/clean/braze-subprocessors.md:41` | documented | 2026-09-02 |
+| B | Braze KK (Japan) is a **majority-held Variable Interest Entity**, not a wholly-owned subsidiary: outside investors bought $10.0m of its stock in 2020–21, employees hold options over its shares, and a redeemable non-controlling interest sits outside permanent equity on the balance sheet | `sources/filings/2026-03-25_10-K_000013.txt:2477,2479,2225` | audited | 2026-03-25 |
+
+**Why they differ:** a sub-processor list answers "who touches personal data on our
+behalf", and for that purpose a consolidated VIE is properly listed alongside wholly-owned
+subsidiaries. The filing answers "what do we own", and there the distinction is material
+enough to require its own balance-sheet line.
+
+**Ruling:** **"Fifteen group entities across fourteen territories — one of which, Braze KK
+in Japan, is a majority-held joint venture consolidated as a variable interest entity
+rather than a wholly-owned subsidiary."** The correction matters in exactly one place and
+it is worth making there: anyone reasoning about the Japanese market from the entity list
+alone would assume full ownership and control, and the filing says otherwise.
+
+---
+
 ### C-05 · Restated financial figures
 
 | | value | source | grade | as of |

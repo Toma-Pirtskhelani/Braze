@@ -48,6 +48,11 @@ Legal entity, listing, incorporation, leadership, ownership, headcount, subsidia
 | Documentation depth differs sharply by section | developer_guide averages ~2,708 words/page; partners averages ~810 | documented | derived from `data/docs_sections.csv` | 2026-09-02 |
 | Dual-class structure | **Ended.** Class B retired and automatically converted to Class A on 2026-01-30; "our executive officers and early investors no longer hold super-voting rights" | audited | `sources/filings/2026-03-25_10-K_000013.txt:1197` | 2026-03-25 |
 | Full-time employees | 1,988 as at 2026-01-31 | audited | `sources/filings/2026-03-25_10-K_000013.txt:590` | 2026-03-25 |
+| Full-time employees, FY2022 → FY2026 | 1,164 · 1,501 · 1,548 · 1,699 · 1,988 | audited | `sources/filings/2022-03-31_10-K_000005.txt`, `2023-03-31_10-K_000031.txt`, `2024-04-01_10-K_000049.txt`, `2025-03-31_10-K_000054.txt`, `2026-03-25_10-K_000013.txt` — the "we had a total of N full-time employees" line in each | 2026-09-02 |
+| Headcount growth vs revenue growth, FY2022 → FY2026 | Headcount **+71%**, revenue **+210%** | audited | derived from the row above and `data/financials_annual.csv` | 2026-09-02 |
+| The year the two decoupled | FY2024: headcount grew **3.1%** (1,501 → 1,548) while revenue grew **32.7%** | audited | derived as above | 2026-09-02 |
+| _Headcount is full-time only_ | The 10-K figure counts full-time employees. The proxy's pay-ratio population, on the same date, is "all of our full-time **and part-time** employees… not including any independent contractors" and is never sized. See CONFLICTS **C-07** | — | `sources/filings/2026-05-18_DEF-14A_021908.txt:5769` | 2026-09-02 |
+| One "group entity" is not wholly owned | Braze KK (Japan) is a **majority-held** entity consolidated as a **Variable Interest Entity**, with outside investors (Japan Cloud Computing, M30 LLC) holding a redeemable non-controlling interest and employee options over its shares. See CONFLICTS **C-09** | audited | `sources/filings/2026-03-25_10-K_000013.txt:2477,2479` | 2026-03-25 |
 | Legal entities in the group | 15, across 14 territories: Australia, Brazil, Canada, France, Germany, Ireland, Spain, United States, Ireland & Romania, Japan, South Korea, United Kingdom, UAE, Singapore, Indonesia | documented | `sources/clean/braze-subprocessors.md:41` | 2026-09-02 |
 | Total SEC filings | 737, 2017-07-20 → 2026-08-28 | audited | `data/filings.csv` | 2026-09-01 |
 
@@ -95,6 +100,22 @@ written. It qualifies the whole of §2 and belongs with the numbers, not in a fo
 | R&D as a share of revenue, FY2020 → FY2026 | 21.1% · 19.4% · 24.8% · 27.4% · 25.4% · 22.6% · 22.6% | audited | `data/financials_annual.csv` | 2026-09-02 |
 | G&A, FY2026 | $146.3m (19.8% of revenue) | audited | `data/financials_annual.csv` | 2026-09-02 |
 | S&M still outspends R&D | $327.0m vs $167.1m in FY2026 — 1.96× | audited | `data/financials_annual.csv` | 2026-09-02 |
+| Revenue per full-time employee, FY2022 → FY2026 | $204k · $237k · $305k · $349k · **$371k** — a rise of **82%** | audited | derived from `data/financials_annual.csv` and the headcount series in §1 | 2026-09-02 |
+| Customers per full-time employee | 1.18 · 1.18 · 1.32 · 1.35 · 1.31, FY2022 → FY2026 | audited | derived from the customer and headcount series | 2026-09-02 |
+
+### 2.2b · What management is actually paid to optimise
+
+Answers `QUESTIONS.md` #33, which the first pass left open. From the proxy statement,
+which the first pass never opened.
+
+| Fact | Value | Grade | Source | As of |
+|---|---|---|---|---|
+| FY2026 bonus-plan metrics | **Net CARR weighted 60%**, **non-GAAP operating income (loss) weighted 40%** | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:1994` | 2026-05-18 |
+| The profitability gate | "failure to achieve a specified target of Non-GAAP Operating Income (loss) as a percentage of our gross profit resulting in **0% achievement of this performance metric**" | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:1994` | 2026-05-18 |
+| The growth cap | If retention was below a specified target, Net CARR achievement "would be limited to 110%" | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:1994` | 2026-05-18 |
+| CEO total compensation, FY2026 | $14,230,598 | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:5771` | 2026-05-18 |
+| Median employee total compensation, FY2026 | $164,000 | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:5771` | 2026-05-18 |
+| CEO pay ratio | **87 to 1** | audited | `sources/filings/2026-05-18_DEF-14A_021908.txt:5771` | 2026-05-18 |
 
 ### 2.3 · The cost of the equity story
 
@@ -394,6 +415,10 @@ Customer counts and financial metrics live in §2.4 — they are audited and bel
 | Fact | Value | Grade | Source | As of |
 |---|---|---|---|---|
 | The 10-K's defined metric | 2,609 customers as at 2026-01-31 | audited | `sources/filings/2026-03-25_10-K_000013.txt:1379` | 2026-03-25 |
+| **What that metric counts** | "We define a customer as the separate and distinct, **ultimate parent-level entity** that has an active subscription" — so a group with ten brands on Braze is **one** customer. See CONFLICTS **C-08** | audited | `sources/filings/2026-03-25_10-K_000013.txt:1381` | 2026-03-25 |
+| Customers, FY2022 → FY2026 | 1,375 · 1,770 · 2,044 · 2,296 · 2,609 | audited | the "we had N customers" line in each 10-K, FY2022–FY2026 | 2026-09-02 |
+| Customer concentration | **None.** "For fiscal years ended January 31, 2026 and 2025, **no customer accounted for 10% or more of total revenue**" | audited | `sources/filings/2026-03-25_10-K_000013.txt:2173` | 2026-03-25 |
+| Transacted prices found in any captured source | **Zero.** No rate card, procurement award or quoted contract value appears anywhere in the corpus. The ~$283,000 figure is a bound and has no corroborating price | — | exhaustive search of `sources/panels/`, `sources/docs/`, `sources/filings/` | 2026-09-02 |
 | Self-selected published stories | 178 `customers/` URLs in the site inventory | claimed | `data/site_inventory.csv` | 2026-09-01 |
 | Independent detection | Not attempted in this run. Recorded as a gap, not as zero | — | [`QUESTIONS.md`](QUESTIONS.md) | 2026-09-02 |
 
@@ -424,6 +449,7 @@ for vocabulary and theme, never for a percentage.
 | G2's own coded cons | Missing Features 140 · Learning Curve 139 · Limitations 102 · Limited Features 93 · Steep Learning Curve 86 | third-party | `sources/panels/g2.md:54-57` | 2026-09-02 |
 | TrustRadius's coded stat | Reporting "often described as limited and unintuitive, a sentiment shared by 36% of reviewers" (of 36 reviews in the last 18 months) | third-party | `sources/panels/trustradius.md:44-46` | 2026-09-02 |
 | Themes coded by script across the whole corpus | `tools/code_reviews.py` over 860 records (841 of them GitHub issues): complaints — bugs/reliability 50.2%, documentation 20.6%, implementation 15.3%, reporting/export 13.4% | third-party | `data/review_themes.csv` | 2026-09-02 |
+| The panels disagree with themselves | Glassdoor 563 reviews (search page) vs 524 ratings (company page); Gartner 263 Ratings vs 267 Verified Reviews; TrustRadius 348 Reviews and Ratings vs 162 under the default filter. See CONFLICTS **C-06** | third-party | `sources/panels/glassdoor.md:56,71`; `sources/panels/gartner.md:45,55`; `sources/panels/trustradius.md:42,64` | 2026-09-02 |
 | _Denominator discipline_ | The 860-record denominator is dominated by GitHub issues, which are developer reports, not buyer satisfaction. Say "of the N records coded", never "of all reviews" | — | `data/review_themes.csv`; `tools/code_reviews.py` | 2026-09-02 |
 
 ### 8.4 · What employees say
@@ -433,24 +459,30 @@ for vocabulary and theme, never for a percentage.
 | Glassdoor overall | 4.1/5 from 524 ratings | third-party | `sources/panels/glassdoor.md:68` | 2026-09-02 |
 | Work-life balance trend | Flat over the six months to September 2026, tracking the overall rating (~4.0–4.1); no divergence | third-party | `sources/panels/glassdoor.md:88-92` | 2026-09-02 |
 | What Glassdoor's own summary names as the weak spots | Management effectiveness and "clarity in direction"; "limited upward mobility and discrepancies in compensation relative to market rates" | third-party | `sources/panels/glassdoor.md:78-84` | 2026-09-02 |
-| Open roles on the careers board | ~284–300 across 25 pages of 12 | claimed | `sources/panels/jobs.md:44-46` | 2026-09-02 |
-| Functions hired for | 15 departments: Business Development, Customer Experience, Engineering, Finance, Growth, GTM Operations, GTM Strategy, Information Technology, Legal, Marketing, Partnerships, People, Product, Sales, Solutions Consulting | claimed | `sources/panels/jobs.md:52-56` | 2026-09-02 |
-| Hiring locations | 26, including Bucharest — which matches "Braze Ireland Procurement Limited … Ireland & Romania" in the sub-processor disclosure | claimed / documented | `sources/panels/jobs.md:58-63`; `sources/clean/braze-subprocessors.md:41` | 2026-09-02 |
-| _Not captured_ | An exact per-department headcount split. The board's filter UI could not be driven reliably; only the taxonomy and a front-of-list sample were captured. Recorded in [`QUESTIONS.md`](QUESTIONS.md) | — | `sources/panels/jobs.md:44-50` | 2026-09-02 |
+| Open roles on the careers board | **296**, on the company's own Greenhouse board | documented | `data/careers_departments.csv`; `sources/external/greenhouse-board-braze_2026-09-02.json` | 2026-09-02 |
+| Functions hired for | 15 departments carry at least one open role, of 21 listed on the board: Business Development, Customer Experience, Engineering, Finance, Growth, GTM Operations, GTM Strategy, Information Technology, Legal, Marketing, Partnerships, People, Product, Sales, Solutions Consulting | documented | `data/careers_departments.csv` | 2026-09-02 |
+| The three largest | Sales **89**, Engineering **57**, Customer Experience **38** | documented | `data/careers_departments.csv` | 2026-09-02 |
+| Go-to-market share of open roles | **213 of 296 — 72.0%** (Sales, Customer Experience, Marketing, Solutions Consulting, Partnerships, Growth, Business Development, GTM Strategy, GTM Operations) | documented | `data/careers_departments.csv` | 2026-09-02 |
+| Engineering and Product share | **58 of 296 — 19.6%.** Go-to-market outnumbers product-building roles **3.7 to 1** | documented | `data/careers_departments.csv` | 2026-09-02 |
+| _How to read the ratio_ | A requisition is an intention, not a person, and a sales req costs less than an engineering one — so this is not a spend ratio and must not be quoted as one. The audited spend ratio is S&M 1.96× R&D (§2.3), which is a different and smaller number pointing the same way | — | `data/financials_annual.csv`; `data/careers_departments.csv` | 2026-09-02 |
+| Hiring locations | 26 distinct location strings on the page capture, including Bucharest — which matches "Braze Ireland Procurement Limited … Ireland & Romania" in the sub-processor disclosure | claimed / documented | `sources/panels/jobs.md:58-63`; `sources/clean/braze-subprocessors.md:41` | 2026-09-02 |
+| _Superseded_ | The earlier "~284–300 across 25 pages of 12" was a front-of-list estimate from the board's web UI. The board's own JSON gives 296 exactly, inside that range. See the corrections table | claimed | `sources/panels/jobs.md:44-46` | 2026-09-02 |
 
 ---
 
 ## Numbers that were wrong and are now right
 
-Empty, and it will not stay that way. **Every correction goes here with the old value
-still visible**, so that a stale copy of a deck or a document can be recognised on sight.
-A file that shows its own errors is the reason to trust the rest of it.
+**Every correction goes here with the old value still visible**, so that a stale copy of
+a deck or a document can be recognised on sight. A file that shows its own errors is the
+reason to trust the rest of it. Four corrections are recorded below; the same table is
+mirrored in the evidence record.
 
 | Fact | Was | Is now | Why it changed | Date |
 |---|---|---|---|---|
 | Status-page component grouping | "132 in 12 groups" | 132 rows in **17 named groups** — 15 regional clusters × 7 components, plus Global Messaging Channels (7) and Global Services (3), plus the 17 group-header rows themselves | The setup-time reconnaissance counted groups by eye. Counting `data/status_components.csv` gives 17 named groups and 15 regional clusters, not 12. `DECK-SPEC.md` also says "12 named regional clusters" and is wrong for the same reason | 2026-09-02 |
 | Capability focused-page counts | Journey orchestration 319 · Identity resolution 136 · Ingestion & streaming 172 · Segmentation 339 | Canvas (journeys) 249 · Identity (external_id / alias) 110 · Cloud Data Ingestion (CDI) 30 · Segmentation 242 | **The pattern set moved, not the product.** `docs/CAPABILITY-TAXONOMY.tsv` was revised on 2026-09-02 from generic category words to Braze's own product names, as the handoff report required. Any comparison between a pre- and post-revision count is meaningless; both runs are reproducible from the `pattern` column in `data/capabilities.csv` | 2026-09-02 |
 | KakaoTalk's marketing status | Provisionally read as "documented but not marketed" during the first pass | **Marketed** — `/product/kakaotalk-messenger` exists. The finding inverts: KakaoTalk is marketed but absent from Braze's own documentation channel index | A first grep for `product/kakao` was truncated and appeared to return nothing. Checking the full `/product/` enumeration found the page | 2026-09-02 |
+| Open roles, and the split by function | "~284–300 across 25 pages of 12", with the per-department split recorded as uncapturable (open question 56) | **296 open roles across 15 hiring departments**, with the exact split — Sales 89, Engineering 57, Customer Experience 38 and so on | The estimate came from paging the careers board's web UI, whose Department filter would not drive under automation. Greenhouse publishes the same board as unauthenticated JSON with the grouping already done: `tools/careers_board.py` fetches it, and the count lands inside the earlier range. The lesson is the general one — **when a page will not yield, look for the API behind it before recording a gap** | 2026-09-02 |
 
 ---
 

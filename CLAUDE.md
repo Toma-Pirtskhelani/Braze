@@ -103,6 +103,7 @@ python3 tools/status_history.py      # status page   -> incidents, components
 python3 tools/github_org.py          # braze-inc     -> repos, sdk_releases
 python3 tools/fetch_issues.py        # issue tracker -> issues + a coded panel
 python3 tools/ct_probe.py            # CT logs       -> subdomains
+python3 tools/careers_board.py       # Greenhouse    -> careers_departments
 python3 tools/fetch_docs.py          # docs site     -> sources/docs/  (resumable)
 python3 tools/index_docs.py          # corpus        -> docs_index
 python3 tools/extract_api.py         # API pages     -> api_endpoints
