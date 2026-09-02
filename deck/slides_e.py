@@ -22,11 +22,20 @@ add(f'''<section class="s div-s" data-g="s" data-t="Part IV: Open questions">
             "What to remember"],
            foot="Where the evidence runs out, this says so")}
 </section>''',
-"""Part four. One hard question answered properly, the reliability record, and then an
-honest account of where public sources ran out.
+"""Part four is the part most competitor decks do not have, and it is the reason to trust
+the other three.
 
-That last part is not a disclaimer. **A gap you have written down is evidence. A gap you
-have not written down is a mistake.**""",
+One hard question answered properly. A decade of reliability, measured rather than
+claimed. The three hypotheses that died in Braze's favour — because we wrote ten of them
+down before reading anything, and four came back wrong. Then an honest account of where
+the public record ran out, and a prioritised list of what to do about it.
+
+That last part is not a disclaimer and I would not present it apologetically. **A gap you
+have written down is evidence. A gap you have not written down is a mistake** — and the
+difference is that the first one tells the next person exactly where to dig.
+
+One of those gaps closed while this deck was being built, from the source the entry itself
+had named. That is what a well-written backlog does.""",
     "s", "Part IV: Open questions")
 
 # ── 37 DEEP DIVE ─────────────────────────────────────────────────────────────

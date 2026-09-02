@@ -32,9 +32,9 @@ audience to discount all of it — including the parts that are hardest to argue
 
 | # | Hypothesis, as written beforehand | How it died | Detail |
 |---|---|---|---|
-| H1 | Growth is decelerating while sales spend holds | Sales and marketing fell faster than growth did, to its lowest share in the seven-year series | ch2 §2.3 |
-| H4 | Some supported platforms are effectively unmaintained | Every SDK repository publishing releases had shipped within 13 days of capture, and the archived one has had its documentation removed too | ch4 |
-| H9 | Incident rate has risen with scale | Incidents peaked in 2023 and fell to the quietest full year on the status page in 2025 | ch4 |
+| H1 | Growth is decelerating while sales spend holds | Sales and marketing fell faster than growth did, to its lowest share in the seven-year series (`data/financials_annual.csv`) | ch2 §2.3 |
+| H4 | Some supported platforms are effectively unmaintained | Every SDK repository publishing releases had shipped within 13 days of capture, and the archived one has had its documentation removed too (`data/sdk_releases.csv`, `data/repos.csv`) | ch4 |
+| H9 | Incident rate has risen with scale | Incidents peaked in 2023 and fell to the quietest full year on the status page in 2025 (`data/incidents.csv`) | ch4 |
 
 [[documented]] {{src: docs/STRATEGY.md @ 2026-09-02}}
 
@@ -71,8 +71,9 @@ with its remedy is an instruction to a later reader; a gap recorded as a shrug i
 Two of the remaining eight deserve emphasis because they bound claims made elsewhere in
 this record.
 
-**Question 58 bounds chapter 4.5.** The host list is partial — 833 hosts, captured
-through a rate-limited fallback after the primary source returned errors all day.
+**Question 58 bounds chapter 4.5.** The host list is partial — 833 hosts in
+`data/subdomains.csv`, captured through a rate-limited fallback after the primary source
+returned errors all day; the failures are logged in `logs/fetch-failures.md`.
 Everything said about what *was* provisioned stands. Nothing is said about what is
 absent, because the check was not exhaustive and an absence from an incomplete list is
 not a finding.
@@ -80,7 +81,8 @@ not a finding.
 **Question 54 is the one hypothesis that could not be tested at all.** The analysis went
 in expecting enterprise satisfaction to be lower than small-business satisfaction, as it
 usually is. All three review sites paywall exactly that breakdown, and only seven of the
-860 coded records carry a customer-size segment — far too few for anything. The nearest
+860 coded records in `data/review_coding.csv` carry a customer-size segment — far too few
+for anything. The nearest
 audited proxy points mildly the other way and measures something different: net retention
 among customers with $500k or more of annual recurring revenue is slightly *above* the
 all-customer figure (chapter 7). That is expansion, not satisfaction, and it is not
@@ -95,7 +97,7 @@ its own errors is the reason to trust the rest of it.
 | # | Fact | Was | Is now | Why it changed | Date |
 |---|---|---|---|---|---|
 | 1 | Status-page grouping | "132 in 12 groups" | 132 rows in **17 named groups**, of which **15 are regional clusters** | The setup-time reconnaissance counted by eye. Counting `data/status_components.csv` gives 17 named groups and 15 clusters | 2026-09-02 |
-| 2 | Capability page counts | Journey orchestration 319 · Identity resolution 136 · Segmentation 339 | Canvas 249 · Identity 110 · Segmentation 242 | **The pattern set moved, not the product.** The taxonomy was revised from generic category words to Braze's own product names. Counts from the two runs are not comparable, and both are reproducible from the `pattern` column of `data/capabilities.csv` | 2026-09-02 |
+| 2 | Capability page counts | Journey orchestration 319 · Identity resolution 136 · Segmentation 339 | Canvas 249 · Identity 110 · Segmentation 242 | **The pattern set moved, not the product.** The taxonomy in `docs/CAPABILITY-TAXONOMY.tsv` was revised from generic category words to Braze's own product names. Counts from the two runs are not comparable, and both are reproducible from the `pattern` column of `data/capabilities.csv` | 2026-09-02 |
 | 3 | KakaoTalk's status | Read at first pass as documented but not marketed | **Marketed**, but missing from Braze's own docs channel index | A truncated search appeared to show no marketing page. Checking the full `/product/` enumeration found one | 2026-09-02 |
 | 4 | The money chapter's completeness | Written with no reference to internal control over financial reporting | Carries the **material weakness** disclosure and both its halves (§2.1b) | The first pass read the 10-K for what it was looking for and missed Item 9A entirely. Found in self-review | 2026-09-02 |
 | 5 | `DECK-SPEC.md`'s cluster count | "12 named regional clusters" | Corrected in the specification itself to 15 | Correction 1 was recorded here but the specification that repeated the error was left uncorrected for a further pass. A spec known to be wrong will mislead the next reader | 2026-09-02 |

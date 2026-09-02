@@ -187,11 +187,26 @@ def slide_map(chs):
 
 
 def duplicate_facts(chs):
-    """A number appearing in two chapters is the failure this design exists to prevent."""
+    """A number appearing in two chapters is the failure this design exists to prevent.
+
+    Two classes of number are stripped before matching, because both are noise and noise
+    in a check like this is how the check ends up ignored:
+
+      - bare years. "2026" is not a fact with a home; it appears in every chapter and
+        always will.
+      - anything inside a `backticked span`. Those are source paths, and the line numbers
+        in them (`...txt:3130`) are addresses, not figures. Citing the same line from two
+        chapters is correct behaviour, not a duplicate claim.
+    """
     num = re.compile(r"(?<![\w.$])(\d[\d,]{3,}(?:\.\d+)?|\d+\.\d+%)")
+    code = re.compile(r"`[^`]*`")
+    year = re.compile(r"^(19|20)\d\d,?$")
     where = {}
     for c in chs:
-        for v in set(num.findall(c["text"])):
+        body = code.sub(" ", c["text"])
+        for v in set(num.findall(body)):
+            if year.match(v):
+                continue
             where.setdefault(v, []).append(c["file"])
     return {v: f for v, f in where.items() if len(f) > 1}
 

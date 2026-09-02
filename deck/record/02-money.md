@@ -5,7 +5,8 @@
 {{slides: 8, 33}}
 
 Every figure in this chapter is audited, filed under legal penalty, and re-derivable by
-running `python3 tools/sec_facts.py`. Fiscal years end 31 January — see §1.1 for why that
+running `python3 tools/sec_facts.py`, which writes `data/financials_annual.csv` and
+`data/financials_quarterly.csv` from the SEC XBRL company-facts API. Fiscal years end 31 January — see §1.1 for why that
 matters when re-deriving them.
 
 ## 2.1b · The caveat that travels with every figure in this chapter
@@ -26,11 +27,12 @@ The reassuring half is substantial, and it is the company's own and the auditor'
 material weakness "did not result in any identified misstatements to the financial
 statements, and there were no changes to previously issued financial results"; management
 concluded the statements "fairly present in all material respects"; and Ernst & Young
-issued an attestation report on internal control over financial reporting. Remediation is
+issued an attestation report on internal control over financial reporting
+(`sources/filings/2026-03-25_10-K_000013.txt:3286`). Remediation is
 under way with "significant progress" claimed and no completion date given. OfferFit was
 excluded from the assessment, as SEC guidance permits in an acquisition's first year — it
-is 1.4% of total assets and 1.8% of revenue, so the exclusion is immaterial to the figures
-below.
+is 1.4% of total assets and 1.8% of revenue (`sources/filings/2026-03-25_10-K_000013.txt:3258`),
+so the exclusion is immaterial to the figures below.
 
 The unreassuring half is that the control environment producing every number in this
 chapter was judged not effective by the people who signed it, and the specific area is
@@ -41,7 +43,8 @@ suggests, and more than zero. A material weakness is a statement about the *prob
 that an error could occur and go undetected, not a finding that one did. Here the
 independent checks all came back clean: no misstatement identified, nothing restated, an
 auditor attestation, and — separately and mechanically — this project's own restatement
-sweep across twenty-nine XBRL concepts found no superseded value (conflict **C-05**).
+sweep across twenty-nine XBRL concepts found no superseded value — `data/financials_restated.csv`,
+produced by `tools/sec_facts.py` (conflict **C-05**).
 Three confirmations that the outputs are sound, against one disclosure that the process
 producing them is not yet controlled to standard.
 
@@ -121,7 +124,7 @@ same as saying it is profitable. Share-based compensation is a real cost; it is 
 by shareholders through dilution rather than by the company through cash.
 
 The dilution is measurable. Weighted-average diluted shares went from 94.6m in FY2023 to
-107.9m in FY2026 — a rise of 14.1% in three years. So the honest summary is that Braze funds
+107.9m in FY2026 (`data/financials_annual.csv`) — a rise of 14.1% in three years. So the honest summary is that Braze funds
 its own operations from cash while transferring roughly a seventh of the equity to employees
 over three years, and reports the result as a loss. Each of those three clauses gets misused
 on its own.
@@ -158,8 +161,8 @@ hiring pause happened. A cost discipline visible in four independent places is a
 an accident.
 
 R&D tells a quieter story. It peaked at 27.4% of revenue in FY2023 and has settled at 22.6%
-for two years. In absolute terms it is still growing — $167.1m in FY2026 — but as a share of
-revenue Braze now spends less on R&D than it did three years ago, during a period in which it
+for two years. In absolute terms it is still growing — $167.1m in FY2026, from `data/financials_annual.csv` —
+but as a share of revenue Braze now spends less on R&D than it did three years ago, during a period in which it
 also bought its AI product rather than building it (chapter 3). Those two facts are not proof
 of a strategy, but they point the same way, and a competitor should notice that the R&D line
 did not spike to fund an AI programme.
@@ -178,7 +181,7 @@ rather than treating as a finding.
 | International revenue, FY2026 | $333.1m — 45.1% | [[audited]] | `sources/filings/2026-03-25_10-K_000013.txt:2421` |
 
 Remaining performance obligation crossed a billion dollars in FY2026, having risen every year
-from $234.2m in FY2021. At 1.40 times current-year revenue it is a genuine forward-visibility
+from $234.2m in FY2021 (`data/financials_annual.csv`). At 1.40 times current-year revenue it is a genuine forward-visibility
 measure and, unlike a pipeline number, it is contracted and audited.
 
 This is the most commercially useful number in the chapter and it is routinely under-used.
@@ -192,7 +195,8 @@ Chapter 7's retention figures then tell you what happens when it does.
 The geographic split is an audited disclosure rather than an inference, and it carries a
 sentence that matters more than the percentages: "Other than the United States, no other
 individual country accounted for 10% or more of total revenue for any of the periods
-presented." International share has been near-flat for three years — 43.4%, 45.0%, 45.1% —
+presented." International share has been near-flat for three years — 43.4%, 45.0%, 45.1%, from the
+segment note at `sources/filings/2026-03-25_10-K_000013.txt:2421` —
 so the international business is growing at roughly the same rate as the whole, not faster.
 
 Put that beside the infrastructure. Forty-five per cent of revenue is international and none

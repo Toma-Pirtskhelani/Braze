@@ -83,6 +83,13 @@ strong{color:var(--vellum);font-weight:600}
 
 .brandmark{display:block;margin-bottom:20px}
 .brandmark circle,.brandmark path{vector-effect:non-scaling-stroke}
+/* The title-slide plate. Sized to the wordmark rather than to the 50px .mark slot,
+   which was built for a square glyph and crushes a 2.1:1 wordmark to nothing. */
+.titleplate{width:132px;padding:12px 14px;margin-bottom:26px}
+/* A photograph with its caption attached, so the caveat travels with the image. */
+.photoblock{margin-top:8px;max-width:216px}
+.photoblock img{display:block;width:100%;height:auto;border-radius:5px;border:1px solid var(--line2)}
+.photocap{font-size:11.5px;line-height:1.4;color:var(--dim);margin-top:8px;text-wrap:balance}
 
 /* divider */
 .div-s{justify-content:center;padding-left:104px}
@@ -232,8 +239,8 @@ strong{color:var(--vellum);font-weight:600}
    one side. Tightened only inside .split, so full-width uses keep their air. */
 .split .logos{gap:7px}
 .split .logo{padding:11px 8px}
-.split .tiles{gap:11px}
-.split .tile{padding:14px 16px}
+.split .tiles{gap:9px}
+.split .tile{padding:12px 16px}
 .split .tile .tt{margin-top:8px}
 
 .logo{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 8px;
@@ -291,6 +298,25 @@ strong{color:var(--vellum);font-weight:600}
 .maplegend .lg-s{background:var(--strong)} .maplegend .lg-m{background:var(--medium)}
 .maplegend .lg-w{background:var(--weak)}
 .maplegend .lgnote{font-style:italic;letter-spacing:.03em;opacity:.8}
+
+/* ── Filling the frame ──────────────────────────────────────────────────────────
+   The component paddings were ported from a scaffold and sized conservatively, which
+   left a 42-slide deck sitting a fifth empty on the median slide - airy enough to read
+   as unfinished rather than as restrained. These are the same components at their
+   natural size for a 1280x720 stage, applied ONLY outside .split columns, which are
+   narrow and tall and were already tightened. Nothing was added to any slide to close
+   the gap; the existing content simply occupies the space it has.
+   Verified with scrollHeight vs clientHeight on all 42 slides after each change - the
+   whole point of a stage this size is that "looks about right" is not a measurement. */
+.body > .cards > .card{padding:24px 22px}
+.body > .tiles > .tile{padding:24px 20px}
+.body > .flow > .step{padding:19px 14px}
+.body > .logos > .logo{padding:19px 8px}
+.body > .cards{gap:16px}
+.body > .tiles{gap:16px}
+.body > .flow{gap:9px}
+.body > .logos{gap:11px}
+.body > .figrow{gap:20px}
 
 /* chrome */
 #ledger{position:absolute;left:74px;right:74px;bottom:32px;display:flex;gap:3px;align-items:flex-end;height:11px}

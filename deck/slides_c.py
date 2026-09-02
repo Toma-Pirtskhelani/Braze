@@ -28,11 +28,23 @@ add(f'''<section class="s div-s" data-g="s" data-t="Part II: The product">
            foot="Their technical documentation unless marked otherwise",
            extra='<div class="pipeline">' + _pipe + '</div>')}
 </section>''',
-"""Part two is the product, and we walk one campaign through seven stages.
+"""Part two is the product, and we walk one campaign through seven stages: data arrives, a
+profile updates, a segment recomputes, a journey triggers, content is composed, a message
+is delivered, a response comes back.
 
-I do it this way because it forces every claim to attach to a moment you would actually
-notice as a customer — and because the two stages I have highlighted, **data in** and
-**delivery out**, are where everything interesting turned out to be.""",
+I do it this way for two reasons. It forces every capability claim to attach to a moment
+you would actually notice as a customer, rather than sitting in a feature list. And it
+makes the weak points locate themselves — **the two stages I have highlighted, data in
+and delivery out, are where everything interesting turned out to be**, and they are the
+first and last thing that happens.
+
+The source for almost all of it is Braze's own technical documentation: 1,352 pages,
+read and indexed rather than skimmed. That matters because documentation is written to
+stop support tickets, not to win deals, so it admits limits that no marketing page
+will — and every hard limit in this deck came out of it.
+
+Be fair to them as we go. Stages three, four and five are good, reviewers say so, and I
+will say so too.""",
     "s", "Part II: The product")
 
 # ── 18 HOW ONE CAMPAIGN WORKS ────────────────────────────────────────────────
@@ -364,6 +376,19 @@ add(f'''<section class="s" data-g="s" data-t="Stage 7: Interaction">
     engagement tracking &mdash; opens, clicks, push receipts &mdash; is explicitly excluded from data-point
     billing. <strong>But getting the raw event stream back out is a paid add-on that exports on a
     five-minute cadence</strong>, which is the mechanism behind the reporting complaint on slide 14.</p>
+    <div class="ruleband">
+      <div class="klabel">WEBHOOKS IS THE MOST UNDER-SOLD THING IN THE PLATFORM</div>
+      {tiles([("", "Fifth-deepest channel in the product",
+               "71 focused documentation pages puts Webhooks above WhatsApp, Content Cards, Banners and every "
+               "channel except email, in-app, SMS and push."),
+              ("", "And it has no marketing page at all",
+               "One of the five documented channels sold under no name. A prospect judging Braze from its product "
+               "pages would not know this exists."),
+              ("", "Which cuts both ways for us",
+               "It is a real integration surface we should not pretend is absent &mdash; and it is one Braze&rsquo;s "
+               "own sellers are least likely to lead with.")],
+             cols=3)}
+    </div>
   </div>
 </section>''',
 """The loop closes. Responses come back as engagement events, and here Braze does something

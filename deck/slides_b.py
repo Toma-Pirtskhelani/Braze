@@ -11,6 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *                                   # noqa: F403,E402
+from assets import CEO, FOUNDERS, LOGO, OFFERFIT    # noqa: F401,E402
 
 # ── 4 DIVIDER ────────────────────────────────────────────────────────────────
 add(f'''<section class="s div-s" data-g="s" data-t="Part I: The company">
@@ -21,11 +22,21 @@ add(f'''<section class="s div-s" data-g="s" data-t="Part I: The company">
             "Who buys it, and who buyers compare them against"],
            foot="Audited filings unless marked otherwise")}
 </section>''',
-"""Part one is the company. Four questions.
+"""Part one is the company. Four questions: who they are and who controls them, what they
+have bought, what a customer pays, and who actually buys it.
 
-The thing that makes this part unusual: **Braze is listed**, so most of what follows is
-filed under legal penalty rather than claimed on a website. Where I use a marketing
-number instead, I will say so.""",
+The thing that makes this part unusual is that **Braze is listed.** Almost everything in
+the next twelve slides is filed under legal penalty rather than claimed on a website —
+seven years of audited accounts, two acquisition prices with their purchase-price
+allocations, a customer count that is a *defined* metric, and a proxy statement naming
+every executive officer and director. With a private vendor you would be inferring most
+of this from job ads and press releases.
+
+Two things to watch for as we go. **Where I use a marketing number instead of a filed
+one, I will say so out loud** — those are the weak-graded claims and there are only a few.
+And the most useful slide in this part is probably not the one you expect: it is the
+customer-count slide, because the definition of "customer" turns out to change what the
+only available price figure actually means.""",
     "s", "Part I: The company")
 
 # ── 5 EXECUTIVE SUMMARY ──────────────────────────────────────────────────────
@@ -68,6 +79,7 @@ growth, but improving efficiency and three years of positive operating cash flow
 
 # ── 6 WHO THEY SAY THEY ARE ──────────────────────────────────────────────────
 add(f'''<section class="s" data-g="w" data-t="Who they say they are">
+  <div class="brandtag" style="width:118px"><img src="{LOGO}" alt="Braze wordmark"></div>
   {head("Their story &middot; in their own words", "Who they say they are")}
   <div class="body">
     <div class="quote"><div class="qbody">&ldquo;Our platform empowers <strong>real-time engagement</strong> between brands and their
@@ -96,33 +108,79 @@ argument.""",
     "w", "Who they say they are")
 
 # ── 7 ORIGINS ────────────────────────────────────────────────────────────────
+# Was a timeline of five dates, four of which get a slide of their own later. The slide
+# is titled "and who controls it now" and answered only the Class B conversion, which is
+# half a governance answer: control is who holds the votes AND who holds the seats.
+# The portrait is the first named human being in this analysis. It is Braze's own
+# investor-relations headshot, and it is captioned with the title Braze gives it.
+_gov_left = ('<div>' + figurehead(
+    CEO, "Bill Magnuson",
+    "Chairman &middot; CEO &middot; President &middot; Cofounder",
+    "CTO from July 2011, chief executive since January 2017, chairman of the board "
+    "&mdash; and President too since June 2025, when the previous President resigned "
+    "and the role was not refilled. One person, four titles.",
+    "Cofounder Jon Hyman is still CTO, an officer since 2011.")
+    + f'<div class="photoblock"><img src="{FOUNDERS}" alt="Braze&rsquo;s CEO and CTO at '
+      'TechCrunch Disrupt NYC, 2011"><div class="photocap">The CEO and CTO at TechCrunch '
+      'Disrupt, 2011, published by Braze &mdash; which does not say which is which.'
+      '</div></div>'
+    + '</div>')
+
+_gov_right = ('<div><div class="klabel colhead">AND WHO HOLDS THE SEATS</div>'
+              + tiles([("", "Seven seats, six independent",
+                        "Magnuson is the exception, as President and CEO. <strong>Phillip Fernandez is Lead "
+                        "Independent Director</strong> &mdash; the role a board creates when its chair is not."),
+                       ("", "The chair is the chief executive",
+                        "The proxy defends combining them rather than glossing it: separating them &ldquo;has the "
+                        "potential to give rise to divided leadership&rdquo;."),
+                       ("", "And the board is classified",
+                        "Three staggered classes, so only about <strong>a third stands in any year</strong>. "
+                        "The super-voting stock is gone; this is not."),
+                       ("", "The votes, after January",
+                        "Class B converted <strong>30 January 2026</strong>; super-voting ended. Largest holder "
+                        "<strong>6.0%</strong>, the CEO <strong>4.9%</strong>, the Battery partner "
+                        "<strong>5.1%</strong> &mdash; <strong>no blocking position left.</strong>")], cols=1)
+              + '</div>')
+
 add(f'''<section class="s" data-g="s" data-t="Origins">
-  {head("Origins &middot; and who controls it now", "Fifteen years, and a governance change nine months old")}
+  {head("Origins &middot; and who controls it now", "Two of three cofounders still run it")}
   <div class="body">
-    {timeline([("2011", "Founded", "Incorporated in Delaware"),
-               ("Nov 2021", "IPO", "$456.8m net proceeds"),
-               ("Jun 2023", "North Star Y", "Buys its own AU/NZ reseller"),
-               ("Jun 2025", "OfferFit", "$303.2m &mdash; becomes AI Decisioning Studio"),
-               ("Jan 2026", "Class B retired", "Founder super-voting ends")])}
-    <div class="ruleband">
-      <div class="klabel">THE PART THAT IS EASY TO MISS</div>
-      <p>On <strong>30 January 2026</strong> the Class B stock converted to Class A. In the 10-K&rsquo;s words:
-      <em>&ldquo;our executive officers and early investors no longer hold super-voting rights. Consequently, our
-      voting power is now more widely distributed among our public stockholders.&rdquo;</em></p>
-    </div>
+    {split(_gov_left, _gov_right, ratio="0.95fr 1.05fr")}
   </div>
 </section>''',
-"""Founded 2011, public since November 2021, four hundred and fifty-seven million dollars
-of net IPO proceeds.
+"""Founded 2011. Public since November 2021. And now the part this slide is actually for,
+because until this pass it answered only half its own question.
 
-The line that matters is the last one, and it is nine months old. **The dual-class
-structure ended in January 2026.** Founders and early investors no longer hold
-super-voting stock.
+**Who runs it.** Bill Magnuson — chief executive since January 2017, on the board since
+2014, and the company's Chief Technology Officer before that from July 2011. He is also
+chairman. And since June 2025 he is President too, because the previous President
+resigned and the role was not refilled. One person holds four titles.
 
-I am not going to tell you what that means, because the evidence does not say. What I
-will say is that a company whose direction was insulated from its shareholders until
-this year is now not insulated — and if you compete with them, that is a change in who
-can apply pressure and how fast they may need to respond to it.""",
+His cofounder Jon Hyman is still Chief Technology Officer, and has been an officer since
+July 2011. **Two of the three cofounders are still running the company fifteen years
+on** — the third, Mark Ghermezian, appears in no filing at all. Braze names all three on
+its own website; the SEC filings name none of them as founders, which is why that
+particular fact is graded as a company claim rather than as audited.
+
+**Who holds the seats.** Seven directors, six of them independent — Magnuson is the
+exception because he is an executive. Phillip Fernandez is Lead Independent Director,
+which is the role a board creates when its chair is also its chief executive. The proxy
+defends that combination rather than glossing it, and I would quote their reasoning
+rather than mine.
+
+The one I would flag is the third card. **The board is classified into three staggered
+classes**, so only about a third of it stands for election in any year. Braze retired its
+super-voting stock in January and got a good deal of credit for it. The staggered board
+is still there, and a staggered board is the more durable of the two defences.
+
+**Who holds the votes.** After the conversion, ordinary arithmetic. The largest holder
+Braze discloses is at six per cent, the chief executive at just under five, and the
+Battery Ventures partner on the board at five. Nobody has a blocking position. Before
+January, the founders and early investors did.
+
+So the honest summary is that control got more conventional this year in one respect and
+did not move at all in another — and if you are modelling how fast Braze can be pushed to
+respond to a shareholder, both halves matter.""",
     "s", "Origins")
 
 # ── 8 HOW THEY GOT THIS BIG ──────────────────────────────────────────────────
@@ -197,6 +255,7 @@ this deck carries a band that the product part does not.""",
 
 # ── 9 ACQUISITION 1 ──────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
+  <div class="brandtag" style="width:146px"><img src="{OFFERFIT}" alt="OfferFit logo"></div>
   {head("Acquisition one &middot; June 2025", "They bought their AI, and the filing says so")}
   <div class="body">
     <div class="quote"><div class="qbody">&ldquo;the Company completed the acquisition of <strong>OfferFit, Inc.</strong>
@@ -236,9 +295,17 @@ get to the AI slide, remember that the agentic layer has a purchase price.""",
     "s", "Acquisition: OfferFit")
 
 # ── 10 ACQUISITION 2 ─────────────────────────────────────────────────────────
-_ns_left = '<div>' + figs([("$26.8m", "total consideration"),
-                           ("$26.0m", "earn-out available"),
-                           ("$0", "earn-out paid", "neg")], cols=1, size="sm") + '</div>'
+# No North Star Y logo appears on this slide because none could be sourced: the domains do
+# not resolve, there are no Internet Archive captures, and a web search returns only
+# Braze's own press releases. Several unrelated companies trade as "North Star"; attaching
+# one of their marks would be a fabricated identification. The absence is stated instead.
+_ns_left = ('<div>' + figs([("$26.8m", "total consideration"),
+                            ("$26.0m", "earn-out available"),
+                            ("$0", "earn-out paid", "neg")], cols=1, size="sm")
+            + '<div class="photocap" style="max-width:270px;margin-top:18px">No North Star Y mark '
+              'appears here because none survives: the domains do not resolve and there is no '
+              'archive capture. <strong>Both acquired brands were retired</strong> &mdash; '
+              'offerfit.ai now serves a Braze page.</div></div>')
 _ns_right = '<div>' + cards([
     ("What it was",
      "North Star Y, Pty Ltd &mdash; Braze&rsquo;s <strong>exclusive reseller in Australia and New Zealand</strong>. Buying it took the market direct.", "g"),

@@ -20,11 +20,21 @@ add(f'''<section class="s div-s" data-g="s" data-t="Part III: Strategy">
             "What would survive a competitor doing the same thing"],
            foot="Audited, except where marked")}
 </section>''',
-"""Part three. Three slides only, and that is deliberate.
+"""Part three. Three slides only, and the restraint is deliberate.
 
-The SEC data here is abundant and tidy and it will happily eat a whole deck. **You are
-deciding about a product and a competitor, not about a share price**, so the money gets
-one slide, the unannounced gets one, and the last one is the argument.""",
+The SEC data here is abundant, tidy and free, and it will happily eat a whole deck. Seven
+years of audited operating expense, quarterly cash flow, remaining performance obligation,
+a compensation plan with published targets — all of it interesting, and most of it beside
+the point. **You are deciding about a product and a competitor, not about a share
+price.** So the money gets one slide, what is coming gets one, and the last one is the
+argument about what would actually survive us competing hard.
+
+Watch the second of the three. It is the finding nobody else in this market will have,
+and it is also the one I am most careful about — three unrelated sources agreeing, stated
+as observations and deliberately not as a conclusion.
+
+And the third slide is the one to argue with. It names what protects Braze *and* what does
+not, and if you disagree with either list, that is the conversation worth having today.""",
     "s", "Part III: Strategy")
 
 # ── 33 WHERE THE MONEY GOES ──────────────────────────────────────────────────

@@ -55,6 +55,7 @@ difference is often *the* finding.
 
 ```
 sources/    evidence exactly as captured — IMMUTABLE, never edit
+            (incl. media/ — logos and portraits, with PROVENANCE.md)
 data/       derived tables. CSV only. Every file reproducible by tools/
 docs/       analysis and specifications written by a person
 deck/       generators + evidence-record.html
@@ -113,6 +114,7 @@ python3 tools/build_timeline.py      # everything    -> timeline
 python3 tools/panels_status.py       # which panels are captured, and the ladder
 python3 tools/handoff.py             # end collection: report + switch models
 
+python3 tools/build_assets.py        # sources/media -> deck/assets.py (base64)
 python3 deck/build_deck.py           # slides_*.py   -> deck/braze-deck.html
 python3 deck/make_script.py          # the deck      -> docs/PRESENTATION-SCRIPT.md
 python3 deck/build_record.py         # record/*.md   -> deck/evidence-record.html

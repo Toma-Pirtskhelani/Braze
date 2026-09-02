@@ -233,6 +233,80 @@ alone would assume full ownership and control, and the filing says otherwise.
 
 ---
 
+### C-10 · Who are the executive officers?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | **Six** executive officers as at 2026-05-04: Magnuson, Winkles (CFO), Hyman (CTO), Astha Malik, McDonnell, Wiseman (General Counsel) | `sources/filings/2026-05-18_DEF-14A_021908.txt:1099-1180` | audited | 2026-05-18 |
+| B | **Ten** people on the "Leadership" page, including **Pankaj Malik** as CFO and Chief Accounting Officer and **Chris Lal** as General Counsel — neither of whom appears in the proxy — plus a Chief People Officer, a Chief Information Officer, a Chief Product Officer and an SVP of Engineering | `sources/external/braze-ir-leadership_2026-09-02.md` | claimed | 2026-09-02 |
+
+**Why they differ:** two reasons, and they have to be separated because only one of them
+is about time. **Scope:** "executive officer" is an SEC term of art covering the people
+whose compensation and dealings must be disclosed; a Leadership page is an editorial
+choice about who to show, and four of the ten extra names are roles that carry no
+disclosure obligation. **Time:** the proxy is dated 2026-05-04 and already announces that
+Winkles would resign on 2026-05-29 and Wiseman retire by 2026-06-30. By the September
+capture both successions had happened, and the web page is simply newer than the filing.
+
+**Ruling:** date every roster and never merge them. Say **"as at the 2026 proxy, six
+executive officers, of whom the CFO and the General Counsel had both announced their
+departure; Braze's own leadership page in September 2026 names their successors, Pankaj
+Malik and Chris Lal."** The proxy is the authority for anything with a legal
+consequence — tenure, compensation, holdings — because it is filed under penalty; the web
+page is the authority for nothing except what Braze currently says about itself, and it is
+the only source for either successor's name. **Do not read the six-to-ten gap as
+headcount growth in the executive team.** It is mostly scope.
+
+---
+
+### C-11 · What did Braze pay for OfferFit, and does the brand still exist?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | The purchase-price allocation assigns **$0.9m of $303.2m to trademarks** — 0.3% of the price | `sources/filings/2026-03-25_10-K_000013.txt:3137` | audited | 2026-03-25 |
+| B | `offerfit.ai` still resolves, and now serves a **Braze** page titled "1:1 Personalization at Scale \| BrazeAI Decisioning Studio™" carrying Braze's own wordmark in the header. The OfferFit logo survives only in an Internet Archive capture dated 2024-12-31 | `sources/media/PROVENANCE.md` | documented | 2026-09-02 |
+
+**Why this is here at all:** it is the one entry in this register where the two sources do
+**not** disagree — they agree, from completely unrelated directions, and the entry exists
+because that agreement is worth as much as a disagreement and would otherwise go
+unrecorded. A valuer put 0.3% of the price on the name fifteen months before the brand
+disappeared from the web, and the live domain now confirms the valuer was right.
+
+**Ruling:** the register is for disputes, so this is filed as **corroboration rather than
+a dispute** — the register holds twelve entries, of which eleven are genuine
+disagreements and this one is agreement worth recording. Say: **"the allocation valued
+the OfferFit trademark at nine hundred thousand dollars out of three hundred and three
+million, and the brand is now gone — offerfit.ai serves a Braze page."** Do not say the
+brand was "killed" or "buried"; a buyer retiring an acquired name is ordinary, and the
+point is only that the accounting said so in advance.
+
+---
+
+### C-12 · Is "Creative Studio" a Braze product or a partner shelf?
+
+| | value | source | grade | as of |
+|---|---|---|---|---|
+| A | A **Braze product**. `/product/creative-studio` exists in two languages, its `<h1>` reads "Scale connection with Creative Studio", and the name sits in the site's top-level product navigation beside Journey Orchestration and Reporting | `sources/external/braze-creative-studio-page_2026-09-02.md` | claimed | 2026-09-02 |
+| B | A **partner category**. Across 1,352 documentation pages the phrase appears in four files and is the subject of none — **zero focused pages** — and where it appears it labels a shelf holding third-party integrations: "Canva — Message Personalization — Creative Studio", and the same for Figma | `sources/docs/docs__partners__message_personalization.md:18`; `sources/docs/docs__releases__2026__3_5_26.md:122,130` | documented | 2026-09-02 |
+
+**Why they differ:** this is the same drift as C-02 running in the same direction as the
+KakaoTalk half of it — marketed, not documented — but it is larger and it is about a
+product rather than a channel. The most likely benign explanation is age: the only dated
+reference is a release note of 5 March 2026, so the product is roughly six months old and
+documentation lags launches everywhere. The alternative reading, which the evidence does
+not settle, is that Creative Studio is a marketing name for partner integrations Braze
+does not itself build — which is exactly what the documentation's use of the phrase
+describes.
+
+**Ruling:** do not say Braze "does not have" Creative Studio; a product page and a release
+note say it exists. Say what is measurable: **"Creative Studio has a product page in two
+languages and top-level navigation, and zero focused documentation pages — in the
+documentation the phrase labels a partner category containing Canva and Figma. It is about
+six months old, so the gap may simply be lag."** Re-running `capability_count.py` in
+ninety days settles it, and that is the honest thing to offer rather than a verdict now.
+
+---
+
 ### C-05 · Restated financial figures
 
 | | value | source | grade | as of |

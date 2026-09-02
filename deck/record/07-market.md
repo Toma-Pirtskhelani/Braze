@@ -68,13 +68,15 @@ which is slow, and which the contracted-revenue position in §2.4 makes slower s
 
 Three movements here, and the second and third are easy to miss.
 
-**Net retention is falling**, and Braze explains why itself: "primarily due to customer
+**Net retention is falling**, and Braze explains why itself
+(`sources/filings/2026-03-25_10-K_000013.txt:1400`): "primarily due to customer
 turnover and renewals at lower subscription levels… customers renew their contracts at
 levels more closely aligned with their current needs, rather than opting for larger
 commitments based on anticipated future demand." That is a demand-environment explanation,
 it is the company's own, and it is plausible — every subscription vendor said a version of
 it over this period. It is worth noting what it is *not*: it is not an explanation
-involving competitive loss, and Braze does not offer one.
+involving competitive loss, and Braze does not offer one anywhere in
+`sources/filings/2026-03-25_10-K_000013.txt`.
 
 **The enterprise premium has nearly closed.** Large customers used to expand three points
 faster than the average — 120% against 117% in FY2024. In FY2026 they expand one point
@@ -106,7 +108,7 @@ the health of the base, and it is a proxy.
 
 The 10-K names four competitors: **Adobe, Salesforce, Iterable, Klaviyo**, alongside the
 claim that "none of our competitors currently offer comparable comprehensive customer
-engagement solutions".
+engagement solutions" — `sources/filings/2026-03-25_10-K_000013.txt`.
 
 Gartner Peer Insights publishes what buyers *also considered*, derived from the buyers
 rather than the vendor. That list has eight: **Salesforce, Adobe, Iterable, Oracle,
@@ -164,8 +166,8 @@ the site's own default view. The ruling is to quote each site's headline rating 
 headline base and never to mix them — and this is the second reason, after sample size,
 that no percentage in this analysis is computed from captured review bodies.
 
-G2's own coded tags, counted over its full review base rather than over the sample captured
-here, put the praise at Ease of Use (385), Intuitive (188), Customer Support (151), Helpful
+G2's own coded tags (`sources/panels/g2.md:46`), counted over its full review base rather
+than over the sample captured here, put the praise at Ease of Use (385), Intuitive (188), Customer Support (151), Helpful
 (148) and Features (138); and the criticism at Missing Features (140), Learning Curve (139),
 Limitations (102), Limited Features (93) and Steep Learning Curve (86). The most common
 praise tag is nearly three times the most common criticism, which is the ratio to carry
@@ -174,7 +176,7 @@ away.
 Two themes recur across unrelated panels and are therefore worth more than the rest:
 **reporting is the most consistent complaint**, and **the learning curve is the second**.
 TrustRadius codes reporting as "limited and unintuitive, a sentiment shared by 36% of
-reviewers".
+reviewers" (`sources/panels/trustradius.md`).
 
 The reporting complaint corroborates independently with the platform evidence in chapter 4,
 and the corroboration is what makes it solid rather than anecdotal: out-of-the-box reporting
@@ -183,7 +185,8 @@ route to raw data. A complaint from buyers and a mechanism in the documentation,
 from unrelated directions, describing the same thing.
 
 Running `tools/code_reviews.py` over the whole corpus produces theme percentages against a
-denominator of 860 records, but 841 of those are GitHub issues rather than buyer reviews.
+denominator of 860 records in `data/review_themes.csv`, but 841 of those are GitHub issues
+from `data/issues.csv` rather than buyer reviews.
 That denominator is stated wherever the script's output is used, and its themes describe the
 SDK surface, not satisfaction.
 
@@ -202,7 +205,7 @@ usual story at this stage of a company's life, and did not find one.
 Glassdoor's own summary names the weak spots as management effectiveness and "clarity in
 direction", and "limited upward mobility and discrepancies in compensation relative to
 market rates". That last phrase is worth setting against §1.4: the proxy discloses a median
-employee total compensation of $164,000. This is not a low-paying company, so the grievance
+employee total compensation of $164,000 (`sources/filings/2026-05-18_DEF-14A_021908.txt:5769`). This is not a low-paying company, so the grievance
 is better read as being about *progression* than about level — which is precisely what
 "limited upward mobility" says, and what the "limit to the number of folks who can score a
 4/5" comment in the captured reviews describes.

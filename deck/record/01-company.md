@@ -1,6 +1,6 @@
 # The company
 
-> Braze is a fifteen-year-old New York software company that has been public since November 2021 and, since January 2026, is no longer controlled by its founders through super-voting stock. The most useful thing in this chapter is not any single figure but a ratio: revenue has grown three times faster than headcount since FY2022, and the compensation plan shows that this was deliberate.
+> Braze is a fifteen-year-old New York software company that has been public since November 2021 and, since January 2026, is no longer controlled by its founders through super-voting stock — though the staggered board that is the other structural defence was kept. Two of its three cofounders still run it, while three of six executive officers turned over inside a year. The most useful single thing here is a ratio: revenue has grown three times faster than headcount since FY2022, and the compensation plan shows that this was deliberate.
 
 {{slides: 4, 5, 7}}
 
@@ -54,6 +54,164 @@ and Braze has now had two consecutive years in which growth decelerated (chapter
 Whether that produces pressure is not knowable from the filings; that it *can* now is.
 
 {{src: sources/filings/2026-03-25_10-K_000013.txt:1197 @ 2026-03-25}}
+
+## 1.2b · Who runs it, who sits on the board, and what neither has to do with the votes
+
+The first draft of this analysis answered "who controls it now" entirely with the Class B
+conversion, which is half an answer. Control is who holds the votes **and** who holds the
+seats, and the seats did not change at all this year.
+
+### The people, named
+
+| Person | Role | Since | Grade | Source |
+|---|---|---|---|---|
+| **Bill Magnuson** | Chairman, CEO, President, cofounder | CTO Jul 2011; director Aug 2014; CEO Jan 2017; President Jun 2025 | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:780,1123` |
+| **Jonathan Hyman** | Chief Technology Officer, cofounder | CIO Jul 2011; CTO Dec 2016 | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:1187` |
+| Isabelle Winkles | Chief Financial Officer | Jan 2020 — resigned 29 May 2026 | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:1186,1177` |
+| Astha Malik | Chief Business Officer | CMO Jun 2022; CBO Jun 2023 | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:1188` |
+| Edward McDonnell | Chief Revenue Officer | Jul 2025, from Asana | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:1189` |
+| Susan Wiseman | General Counsel and Secretary | Jan 2016 — retiring by 30 Jun 2026 | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:1190,1181` |
+
+**Braze was founded by three people and two of them still run it.** Braze's own company
+page names them: *"Braze CEO Bill Magnuson and CTO Jon Hyman participated in a 2011
+hackathon that led to a chance meeting with their third cofounder, Mark Ghermezian."*
+[[claimed]] {{src: sources/external/braze-company-page_2026-09-02.md @ 2026-09-02}}
+
+That sentence is graded `claimed` and it has to be, which is itself worth a line. **No SEC
+filing in this corpus uses the word "cofounder" or names Mark Ghermezian at all.** What
+the filings do establish, under legal penalty, is the tenure: Magnuson has held executive
+office since July 2011 and Hyman since July 2011, which is the founding year. So the
+strong version of the claim — two of the three founding team are still running the
+company fifteen years on — rests on an audited fact for the tenure and a marketing page
+for the word "founder". Say it that way.
+
+The reference project this method comes from made a finding of exactly this shape: six
+founders, all still in post after fourteen years, which says something real about
+stability. **Braze's version is a mixed result and the mixture is the interesting part.**
+Two founders in post is genuine continuity at the top. The third is absent from every
+filing — and the largest disclosed holder of the stock is a private Canadian investment
+company, MCG7 Capital Inc., holding 6.0% partly through an entity named **"Appboy BH
+LLC"**. Appboy was Braze's original name. The proxy connects MCG7 to no named individual
+and expressly says "no single person has voting or dispositive authority over such
+securities", so **that is where this observation stops.**
+[[audited]] {{src: sources/filings/2026-05-18_DEF-14A_021908.txt:6339 @ 2026-05-18}}
+
+### One person holds four titles, and three of six seats turned over
+
+Magnuson is Chairman, Chief Executive, President and a director. The President title
+arrived in June 2025 for a specific reason the proxy states in a footnote: *"Mr. Kleeger
+resigned as our President and Chief Commercial Officer on June 1, 2025 and, effective
+immediately thereafter, Mr. Magnuson was appointed our President."* The role was absorbed
+rather than refilled.
+[[audited]] {{src: sources/filings/2026-05-18_DEF-14A_021908.txt:1175 @ 2026-05-18}}
+
+That is one of three departures from a six-person executive team inside about a year:
+
+- **Myles Kleeger**, President and Chief Commercial Officer — resigned **1 June 2025**.
+- **Isabelle Winkles**, Chief Financial Officer — announced **28 April 2026**, resigning
+  **29 May 2026**, after six years in the role.
+- **Susan Wiseman**, General Counsel and Secretary — announced **7 April 2026**, retiring
+  on or before **30 June 2026**, after ten years.
+
+[[audited]] {{src: sources/filings/2026-05-18_DEF-14A_021908.txt:1175,1177,1181 @ 2026-05-18}}
+
+**The proxy gives no reason for any of the three, and this record asserts none.** The
+temptation here is obvious and must be named so it can be refused: a chief financial
+officer resigning in the same year the company disclosed a material weakness in
+financial-reporting controls (§2.1b) is a pattern a reader will assemble on their own.
+There is nothing in any filing connecting them, the weakness produced no misstatement and
+no restatement, and the departure was announced two months after the year end. **Stating
+the two facts and declining to join them is the correct treatment**, and a briefing that
+joins them has made a claim it cannot support in a room where someone will ask.
+
+What *can* be said is narrower and still useful. Braze replaced its President, its chief
+financial officer and its general counsel inside about fifteen months, while its founding
+CEO and CTO stayed. Continuity is at the founder layer; turnover is in the professional
+layer around it.
+
+Both successions have since completed. Braze's own leadership page in September 2026 names
+**Pankaj Malik** as Chief Financial Officer and Chief Accounting Officer and **Chris Lal**
+as General Counsel and Corporate Secretary — neither of whom appears in any filing in this
+corpus. That page lists ten leaders against the proxy's six executive officers, which is
+mostly a difference of scope rather than of headcount, and is recorded as conflict
+**C-10**.
+[[claimed]] {{src: sources/external/braze-ir-leadership_2026-09-02.md @ 2026-09-02}}
+
+### The board, and the defence that did not get retired
+
+| Fact | Value | Grade | Source |
+|---|---|---|---|
+| Seats | Seven | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:700-756` |
+| Independent | Six of seven; Magnuson is not, "due to his position as our President and Chief Executive Officer" | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:793` |
+| Chair | The CEO, with Phillip Fernandez as Lead Independent Director | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:796` |
+| Structure | Classified into three staggered classes | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:690-756` |
+| Investor seat | Neeraj Agrawal, General Partner of Battery Ventures, director since April 2016; Battery entities and his own holdings total 5,711,181 shares — 5.1% | [[audited]] | `sources/filings/2026-05-18_DEF-14A_021908.txt:6255,6341` |
+
+Six independent directors out of seven is a good ratio and should be said plainly. The
+board is also experienced in a way that is specific rather than decorative: Phillip
+Fernandez cofounded and ran Marketo, which is the closest thing to a direct predecessor
+company in this category; David Obstler is the sitting CFO of Datadog; Yvonne Wassenaar
+ran Puppet and sits on three other public boards.
+
+Two things about that board are worth a competitor's attention, and only one of them is
+critical.
+
+**The chair is the chief executive.** The proxy does not gloss this — it argues for it,
+saying that separating the roles "has the potential to give rise to divided leadership,
+which could interfere with good decision-making". That is a real argument, made openly,
+and the mitigation — a Lead Independent Director — is the standard one. Quote their
+reasoning rather than characterising it.
+
+**The board is classified**, into three staggered classes, so only about a third of it
+stands for election in any year. This is the finding that pairs with §1.2 and it cuts
+against the easy reading of the Class B retirement. Braze gave up super-voting stock in
+January 2026 and the disclosure language was generous about what that meant for
+shareholders. A staggered board is the other structural defence, it is arguably the more
+durable of the two, and **it did not change.** So the honest summary of Braze's governance
+in 2026 is that one takeover defence was retired and the other was kept — which is neither
+a scandal nor the unqualified opening-up the risk-factor language suggests on its own.
+
+### And the votes, which are now ordinary
+
+| Holder | Shares | % | Grade |
+|---|---|---|---|
+| Entities affiliated with MCG7 Capital Inc. | 6,709,408 | 6.0% | [[audited]] |
+| Neeraj Agrawal / Battery Ventures | 5,711,181 | 5.1% | [[audited]] |
+| Bill Magnuson | 5,485,123 | 4.9% | [[audited]] |
+| Jonathan Hyman | 2,029,437 | just under 2% | [[audited]] |
+
+{{src: sources/filings/2026-05-18_DEF-14A_021908.txt:6255 @ 2026-05-18}}
+
+Against 111,783,722 Class A shares outstanding, and with the Class B stock gone, **no
+holder and no director has a blocking position.** MCG7 is the only 5%-or-greater holder
+Braze discloses. For anyone modelling how quickly Braze could be pushed to respond to a
+shareholder, that is the arithmetic — and it is new this year.
+
+### The related-party line worth reading twice
+
+The proxy discloses that Braze bought **approximately $3.8m of Datadog services in
+FY2026**, and that director David Obstler is Datadog's Chief Financial Officer.
+[[audited]] {{src: sources/filings/2026-05-18_DEF-14A_021908.txt:6420 @ 2026-05-18}}
+
+That is an ordinary related-party disclosure, properly made, and **nothing improper is
+alleged.** It is here because of what it connects to. Chapter 5 records, from an entirely
+different document, that Braze "may provide End User metadata, such as user identifiers,
+to DataDog for support and application troubleshooting". So a monitoring vendor that
+receives end-user identifiers is also a company whose chief financial officer sits on
+Braze's board — two facts, disclosed independently in two documents neither of which
+references the other, and neither disclosure is deficient.
+
+The reason to hold both is practical rather than insinuating: a buyer's data-protection
+review will ask about the sub-processor, and a buyer's procurement team may separately ask
+about board relationships. Knowing they are the same company means neither question
+surprises you.
+
+One last small thing, recorded because absence of it would be the finding: **the proxy
+discloses its own late filings.** Three Section 16 reports covering thirteen transactions
+were filed late by Battery Partners XI and its affiliates, and one initial statement by
+Edward McDonnell. That is a housekeeping disclosure of the sort every proxy carries; it is
+noted here only so a reader who finds it later knows it was seen and judged immaterial.
+[[audited]] {{src: sources/filings/2026-05-18_DEF-14A_021908.txt:6367 @ 2026-05-18}}
 
 ## 1.3 · Headcount — and the ratio that actually matters
 

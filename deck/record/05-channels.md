@@ -16,14 +16,16 @@ Push, SMS/MMS/RCS, Webhooks, WhatsApp.
 
 A thirteenth exists and is not on that list. **KakaoTalk** has four documentation pages —
 setup, message creation, click tracking and reporting, which is a fully documented channel
-rather than a stub — and a marketing product page at `/product/kakaotalk-messenger`. It is
+rather than a stub (`sources/docs/docs__user_guide__channels__kakaotalk__*.md`) — and a
+marketing product page at `/product/kakaotalk-messenger`, in `data/site_inventory.csv`. It is
 mentioned zero times on Braze's own channels index.
 
 The drift runs the other way too. Five documented channels have no dedicated marketing
 product page anywhere on the site: **Banners, Transactional email, Landing pages, Live
 notifications and Webhooks**. The largest of them is not small — Landing pages carries
-eleven user-guide pages plus three partner pages, a substantial documented capability sold
-under no name.
+eleven user-guide pages plus three partner pages
+(`sources/docs/docs__user_guide__messaging__landing_pages*.md`), a substantial documented
+capability sold under no name.
 
 ### Why the drift is the finding, not the count
 
@@ -121,7 +123,7 @@ force. Revision 1 June 2026 names 17 third-party sub-processors.
 [[documented]] {{src: sources/clean/braze-subprocessors.md:21-37 @ 2026-09-02}}
 
 Email has three delivery providers named, plus a fourth supplier — Mailgun — for Email on
-Acid previewing. Mobile messages have two. **Push, in-app messages, Content Cards,
+Acid previewing (`sources/clean/braze-subprocessors.md:21-37`). Mobile messages have two. **Push, in-app messages, Content Cards,
 Banners, Webhooks, WhatsApp, LINE, KakaoTalk, Landing pages and Live notifications have no
 delivery sub-processor named at all.**
 
@@ -162,7 +164,7 @@ Beyond delivery, the same document discloses things no marketing page would.
   Administration as a Service (DBaaS), a managed database service provider that **hosts and
   stores End User profiles**." A buyer doing a security review should know that the profile
   store is operated by a managed-database vendor rather than by Braze directly — and the
-  10-K independently confirms it, naming Rackspace alongside AWS as infrastructure Braze
+  10-K independently confirms it, naming Rackspace alongside AWS as infrastructure (`sources/filings/2026-03-25_10-K_000013.txt`) Braze
   relies on.
 - **Monitoring receives user identifiers.** "Braze may provide End User metadata, such as
   user identifiers, to DataDog for support and application troubleshooting." That is
@@ -182,7 +184,8 @@ marketing figure appearing inside technical documentation and is graded accordin
 The partner network can be measured rather than accepted. The documentation corpus carries
 **322 partner pages** — the second-largest section by page count — averaging about 810
 words each, against a developer guide that runs more than three times as many words per
-page across a third as many pages (chapter 4).
+page across a third as many pages (chapter 4). Both counts come from
+`data/docs_sections.csv`, produced by `tools/index_docs.py`.
 
 That is the documentation profile of a broad network described one short page at a time.
 It is not a criticism: a connector may need only a short page, and 322 of them is a real

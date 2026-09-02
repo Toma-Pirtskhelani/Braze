@@ -16,6 +16,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *                                   # noqa: F403,E402
+from assets import LOGO                             # noqa: F401,E402
 
 # ── 1 TITLE ──────────────────────────────────────────────────────────────────
 # The source strip is an inventory of what was READ, not of what was found. Every
@@ -30,14 +31,12 @@ SOURCES = [("Their documentation",   "1,352 pages"),
 _src = ''.join(f'<div class="srcitem"><div class="sn">{n}</div><div class="sv">{v}</div></div>'
                for n, v in SOURCES)
 
-# A mark for the ANALYSIS, not for Braze. Reproducing a vendor's own logo on a competitive
-# teardown reads as impersonation; an abstract glyph does the same layout job with none of
-# that. The arcs echo the dot-grid world map on slide 29 so the deck has one visual idea.
-MARK = ('<svg class="brandmark" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">'
-        '<circle cx="22" cy="22" r="20.5" fill="none" stroke="var(--line2)" stroke-width="1.1"/>'
-        '<path d="M22 4.5 A17.5 17.5 0 0 1 22 39.5" fill="none" stroke="var(--strong)" stroke-width="2.2"/>'
-        '<path d="M22 9.5 A12.5 12.5 0 0 0 22 34.5" fill="none" stroke="var(--medium)" stroke-width="2.2"/>'
-        '<circle cx="22" cy="22" r="3.1" fill="var(--vellum)"/></svg>')
+# Braze's own wordmark, identifying the SUBJECT of the analysis - which is why it sits
+# above a heading that says "Competitor analysis" and a byline that says "public sources
+# only". It is on a white .plate because the asset is black-on-transparent and would be
+# invisible on this ground; that plate also reads as a quoted object rather than as this
+# deck's own brand, which is the distinction that matters on a competitive teardown.
+MARK = f'<div class="plate titleplate"><img src="{LOGO}" alt="Braze wordmark"></div>' 
 
 add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
   {MARK}
@@ -82,13 +81,25 @@ add(f'''<section class="s" data-g="s" data-t="How we approach it">
     </div>
   </div>
 </section>''',
-"""Four parts. **Who the company is. How the product actually works. Where the strategy
-is going. And what we still cannot answer.**
+"""Four parts. **Who the company is. How the product actually works. Where the strategy is
+going. And what we still cannot answer.**
 
-One rule runs through all of it: every claim is graded by how strong its source is.
+Three rules run through all of it, and they are on the slide because they are what makes
+the rest usable rather than merely interesting.
 
-And that fourth part matters. As we go I will flag the questions that need sources we
-do not have. Those become a backlog we can prioritise and research properly.""",
+**Every claim is graded by how strong its source is.** A bar at the foot of every slide
+tells you where we are, and a claim takes the grade of its *weakest* supporting source,
+never its best. If one number in a sentence comes from a marketing page, the sentence is
+marked as marketing.
+
+**Marketing is labelled as marketing.** Braze's own words appear here often, because a
+listed company's own words are worth quoting and sometimes they are the finding. They
+never appear as evidence for a technical claim.
+
+**And gaps become a backlog.** As we go I will flag the questions that need sources we do
+not have. Each one is written down with what would close it, so it is a list to prioritise
+rather than a list of things I quietly skipped over. One of them closed while this deck
+was being built.""",
     "s", "How we approach it")
 
 # ── 3 GRADING ────────────────────────────────────────────────────────────────

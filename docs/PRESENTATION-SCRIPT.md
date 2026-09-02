@@ -3,7 +3,7 @@
 Every slide of the deck, in order: what the audience sees, and what to say over it.
 Generated from the deck itself, so slide numbers and titles can never drift apart.
 
-**8,909 spoken words — about 69 minutes at a normal pace, 98 seconds a slide.**
+**9,776 spoken words — about 75 minutes at a normal pace, 107 seconds a slide.**
 
 **Bold** marks the words to land on. Square brackets are notes to yourself, not lines
 to say. Press **N** in the deck to read these beside the slide.
@@ -33,13 +33,25 @@ to say. Press **N** in the deck to read these beside the slide.
 ### 02 · How we approach it
 *On screen:* Method · how this is built — **How we approach it**
 
-> Four parts. **Who the company is. How the product actually works. Where the strategy
-> is going. And what we still cannot answer.**
+> Four parts. **Who the company is. How the product actually works. Where the strategy is
+> going. And what we still cannot answer.**
 
-> One rule runs through all of it: every claim is graded by how strong its source is.
+> Three rules run through all of it, and they are on the slide because they are what makes
+> the rest usable rather than merely interesting.
 
-> And that fourth part matters. As we go I will flag the questions that need sources we
-> do not have. Those become a backlog we can prioritise and research properly.
+> **Every claim is graded by how strong its source is.** A bar at the foot of every slide
+> tells you where we are, and a claim takes the grade of its *weakest* supporting source,
+> never its best. If one number in a sentence comes from a marketing page, the sentence is
+> marked as marketing.
+
+> **Marketing is labelled as marketing.** Braze's own words appear here often, because a
+> listed company's own words are worth quoting and sometimes they are the finding. They
+> never appear as evidence for a technical claim.
+
+> **And gaps become a backlog.** As we go I will flag the questions that need sources we do
+> not have. Each one is written down with what would close it, so it is a list to prioritise
+> rather than a list of things I quietly skipped over. One of them closed while this deck
+> was being built.
 
 ### 03 · How we grade
 *On screen:* Method · evidence grading — **Three grades, one bar at the foot of every slide**
@@ -65,11 +77,21 @@ to say. Press **N** in the deck to read these beside the slide.
 ### 04 · Part I: The company
 *On screen:* Part I — **The company**
 
-> Part one is the company. Four questions.
+> Part one is the company. Four questions: who they are and who controls them, what they
+> have bought, what a customer pays, and who actually buys it.
 
-> The thing that makes this part unusual: **Braze is listed**, so most of what follows is
-> filed under legal penalty rather than claimed on a website. Where I use a marketing
-> number instead, I will say so.
+> The thing that makes this part unusual is that **Braze is listed.** Almost everything in
+> the next twelve slides is filed under legal penalty rather than claimed on a website —
+> seven years of audited accounts, two acquisition prices with their purchase-price
+> allocations, a customer count that is a *defined* metric, and a proxy statement naming
+> every executive officer and director. With a private vendor you would be inferring most
+> of this from job ads and press releases.
+
+> Two things to watch for as we go. **Where I use a marketing number instead of a filed
+> one, I will say so out loud** — those are the weak-graded claims and there are only a few.
+> And the most useful slide in this part is probably not the one you expect: it is the
+> customer-count slide, because the definition of "customer" turns out to change what the
+> only available price figure actually means.
 
 ### 05 · Five things
 *On screen:* Executive summary — **If you remember five things**
@@ -110,19 +132,41 @@ to say. Press **N** in the deck to read these beside the slide.
 > argument.
 
 ### 07 · Origins
-*On screen:* Origins · and who controls it now — **Fifteen years, and a governance change nine months old**
+*On screen:* Origins · and who controls it now — **Two of three cofounders still run it**
 
-> Founded 2011, public since November 2021, four hundred and fifty-seven million dollars
-> of net IPO proceeds.
+> Founded 2011. Public since November 2021. And now the part this slide is actually for,
+> because until this pass it answered only half its own question.
 
-> The line that matters is the last one, and it is nine months old. **The dual-class
-> structure ended in January 2026.** Founders and early investors no longer hold
-> super-voting stock.
+> **Who runs it.** Bill Magnuson — chief executive since January 2017, on the board since
+> 2014, and the company's Chief Technology Officer before that from July 2011. He is also
+> chairman. And since June 2025 he is President too, because the previous President
+> resigned and the role was not refilled. One person holds four titles.
 
-> I am not going to tell you what that means, because the evidence does not say. What I
-> will say is that a company whose direction was insulated from its shareholders until
-> this year is now not insulated — and if you compete with them, that is a change in who
-> can apply pressure and how fast they may need to respond to it.
+> His cofounder Jon Hyman is still Chief Technology Officer, and has been an officer since
+> July 2011. **Two of the three cofounders are still running the company fifteen years
+> on** — the third, Mark Ghermezian, appears in no filing at all. Braze names all three on
+> its own website; the SEC filings name none of them as founders, which is why that
+> particular fact is graded as a company claim rather than as audited.
+
+> **Who holds the seats.** Seven directors, six of them independent — Magnuson is the
+> exception because he is an executive. Phillip Fernandez is Lead Independent Director,
+> which is the role a board creates when its chair is also its chief executive. The proxy
+> defends that combination rather than glossing it, and I would quote their reasoning
+> rather than mine.
+
+> The one I would flag is the third card. **The board is classified into three staggered
+> classes**, so only about a third of it stands for election in any year. Braze retired its
+> super-voting stock in January and got a good deal of credit for it. The staggered board
+> is still there, and a staggered board is the more durable of the two defences.
+
+> **Who holds the votes.** After the conversion, ordinary arithmetic. The largest holder
+> Braze discloses is at six per cent, the chief executive at just under five, and the
+> Battery Ventures partner on the board at five. Nobody has a blocking position. Before
+> January, the founders and early investors did.
+
+> So the honest summary is that control got more conventional this year in one respect and
+> did not move at all in another — and if you are modelling how fast Braze can be pushed to
+> respond to a shareholder, both halves matter.
 
 ### 08 · How they got this big
 *On screen:* Capital · and what it bought — **Seven years of audited revenue**
@@ -416,11 +460,23 @@ to say. Press **N** in the deck to read these beside the slide.
 ### 17 · Part II: The product
 *On screen:* Part II — **The product**
 
-> Part two is the product, and we walk one campaign through seven stages.
+> Part two is the product, and we walk one campaign through seven stages: data arrives, a
+> profile updates, a segment recomputes, a journey triggers, content is composed, a message
+> is delivered, a response comes back.
 
-> I do it this way because it forces every claim to attach to a moment you would actually
-> notice as a customer — and because the two stages I have highlighted, **data in** and
-> **delivery out**, are where everything interesting turned out to be.
+> I do it this way for two reasons. It forces every capability claim to attach to a moment
+> you would actually notice as a customer, rather than sitting in a feature list. And it
+> makes the weak points locate themselves — **the two stages I have highlighted, data in
+> and delivery out, are where everything interesting turned out to be**, and they are the
+> first and last thing that happens.
+
+> The source for almost all of it is Braze's own technical documentation: 1,352 pages,
+> read and indexed rather than skimmed. That matters because documentation is written to
+> stop support tickets, not to win deals, so it admits limits that no marketing page
+> will — and every hard limit in this deck came out of it.
+
+> Be fair to them as we go. Stages three, four and five are good, reviewers say so, and I
+> will say so too.
 
 ### 18 · How one campaign works
 *On screen:* The whole thing · end to end — **What actually happens when a campaign runs**
@@ -755,11 +811,21 @@ to say. Press **N** in the deck to read these beside the slide.
 ### 32 · Part III: Strategy
 *On screen:* Part III — **Strategy**
 
-> Part three. Three slides only, and that is deliberate.
+> Part three. Three slides only, and the restraint is deliberate.
 
-> The SEC data here is abundant and tidy and it will happily eat a whole deck. **You are
-> deciding about a product and a competitor, not about a share price**, so the money gets
-> one slide, the unannounced gets one, and the last one is the argument.
+> The SEC data here is abundant, tidy and free, and it will happily eat a whole deck. Seven
+> years of audited operating expense, quarterly cash flow, remaining performance obligation,
+> a compensation plan with published targets — all of it interesting, and most of it beside
+> the point. **You are deciding about a product and a competitor, not about a share
+> price.** So the money gets one slide, what is coming gets one, and the last one is the
+> argument about what would actually survive us competing hard.
+
+> Watch the second of the three. It is the finding nobody else in this market will have,
+> and it is also the one I am most careful about — three unrelated sources agreeing, stated
+> as observations and deliberately not as a conclusion.
+
+> And the third slide is the one to argue with. It names what protects Braze *and* what does
+> not, and if you disagree with either list, that is the conversation worth having today.
 
 ### 33 · Where the money goes
 *On screen:* Seven audited years · where revenue goes — **Decelerating and getting more efficient at the same time**
@@ -863,11 +929,20 @@ to say. Press **N** in the deck to read these beside the slide.
 ### 36 · Part IV: Open questions
 *On screen:* Part IV — **Open questions**
 
-> Part four. One hard question answered properly, the reliability record, and then an
-> honest account of where public sources ran out.
+> Part four is the part most competitor decks do not have, and it is the reason to trust
+> the other three.
 
-> That last part is not a disclaimer. **A gap you have written down is evidence. A gap you
-> have not written down is a mistake.**
+> One hard question answered properly. A decade of reliability, measured rather than
+> claimed. The three hypotheses that died in Braze's favour — because we wrote ten of them
+> down before reading anything, and four came back wrong. Then an honest account of where
+> the public record ran out, and a prioritised list of what to do about it.
+
+> That last part is not a disclaimer and I would not present it apologetically. **A gap you
+> have written down is evidence. A gap you have not written down is a mistake** — and the
+> difference is that the first one tells the next person exactly where to dig.
+
+> One of those gaps closed while this deck was being built, from the source the entry itself
+> had named. That is what a well-written backlog does.
 
 ### 37 · Deep dive: how real-time is it
 *On screen:* Deep dive — **“Is it really real-time?” — answered properly**

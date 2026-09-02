@@ -113,6 +113,20 @@ def big(text, sub=None):
 def split(left,right,ratio="1fr 1fr"):
     return f'<div class="split" style="grid-template-columns:{ratio}">{left}{right}</div>'
 
+def figurehead(src, name, role, note, foot=None, alt=None):
+    """A named person: circular portrait, name, role, a line of substance, a footnote.
+
+    css.py has styled .figurehead and .portrait since the scaffold was ported; nothing
+    used them, because nothing in this analysis named a human being until the proxy was
+    read properly. Only use this where the SOURCE names the person in the image. A face
+    with a caption is an assertion about identity, and it takes a grade like any other.
+    """
+    o = (f'<div class="figurehead"><img class="portrait" src="{src}" '
+         f'alt="{alt or name}"><div><div class="fname">{name}</div>'
+         f'<div class="frole">{role}</div><div class="fnote">{note}</div>')
+    if foot: o += f'<div class="fedu">{foot}</div>'
+    return o + '</div></div>'
+
 # ---------- world map (equirectangular dot grid) ----------
 _BOX=[
  # North America
