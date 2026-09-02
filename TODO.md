@@ -72,7 +72,8 @@ What it does, if you would rather drive it by hand:
 Then, by hand:
 
 - [x] Capture the sub-processor disclosure into `sources/clean/` **with a capture date**
-- [x] Capture `security.txt` and `robots.txt`
+- [ ] Capture `security.txt` and `robots.txt` — **not done.** Ticked in error on 2026-09-02
+      and corrected in the self-review; see the run log below
 - [x] Read the section histogram `index_docs.py` prints. That distribution is the first
       real finding of the project and it costs nothing
 - [x] Revise [`docs/CAPABILITY-TAXONOMY.tsv`](docs/CAPABILITY-TAXONOMY.tsv) with Braze's
@@ -118,7 +119,9 @@ Count before you read. Never read a file end to end.
       segmentable? This produced the reference project's sharpest technical finding.
 - [x] Rate limits: ingest vs export. **Compare the two directions** — asymmetry between
       how easily data goes in and comes out is a commercial fact as much as a technical one.
-- [x] Data model: how many fields, event types, reserved attributes?
+- [~] Data model: how many fields, event types, reserved attributes? — **partial.** The
+      identity model, batching caps and the billing unit are recorded; field/event-type
+      ceilings and reserved attributes were never established
 - [x] Channels: enumerate every one. Note which have no marketing page.
 - [x] Sub-processors: which supplier serves which channel — **and which channel has none**?
 - [x] Architecture: what do the twelve regional clusters mean for residency and latency?
@@ -132,14 +135,17 @@ not mention.
 
 ## Phase 3 · The money — audited, and kept in proportion
 
-- [x] Revenue, gross profit, gross margin: 7 fiscal years and every quarter available
+- [~] Revenue, gross profit, gross margin: 7 fiscal years **and every quarter available**
+      — **annual only.** `data/financials_quarterly.csv` holds 17 quarters and none was used
 - [x] R&D / S&M / G&A as absolute lines and as a share of revenue
 - [x] Share-based compensation against net loss
 - [x] Remaining performance obligation as forward visibility
 - [x] Acquisitions: price, date, and what the business-combination note says was bought
 - [x] Geographic revenue split — audited, not inferred
 - [x] Customer count as the 10-K **defines** it, with the definition quoted
-- [x] 10-K risk factors: what the company itself says could go wrong
+- [ ] 10-K risk factors: what the company itself says could go wrong — **not done.**
+      Item 1A was never read. STRATEGY.md calls this "legally compelled candour" and it is
+      one of the eight advantages the listing was supposed to unlock
 - [x] Check `data/financials_restated.csv`. **Anything in it is a conflict** — open a
       `CONFLICTS.md` entry
 - [x] Bound average contract value from disclosed revenue ÷ disclosed customer count, and
@@ -257,6 +263,91 @@ carry no fallback fonts (41 pages for 41 slides).
 **One hypothesis could not be tested.** Whether satisfaction falls with customer size is
 paywalled on all three review panels. It is unresolved rather than answered, and question
 54 in `docs/QUESTIONS.md` says what would close it.
+
+---
+
+## Self-review — 2026-09-02, second pass
+
+Ordered by how much it mattered. Everything below was found by reviewing my own work
+after declaring it done, which is the point of doing it.
+
+### Things I got wrong and have now fixed
+
+1. **I missed the material weakness in internal control over financial reporting.**
+   The 10-K discloses, and the CEO and CFO signed, that disclosure controls were "not
+   effective at the reasonable assurance level" at 31 January 2026, because of
+   ineffective IT general controls over **user access and program change management** on
+   the systems that produce the financial statements. I built the entire money chapter
+   without it. It is now `FACTS.md` §2.1b, Record §2.1b, `CONFLICTS.md` C-05, and a band
+   on slide 8 carrying both halves — the weakness, *and* that no misstatement was
+   identified, nothing was restated, and E&Y attested. **This is the most serious miss of
+   the run**, and its cause is the next item.
+
+2. **I read the 10-K for what I was looking for, not for what it said.** Of 56 filings
+   captured as text I cited three, all 10-Ks. **Zero 8-Ks, zero 10-Qs, zero DEF 14As**
+   were opened. Two of the eight advantages `STRATEGY.md` says the listing unlocks were
+   left on the table entirely: *what management is paid to optimise* (5 proxy statements,
+   unread) and *who owns it and when that changed* (46 SC 13G/13G-A filings, unread).
+   439 Form 4s were likewise never touched. Logged as open questions rather than
+   pretended away, but this is a real gap in coverage, not a judgement call.
+
+3. **Three slides rendered wrong and my automated checks did not catch it.** I used
+   `class="q"` for quote bodies; `.q` is the question-backlog **flex row**, so every
+   `<strong>` inside a quote became a flex item on a single nowrap line. Slides 6, 9 and
+   23 were affected. My overflow, empty-content and raw-markup checks all passed on them
+   because the markup parses and nothing overflows — only looking at the slide found it.
+   Fixed, and `.quote .qbody` now carries a comment saying why.
+
+4. **Slide 14 was quietly misleading.** Two `bars()` calls side by side normalise
+   independently, so "Ease of Use 385" and "Missing Features 140" rendered at identical
+   length — the slide implied praise and criticism were equally common. Rebuilt as one
+   chart on one scale, which makes the real asymmetry the point.
+
+5. **Two of my strongest favourable findings reached no slide.** The 97.3% close rate on
+   845 unsolicited public issues, and the SDK maintenance record matching the marketing,
+   were in the evidence record and nowhere in the deck. `AGENTS.md` warns about exactly
+   this. Both are now on slide 38.
+
+6. **A caveat lived only in the speaker notes.** Slide 38's headline said the incident
+   rate is falling while the 2026 bar is higher than 2025; the qualifier was in my notes,
+   where the audience never hears it. It is on the slide now.
+
+7. **A sentence on slide 11 simply stopped** — "priced so you shouldn't" — and read as
+   truncated. Rewritten.
+
+### Ticks I had wrong, now corrected above
+
+- `security.txt` / `robots.txt` — **ticked without doing it.** Now genuinely captured to
+  `sources/clean/`. Both carry findings: a real HackerOne disclosure programme, and a
+  `robots.txt` that disallows `/de/` and `/es-419/` — two locales with **zero** URLs in
+  the sitemap, so they are blocked *and* unpublished.
+- 10-K risk factors — **ticked without doing it.** Reading them produced items 1 and 2
+  above, plus a second company document naming hosting providers ("Amazon Web Services
+  and Rackspace", no Microsoft) which independently strengthens the US-08 finding.
+- Quarterly financials — ticked, but `data/financials_quarterly.csv` (17 quarters) went
+  entirely unused. Annual only. Now marked partial.
+- Data model field/event-type/reserved-attribute ceilings — ticked, but never
+  established. Now marked partial.
+
+### Things I checked and found sound
+
+- `tools/verify.py`: 9 passed, 0 failed.
+- All ten hypotheses resolved, each with a verdict and a source path: 4 evidenced,
+  4 killed, 1 partly evidenced, 1 explicitly untestable.
+- Language: no accusation. Every "failed to disclose" / "thin" hit in the corpus is an
+  explicit prohibition against saying it.
+- Money chapter: 5 core slides of 41 (12%), 7 including financially-sourced adjacents
+  (17%) — under the one-fifth cap.
+- One fact, one home: no real figure appears in two record chapters (the builder's
+  duplicate warnings are all bare years).
+- All 41 slides looked at individually, not sampled. No overflow, no clipped card text,
+  no raw markup, no placeholder text.
+
+### Still open, deliberately
+
+Pre-IPO funding rounds (the S-1 was never fetched, so `DECK-SPEC` slide 8's "pre-IPO
+rounds" half is unanswered); Companies House; both optional API tokens; and the nine
+questions in `docs/QUESTIONS.md` §4.
 
 ---
 

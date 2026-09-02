@@ -213,7 +213,7 @@ add(f'''<section class="s" data-g="m" data-t="Stage 4: Building">
            ("10", "Canvas API endpoints"),
            ("385", "G2 reviews tagged &lsquo;Ease of Use&rsquo;"),
            ("139", "tagged &lsquo;Learning Curve&rsquo;", "neg")], size="sm")}
-    <div class="quote"><div class="q">&ldquo;Canvas makes it easy to build complex, branching lifecycle flows &hellip;
+    <div class="quote"><div class="qbody">&ldquo;Canvas makes it easy to build complex, branching lifecycle flows &hellip;
       Being able to trigger contextual push notifications, in-app messages, and emails from live event
       streams &mdash; <strong>without needing engineering for every small tweak</strong> &mdash; is a huge win.&rdquo;</div>
       <div class="qd">Enterprise IT manager, G2 &middot; 5/5 &middot; August 2026</div></div>

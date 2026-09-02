@@ -36,6 +36,39 @@ acquisition is not split out, and is open question 59.
 
 {{src: sources/filings/2026-03-25_10-K_000013.txt:1565 @ 2026-03-25}}
 
+## 2.1b · The caveat that travels with every figure in this chapter
+
+Braze disclosed a **material weakness in its internal control over financial reporting**
+as at 31 January 2026. The CEO and CFO concluded that disclosure controls were "not
+effective at the reasonable assurance level". The weakness is specific: "ineffective
+information technology general controls, or ITGCs, in the areas of **user access and
+program change management** over the information technology systems that support our
+financial reporting processes" — and the company states that automated and IT-dependent
+manual controls relying on that environment were consequently ineffective too.
+
+[[audited]] {{src: sources/filings/2026-03-25_10-K_000013.txt:3258,3286 @ 2026-03-25}}
+
+Both halves belong in the same breath, because either one alone misleads.
+
+The reassuring half is substantial and is the company's own and the auditor's: the
+material weakness "did not result in any identified misstatements to the financial
+statements, and there were no changes to previously issued financial results";
+management concluded the statements "fairly present in all material respects"; and Ernst
+& Young issued an attestation report on internal control over financial reporting.
+Remediation is under way with "significant progress" claimed and no completion date
+given. OfferFit was excluded from the assessment, as SEC guidance permits in an
+acquisition's first year — it is 1.4% of total assets and 1.8% of revenue.
+
+The unreassuring half is that the control environment producing every number in this
+chapter was judged not effective by the people who signed it, and the specific area is
+user access and change management.
+
+Two disciplines apply. **Do not extrapolate this into a claim about customer data
+security** — it is scoped to financial-reporting systems and says nothing about the
+platform. And note that it is consistent with, not contradicted by, conflict **C-05**:
+the restatement check found nothing, and the 10-K independently confirms no previously
+issued results changed.
+
 ## 2.2 · Losses, cash and the equity cost
 
 | Fiscal year | Net loss ($m) | Operating cash flow ($m) | Share-based comp ($m) |

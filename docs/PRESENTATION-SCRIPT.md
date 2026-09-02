@@ -3,7 +3,7 @@
 Every slide of the deck, in order: what the audience sees, and what to say over it.
 Generated from the deck itself, so slide numbers and titles can never drift apart.
 
-**5,411 spoken words — about 42 minutes at a normal pace, 61 seconds a slide.**
+**5,628 spoken words — about 43 minutes at a normal pace, 63 seconds a slide.**
 
 **Bold** marks the words to land on. Square brackets are notes to yourself, not lines
 to say. Press **N** in the deck to read these beside the slide.
@@ -141,6 +141,20 @@ to say. Press **N** in the deck to read these beside the slide.
 > If you are competing with Braze for a renewal, that is the number telling you how much
 > of their base is locked in and for how long.
 
+> Now the band at the bottom, and I want it on the slide rather than in my pocket. **Braze
+> disclosed a material weakness in internal control over financial reporting** at the last
+> year end — ineffective IT general controls over user access and change management on the
+> systems that produce these numbers. Their CEO and CFO signed that disclosure controls
+> were not effective.
+
+> **And in the same breath, because either half alone misleads:** it produced no identified
+> misstatement, nothing was restated, and the auditor still attested. Every number I am
+> about to show you stands. But the control environment behind them was judged not
+> effective by the people who signed it, and remediation has no published completion date.
+
+> I missed this on my first pass through the filing. It is the reason the money part of
+> this deck carries a band that the product part does not.
+
 ### 09 · Acquisition: OfferFit
 *On screen:* Acquisition one · June 2025 — **They bought their AI, and the filing says so**
 
@@ -246,8 +260,9 @@ to say. Press **N** in the deck to read these beside the slide.
 > eight out of ten on the third, across more than two thousand reviews. I am not going to
 > soften that.
 
-> The tags on this slide are G2's own coding over their whole review base, not my sample —
-> that distinction matters and I will come back to it.
+> These tags are G2's own coding over their whole review base, not my sample — and they
+> are on **one scale**, deliberately, because the shape is the point: the single most
+> common praise tag is nearly three times the most common criticism.
 
 > Two complaints recur across panels that have nothing to do with each other, and that is
 > what makes them worth your attention. **Reporting**, and the **learning curve**.
@@ -691,27 +706,31 @@ to say. Press **N** in the deck to read these beside the slide.
 > that path.**
 
 ### 38 · Reliability, measured
-*On screen:* Reliability · a decade on the public record — **451 incidents since 2016, and the rate is falling**
+*On screen:* The operational record · a decade of it, public — **451 incidents since 2016, and the rate is falling**
 
 > A decade of incidents, because they publish a status page and most vendors do not.
 
-> Four hundred and fifty-one incidents since 2016. The rate peaked in 2023 at sixty and
-> fell to twenty-seven in 2025 — **the quietest full year on record, over a period when
-> revenue grew seven and a half times.** That kills the hypothesis I wrote that incidents
-> would rise with scale.
+> The rate peaked in 2023 at sixty and fell to twenty-seven in 2025 — **the quietest full
+> year on record, over a period when revenue grew seven and a half times.** That kills the
+> hypothesis I wrote that incidents would rise with scale.
 
-> With the caveat attached: 2026 stands at thirty-five through August, running at roughly
-> double the 2025 monthly rate. One year does not make a trend, and I am not calling it
-> one.
+> With the caveat attached, and it is on the slide rather than only in my notes: 2026
+> stands at thirty-five through August, roughly double the 2025 monthly rate. One year
+> does not make a trend.
 
-> The last figure is the shape I would actually use. **The Dashboard appears in
-> sixty-three incidents; Outbound Messaging in twenty-seven.** The control plane your
-> marketers work in fails more than twice as often as the sending path. Messages get out;
-> the console is where you feel the outage.
+> **The Dashboard appears in sixty-three incidents; Outbound Messaging in twenty-seven.**
+> The control plane your marketers work in fails more than twice as often as the sending
+> path. Messages get out; the console is where you feel the outage.
 
-> And the rule at the bottom, which matters most: **do not compare this against a
-> competitor who publishes nothing.** Braze looks worse than a silent vendor purely by
-> being transparent, and rewarding that would be dishonest analysis.
+> Now the two numbers on the right, because an analysis that only found problems was not
+> an analysis. **Ninety-seven per cent of eight hundred and forty-five unsolicited public
+> issues are closed, median eleven days.** And every one of the nine SDK repositories that
+> publishes releases shipped within thirteen days of capture — the platform whose repo is
+> archived, Unreal, has had its documentation removed too. **The maintenance record matches
+> the marketing**, which is not something I could say about every vendor.
+
+> And the rule at the bottom: **do not compare this against a competitor who publishes
+> nothing.** Braze looks worse than a silent vendor purely by being transparent.
 
 ### 39 · What we could not answer
 *On screen:* The honest residue — **Four gaps, and what would close each one**

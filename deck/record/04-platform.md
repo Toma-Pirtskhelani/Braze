@@ -117,6 +117,10 @@ have nothing to do with each other.
 - The sub-processor disclosure of 1 June 2026 names exactly two hosting providers:
   Amazon Web Services, and Google LLC for Google Cloud Platform. Microsoft is not named
   anywhere in the document. [[documented]]
+- A **second, independent company document** says the same thing. The 10-K risk factors
+  state: "We rely upon third-party providers of cloud-based infrastructure, **including
+  Amazon Web Services and Rackspace**, to host our products." Microsoft is not named
+  there either. [[audited]]
 - Braze's own documentation publishes, per instance, the IP addresses a customer must
   allowlist so Braze can reach their warehouse. Every address listed for **US-08** is
   registered to **Microsoft Corporation**. Every address listed for every other instance

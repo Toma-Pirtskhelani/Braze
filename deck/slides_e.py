@@ -73,39 +73,49 @@ that path.**""",
     "s", "Deep dive: how real-time is it")
 
 # ── 38 RELIABILITY ───────────────────────────────────────────────────────────
+# Carries BOTH halves of the operational record. The favourable half - a 97.3% close
+# rate on 845 unsolicited issues, and every SDK current - was written into the evidence
+# record and reached no slide in the first draft. An analysis that only found problems
+# was not an analysis, so it is on the slide now.
 add(f'''<section class="s" data-g="s" data-t="Reliability, measured">
-  {head("Reliability &middot; a decade on the public record", "451 incidents since 2016, and the rate is falling")}
+  {head("The operational record &middot; a decade of it, public", "451 incidents since 2016, and the rate is falling")}
   <div class="body">
     {bars([("2019", 49), ("2020", 57), ("2021", 48), ("2022", 39),
            ("2023", 60, "weak"), ("2024", 43), ("2025", 27, "strong"),
            ("2026 to Aug", 35, "medium")])}
     {figs([("79 min", "median incident duration"),
-           ("311 min", "p90 &mdash; the long tail is long"),
            ("29.6%", "of non-maintenance incidents were major or critical"),
-           ("63 v 27", "Dashboard incidents vs Outbound Messaging")], size="sm", focus=3)}
-    <p><strong>Never compare this to a vendor who publishes nothing.</strong> A decade of visible incidents is
-    a disclosure practice, not a defect count &mdash; and silence has not earned anyone a better record.</p>
+           ("63 v 27", "Dashboard incidents vs Outbound Messaging"),
+           ("97.3%", "of 845 unsolicited public issues closed &mdash; median 11 days"),
+           ("9 of 9", "SDK repos shipped within 13 days of capture")], size="sm")}
+    <p><strong>The caveat belongs on the slide, not only in the notes:</strong> 2026 stands at 35 through August,
+    roughly <strong>double the 2025 monthly rate</strong>. One year is not a trend, and none is claimed.
+    And <strong>never compare this to a vendor who publishes nothing.</strong></p>
   </div>
 </section>''',
 """A decade of incidents, because they publish a status page and most vendors do not.
 
-Four hundred and fifty-one incidents since 2016. The rate peaked in 2023 at sixty and
-fell to twenty-seven in 2025 — **the quietest full year on record, over a period when
-revenue grew seven and a half times.** That kills the hypothesis I wrote that incidents
-would rise with scale.
+The rate peaked in 2023 at sixty and fell to twenty-seven in 2025 — **the quietest full
+year on record, over a period when revenue grew seven and a half times.** That kills the
+hypothesis I wrote that incidents would rise with scale.
 
-With the caveat attached: 2026 stands at thirty-five through August, running at roughly
-double the 2025 monthly rate. One year does not make a trend, and I am not calling it
-one.
+With the caveat attached, and it is on the slide rather than only in my notes: 2026
+stands at thirty-five through August, roughly double the 2025 monthly rate. One year
+does not make a trend.
 
-The last figure is the shape I would actually use. **The Dashboard appears in
-sixty-three incidents; Outbound Messaging in twenty-seven.** The control plane your
-marketers work in fails more than twice as often as the sending path. Messages get out;
-the console is where you feel the outage.
+**The Dashboard appears in sixty-three incidents; Outbound Messaging in twenty-seven.**
+The control plane your marketers work in fails more than twice as often as the sending
+path. Messages get out; the console is where you feel the outage.
 
-And the rule at the bottom, which matters most: **do not compare this against a
-competitor who publishes nothing.** Braze looks worse than a silent vendor purely by
-being transparent, and rewarding that would be dishonest analysis.""",
+Now the two numbers on the right, because an analysis that only found problems was not
+an analysis. **Ninety-seven per cent of eight hundred and forty-five unsolicited public
+issues are closed, median eleven days.** And every one of the nine SDK repositories that
+publishes releases shipped within thirteen days of capture — the platform whose repo is
+archived, Unreal, has had its documentation removed too. **The maintenance record matches
+the marketing**, which is not something I could say about every vendor.
+
+And the rule at the bottom: **do not compare this against a competitor who publishes
+nothing.** Braze looks worse than a silent vendor purely by being transparent.""",
     "s", "Reliability, measured")
 
 # ── 39 WHAT WE COULD NOT ANSWER ──────────────────────────────────────────────

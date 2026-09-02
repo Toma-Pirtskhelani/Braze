@@ -228,6 +228,9 @@ strong{color:var(--vellum);font-weight:600}
 .card h3{margin-bottom:8px} .card p{font-size:14.5px;text-wrap:balance}
 
 .quote{font-family:var(--disp);font-size:19px;line-height:1.32;color:var(--vellum);margin-top:10px;text-wrap:balance}
+/* the quote body is a BLOCK. It was briefly given class="q", which is the question-backlog
+   flex row - that turned every <strong> inside a quote into a flex item on one nowrap line. */
+.quote .qbody{display:block}
 
 /* big line */
 .bigline{font-family:var(--disp);font-size:44px;line-height:1.16;color:var(--vellum);max-width:28ch;text-wrap:balance}

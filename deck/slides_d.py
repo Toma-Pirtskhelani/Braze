@@ -70,9 +70,10 @@ The loss is real; it is mostly equity, and shareholders are carrying it.""",
 
 # ── 34 WHAT COMES NEXT ───────────────────────────────────────────────────────
 _next_tiles = tiles([
-    ("", "1 &middot; The compelled disclosure",
-     "Their sub-processor list, revision 1 June 2026, names <strong>two</strong> hosting providers: "
-     "Amazon Web Services and Google Cloud. <strong>Microsoft is not named anywhere in it.</strong>"),
+    ("", "1 &middot; Two company documents",
+     "The sub-processor list (1 June 2026) names <strong>Amazon and Google</strong> as hosting providers. "
+     "The 10-K names <strong>&ldquo;Amazon Web Services and Rackspace&rdquo;</strong>. "
+     "<strong>Neither names Microsoft.</strong>"),
     ("", "2 &middot; Their own documentation",
      "Braze publishes the IPs you must allowlist, per instance. Every address listed for "
      "<strong>US-08 is registered to Microsoft Corporation</strong>. Every other instance &mdash; "

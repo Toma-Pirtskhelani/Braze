@@ -98,6 +98,7 @@ from their own index."** Do not present any single number as *the* channel count
 | | value | source | grade | as of |
 |---|---|---|---|---|
 | A | Two hosting providers: Amazon Web Services and Google Cloud Platform. Microsoft is not named | `sources/clean/braze-subprocessors.md:21,31` (compelled disclosure, rev. 1 June 2026) | documented | 2026-09-02 |
+| A′ | The 10-K risk factors: "We rely upon third-party providers of cloud-based infrastructure, including **Amazon Web Services and Rackspace**, to host our products." Microsoft is not named | `sources/filings/2026-03-25_10-K_000013.txt:631` | audited | 2026-03-25 |
 | B | The allowlist IPs Braze publishes for instance **US-08** are all registered to Microsoft Corporation; every other instance's are registered to Amazon entities | `sources/docs/…connected_sources.md:239`; `sources/external/rdap-instance-ip-ownership_2026-09-02.json` (ARIN RDAP) | infrastructure | 2026-09-02 |
 | B′ | Certificate transparency shows 50 hosts on `p-aze-us` / `s-aze-us` / `d-aze-us`, a region code matching no AWS identifier, including `sdk-us08`, `subcenter-08` and `itp-api-08` | `data/subdomains.csv` | infrastructure | 2026-09-02 |
 
@@ -155,6 +156,15 @@ that the file was looked at rather than forgotten.
 found — none of the figures in this deck has been restated."** Recorded as a negative
 result, deliberately, because an unchecked absence and a checked one are different
 things.
+
+**Added 2026-09-02, in self-review.** The 10-K independently confirms the same negative:
+Braze disclosed a material weakness in internal control over financial reporting, and
+states that it "did not result in any identified misstatements to the financial
+statements, and there were no changes to previously issued financial results". So the
+mechanical check and the company's own disclosure agree. The material weakness is not a
+conflict — it is a **caveat that travels with every financial figure**, recorded in
+`FACTS.md` §2.1b and in Record chapter 2.1b. Say both halves together: the control
+environment was judged not effective, and nothing was misstated or restated.
 
 <!--
 ### C-01 · <question>

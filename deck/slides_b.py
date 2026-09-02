@@ -70,7 +70,7 @@ growth, but improving efficiency and three years of positive operating cash flow
 add(f'''<section class="s" data-g="w" data-t="Who they say they are">
   {head("Their story &middot; in their own words", "Who they say they are")}
   <div class="body">
-    <div class="quote"><div class="q">&ldquo;Our platform empowers <strong>real-time engagement</strong> between brands and their
+    <div class="quote"><div class="qbody">&ldquo;Our platform empowers <strong>real-time engagement</strong> between brands and their
       customers &hellip; made possible by our proprietary, enterprise-grade <strong>stream processing
       architecture</strong> &hellip; We have designed it to <strong>listen like a human would</strong>, process new
       information in context, and <strong>react instantaneously</strong>.&rdquo;</div>
@@ -135,6 +135,14 @@ add(f'''<section class="s" data-g="s" data-t="How they got this big">
            ("7.7&times;", "revenue growth, FY2020 to FY2026"),
            ("$124.3m", "cash at FY2026 year end"),
            ("$1,033.0m", "contracted, not yet recognised")], size="sm")}
+    <div class="ruleband">
+      <div class="klabel">THE CAVEAT THAT TRAVELS WITH EVERY NUMBER IN THIS PART</div>
+      <p>Braze disclosed a <strong>material weakness in internal control over financial reporting</strong> at
+      31 January 2026 &mdash; ineffective IT general controls over <strong>user access and program change
+      management</strong> on the systems that produce these figures. <strong>And, in the same breath:</strong> it
+      &ldquo;did not result in any identified misstatements&rdquo;, nothing was restated, and Ernst &amp; Young
+      attested. Remediation is under way with no completion date given.</p>
+    </div>
   </div>
 </section>''',
 """Revenue, seven audited years: ninety-six million to seven hundred and thirty-eight.
@@ -149,14 +157,28 @@ contracted and not yet recognised. That is one point four times the current year
 revenue, already signed.
 
 If you are competing with Braze for a renewal, that is the number telling you how much
-of their base is locked in and for how long.""",
+of their base is locked in and for how long.
+
+Now the band at the bottom, and I want it on the slide rather than in my pocket. **Braze
+disclosed a material weakness in internal control over financial reporting** at the last
+year end — ineffective IT general controls over user access and change management on the
+systems that produce these numbers. Their CEO and CFO signed that disclosure controls
+were not effective.
+
+**And in the same breath, because either half alone misleads:** it produced no identified
+misstatement, nothing was restated, and the auditor still attested. Every number I am
+about to show you stands. But the control environment behind them was judged not
+effective by the people who signed it, and remediation has no published completion date.
+
+I missed this on my first pass through the filing. It is the reason the money part of
+this deck carries a band that the product part does not.""",
     "s", "How they got this big")
 
 # ── 9 ACQUISITION 1 ──────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
   {head("Acquisition one &middot; June 2025", "They bought their AI, and the filing says so")}
   <div class="body">
-    <div class="quote"><div class="q">&ldquo;the Company completed the acquisition of <strong>OfferFit, Inc.</strong>
+    <div class="quote"><div class="qbody">&ldquo;the Company completed the acquisition of <strong>OfferFit, Inc.</strong>
       (&lsquo;OfferFit&rsquo;) <strong>which is now known as AI Decisioning Studio</strong> for total
       consideration of <strong>$303.2 million</strong>.&rdquo;</div>
       <div class="qd">Ernst &amp; Young, critical audit matter &middot; Braze 10-K, 25 March 2026</div></div>
@@ -229,7 +251,7 @@ add(f'''<section class="s" data-g="s" data-t="What it costs">
               ("", "Engagement is free",
                "Push tokens, device info, email opens and push clicks are <strong>not</strong> counted. That is a genuinely customer-friendly boundary"),
               ("", "Their own advice is to send less",
-               "&ldquo;<strong>Don&rsquo;t waste data points. Only update changing data!</strong>&rdquo; &mdash; a platform sold on streaming everything, priced so you shouldn&rsquo;t")],
+               "&ldquo;<strong>Don&rsquo;t waste data points. Only update changing data!</strong>&rdquo; &mdash; a platform sold on streaming everything, priced so that you send less of it")],
              cols=3)}
     </div>
   </div>
@@ -325,20 +347,21 @@ that shows up in gross margin before it shows up in growth.""",
     "s", "Where they operate")
 
 # ── 14 WHAT CUSTOMERS SAY ────────────────────────────────────────────────────
-_rev_pro = ('<div><div class="klabel colhead">WHAT G2&rsquo;S OWN TAGS PRAISE</div>'
-            + bars([("Ease of Use", 385), ("Intuitive", 188),
-                    ("Customer Support", 151), ("Helpful", 148)]) + '</div>')
-_rev_con = ('<div><div class="klabel colhead">AND WHAT THEY CRITICISE</div>'
-            + bars([("Missing Features", 140), ("Learning Curve", 139),
-                    ("Limitations", 102), ("Steep Learning Curve", 86)]) + '</div>')
+# One chart, ONE SCALE. These were briefly two side-by-side bars() calls, which
+# normalise independently - so "Ease of Use 385" and "Missing Features 140" rendered at
+# identical length and the slide implied praise and criticism were equally common. They
+# are not, and the asymmetry is the finding.
+_rev_bars = bars([("Ease of Use", 385), ("Intuitive", 188),
+                  ("Customer Support", 151), ("Helpful", 148),
+                  ("Missing Features", 140, "weak"), ("Learning Curve", 139, "weak"),
+                  ("Limitations", 102, "weak"), ("Steep Learning Curve", 86, "weak")])
 
 add(f'''<section class="s" data-g="m" data-t="What customers say">
-  {head("Review panels &middot; coded, not summarised", "Well liked, with two consistent complaints")}
+  {head("Review panels &middot; coded, not summarised", "Well liked, with two consistent complaints",
+        "G2 <strong>4.5/5</strong> across 1,702 reviews &middot; Gartner <strong>4.5/5</strong> across 263 ratings &middot; TrustRadius <strong>8.8/10</strong> across 348 reviews")}
   <div class="body">
-    {figs([("4.5<em>/5</em>", "G2 &middot; 1,702 reviews"),
-           ("4.5<em>/5</em>", "Gartner &middot; 263 ratings"),
-           ("8.8<em>/10</em>", "TrustRadius &middot; 348 reviews")], size="sm")}
-    {split(_rev_pro, _rev_con)}
+    <div class="klabel colhead">G2&rsquo;S OWN TAGS, OVER ITS WHOLE REVIEW BASE &mdash; PRAISE IN GREY, CRITICISM IN RED, ONE SCALE</div>
+    {_rev_bars}
     <p><strong>Two themes recur across unrelated panels, which is what makes them worth quoting:
     reporting, and the learning curve.</strong> TrustRadius codes reporting as &ldquo;limited and unintuitive,
     a sentiment shared by 36% of reviewers&rdquo;.</p>
@@ -348,8 +371,9 @@ add(f'''<section class="s" data-g="m" data-t="What customers say">
 eight out of ten on the third, across more than two thousand reviews. I am not going to
 soften that.
 
-The tags on this slide are G2's own coding over their whole review base, not my sample —
-that distinction matters and I will come back to it.
+These tags are G2's own coding over their whole review base, not my sample — and they
+are on **one scale**, deliberately, because the shape is the point: the single most
+common praise tag is nearly three times the most common criticism.
 
 Two complaints recur across panels that have nothing to do with each other, and that is
 what makes them worth your attention. **Reporting**, and the **learning curve**.

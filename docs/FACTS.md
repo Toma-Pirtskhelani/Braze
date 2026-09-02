@@ -70,6 +70,23 @@ every one is re-derivable with `python3 tools/sec_facts.py`. Fiscal years end 31
 | Operating cash flow, FY2020 → FY2026 | −7.4 · −6.1 · −35.4 · −22.3 · **+6.8 · +36.7 · +$71.4m** — positive and growing for three consecutive years | audited | `data/financials_annual.csv` | 2026-09-02 |
 | Cash and equivalents, FY2026 | $124.3m | audited | `data/financials_annual.csv` | 2026-09-02 |
 
+### 2.1b · The caveat that travels with every figure above
+
+Found in the self-review on 2026-09-02, after the first draft of this analysis was
+written. It qualifies the whole of §2 and belongs with the numbers, not in a footnote.
+
+| Fact | Value | Grade | Source | As of |
+|---|---|---|---|---|
+| Disclosure controls, as at 2026-01-31 | The CEO and CFO concluded they were **"not effective at the reasonable assurance level"** | audited | `sources/filings/2026-03-25_10-K_000013.txt:3258` | 2026-03-25 |
+| The material weakness | "ineffective information technology general controls, or ITGCs, in the areas of **user access and program change management** over the information technology systems that support our financial reporting processes" | audited | `sources/filings/2026-03-25_10-K_000013.txt:3286` | 2026-03-25 |
+| Knock-on effect the company states | Automated and IT-dependent manual controls relying on that environment "were ineffective because they could have been adversely impacted" | audited | `sources/filings/2026-03-25_10-K_000013.txt:3286` | 2026-03-25 |
+| What it did **not** do — and this matters | "The material weakness did not result in any identified misstatements to the financial statements, and there were no changes to previously issued financial results" | audited | `sources/filings/2026-03-25_10-K_000013.txt:1176` | 2026-03-25 |
+| Management's conclusion on the statements | The consolidated financial statements "fairly present in all material respects" the financial condition, results and cash flows | audited | `sources/filings/2026-03-25_10-K_000013.txt:3266` | 2026-03-25 |
+| Auditor position | Ernst & Young "issued an attestation report on our internal control over financial reporting" | audited | `sources/filings/2026-03-25_10-K_000013.txt:3272` | 2026-03-25 |
+| Remediation | In progress, "significant progress has been made to date"; completion date not given | audited | `sources/filings/2026-03-25_10-K_000013.txt:3290` | 2026-03-25 |
+| OfferFit excluded from the ICFR assessment | Permitted for a first-year acquisition. It is 1.4% of consolidated total assets and 1.8% of total revenue | audited | `sources/filings/2026-03-25_10-K_000013.txt:3270` | 2026-03-25 |
+| _How to say this_ | Say both halves in one breath: the control environment over the systems that produce these numbers was judged not effective, **and** no misstatement was identified, nothing was restated, and the auditor attested. Do not turn an ITGC finding into a claim about customer data security — it is scoped to financial-reporting systems | — | `docs/FACTS.md` §2.1b | 2026-09-02 |
+
 ### 2.2 · Where the money goes
 
 | Fact | Value | Grade | Source | As of |
@@ -246,6 +263,8 @@ append-only log read for what was provisioned, and a public registry used to che
 | Fact | Value | Grade | Source | As of |
 |---|---|---|---|---|
 | Hosting providers named in the sub-processor disclosure | 2 — Amazon Web Services ("Third-party hosting provider") and Google LLC ("Third party hosting provider of Google Cloud Platform"). Microsoft is not named anywhere in the document | documented | `sources/clean/braze-subprocessors.md:21,31` | 2026-09-02 (rev. 1 June 2026) |
+| Hosting providers named in the **10-K** | "We rely upon third-party providers of cloud-based infrastructure, **including Amazon Web Services and Rackspace**, to host our products." Microsoft is not named | audited | `sources/filings/2026-03-25_10-K_000013.txt:631` | 2026-03-25 |
+| So two independent company documents name hosting providers | Neither names Microsoft — the sub-processor disclosure and the 10-K risk factors | documented / audited | `sources/clean/braze-subprocessors.md:21,31`; `sources/filings/2026-03-25_10-K_000013.txt:631` | 2026-09-02 |
 | Braze publishes per-instance allowlist IPs | Yes — the IP addresses a customer must allow so Braze can reach their warehouse for Connected Sources, listed per instance | documented | `sources/docs/docs__user_guide__data__unification__cloud_ingestion__connected_sources.md:239,431,615,801` | 2026-09-02 |
 | Registered owner of the **US-08** allowlist IPs | **Microsoft Corporation** — all 7 addresses checked, across the 40.74.0.0–40.125.127.255 and 52.145.0.0–52.191.255.255 ranges | infrastructure | `sources/external/rdap-instance-ip-ownership_2026-09-02.json` (ARIN RDAP) | 2026-09-02 |
 | Registered owner of every other instance's allowlist IPs | Amazon entities — Amazon Technologies Inc., Amazon Data Services Northern Virginia, A100 ROW GmbH (Frankfurt), Amazon Corporate Services Pty Ltd (Sydney), Amazon AS-AP (Seoul) | infrastructure | `sources/external/rdap-instance-ip-ownership_2026-09-02.json` (ARIN RDAP) | 2026-09-02 |
