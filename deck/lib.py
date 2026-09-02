@@ -71,7 +71,8 @@ def bars(items, unit=""):
     return '<div class="bars">%s</div>' % rows
 
 def flow(steps, key=(), mark=None):
-    """steps: (n, title, detail). key={i,...} gives a neutral accent.
+    """steps: (n, title, detail). key={i,...} gives a neutral accent - a value step, not
+    a hue, so it never collides with the evidence grades.
     mark={i:'s'|'m'|'w'} colours a step to match the card that discusses it, so the
     flow and the commentary below it are read as one thing."""
     mark = mark or {}

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Part II — the product. Slides 17-31 (divider + 14 content slides).
+"""Part II — the product. Slides 18-32 (divider + 14 content slides).
 
 The spine is one campaign walked through seven stages, which is what makes a technical
 analysis legible to a non-technical audience and forces every capability claim to attach
@@ -51,16 +51,16 @@ will say so too.""",
 add(f'''<section class="s" data-g="s" data-t="How one campaign works">
   {head("The whole thing &middot; end to end", "One campaign, end to end")}
   <div class="body">
-    {flow([("01", "Data arrives", "SDK, API, or a warehouse sync"),
-           ("02", "Profile updated", "MongoDB &mdash; and it is billed per attribute"),
+    {flow([("01", "Data arrives", "from an app, an API, or a data warehouse"),
+           ("02", "Profile updated", "one record per person &mdash; billed per change"),
            ("03", "Segment recomputed", "membership changes as data lands"),
-           ("04", "Canvas triggers", "the journey builder decides who continues"),
-           ("05", "Content composed", "Liquid, Connected Content, catalogs"),
+           ("04", "Journey triggers", "Braze calls this Canvas; it decides who continues"),
+           ("05", "Content composed", "the message is filled in for that person"),
            ("06", "Message delivered", "email and SMS via named third parties"),
            ("07", "Response logged", "and it flows back to step 1")],
-          mark={1: "s", 2: "s", 6: "m"})}
-    <p>Seven stages. <strong>Two of them are where the evidence turned out to be interesting</strong> &mdash;
-    how fresh the data is at stage one, and who physically sends the message at stage six. Everything
+          key={1, 6})}
+    <p>Seven stages. <strong>The two picked out are where the evidence turned out to be interesting</strong>
+    &mdash; how fresh the data is at stage one, and who physically sends the message at stage six. Everything
     in between is competent and largely as advertised, and I will say so as we go.</p>
   </div>
 </section>''',
@@ -140,13 +140,13 @@ def _lane(y, label, detail, latency, note, tone):
 _ingest_svg = (
   '<div class="mapwrap"><svg viewBox="0 0 700 236" preserveAspectRatio="xMidYMid meet" '
   'style="width:100%;max-width:700px;height:auto;display:block">'
-  + _lane(2,   "Standard CDI sync",   "warehouse -&gt; profile",  "&ldquo;Not real-time&rdquo;",  "15 min floor", "w")
-  + _lane(60,  "CDI Segments",        "warehouse, zero-copy",      "&ldquo;Not real-time&rdquo;",  "",             "w")
-  + _lane(118, "CDI Canvas triggers", "warehouse -&gt; journey",  "&ldquo;Not real-time&rdquo;",  "15 min floor", "w")
+  + _lane(2,   "Warehouse sync",      "their Cloud Data Ingestion",  "&ldquo;Not real-time&rdquo;",  "15 min floor", "w")
+  + _lane(60,  "Warehouse segments",  "read in place, no copy",    "&ldquo;Not real-time&rdquo;",  "",             "w")
+  + _lane(118, "Warehouse triggers",  "warehouse starts a journey", "&ldquo;Not real-time&rdquo;", "15 min floor", "w")
   + _lane(176, "/users/track &middot; SDKs", "app, server, stream", "&ldquo;Near-real-time&rdquo;", "", "s")
   + '<rect x="466" y="2" width="232" height="220" rx="6" fill="var(--panel)" stroke="var(--line2)" stroke-width="1.2"/>'
   + '<text x="582" y="100" fill="var(--vellum)" font-size="15" font-family="Libre Franklin, sans-serif" font-weight="600" text-anchor="middle">Braze user profile</text>'
-  + '<text x="582" y="122" fill="var(--dim)" font-size="11.5" font-family="JetBrains Mono, monospace" text-anchor="middle">MongoDB &middot; billed per attribute</text>'
+  + '<text x="582" y="122" fill="var(--dim)" font-size="11.5" font-family="JetBrains Mono, monospace" text-anchor="middle">one record per person &middot; billed per change</text>'
   + '</svg></div>')
 
 add(f'''<section class="s" data-g="s" data-t="Stage 1: Data">
@@ -212,7 +212,7 @@ add(f'''<section class="s" data-g="s" data-t="Stage 2: Identity">
     {cards([("A merge can decline and still report success",
              "&ldquo;If both profiles have invalid phone numbers, Braze does not merge them &hellip; <strong>The endpoint still returns 202 Accepted with a success message</strong>, so the HTTP response does not indicate that the merge was skipped.&rdquo;", "r"),
             ("Reporting splits after a merge",
-             "Dashboard summaries attribute a pre-merge send to the surviving profile. Currents, Query Builder and Messaging History attribute it to the orphaned one. Both are right by their own rules, and they disagree.", "a")],
+             "Dashboard summaries attribute a pre-merge send to the surviving profile. Currents &mdash; their paid data-export feed &mdash; along with Query Builder and Messaging History, attribute it to the orphaned one. Both are right by their own rules, and they disagree.", "a")],
            cols=2)}
   </div>
 </section>''',
@@ -237,11 +237,13 @@ time.""",
 add(f'''<section class="s" data-g="s" data-t="Stage 3: Decisioning">
   {head("Stage 3 &middot; decisioning", "Two engines, two databases, one bought")}
   <div class="body">
+    <p><strong>Two systems decide who gets a message, and they sit on two different databases
+    that do not talk to each other.</strong> One follows rules you write; the other runs models.</p>
     {split(
       '<div><div class="klabel colhead">RULE-BASED &mdash; MONGODB</div>'
       + tiles([("", "Segmentation", "Custom events, attributes, purchases and most targeting"),
                ("", "Segment Extensions", "SQL, but served from Snowflake"),
-               ("", "Global Control Group", "Holdouts, and profiles in it never merge")], cols=1)
+               ("", "Global Control Group", "Holdouts &mdash; people deliberately left un-messaged, to measure lift")], cols=1)
       + '</div>',
       '<div><div class="klabel colhead">MODEL-BASED &mdash; SNOWFLAKE</div>'
       + tiles([("", "Predictive Suite", "Churn and event prediction &mdash; 7 focused doc pages"),
@@ -266,7 +268,7 @@ not automatically remove it from the other.**
 If you have deletion obligations — and if you are in this category you do — that is a
 two-system problem, disclosed in their own documentation and in none of their marketing.
 
-Note the seven documentation pages on Predictive Suite. Hold that for slide thirty-one.""",
+Note the seven documentation pages on Predictive Suite. Hold that for slide thirty-two.""",
     "s", "Stage 3: Decisioning")
 
 # ── 23 STAGE 4 · BUILDING ────────────────────────────────────────────────────
@@ -375,7 +377,7 @@ add(f'''<section class="s" data-g="s" data-t="Stage 7: Interaction">
     <p>Inbound and two-way handling is real: webhooks are a first-class documented channel, and
     engagement tracking &mdash; opens, clicks, push receipts &mdash; is explicitly excluded from data-point
     billing. <strong>But getting the raw event stream back out is a paid add-on that exports on a
-    five-minute cadence</strong>, which is the mechanism behind the reporting complaint on slide 14.</p>
+    five-minute cadence</strong>, which is the mechanism behind the reporting complaint on slide 15.</p>
     <div class="ruleband">
       <div class="klabel">WEBHOOKS IS THE MOST UNDER-SOLD THING IN THE PLATFORM</div>
       {tiles([("", "Fifth-deepest channel in the product",
@@ -483,7 +485,7 @@ layer, Canvas, Liquid and the identity model are built.""",
 # fifteen named clusters from the status page, pinned at the regions their own endpoint
 # hostnames give (iad = Ashburn VA, fra = Frankfurt, and the AWS region codes in CT for
 # the rest). US-08 is not pinned separately: nothing in the corpus places it in a specific
-# US region, and inventing a coordinate for the one cluster slide 34 is about would be the
+# US region, and inventing a coordinate for the one cluster slide 35 is about would be the
 # worst possible place to guess. The legend points at it in words instead of in colour.
 _clusters_map = worldmap([
     (-77.5, 38.9, "US &times;9", "m", "left"),
@@ -499,7 +501,7 @@ _clusters_map = worldmap([
 _map_legend = ('<div class="maplegend">'
                '<span><i class="lg lg-m"></i>15 clusters, 6 territories</span>'
                '<span><i class="lg lg-s"></i>7 identical subsystems in every one</span>'
-               '<span class="lgnote">one of the nine US clusters is the exception &mdash; slide 34</span>'
+               '<span class="lgnote">one of the nine US clusters is the exception &mdash; slide 35</span>'
                '</div>')
 _subsystems = ('<div><div class="klabel colhead">THE SEVEN SUBSYSTEMS, IDENTICAL IN EVERY CLUSTER</div>'
                + logos(["Dashboard", "SDK Data Collection", "Data Processing", "REST APIs",
@@ -519,7 +521,7 @@ Fifteen regional clusters across six territories, and every one exposes the same
 subsystems. That is a functional decomposition of the entire product, published live and
 updated during outages. Notice that Currents and Cloud Data Ingestion appear as
 first-class subsystems rather than as features — which tells you they can fail
-independently, and the incident record on slide 38 shows they do.
+independently, and the incident record on slide 39 shows they do.
 
 The geography checks out against a completely unrelated document: the sub-processor
 disclosure lists AWS regions for the same six territories. Two sources, no relationship

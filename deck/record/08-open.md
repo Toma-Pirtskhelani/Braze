@@ -2,11 +2,37 @@
 
 > Eight questions this analysis could not close from public sources, each with the source that would close it — plus the two places where a number moved and the old value is deliberately still visible, and the ledger of ten hypotheses graded honestly, three of which died in Braze's favour.
 
-{{slides: 2, 3, 32, 36, 39, 40, 41}}
+{{slides: 2, 3, 5, 33, 37, 40, 41, 42}}
 
 A gap written down is evidence. A gap not written down is a mistake. The full backlog
 lives in `docs/QUESTIONS.md`; what follows is the residue that matters to a reader of
 this record, in the order a competitor would care about.
+
+## 8.0a · The four documents the deck rests on
+
+Slide 5 exists because the operator watched the deck and could not follow it. Seventeen
+specialist terms were in use and none was defined; two of them — "10-K" and
+"sub-processor" — carried whole findings, and one of those landed on the title slide. The
+slide is not a glossary. It is the argument for why these four sources beat marketing,
+with the definitions riding along inside it.
+
+| Document | What it is | Why it is hard to falsify |
+|---|---|---|
+| **10-K** | The audited annual report to the SEC | Signed by the CEO and CFO, audited by Ernst & Young, wrong at legal risk. Seven years captured |
+| **DEF 14A (proxy)** | Filed before the annual shareholder meeting | Must name every executive officer and director, their pay, and who owns the company |
+| **Sub-processor disclosure** | A public list of outside suppliers that touch customer data | Data-protection law requires it to be *complete*, so it names middlemen marketing never would |
+| **Status page** | A live record of every incident since 2016 | Written during the outage, by someone trying to fix it |
+
+Nothing on that slide is a new finding, and it cites nothing this record does not already
+carry: the filings are in §1 and §2, the sub-processor disclosure runs through chapters 5
+and 6, and the status page is chapter 4's operational record. **What it adds is the reason
+to believe the rest**, delivered before the first claim rather than after it.
+
+The general lesson is worth recording next to the corrections log, because it is the same
+class of error. **A term the analyst has read four hundred times is invisible to them and
+opaque to everyone else.** Nothing in the evidence was wrong; the deck was simply
+unreadable to the person it was built for, and no amount of verification catches that.
+Only showing it to somebody does.
 
 ## 8.0 · The hypothesis ledger, and why three killed results are on a slide
 
@@ -27,7 +53,7 @@ genuine priors looks like.
 this project all three reached the record and none reached the deck. That asymmetry was
 not a decision anyone made; it is what happens by default, because a favourable finding
 has nowhere obvious to go in a competitive deck and an unfavourable one does. It is now
-slide 39, on the grounds that an analysis reading as uniformly critical invites its
+slide 40, on the grounds that an analysis reading as uniformly critical invites its
 audience to discount all of it — including the parts that are hardest to argue with.
 
 | # | Hypothesis, as written beforehand | How it died | Detail |

@@ -27,24 +27,26 @@ SOURCES = [("Their documentation",   "1,352 pages"),
            ("Audited financials",    "FY2019 &rarr; now"),
            ("Public code",           "137 repos"),
            ("Status page",           "451 incidents"),
-           ("Sub-processors",        "17 disclosed")]
+           # "Sub-processor" is the deck's earliest piece of jargon and it lands on the
+           # title slide. Defining it in the value line costs nothing and means the term
+           # is understood before it is used ten more times.
+           ("Sub-processors",        "17 outside suppliers")]
 _src = ''.join(f'<div class="srcitem"><div class="sn">{n}</div><div class="sv">{v}</div></div>'
                for n, v in SOURCES)
 
-# Braze's own wordmark, identifying the SUBJECT of the analysis - which is why it sits
-# above a heading that says "Competitor analysis" and a byline that says "public sources
-# only". It is on a white .plate because the asset is black-on-transparent and would be
-# invisible on this ground; that plate also reads as a quoted object rather than as this
-# deck's own brand, which is the distinction that matters on a competitive teardown.
-MARK = f'<div class="plate titleplate"><img src="{LOGO}" alt="Braze wordmark"></div>' 
+# The wordmark IS the title. It used to sit on a white plate above an <h1>Braze</h1> set
+# in Instrument Serif - the company's name said twice, in two typefaces, sixty pixels
+# apart, with the plate the brightest object on the slide. Now there is one name, in
+# Braze's own violet, with nothing behind it. Identification as the SUBJECT comes from
+# what surrounds it: "Competitor analysis" beneath, and a byline saying public sources.
+MARK = f'<img class="titlemark" src="{LOGO}" alt="Braze">'
 
 add(f'''<section class="s title-s" data-g="s" data-t="Competitor Analysis">
   {MARK}
-  <h1>Braze</h1>
   <div class="subject">Competitor analysis</div>
   <p class="lede">A customer engagement platform &mdash; and a public company, which changes what can be known.</p>
   <div class="srcstrip">{_src}</div>
-  <div class="byline"><span><strong>__SLIDECOUNT__ slides &middot; every figure traceable to a source path</strong></span><span>Public sources only &middot; captured 1&ndash;2 September 2026</span></div>
+  <div class="byline"><span><strong>Toma Pirtskhelani &middot; Product Manager</strong></span><span>Public sources only &middot; September 2026</span></div>
 </section>''',
 """This is a competitor analysis of **Braze**.
 

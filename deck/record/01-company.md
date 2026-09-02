@@ -2,7 +2,7 @@
 
 > Braze is a fifteen-year-old New York software company that has been public since November 2021 and, since January 2026, is no longer controlled by its founders through super-voting stock — though the staggered board that is the other structural defence was kept. Two of its three cofounders still run it, while three of six executive officers turned over inside a year. The most useful single thing here is a ratio: revenue has grown three times faster than headcount since FY2022, and the compensation plan shows that this was deliberate.
 
-{{slides: 4, 5, 7}}
+{{slides: 4, 6, 8}}
 
 ## 1.1 · The entity, and why the fiscal calendar matters
 

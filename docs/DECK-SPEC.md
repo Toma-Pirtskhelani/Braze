@@ -1,4 +1,4 @@
-# Deck specification — 42 slides, question by question
+# Deck specification — 43 slides, question by question
 
 The reference deck answered 41 questions about a competitor. This maps every one of
 them onto Braze, names the evidence that answers it, and marks whether Braze can be
@@ -13,7 +13,7 @@ reached the deck — which is the bias the hypothesis method exists to catch.
 **Nothing below is a finding.** Every "answer" column names *where the answer will come
 from*, not what it is. Fill the slides from `docs/FACTS.md` once the research has run.
 
-Structure: **1 title · 4 part dividers · 37 content slides = 42.** Keep that shape —
+Structure: **1 title · 4 part dividers · 38 content slides = 43.** Keep that shape —
 the dividers do real work, giving the audience a breath and restating what the next
 part is for.
 
@@ -37,22 +37,23 @@ top grade changes — audited filings outrank documentation.
 
 ---
 
-## Part I — The company (slides 5–16)
+## Part I — The company (slides 5–17)
 
 | # | Slide | The question | Evidence | |
 |---|---|---|---|---|
-| 5 | Executive summary | If you remember five things, what are they? | Written last, from the finished record | = |
-| 6 | Who they say they are | What is their own story about themselves? | Marketing pages, 10-K Item 1. **Label as marketing** | = |
-| 7 | Origins | Where did it come from and who still runs it? | S-1, DEF 14A, 10-K Item 1, press releases | = |
-| 8 | How they got this big | What money came in, when, and on what terms? | S-1 + 10-K. **Pre-IPO rounds *and* the IPO itself, from the prospectus** | ↑ |
-| 9 | Acquisition 1 | What did they buy, for how much, and what did it bring? | 8-K, 10-K business-combination notes, `PaymentsToAcquireBusinessesNetOfCashAcquired` | ↑ |
-| 10 | Acquisition 2 | Same, for the next material one | As above. **Prices are disclosed here; the reference vendor never published one** | ↑ |
-| 11 | What it costs | What does a customer actually pay? | Reviews, procurement records, resellers — **plus revenue ÷ customer count as a bound** | ↑ |
-| 12 | Who uses it | How many customers, and how is that counted? | 10-K customer count (a *defined* metric) vs 178 customer-story URLs vs independent detection | ↑ |
-| 13 | Where they operate | Which geographies really carry the business? | **10-K/10-Q geographic revenue split — audited**, vs localisation depth vs review origins | ↑ |
-| 14 | What customers say | What do buyers praise and complain about? | G2 / Gartner / TrustRadius, coded by `tools/code_reviews.py` | = |
-| 15 | What employees say | What does the inside look like? | Glassdoor trend, careers board, DEF 14A compensation | ↑ |
-| 16 | Who they compete with | Who do they name, and who do buyers actually shortlist? | 10-K competition paragraph + their comparison pages vs **Gartner shortlists** | ↑ |
+| 5 | The four documents | Why should I believe any of this? | **The 10-K, the proxy, the sub-processor disclosure and the status page**, one line each on what it is and why it is hard to falsify. Added after the operator watched the deck and could not follow the vocabulary | ⇄ |
+| 6 | Executive summary | If you remember five things, what are they? | Written last, from the finished record | = |
+| 7 | Who they say they are | What is their own story about themselves? | Marketing pages, 10-K Item 1. **Label as marketing** | = |
+| 8 | Origins | Where did it come from and who still runs it? | S-1, DEF 14A, 10-K Item 1, press releases | = |
+| 9 | How they got this big | What money came in, when, and on what terms? | S-1 + 10-K. **Pre-IPO rounds *and* the IPO itself, from the prospectus** | ↑ |
+| 10 | Acquisition 1 | What did they buy, for how much, and what did it bring? | 8-K, 10-K business-combination notes, `PaymentsToAcquireBusinessesNetOfCashAcquired` | ↑ |
+| 11 | Acquisition 2 | Same, for the next material one | As above. **Prices are disclosed here; the reference vendor never published one** | ↑ |
+| 12 | What it costs | What does a customer actually pay? | Reviews, procurement records, resellers — **plus revenue ÷ customer count as a bound** | ↑ |
+| 13 | Who uses it | How many customers, and how is that counted? | 10-K customer count (a *defined* metric) vs 178 customer-story URLs vs independent detection | ↑ |
+| 14 | Where they operate | Which geographies really carry the business? | **10-K/10-Q geographic revenue split — audited**, vs localisation depth vs review origins | ↑ |
+| 15 | What customers say | What do buyers praise and complain about? | G2 / Gartner / TrustRadius, coded by `tools/code_reviews.py` | = |
+| 16 | What employees say | What does the inside look like? | Glassdoor trend, careers board, DEF 14A compensation | ↑ |
+| 17 | Who they compete with | Who do they name, and who do buyers actually shortlist? | 10-K competition paragraph + their comparison pages vs **Gartner shortlists** | ↑ |
 
 Two slides worth flagging. **#13** is a genuine upgrade: geographic revenue is an
 audited disclosure, where the reference project had to infer geography from customer
@@ -63,7 +64,7 @@ marketing; who buyers shortlist is independent, and the gap between them is the 
 
 ---
 
-## Part II — The product (slides 18–31)
+## Part II — The product (slides 19–32)
 
 The reference deck walked one campaign through seven stages. Keep that spine: it is the
 part that makes a technical analysis legible to a non-technical audience, and it forces
@@ -71,20 +72,20 @@ every capability claim to attach to a moment a customer would actually notice.
 
 | # | Slide | The question | Evidence | |
 |---|---|---|---|---|
-| 18 | How one campaign works | What actually happens, end to end? | Docs, walked through and drawn | = |
-| 19 | How data moves | Where does data enter, rest and leave? | Docs on ingestion, warehouse integration, export; rate limits | = |
-| 20 | Stage 1 · Data | How does data get in, and how fresh is it? | Ingestion docs. **Look for a freshness table — that is where limits are admitted** | = |
-| 21 | Stage 2 · Identity | How is one person resolved across devices? | Identity/alias docs. The reference project's sharpest technical finding lived here | = |
-| 22 | Stage 3 · Decisioning | What decides who gets what? | Segmentation, predictive, decisioning docs | = |
-| 23 | Stage 4 · Building | How is a journey actually built? | Orchestration docs + reviews on usability | = |
-| 24 | Stage 5 · Content | How is a message composed and personalised? | Templating, dynamic content, generative-AI docs | = |
-| 25 | Stage 6 · Delivery | How does it physically get sent, and by whom? | **Sub-processor disclosure — which channel has no middleman** | = |
-| 26 | Stage 7 · Interaction | What happens when the customer replies? | Inbound, webhook, two-way channel docs | = |
-| 27 | Channels | How many channels, and which are never marketed? | Docs enumeration vs marketing. **Absence of a channel is a finding** | = |
-| 28 | Integrations | What connects, and is the layer built or bought? | Partner docs + sub-processor list + `braze-inc` integration repos | ↑ |
-| 29 | Infrastructure | What is it built on, and what does that constrain? | Sub-processors + **status-page component groups: 15 named regional clusters** | ↑ |
-| 30 | Analytics | What can you actually measure? | Reporting docs, export limits, incrementality/holdout support | = |
-| 31 | The AI, honestly | What is real, what is new, what is renamed? | **Five lenses: focused-page counts, endpoint counts, named model suppliers, the acquisition date, review vocabulary** | = |
+| 19 | How one campaign works | What actually happens, end to end? | Docs, walked through and drawn | = |
+| 20 | How data moves | Where does data enter, rest and leave? | Docs on ingestion, warehouse integration, export; rate limits | = |
+| 21 | Stage 1 · Data | How does data get in, and how fresh is it? | Ingestion docs. **Look for a freshness table — that is where limits are admitted** | = |
+| 22 | Stage 2 · Identity | How is one person resolved across devices? | Identity/alias docs. The reference project's sharpest technical finding lived here | = |
+| 23 | Stage 3 · Decisioning | What decides who gets what? | Segmentation, predictive, decisioning docs | = |
+| 24 | Stage 4 · Building | How is a journey actually built? | Orchestration docs + reviews on usability | = |
+| 25 | Stage 5 · Content | How is a message composed and personalised? | Templating, dynamic content, generative-AI docs | = |
+| 26 | Stage 6 · Delivery | How does it physically get sent, and by whom? | **Sub-processor disclosure — which channel has no middleman** | = |
+| 27 | Stage 7 · Interaction | What happens when the customer replies? | Inbound, webhook, two-way channel docs | = |
+| 28 | Channels | How many channels, and which are never marketed? | Docs enumeration vs marketing. **Absence of a channel is a finding** | = |
+| 29 | Integrations | What connects, and is the layer built or bought? | Partner docs + sub-processor list + `braze-inc` integration repos | ↑ |
+| 30 | Infrastructure | What is it built on, and what does that constrain? | Sub-processors + **status-page component groups: 15 named regional clusters** | ↑ |
+| 31 | Analytics | What can you actually measure? | Reporting docs, export limits, incrementality/holdout support | = |
+| 32 | The AI, honestly | What is real, what is new, what is renamed? | **Five lenses: focused-page counts, endpoint counts, named model suppliers, the acquisition date, review vocabulary** | = |
 
 **#29 is the clearest upgrade in Part II.** The status page names fifteen regional
 clusters and 132 components — an architecture disclosure the vendor made by accident,
@@ -104,16 +105,16 @@ which case restore them and drop two Part III slides. Decide from the evidence, 
 
 ---
 
-## Part III — Strategy (slides 33–35)
+## Part III — Strategy (slides 34–36)
 
 This is where Braze permits genuinely more than the reference project, and where the
 temptation to overreach is strongest. Three slides, not six.
 
 | # | Slide | The question | Evidence | |
 |---|---|---|---|---|
-| 33 | Where the money goes | What are they buying with revenue? | **R&D / S&M / G&A as audited lines, 7 fiscal years.** The reference deck could only ask where a funding round went | ↑ |
-| 34 | What comes next | What is coming that they have not announced? | CT logs, release notes, job postings, 10-K forward language | = |
-| 35 | Competitive advantages | What actually protects them? | Synthesis. Must survive the "so what would a competitor do about it" test | = |
+| 34 | Where the money goes | What are they buying with revenue? | **R&D / S&M / G&A as audited lines, 7 fiscal years.** The reference deck could only ask where a funding round went | ↑ |
+| 35 | What comes next | What is coming that they have not announced? | CT logs, release notes, job postings, 10-K forward language | = |
+| 36 | Competitive advantages | What actually protects them? | Synthesis. Must survive the "so what would a competitor do about it" test | = |
 
 **#33 replaces the reference deck's "where the funding went" and is strictly stronger.**
 Seven years of audited operating expense is a real answer to a question that could
@@ -129,16 +130,16 @@ Add at most one, and only if it changes what a competitor would do.
 
 ---
 
-## Part IV — Open questions (slides 37–41)
+## Part IV — Open questions (slides 37–43)
 
 | # | Slide | The question | Evidence | |
 |---|---|---|---|---|
-| 37 | Deep dive | One hard question, answered properly | Pick from the backlog once the research is in — see below | ⇄ |
-| 38 | Reliability, measured | What does a decade of incidents show? | **451 incidents, 2016 → 2026, with durations.** No reference-deck equivalent | ⇄ |
-| 39 | Where the evidence went their way | Which hypotheses died in Braze's favour? | **The ten hypotheses in `docs/STRATEGY.md`, written before any source was read.** Added after the first draft: three favourable kills reached the record and no slide | ⇄ |
-| 40 | What we could not answer | Where do public sources run out? | Honest enumeration, with what would close each gap | = |
-| 41 | Questions backlog | What should be researched next, and in what order? | `docs/QUESTIONS.md`, prioritised | = |
-| 42 | Close | What is the one thing to remember? | One line. Earned, not asserted | = |
+| 38 | Deep dive | One hard question, answered properly | Pick from the backlog once the research is in — see below | ⇄ |
+| 39 | Reliability, measured | What does a decade of incidents show? | **451 incidents, 2016 → 2026, with durations.** No reference-deck equivalent | ⇄ |
+| 40 | Where the evidence went their way | Which hypotheses died in Braze's favour? | **The ten hypotheses in `docs/STRATEGY.md`, written before any source was read.** Added after the first draft: three favourable kills reached the record and no slide | ⇄ |
+| 41 | What we could not answer | Where do public sources run out? | Honest enumeration, with what would close each gap | = |
+| 42 | Questions backlog | What should be researched next, and in what order? | `docs/QUESTIONS.md`, prioritised | = |
+| 43 | Close | What is the one thing to remember? | One line. Earned, not asserted | = |
 
 **#37 is the reference deck's "how hard is a BSP, really?" slot** — a single hard
 question the audience will actually ask, answered with enough depth that nobody follows
@@ -175,7 +176,7 @@ Carried from the reference deck, where they were arrived at the hard way.
 
 ## Definition of done
 
-- [ ] 42 slides build clean; `build_deck.py` reports no missing notes
+- [ ] 43 slides build clean; `build_deck.py` reports no missing notes
 - [ ] Every number on every slide resolves to a row in `docs/FACTS.md`
 - [ ] Every slide's grade matches its weakest source
 - [ ] `make_script.py` regenerated; script and deck agree by construction

@@ -73,10 +73,11 @@ strong{color:var(--vellum);font-weight:600}
 .demo a{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;word-break:break-all}
 
 /* brand assets */
-/* top:56 puts the card's top edge on the eyebrow's top edge - one shared horizon on
-   every slide that carries a logo. Measured in stage coordinates, not guessed. */
-.brandtag{position:absolute;top:56px;right:74px;background:#fff;border-radius:10px;
-  padding:14px 16px;display:grid;place-items:center}
+/* No plate. A white card on this ground was the brightest object on the slide, louder
+   than the headline beside it - so the marks are recoloured instead (tools/build_assets.py)
+   and sit directly on the ground. Right edge on the body's 74px margin, optical top on the
+   eyebrow, so the mark belongs to the content grid rather than to the canvas corner. */
+.brandtag{position:absolute;top:62px;right:74px;display:grid;place-items:center}
 .brandtag img{display:block;width:100%;height:auto}
 .plate{background:#fff;border-radius:10px;padding:16px 18px;display:grid;place-items:center;flex:none}
 .plate img{display:block;width:100%;height:auto}
@@ -92,10 +93,9 @@ strong{color:var(--vellum);font-weight:600}
 .brandmark circle,.brandmark path{vector-effect:non-scaling-stroke}
 /* The title-slide plate. Sized to the wordmark rather than to the 50px .mark slot,
    which was built for a square glyph and crushes a 2.1:1 wordmark to nothing. */
-/* Padded tighter than the plate default so the wordmark inside sits within a few pixels
-   of the "B" of Braze below it. The plate is an object with an edge, but the thing the
-   eye aligns is the mark, not the card. */
-.titleplate{width:126px;padding:12px 9px;margin-bottom:26px}
+/* The wordmark, standing in for the h1 it replaced - so it is sized like a title, not
+   like a badge, and its left edge is the same 74px margin every other element uses. */
+.titlemark{display:block;width:300px;height:auto;margin:0 0 30px}
 /* A photograph with its caption attached, so the caveat travels with the image. */
 .photoblock{margin-top:8px;max-width:216px}
 .photoblock img{display:block;width:100%;height:auto;border-radius:5px;border:1px solid var(--line2)}
@@ -213,13 +213,16 @@ strong{color:var(--vellum);font-weight:600}
 /* flow */
 .flow{display:grid;gap:7px}
 .step{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 12px}
-.step.key{background:var(--panel2);border-color:var(--medium)}
+/* Neutral emphasis - "look here", not "this is medium-confidence evidence". It was
+   var(--medium), the amber the audience is taught on slide 3 to read as a grade. The
+   deck's own rule is emphasis by value, not by hue, and this is now that. */
+.step.key{background:var(--panel2);border-color:var(--barlab)}
 .step.mk-s{background:var(--panel2);border-color:var(--strong)}
 .step.mk-m{background:var(--panel2);border-color:var(--medium)}
 .step.mk-w{background:var(--panel2);border-color:var(--weak)}
 .step.mk-s .si{color:var(--strong)} .step.mk-m .si{color:var(--medium)} .step.mk-w .si{color:var(--weak)}
 .step .si{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em}
-.step.key .si{color:var(--medium)}
+.step.key .si{color:var(--vellum)}
 .step .st{font-size:14px;color:var(--vellum);margin-top:8px;line-height:1.3;font-weight:600;text-wrap:balance}
 .step .sd{font-family:var(--mono);font-size:10px;color:var(--slate);margin-top:7px;line-height:1.35;text-wrap:balance}
 
@@ -255,7 +258,8 @@ strong{color:var(--vellum);font-weight:600}
 
 .logo{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 8px;
   text-align:center;font-size:13.5px;color:var(--slate);font-weight:500}
-.logo.acc{border-color:var(--medium);color:var(--vellum)}
+/* Same correction as .step.key: a marked logo is brighter, not amber. */
+.logo.acc{border-color:var(--barlab);color:var(--vellum);background:var(--panel2)}
 
 /* cards */
 .cards{display:grid;gap:14px}

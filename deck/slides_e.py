@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Part IV — open questions. Slides 36-42 (divider + 6 content slides).
+"""Part IV — open questions. Slides 37-43 (divider + 6 content slides).
 
-Slide 37 is the deep dive, and DECK-SPEC says to pick it after the research from
+Slide 38 is the deep dive, and DECK-SPEC says to pick it after the research from
 whatever turned out to be both contested and answerable. It went to the ingestion
 freshness question: it is the thing a prospect will actually be told is fine, the
 evidence settles it in Braze's own words, and it decides a real architecture choice.
@@ -265,7 +265,7 @@ One more thing about this slide, and it is the point of keeping it. **There were
 gaps here until quite late.** The fifth was the split of open roles by function: the
 careers board's filter would not drive under automation, so it went down as
 uncapturable. Then the same board turned out to be published as JSON with the grouping
-already done, and the answer is now on slide fifteen. The lesson generalises — **when a
+already done, and the answer is now on slide sixteen. The lesson generalises — **when a
 page will not yield, look for the API behind it before you write down a gap** — and it
 is in the corrections log rather than quietly patched.
 
@@ -278,7 +278,7 @@ add(f'''<section class="s" data-g="s" data-t="What to research next">
   {head("Backlog &middot; prioritised", "Four questions worth the next week")}
   <div class="body">
     {cards([("1 &middot; Ask about US-08",
-             "The highest-value single answer in the backlog. It decides whether slide 34 is an infrastructure observation or a procurement question. <strong>Route:</strong> the DPA schedule a customer receives, or ask them directly.", "g"),
+             "The highest-value single answer in the backlog. It decides whether slide 35 is an infrastructure observation or a procurement question. <strong>Route:</strong> the DPA schedule a customer receives, or ask them directly.", "g"),
             ("2 &middot; Buy one panel&rsquo;s segment data",
              "It closes the only hypothesis that went unresolved, and satisfaction-by-size is the question your sales team will ask first. <strong>Route:</strong> paid G2 or Gartner access.", "g")],
            cols=2)}
@@ -295,7 +295,7 @@ add(f'''<section class="s" data-g="s" data-t="What to research next">
 """If you gave me another week, this is the order.
 
 **First, ask about US-08.** It is the highest-value single answer available and it decides
-whether slide thirty-four is a curiosity or something procurement should raise. A
+whether slide thirty-five is a curiosity or something procurement should raise. A
 customer can just look at their own DPA schedule.
 
 **Second, buy one panel's segment data.** It closes the hypothesis I could not test, and
@@ -307,7 +307,7 @@ Tag crawls, certificate records and job ads naming Braze in the stack would give
 roster nobody curated. That one is not cheap, which is why it is third.
 
 The careers API was on this list until this morning, and it is not any more — we pulled
-it, and where their headcount is going is now on slide fifteen. Two hundred and
+it, and where their headcount is going is now on slide sixteen. Two hundred and
 ninety-six roles, seventy-two per cent go-to-market.
 
 **Fourth, and this is the real point: re-run all of it in ninety days.** Every number in

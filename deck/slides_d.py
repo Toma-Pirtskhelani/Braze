@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Part III — strategy. Slides 32-35 (divider + 3 content slides).
+"""Part III — strategy. Slides 33-35 (divider + 3 content slides).
 
 Three slides, not six. Seven years of audited operating expense is a real answer to a
 question that could previously only be inferred, and the temptation to add four more

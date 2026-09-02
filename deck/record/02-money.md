@@ -2,7 +2,7 @@
 
 > Growth is decelerating and efficiency is improving at the same time, and the two are connected rather than coincidental. Revenue growth has halved since FY2023 while sales and marketing fell from 56.7% of revenue to 44.3%; operating cash flow has been positive and growing for three years; and the net loss persists mainly because share-based compensation now exceeds it. One caveat qualifies everything here, and it is stated first.
 
-{{slides: 8, 33}}
+{{slides: 9, 34}}
 
 Every figure in this chapter is audited, filed under legal penalty, and re-derivable by
 running `python3 tools/sec_facts.py`, which writes `data/financials_annual.csv` and

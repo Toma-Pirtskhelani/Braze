@@ -305,3 +305,144 @@ approved.
 
 **Nothing in this round requires reopening a source.** Every fact needed is already in
 `docs/FACTS.md`. This is entirely about making what is already true possible to follow.
+
+---
+
+## 11 · What was done — closing record, 2026-09-02
+
+Against §9, in order. No source was reopened; every fact used was already in
+`docs/FACTS.md`. The deck is now **43 slides**.
+
+### Definition of done, checked
+
+| | Result |
+|---|---|
+| No specialist term used before it is defined | **11 terms defined at first use**; 1 in the table never appears in the deck at all — see §12 |
+| Every headline passes the covered-slide test cold | slides 7 and 43 rewritten; the rest unchanged from v3 |
+| No evidence-grade colour carrying a non-evidence meaning | **fixed at the cause** — `.step.key` and `.logo.acc` both resolved to grade hues |
+| Every logo the same treatment, on the content grid | **no plates anywhere**; both wordmarks recoloured, right edge on the 74px body margin |
+| No card carrying two findings | slide 6 card 1 split; card 5 compressed |
+| `tools/verify.py` | **9 passed · 0 failed** |
+| Release re-cut | **43 pages, 43 slides, 5 fonts, none fallback** |
+| All slides looked at | yes — and two defects were found that way, below |
+
+### Cause A — vocabulary
+
+**Slide 5, "Four documents a company cannot write freely," is the main fix** and it is
+where the two worst terms now get defined: the 10-K as "their audited annual report to
+the US regulator", the sub-processor disclosure as "a public list of every outside
+supplier that touches customer data". It is not a glossary. It is the argument for why
+these sources beat marketing, delivered before the first finding rather than after it,
+with the definitions riding inside it.
+
+Then eleven terms defined in place, each in a clause:
+
+| Term | Where | Now reads |
+|---|---|---|
+| sub-processor | slide 1 strip | "17 **outside suppliers**" |
+| 10-K, proxy, sub-processor disclosure, status page | slide 5 | one card each |
+| allowlist | slide 6 | "to permit through your firewall" |
+| material weakness | slide 9 | "a flaw in the checking, not an error in the numbers" |
+| goodwill | slide 10 | "price not tied to any asset" |
+| earn-out | slide 11 | "money owed only if the business hits agreed targets" |
+| MongoDB, Liquid, Connected Content, Canvas | slide 19 | captions say what happens; the names move to where they are the point |
+| CDI | slide 21 | "their Cloud Data Ingestion" |
+| Currents | slide 22 | "their paid data-export feed" |
+| Snowflake / MongoDB | slide 23 | framed as "two systems … on two different databases" |
+| holdout | slide 23 | "people deliberately left un-messaged, to measure lift" |
+
+### Causes B–E
+
+**Slide 7's headline** was *"Lawyered, filed, and still says real-time"* and is now
+**"Their biggest claim, in their most careful document"** — a claim that needs no prior
+slide to parse.
+
+**Slide 16** promotes Glassdoor's own phrase out of a card and into a pull-quote:
+*"limited upward mobility and discrepancies in compensation relative to market rates"*.
+The headline can now stay, because the slide says it. The work-life-balance card is cut;
+the null result is in the notes, where it belongs. Five ideas became three.
+
+**Slide 17** removes the amber, and marks **both** asymmetries rather than one: Klaviyo
+(on Braze's list, not the buyers') and the five specialists (on the buyers', not Braze's)
+are both brighter, by value rather than hue. The rule band now names the convention.
+
+**Slide 1** carries the wordmark instead of a plate and an `<h1>` saying the same word
+twice, in Braze's own violet, with the byline and *September 2026*.
+
+**Slide 12** answers the doubt the number invites, in one line: *"An average, not a
+typical contract. A few very large customers pull it up, and most pay far less."*
+
+**Slide 11's** three figures now read as one sentence — paid, available, paid — and the
+missing-logo note is gone; it lives in `PROVENANCE.md`, where it already was.
+
+**Slides 19 and 23** are subtraction plus one highlight, as instructed. Nineteen loses
+four product names from its captions and gains a neutral mark on stages 1 and 6, so the
+diagram agrees with the sentence beneath it. Twenty-three gains one framing sentence above
+the columns and a four-word definition of "holdout". Nothing else was added to either.
+
+---
+
+## 12 · What was rejected, and where this deviates
+
+**RPO needed no fix.** §2's table lists it as first appearing on slide 34. The
+abbreviation appears nowhere in the deck — "remaining performance obligation" is spelled
+out in full, once, on what is now slide 36. Nothing to define.
+
+**The plate rule was inverted rather than followed.** §5 says *"if any logo needs a plate,
+they all get one"*, on the assumption OfferFit's mark may only exist dark-on-light. It
+does — so rather than putting a bright plate back on slide 7 to match, **both wordmarks
+were recoloured and neither has a plate.** Braze's is rendered in `#BC6BF2`, its own light
+violet taken from braze.com's inline CSS; OfferFit's black wordmark is knocked out to
+near-white with its four-square glyph untouched. The consistency the rule asks for is
+satisfied in the other direction, and the alteration is declared in
+`sources/media/PROVENANCE.md` rather than done quietly. Their darker violet, `#4411D6`,
+was tried first and is unreadable on this ground at about 1.9:1.
+
+**"Do not touch slides 2, 3, 4, 7, 8, 13, 14, 17, 19, 20, 21, 23–42" and "sweep the whole
+deck for Cause A" are in direct conflict**, because four undefined terms live on approved
+slides. Resolved narrowly: on those slides **only a definition was added and nothing else
+changed** — one clause each on 9, 21 and 22. Slide 18, the Part II divider, changed
+appearance without being edited at all, because fixing Cause C in the design system
+changed what `.step.key` renders as. The definition of done says no grade colour may carry
+a non-evidence meaning *anywhere in the deck*, so that was required rather than optional.
+
+**Slide 6's title was left alone**, as §7 says.
+
+**Everything shifted by one.** Adding a slide after 4 renumbered 38 slides, and the deck
+cross-references itself in thirteen places. All were updated — but one, *"Slide 20 shows
+their own table grading it"*, survived the first sweep because my grep was
+case-sensitive. It is fixed, and it is the kind of thing that only a second, differently
+shaped search finds.
+
+---
+
+## 13 · Two defects the automated checks passed and the screenshots caught
+
+Worth recording because both were invisible to every gate this project has.
+
+**The OfferFit logo disappeared.** Its only surviving asset is an Open Graph card —
+1200×600 with an *opaque white background*, not a transparent logo. The transparent-margin
+trim found nothing to trim, and knocking the black wordmark out to near-white painted
+white text onto a white field. `verify.py` passed, the release built, the PDF embedded the
+image, and the mark was invisible. `tools/build_assets.py` now strips a near-white
+background before recolouring, and the reason is in a docstring.
+
+**I introduced a factual error while compressing a card.** Slide 6's fifth card read *"the
+four extra names on the buyer's list"*. It is five — Braze names four, buyers weigh eight,
+three overlap. Caught by reading the slide next to slide 17, which says five. **Compression
+is where numbers get broken**, and the only defence is reading the compressed version
+against the slide it summarises.
+
+---
+
+## 14 · What is still weak
+
+- **The vocabulary sweep is defensible, not exhaustive.** Seventeen terms were named; I
+  fixed the eleven that carry findings, and left words like *segment*, *webhook* and
+  *SDK* undefined on the judgement that this audience has them. That judgement is exactly
+  the one that produced this critique, so it may be wrong again.
+- **Slide 5 adds 78 seconds to a deck that already runs 78 minutes.** Worth it, and worth
+  saying.
+- **Dead space** is unchanged from CRITIQUE-2 §10 and was not revisited.
+- **The founders photograph is still captured-and-unused**, and `.mark` and `.stat` still
+  have no callers.

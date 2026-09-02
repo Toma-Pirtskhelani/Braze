@@ -2,7 +2,7 @@
 
 > Braze's documentation is markedly more honest than its marketing about what the platform will and will not do, and the limits it admits are commercial as much as technical: three of four ingestion paths are labelled "not real-time" by Braze itself, the endpoint that reads user profiles back out was cut tenfold for customers who joined after August 2024, and the billing unit is the individual attribute write.
 
-{{slides: 1, 17, 18, 19, 20, 21, 22, 23, 24, 26, 29, 30, 34, 37, 38, 42}}
+{{slides: 1, 18, 19, 20, 21, 22, 23, 24, 25, 27, 30, 31, 35, 38, 39, 43}}
 
 ## 4.1 · The corpus this chapter rests on
 

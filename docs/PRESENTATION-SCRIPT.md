@@ -3,7 +3,7 @@
 Every slide of the deck, in order: what the audience sees, and what to say over it.
 Generated from the deck itself, so slide numbers and titles can never drift apart.
 
-**9,776 spoken words — about 75 minutes at a normal pace, 107 seconds a slide.**
+**10,154 spoken words — about 78 minutes at a normal pace, 109 seconds a slide.**
 
 **Bold** marks the words to land on. Square brackets are notes to yourself, not lines
 to say. Press **N** in the deck to read these beside the slide.
@@ -14,7 +14,6 @@ to say. Press **N** in the deck to read these beside the slide.
 ## Part 0 — Frame
 
 ### 01 · Competitor Analysis
-*On screen:* **Braze**
 
 > This is a competitor analysis of **Braze**.
 
@@ -93,7 +92,34 @@ to say. Press **N** in the deck to read these beside the slide.
 > customer-count slide, because the definition of "customer" turns out to change what the
 > only available price figure actually means.
 
-### 05 · Five things
+### 05 · The four documents
+*On screen:* What this rests on — **Four documents a company cannot write freely**
+
+> Before any findings, thirty seconds on where this comes from — because four documents do
+> most of the work in this deck and they are the reason to believe it.
+
+> **The 10-K is their audited annual report to the American regulator.** Once a year, signed
+> personally by the chief executive and the finance chief, audited by Ernst & Young. If it
+> is wrong, that is a legal problem for named individuals. We have seven years of them.
+
+> **The proxy statement** goes out before the shareholder meeting. It has to name every
+> executive officer and director, say what each of them is paid, and disclose who owns the
+> company. It is the only document in this set with people in it.
+
+> **The sub-processor disclosure** is a public list of every outside supplier that touches
+> customer data — data-protection law requires it to be complete. That completeness is the
+> useful part: it names the middlemen that no marketing page would ever mention, and two of
+> the sharpest findings in this deck come straight out of it.
+
+> **And the status page** is a live record of every outage since 2016, written during the
+> outage by someone trying to fix it. Nobody writes a status page to look good.
+
+> The thing to take from this slide is not the four names. It is this: **none of them is
+> marketing.** Three are filed under legal penalty and the fourth is written under pressure.
+> So when their website and their filings disagree — and they do — you know which one I am
+> going to believe, and now you know why.
+
+### 06 · Five things
 *On screen:* Executive summary — **If you remember five things**
 
 > Five things.
@@ -115,8 +141,8 @@ to say. Press **N** in the deck to read these beside the slide.
 
 > **Five. Their competitive set is wider than they say it is.**
 
-### 06 · Who they say they are
-*On screen:* Their story · in their own words — **Lawyered, filed, and still says real-time**
+### 07 · Who they say they are
+*On screen:* Their story · in their own words — **Their biggest claim, in their most careful document**
 
 > This is Braze describing Braze, in the 10-K.
 
@@ -124,14 +150,14 @@ to say. Press **N** in the deck to read these beside the slide.
 > carefully-lawyered version of their story that exists, and it still leads with
 > **real-time**.
 
-> Hold that word. It comes back on slide twenty, where their own documentation grades four
+> Hold that word. It comes back on slide twenty-one, where their own documentation grades four
 > ingestion paths and labels three of them "not real-time".
 
 > That is not a gotcha, and I will not present it as one. It is one word covering two
 > architectures — and knowing which one a prospect is buying is worth more than the
 > argument.
 
-### 07 · Origins
+### 08 · Origins
 *On screen:* Origins · and who controls it now — **Two of three cofounders still run it**
 
 > Founded 2011. Public since November 2021. And now the part this slide is actually for,
@@ -168,7 +194,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > did not move at all in another — and if you are modelling how fast Braze can be pushed to
 > respond to a shareholder, both halves matter.
 
-### 08 · How they got this big
+### 09 · How they got this big
 *On screen:* Capital · and what it bought — **7.7× bigger, a billion already contracted**
 
 > Revenue, seven audited years: ninety-six million to seven hundred and thirty-eight.
@@ -220,7 +246,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > I missed this on my first pass through the filing. It is the reason the money part of
 > this deck carries a band that the product part does not.
 
-### 09 · Acquisition: OfferFit
+### 10 · Acquisition: OfferFit
 *On screen:* Acquisition one · June 2025 — **They bought their AI, and the filing says so**
 
 > This is the single most useful sentence in the filings.
@@ -234,12 +260,12 @@ to say. Press **N** in the deck to read these beside the slide.
 > what you are buying is a team and a position rather than assets.
 
 > And note where the technology amortisation lands: **cost of revenue**. That is why this
-> acquisition shows up in their gross margin, which is slide thirty-three.
+> acquisition shows up in their gross margin, which is slide thirty-four.
 
 > The 10-K calls what they bought "OfferFit's multi-agent decisioning engine". So when we
 > get to the AI slide, remember that the agentic layer has a purchase price.
 
-### 10 · Acquisition: North Star Y
+### 11 · Acquisition: North Star Y
 *On screen:* Acquisition two · June 2023 — **They bought a market, and the earn-out paid nothing**
 
 > Two years earlier they bought their own Australia and New Zealand reseller — twenty-six
@@ -284,7 +310,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > evidence of the acceleration the deal was priced for. That is worth knowing, and it is
 > the most useful thing on this slide.
 
-### 11 · What it costs
+### 12 · What it costs
 *On screen:* Price · bounded, not guessed — **Nobody publishes a price. You can still bound one**
 
 > No vendor in this category publishes a price and Braze is no exception. But a listed
@@ -307,7 +333,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > not mine — and a Gartner reviewer independently calls out overages getting expensive
 > quickly.
 
-### 12 · Who uses it
+### 13 · Who uses it
 *On screen:* Customers · three rosters, never merged — **How many customers depends on who counts**
 
 > Three customer counts and they must never be merged.
@@ -328,7 +354,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > gone — while the number of those accounts has grown from two hundred and two to three
 > hundred and thirty-three. More big logos, each growing more slowly.
 
-### 13 · Where they operate
+### 14 · Where they operate
 *On screen:* Geography · audited, not inferred — **No second home market**
 
 > Geography, audited, from the segment note — not inferred from customer domains, which
@@ -346,7 +372,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > strategic bet on international rather than a harvest of it — and it is the kind of thing
 > that shows up in gross margin before it shows up in growth.
 
-### 14 · What customers say
+### 15 · What customers say
 *On screen:* Review panels · coded, not summarised — **Well liked, with two consistent complaints**
 
 > Braze is genuinely well liked. Four and a half out of five on two panels, eight point
@@ -366,13 +392,23 @@ to say. Press **N** in the deck to read these beside the slide.
 > Hold that too, because when we get to the platform section you will see the mechanism
 > behind it — the raw-data export that fixes it is a paid add-on called Currents.
 
-### 15 · What employees say
+### 16 · What employees say
 *On screen:* Glassdoor · and the careers board — **Well rated. The complaints are about progression**
 
 > Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
 > per cent approve of the CEO.
 
-> I went looking for a work-life-balance decline because that is the usual story at this
+> **The quote is the slide.** That is Glassdoor's own summary of the weak spots, in
+> Glassdoor's words, not mine: limited upward mobility, and pay against market. Read it out.
+
+> Then the card beside it, because it is what stops that being misread. The proxy puts
+> median employee compensation at a hundred and sixty-four thousand dollars. **This is not a
+> low-paying company.** So "limited upward mobility" is a complaint about the ceiling rather
+> than the floor — people are paid well and cannot see the next step. That is a different
+> problem, and a harder one to fix with money.
+
+> One thing that is *not* here, and I want to say why. I went looking for a
+> work-life-balance decline because that is the usual story at this
 > stage of a company's life. **It is not there.** Work-life balance tracks the overall
 > rating almost exactly. I am reporting that because it is what the evidence says, not
 > because it is interesting.
@@ -398,7 +434,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > Two limits on how hard I would push it. **A requisition is an intention, not a person**;
 > a board is a plan and plans get cut. And this is not a spend ratio — a sales req costs
 > less than a senior engineering one, so three and a half to one in headcount sits
-> comfortably with the audited two to one in money on slide thirty-three. Different
+> comfortably with the audited two to one in money on slide thirty-four. Different
 > measures, same direction, which is what corroboration actually looks like.
 
 > One small corroboration I like: the board lists Bucharest, and the sub-processor
@@ -411,7 +447,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > time. **When a page will not yield, look for the API behind it before you record a
 > gap.**
 
-### 16 · Who they compete with
+### 17 · Who they compete with
 *On screen:* Competition · two lists — **They name four. Buyers weigh eight.**
 
 > Two lists. On the left, the four competitors Braze names in its own 10-K. On the right,
@@ -457,7 +493,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > five specialists are who else is in the room — and their presence tells you the buyer is
 > weighing depth against breadth, which is the axis to prepare for.
 
-### 17 · Part II: The product
+### 18 · Part II: The product
 *On screen:* Part II — **The product**
 
 > Part two is the product, and we walk one campaign through seven stages: data arrives, a
@@ -478,7 +514,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > Be fair to them as we go. Stages three, four and five are good, reviewers say so, and I
 > will say so too.
 
-### 18 · How one campaign works
+### 19 · How one campaign works
 *On screen:* The whole thing · end to end — **One campaign, end to end**
 
 > This is the loop. Data arrives, the profile updates, segments recompute, the journey
@@ -494,7 +530,7 @@ to say. Press **N** in the deck to read these beside the slide.
 
 > Note stage two as well: the profile update is the thing you are billed for.
 
-### 19 · How data moves
+### 20 · How data moves
 *On screen:* Data · in, and back out — **The way in is not the way out**
 
 > Data in, data out.
@@ -514,7 +550,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > The interesting thing is not the ratio. It is the two hundred and fifty, and where it
 > came from — which is the next slide.
 
-### 20 · Stage 1: Data
+### 21 · Stage 1: Data
 *On screen:* Stage 1 · data and freshness — **Their words: three of four are not real-time**
 
 > Here is the slide six callback.
@@ -559,7 +595,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > deep-dive slide, because it turned out to be the single most useful question this whole
 > project produced.
 
-### 21 · Stage 2: Identity
+### 22 · Stage 2: Identity
 *On screen:* Stage 2 · identity — **A merge can fail and still return success**
 
 > Identity is generous at the top and narrow at the bottom. Unlimited aliases on a
@@ -578,7 +614,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > that is a reconciliation problem you will find at month end rather than at integration
 > time.
 
-### 22 · Stage 3: Decisioning
+### 23 · Stage 3: Decisioning
 *On screen:* Stage 3 · decisioning — **Two engines, two databases, one bought**
 
 > Decisioning runs on two engines sitting on two different databases, and Braze publishes
@@ -594,9 +630,9 @@ to say. Press **N** in the deck to read these beside the slide.
 > If you have deletion obligations — and if you are in this category you do — that is a
 > two-system problem, disclosed in their own documentation and in none of their marketing.
 
-> Note the seven documentation pages on Predictive Suite. Hold that for slide thirty-one.
+> Note the seven documentation pages on Predictive Suite. Hold that for slide thirty-two.
 
-### 23 · Stage 4: Building
+### 24 · Stage 4: Building
 *On screen:* Stage 4 · building a journey — **Canvas is the strongest thing in the platform**
 
 > This is the slide where I tell you what is good, because an analysis that only finds
@@ -614,7 +650,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > tag learning curve, eighty-six say steep learning curve. Easy once you know it; not easy
 > to learn.
 
-### 24 · Stage 5: Content
+### 25 · Stage 5: Content
 *On screen:* Stage 5 · content and personalisation — **Liquid does the work, and draws the complaints**
 
 > Content is Liquid — the templating language — plus Connected Content for live API calls
@@ -630,7 +666,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > the review corpus. Very capable in the hands of someone technical. Harder than the
 > marketing suggests for the marketer it is sold to.
 
-### 25 · Stage 6: Delivery
+### 26 · Stage 6: Delivery
 *On screen:* Stage 6 · delivery — **Only two channels have a named middleman**
 
 > This is the slide that only exists because they are legally obliged to publish it.
@@ -648,7 +684,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > **three interchangeable delivery providers on their highest-volume channel.** If you were
 > hoping email deliverability was a single point of failure you could attack, it is not.
 
-### 26 · Stage 7: Interaction
+### 27 · Stage 7: Interaction
 *On screen:* Stage 7 · interaction and the loop back — **The response comes back, billed differently**
 
 > The loop closes. Responses come back as engagement events, and here Braze does something
@@ -667,7 +703,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > **The complaint and the mechanism are two independent sources describing the same
 > thing.** That is when you can be confident it is real.
 
-### 27 · Channels
+### 28 · Channels
 *On screen:* Channels · counted from both ends — **Thirteen documented. Ten marketed.**
 
 > Thirteen channels are documented. That is broad, not narrow — I went in expecting the
@@ -686,7 +722,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > company runs: **the documentation and the marketing are maintained by people who are not
 > talking to each other**, which is exactly the seam this whole method looks for.
 
-### 28 · Integrations
+### 29 · Integrations
 *On screen:* Integrations · the Alloys network — **Wide network, one page deep**
 
 > Braze claims over a hundred and fifty technology partners, which they call Alloys.
@@ -705,7 +741,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > Underneath: the delivery, the warehouses and the models are all bought. The ingestion
 > layer, Canvas, Liquid and the identity model are built.
 
-### 29 · Infrastructure
+### 30 · Infrastructure
 *On screen:* Infrastructure · the status page as a disclosure — **Fifteen clusters, seven subsystems — and one exception**
 
 > The status page is an architecture disclosure Braze made by accident.
@@ -714,7 +750,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > subsystems. That is a functional decomposition of the entire product, published live and
 > updated during outages. Notice that Currents and Cloud Data Ingestion appear as
 > first-class subsystems rather than as features — which tells you they can fail
-> independently, and the incident record on slide 38 shows they do.
+> independently, and the incident record on slide 39 shows they do.
 
 > The geography checks out against a completely unrelated document: the sub-processor
 > disclosure lists AWS regions for the same six territories. Two sources, no relationship
@@ -730,7 +766,7 @@ to say. Press **N** in the deck to read these beside the slide.
 
 > And US 08 is marked differently, because that is the next part.
 
-### 30 · Analytics
+### 31 · Analytics
 *On screen:* Analytics · what you can measure — **Reporting is the most consistent complaint**
 
 > Analytics is where the review corpus is most consistent, across panels that have nothing
@@ -750,7 +786,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > — the thing that tells you what you are spending — is cached and refreshes once a day
 > around 2am Eastern.** The billing meter is not real-time either.
 
-### 31 · The AI, honestly
+### 32 · The AI, honestly
 *On screen:* The AI · five independent lenses — **Bought recently, running on other people’s models**
 
 > This is the slide most likely to go wrong, so I am going to be careful.
@@ -808,7 +844,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > demonstration. And the genuinely useful question, which falls straight out of lens two, is
 > one line: **can I call your AI from my own systems?** Today the documented answer is no.
 
-### 32 · Part III: Strategy
+### 33 · Part III: Strategy
 *On screen:* Part III — **Strategy**
 
 > Part three. Three slides only, and the restraint is deliberate.
@@ -827,7 +863,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > And the third slide is the one to argue with. It names what protects Braze *and* what does
 > not, and if you disagree with either list, that is the conversation worth having today.
 
-### 33 · Where the money goes
+### 34 · Where the money goes
 *On screen:* Seven audited years · where revenue goes — **Decelerating and getting more efficient at once**
 
 > Seven audited years of where the money goes, and this slide killed the hypothesis I
@@ -851,7 +887,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > loss for two years running, and diluted shares are up fourteen per cent in three years.
 > The loss is real; it is mostly equity, and shareholders are carrying it.
 
-### 34 · What comes next
+### 35 · What comes next
 *On screen:* Unannounced · three sources, one answer — **One instance is not on the same cloud**
 
 > This is the finding nobody else in your market will have, and it is also the one I am
@@ -904,7 +940,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > my reckoning, the highest-value single answer available in this whole analysis, which is
 > why it is the first thing on the next-steps slide.
 
-### 35 · What protects them
+### 36 · What protects them
 *On screen:* Defensibility · the so-what test — **Three things a competitor cannot copy**
 
 > What actually protects them, under the "so what would a competitor do about it" test.
@@ -926,7 +962,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > If I were briefing a sales team, I would say: do not attack the AI, attack the renewal
 > calendar and the reporting.
 
-### 36 · Part IV: Open questions
+### 37 · Part IV: Open questions
 *On screen:* Part IV — **Open questions**
 
 > Part four is the part most competitor decks do not have, and it is the reason to trust
@@ -944,7 +980,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > One of those gaps closed while this deck was being built, from the source the entry itself
 > had named. That is what a well-written backlog does.
 
-### 37 · Deep dive: how real-time is it
+### 38 · Deep dive: how real-time is it
 *On screen:* Deep dive — **“Is it real-time?” — answered properly**
 
 > The deep dive. I picked this after the research, from what turned out to be both
@@ -993,7 +1029,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > what it costs to move to the API path and who does that work. Those two questions do more
 > for us than any claim we could make.
 
-### 38 · Reliability, measured
+### 39 · Reliability, measured
 *On screen:* The operational record · a decade of it, public — **451 incidents, and the rate is falling**
 
 > A decade of incidents, because they publish a status page and most vendors do not.
@@ -1020,7 +1056,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > And the rule at the bottom: **do not compare this against a competitor who publishes
 > nothing.** Braze looks worse than a silent vendor purely by being transparent.
 
-### 39 · Where the evidence went their way
+### 40 · Where the evidence went their way
 *On screen:* The hypotheses that died · in Braze’s favour — **Three things we expected to find, and did not**
 
 > I want this slide in the deck more than almost any other, and it is the one that would
@@ -1059,7 +1095,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > slide to turn back to. We looked for three specific weaknesses. They were not there, and
 > we said so.
 
-### 40 · What we could not answer
+### 41 · What we could not answer
 *On screen:* The honest residue — **Four gaps, and what would close them**
 
 > Four things I could not answer, stated plainly.
@@ -1087,20 +1123,20 @@ to say. Press **N** in the deck to read these beside the slide.
 > gaps here until quite late.** The fifth was the split of open roles by function: the
 > careers board's filter would not drive under automation, so it went down as
 > uncapturable. Then the same board turned out to be published as JSON with the grouping
-> already done, and the answer is now on slide fifteen. The lesson generalises — **when a
+> already done, and the answer is now on slide sixteen. The lesson generalises — **when a
 > page will not yield, look for the API behind it before you write down a gap** — and it
 > is in the corrections log rather than quietly patched.
 
 > All of these are written down with what would close them. That is the difference between
 > a gap and a mistake.
 
-### 41 · What to research next
+### 42 · What to research next
 *On screen:* Backlog · prioritised — **Four questions worth the next week**
 
 > If you gave me another week, this is the order.
 
 > **First, ask about US-08.** It is the highest-value single answer available and it decides
-> whether slide thirty-four is a curiosity or something procurement should raise. A
+> whether slide thirty-five is a curiosity or something procurement should raise. A
 > customer can just look at their own DPA schedule.
 
 > **Second, buy one panel's segment data.** It closes the hypothesis I could not test, and
@@ -1112,7 +1148,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > roster nobody curated. That one is not cheap, which is why it is third.
 
 > The careers API was on this list until this morning, and it is not any more — we pulled
-> it, and where their headcount is going is now on slide fifteen. Two hundred and
+> it, and where their headcount is going is now on slide sixteen. Two hundred and
 > ninety-six roles, seventy-two per cent go-to-market.
 
 > **Fourth, and this is the real point: re-run all of it in ninety days.** Every number in
@@ -1120,7 +1156,7 @@ to say. Press **N** in the deck to read these beside the slide.
 > call about where to look. The two I would watch are whether the margin decline continues,
 > and whether the 2026 incident rate settles.
 
-### 42 · Close
+### 43 · Close
 *On screen:* Close — **One thing to remember**
 
 > One thing to remember.

@@ -2,7 +2,7 @@
 
 > Braze has made two material acquisitions, and the pair reads as one strategy stated twice: buy the capability rather than build it, and buy the market rather than partner into it. One bought a reseller and its earn-out paid nothing; the other bought the product Braze now markets as its own artificial intelligence, for three hundred and three million dollars. Both prices are disclosed, which a private vendor almost never permits.
 
-{{slides: 9, 10}}
+{{slides: 10, 11}}
 
 ## 3.1 · OfferFit — bought June 2025, renamed AI Decisioning Studio
 

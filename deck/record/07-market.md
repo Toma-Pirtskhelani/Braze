@@ -2,7 +2,7 @@
 
 > Braze sells to 2,609 customers where a "customer" is an ultimate parent entity, no single one of which is 10% of revenue. Expansion within that base is slowing and the premium large accounts used to enjoy has nearly vanished. And the vendors buyers actually weigh Braze against are twice as many as the four it names — with the five extra all being specialists it does not mention.
 
-{{slides: 11, 12, 13, 14, 15, 16}}
+{{slides: 12, 13, 14, 15, 16, 17}}
 
 ## 7.1 · Three customer counts that must never be merged
 

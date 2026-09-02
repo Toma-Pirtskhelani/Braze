@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Part I — the company. Slides 4-16 (divider + 12 content slides).
+"""Part I — the company. Slides 4-17 (divider + 13 content slides).
 
 Every figure on every slide in this file resolves to a row in docs/FACTS.md. Where a
 number is a bound rather than a measurement it says so on the slide, not only in the
@@ -39,21 +39,79 @@ customer-count slide, because the definition of "customer" turns out to change w
 only available price figure actually means.""",
     "s", "Part I: The company")
 
+# ── 5 THE FOUR DOCUMENTS ─────────────────────────────────────────────────────
+# Added after the operator's read-through. Seventeen specialist terms were used in this
+# deck and none was defined; the two worst - "10-K" and "sub-processor" - carried whole
+# findings. A glossary slide is a slide nobody reads, so this is not one: it is the
+# argument for why these four sources beat marketing, and the definitions ride along
+# inside it. Everything after this slide can now say "the 10-K" and be understood.
+add(f'''<section class="s" data-g="s" data-t="The four documents">
+  {head("What this rests on", "Four documents a company cannot write freely")}
+  <div class="body">
+    {cards([("The 10-K",
+             "Their <strong>audited annual report to the US regulator</strong>, filed once a year. Signed by the "
+             "chief executive and the finance chief, audited by Ernst &amp; Young, and wrong at legal risk. "
+             "<strong>Seven years of them.</strong>", "g"),
+            ("The proxy statement",
+             "Filed before the annual shareholder meeting. It has to name <strong>every executive officer and "
+             "director</strong>, what each is paid, and who owns the company. It is the only place people appear.", "g")],
+           cols=2)}
+    {cards([("The sub-processor disclosure",
+             "A public list of <strong>every outside supplier that touches customer data</strong>. Data-protection law "
+             "obliges them to keep it complete, so it names middlemen no marketing page would.", "g"),
+            ("The status page",
+             "A live record of <strong>every outage since 2016</strong>, written during the outage. Nobody writes a "
+             "status page to look good, which is exactly why it is worth reading.", "g")],
+           cols=2)}
+    <p><strong>None of these is marketing.</strong> Three are filed under legal penalty and the fourth is
+    written under pressure &mdash; which is why, wherever this deck and Braze&rsquo;s website disagree, the
+    documents win.</p>
+  </div>
+</section>''',
+"""Before any findings, thirty seconds on where this comes from — because four documents do
+most of the work in this deck and they are the reason to believe it.
+
+**The 10-K is their audited annual report to the American regulator.** Once a year, signed
+personally by the chief executive and the finance chief, audited by Ernst & Young. If it
+is wrong, that is a legal problem for named individuals. We have seven years of them.
+
+**The proxy statement** goes out before the shareholder meeting. It has to name every
+executive officer and director, say what each of them is paid, and disclose who owns the
+company. It is the only document in this set with people in it.
+
+**The sub-processor disclosure** is a public list of every outside supplier that touches
+customer data — data-protection law requires it to be complete. That completeness is the
+useful part: it names the middlemen that no marketing page would ever mention, and two of
+the sharpest findings in this deck come straight out of it.
+
+**And the status page** is a live record of every outage since 2016, written during the
+outage by someone trying to fix it. Nobody writes a status page to look good.
+
+The thing to take from this slide is not the four names. It is this: **none of them is
+marketing.** Three are filed under legal penalty and the fourth is written under pressure.
+So when their website and their filings disagree — and they do — you know which one I am
+going to believe, and now you know why.""",
+    "s", "The four documents")
+
 # ── 5 EXECUTIVE SUMMARY ──────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Five things">
   {head("Executive summary", "If you remember five things")}
   <div class="body">
-    {cards([("Their own documentation is the best source against them",
-             "Three of four ingestion paths are labelled &ldquo;not real-time&rdquo; by Braze. The profile-export limit was cut 10&times; for customers joining after August 2024. Both are published, in tables.", "g"),
+    {cards([("Braze grades its own data delays, and three of four are slow",
+             "Their documentation labels three of the four ways data gets in <strong>&ldquo;not real-time&rdquo;</strong>. "
+             "It is their table, not our characterisation.", "g"),
             ("The AI decisioning engine was bought, not built",
-             "OfferFit, acquired June 2025 for $303.2m and renamed AI Decisioning Studio. The models come from Anthropic, OpenAI and Google &mdash; named in their own sub-processor disclosure.", "g"),
+             "OfferFit, acquired June 2025 for <strong>$303.2m</strong> and renamed AI Decisioning Studio. "
+             "The models come from Anthropic, OpenAI and Google.", "g"),
             ("One instance is not on the same cloud as the others",
-             "The IPs Braze tells you to allowlist for US-08 are registered to Microsoft. Every other instance&rsquo;s are Amazon. Their sub-processor list names only Amazon and Google.", "a")],
+             "The addresses Braze tells you to allowlist &mdash; to permit through your firewall &mdash; for "
+             "<strong>US-08</strong> belong to Microsoft. Every other instance&rsquo;s belong to Amazon.", "a")],
            cols=3)}
-    {cards([("Decelerating and getting more efficient at once",
-             "Growth halved from 49.3% to 24.4% since FY2023 while sales and marketing fell from 56.7% of revenue to 44.3%. Operating cash flow has been positive three years running.", "g"),
-            ("Buyers weigh them against twice as many vendors as they name",
-             "The 10-K names four competitors. Gartner&rsquo;s buyer-derived shortlist has eight &mdash; and the five extra are specialists Braze never mentions.", "g")],
+    {cards([("They are slowing down and getting more efficient at the same time",
+             "Growth has halved since FY2023, and the share of revenue spent on sales and marketing fell "
+             "further. <strong>Three straight years of positive cash flow.</strong>", "g"),
+            ("Braze names four competitors. Buyers compare them against eight",
+             "And the five extra names on the buyer&rsquo;s list are specialists Braze never mentions.", "g")],
            cols=2)}
   </div>
 </section>''',
@@ -79,8 +137,8 @@ growth, but improving efficiency and three years of positive operating cash flow
 
 # ── 6 WHO THEY SAY THEY ARE ──────────────────────────────────────────────────
 add(f'''<section class="s" data-g="w" data-t="Who they say they are">
-  <div class="brandtag" style="width:118px"><img src="{LOGO}" alt="Braze wordmark"></div>
-  {head("Their story &middot; in their own words", "Lawyered, filed, and still says real-time")}
+  <div class="brandtag" style="width:104px"><img src="{LOGO}" alt="Braze"></div>
+  {head("Their story &middot; in their own words", "Their biggest claim, in their most careful document")}
   <div class="body">
     <div class="quote"><div class="qbody">&ldquo;Our platform empowers <strong>real-time engagement</strong> between brands and their
       customers &hellip; made possible by our proprietary, enterprise-grade <strong>stream processing
@@ -89,7 +147,7 @@ add(f'''<section class="s" data-g="w" data-t="Who they say they are">
       <div class="qd">Braze 10-K, Item 1 &middot; filed 25 March 2026</div></div>
     {tiles([("", "The claim", "A single platform, fed by streaming first-party data, reacting in the moment across every channel"),
             ("", "Why it is quoted here", "This is the company&rsquo;s own narrative in a filed document &mdash; the strongest form of a marketing claim, not a technical one"),
-            ("", "What to hold on to", "&ldquo;Real-time&rdquo; is doing a lot of work in that sentence. Slide 20 shows their own table grading it")],
+            ("", "What to hold on to", "&ldquo;Real-time&rdquo; is doing a lot of work in that sentence. Slide 21 shows their own table grading it")],
            cols=3)}
   </div>
 </section>''',
@@ -99,7 +157,7 @@ I quote it from the filing rather than the website deliberately. It is the most
 carefully-lawyered version of their story that exists, and it still leads with
 **real-time**.
 
-Hold that word. It comes back on slide twenty, where their own documentation grades four
+Hold that word. It comes back on slide twenty-one, where their own documentation grades four
 ingestion paths and labels three of them "not real-time".
 
 That is not a gotcha, and I will not present it as one. It is one word covering two
@@ -198,10 +256,10 @@ add(f'''<section class="s" data-g="s" data-t="How they got this big">
     <div class="ruleband">
       <div class="klabel">THE CAVEAT THAT TRAVELS WITH EVERY NUMBER IN THIS PART</div>
       <p>Braze disclosed a <strong>material weakness in internal control over financial reporting</strong> at
-      31 January 2026 &mdash; ineffective IT general controls over <strong>user access and program change
-      management</strong> on the systems that produce these figures. <strong>And, in the same breath:</strong> it
-      &ldquo;did not result in any identified misstatements&rdquo;, nothing was restated, and Ernst &amp; Young
-      attested. Remediation is under way with no completion date given.</p>
+      31 January 2026 &mdash; <em>a flaw in the checking, not an error in the numbers</em>. Ineffective IT
+      controls over <strong>user access and program change management</strong> on the systems that produce
+      these figures. <strong>And, in the same breath:</strong> it &ldquo;did not result in any identified
+      misstatements&rdquo;, nothing was restated, and Ernst &amp; Young attested.</p>
     </div>
   </div>
 </section>''',
@@ -257,7 +315,7 @@ this deck carries a band that the product part does not.""",
 
 # ── 9 ACQUISITION 1 ──────────────────────────────────────────────────────────
 add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
-  <div class="brandtag" style="width:146px"><img src="{OFFERFIT}" alt="OfferFit logo"></div>
+  <div class="brandtag" style="width:132px"><img src="{OFFERFIT}" alt="OfferFit"></div>
   {head("Acquisition one &middot; June 2025", "They bought their AI, and the filing says so")}
   <div class="body">
     <div class="quote"><div class="qbody">&ldquo;the Company completed the acquisition of <strong>OfferFit, Inc.</strong>
@@ -265,7 +323,7 @@ add(f'''<section class="s" data-g="s" data-t="Acquisition: OfferFit">
       consideration of <strong>$303.2 million</strong>.&rdquo;</div>
       <div class="qd">Ernst &amp; Young, critical audit matter &middot; Braze 10-K, 25 March 2026</div></div>
     {figs([("$303.2m", "total consideration"),
-           ("77%", "of the price was goodwill"),
+           ("77%", "was goodwill &mdash; price not tied to any asset"),
            ("$56.7m", "developed technology, amortised to cost of revenue"),
            ("2 Jun 2025", "closed")], size="sm")}
     <div class="ruleband">
@@ -290,7 +348,7 @@ Seventy-seven per cent of that price was goodwill — which is what a price look
 what you are buying is a team and a position rather than assets.
 
 And note where the technology amortisation lands: **cost of revenue**. That is why this
-acquisition shows up in their gross margin, which is slide thirty-three.
+acquisition shows up in their gross margin, which is slide thirty-four.
 
 The 10-K calls what they bought "OfferFit's multi-agent decisioning engine". So when we
 get to the AI slide, remember that the agentic layer has a purchase price.""",
@@ -301,20 +359,19 @@ get to the AI slide, remember that the agentic layer has a purchase price.""",
 # not resolve, there are no Internet Archive captures, and a web search returns only
 # Braze's own press releases. Several unrelated companies trade as "North Star"; attaching
 # one of their marks would be a fabricated identification. The absence is stated instead.
-_ns_left = ('<div>' + figs([("$26.8m", "total consideration"),
-                            ("$26.0m", "earn-out available"),
-                            ("$0", "earn-out paid", "neg")], cols=1, size="sm")
-            + '<div class="photocap" style="max-width:270px;margin-top:18px">No North Star Y mark '
-              'appears here because none survives: the domains do not resolve and there is no '
-              'archive capture. <strong>Both acquired brands were retired</strong> &mdash; '
-              'offerfit.ai now serves a Braze page.</div></div>')
+_ns_left = ('<div>' + figs([("$26.8m", "paid at completion"),
+                            ("$26.0m", "more, if revenue targets were met"),
+                            ("$0", "of that was ever paid", "neg")], cols=1, size="sm")
+            + '</div>')
 _ns_right = '<div>' + cards([
     ("What it was",
      "North Star Y, Pty Ltd &mdash; Braze&rsquo;s <strong>exclusive reseller in Australia and New Zealand</strong>. Buying it took the market direct.", "g"),
     ("What the filing records",
      "Braze &ldquo;reduced the contingent consideration liability &hellip; <strong>to zero as it was determined that the sellers did not satisfy the earn-out qualifications</strong>.&rdquo;", "a"),
     ("How to read it",
-     "An earn-out that does not vest means the revenue targets written into the deal were not met. It does not say the acquisition failed &mdash; and the filings do not say that either.", "g")],
+     "An <strong>earn-out</strong> is money owed only if the business hits agreed targets. This one paid "
+     "nothing, so the targets were not met &mdash; which does not say the acquisition failed, and the "
+     "filings do not say that either.", "g")],
     cols=1) + '</div>'
 
 add(f'''<section class="s" data-g="s" data-t="Acquisition: North Star Y">
@@ -371,6 +428,8 @@ add(f'''<section class="s" data-g="s" data-t="What it costs">
   {head("Price &middot; bounded, not guessed", "Nobody publishes a price. You can still bound one")}
   <div class="body">
     {figs([("~$283,000", "revenue &divide; customers, FY2026 &mdash; a <em>bound</em>, not a price")], size="lg", cols=1)}
+    <p style="margin-top:-4px"><strong>An average, not a typical contract.</strong> A few very large customers
+    pull it up, and most pay far less. It is the ceiling of what an average customer costs, not what one does.</p>
     <div class="ruleband">
       <div class="klabel">AND THE MECHANIC UNDERNEATH IT &mdash; FROM THEIR DOCUMENTATION</div>
       {tiles([("", "You are billed per data point",
@@ -518,27 +577,40 @@ add(f'''<section class="s" data-g="m" data-t="What employees say">
   <div class="body">
     {figs([("4.1<em>/5</em>", "524 ratings"), ("82%", "would recommend"),
            ("90%", "approve of the CEO"), ("71%", "positive business outlook")], size="sm")}
-    {tiles([("", "Work-life balance is not the problem",
-             "It tracks the overall rating almost exactly over six months, around 4.0&ndash;4.1. No divergence &mdash; so no trend is claimed"),
-            ("", "What their own summary names",
-             "Management effectiveness and &ldquo;clarity in direction&rdquo;; &ldquo;limited upward mobility and discrepancies in compensation relative to market rates&rdquo;"),
+    <div class="quote"><div class="qbody">Glassdoor&rsquo;s own summary names the weak spots:
+      <strong>&ldquo;limited upward mobility and discrepancies in compensation relative to market
+      rates&rdquo;</strong>.</div>
+      <div class="qd">Glassdoor company page &middot; captured signed-in, 2 September 2026</div></div>
+    {tiles([("", "Not pay &mdash; progression",
+             "The proxy puts median employee pay at <strong>$164,000</strong>. This is not a low-paying "
+             "company, so &ldquo;limited upward mobility&rdquo; is a complaint about the ceiling, not the floor"),
             ("", "Still hiring hard",
              "<strong>296 open roles</strong> across 15 hiring departments &mdash; including Bucharest, which matches a Romanian entity in the sub-processor list")],
-           cols=3)}
+           cols=2)}
     <div class="ruleband">
       <div class="klabel">AND WHAT THEY ARE HIRING FOR &mdash; THE FORWARD-LOOKING HALF</div>
       <p>Sales <strong>89</strong> &middot; Engineering <strong>57</strong> &middot; Customer Experience
       <strong>38</strong> &middot; Marketing 24 &middot; Solutions Consulting 23 &middot; Partnerships 16.
       <strong>Go-to-market is 72.0% of the board against 19.6% for engineering and product &mdash; roughly
       3.7 to one.</strong> A requisition is an intention, not a person, and this is not a spend ratio &mdash;
-      but it points the same way as slide 12&rsquo;s retention figures.</p>
+      but it points the same way as slide 13&rsquo;s retention figures.</p>
     </div>
   </div>
 </section>''',
 """Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
 per cent approve of the CEO.
 
-I went looking for a work-life-balance decline because that is the usual story at this
+**The quote is the slide.** That is Glassdoor's own summary of the weak spots, in
+Glassdoor's words, not mine: limited upward mobility, and pay against market. Read it out.
+
+Then the card beside it, because it is what stops that being misread. The proxy puts
+median employee compensation at a hundred and sixty-four thousand dollars. **This is not a
+low-paying company.** So "limited upward mobility" is a complaint about the ceiling rather
+than the floor — people are paid well and cannot see the next step. That is a different
+problem, and a harder one to fix with money.
+
+One thing that is *not* here, and I want to say why. I went looking for a
+work-life-balance decline because that is the usual story at this
 stage of a company's life. **It is not there.** Work-life balance tracks the overall
 rating almost exactly. I am reporting that because it is what the evidence says, not
 because it is interesting.
@@ -564,7 +636,7 @@ indicator where retention is a lagging one.
 Two limits on how hard I would push it. **A requisition is an intention, not a person**;
 a board is a plan and plans get cut. And this is not a spend ratio — a sales req costs
 less than a senior engineering one, so three and a half to one in headcount sits
-comfortably with the audited two to one in money on slide thirty-three. Different
+comfortably with the audited two to one in money on slide thirty-four. Different
 measures, same direction, which is what corroboration actually looks like.
 
 One small corroboration I like: the board lists Bucharest, and the sub-processor
@@ -579,8 +651,13 @@ gap.**""",
     "m", "What employees say")
 
 # ── 16 WHO THEY COMPETE WITH ─────────────────────────────────────────────────
+# Both lists mark what is unique to them, in the same neutral treatment: Klaviyo appears
+# only on Braze's list, the five specialists only on the buyers'. The old version accented
+# one side in amber - the colour slide 3 teaches means medium-confidence evidence - which
+# read as "these five are shakily sourced", the exact opposite of the point.
 _cmp_named = ('<div><div class="klabel colhead">NAMED IN THE 10-K &mdash; THEIR CHOICE</div>'
-              + logos(["Adobe", "Salesforce", "Iterable", "Klaviyo"], cols=2) + '</div>')
+              + logos(["Adobe", "Salesforce", "Iterable", "Klaviyo"], cols=2,
+                      accent=("Klaviyo",)) + '</div>')
 _cmp_buyer = ('<div><div class="klabel colhead">GARTNER&rsquo;S BUYER-DERIVED SHORTLIST &mdash; NOT THEIR CHOICE</div>'
               + logos(["Salesforce", "Adobe", "Iterable", "Oracle", "Optimove",
                        "Blueshift", "MoEngage", "CleverTap"], cols=4,
@@ -592,9 +669,10 @@ add(f'''<section class="s" data-g="m" data-t="Who they compete with">
     {split(_cmp_named, _cmp_buyer)}
     <div class="ruleband">
       <div class="klabel">THE GAP IS THE FINDING</div>
-      <p>Three of their four names appear on the buyer list &mdash; so this is not a vendor misreading its market.
-      But <strong>five vendors buyers actually compare them against appear nowhere in the 10-K</strong>, and they are
-      mostly the mobile-engagement specialists rather than the suites Braze positions against.</p>
+      <p><strong>The brighter names on each side are the ones the other list does not have.</strong>
+      Three of their four appear on the buyer list, so this is not a vendor misreading its market &mdash;
+      but <strong>five vendors buyers compare them against appear nowhere in the 10-K</strong>, and they are
+      mostly mobile-engagement specialists rather than the suites Braze positions against.</p>
     </div>
   </div>
 </section>''',

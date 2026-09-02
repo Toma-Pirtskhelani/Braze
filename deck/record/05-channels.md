@@ -2,7 +2,7 @@
 
 > Thirteen channels are documented, which is broad rather than narrow — the hypothesis that Braze's channel list would prove thinner than its positioning was killed by the evidence. What the roster does show is a documentation site and a marketing site that have drifted apart in both directions at once, and a compelled disclosure showing that only two of the thirteen channels have a named delivery intermediary at all.
 
-{{slides: 25, 27, 28}}
+{{slides: 26, 28, 29}}
 
 ## 5.1 · The roster, counted from both ends
 
