@@ -24,7 +24,7 @@ DIRS = [
 
 TOOLKIT = ["config.py", "fetch_sitemap.py", "fetch_docs.py", "index_docs.py",
            "capability_count.py", "code_reviews.py", "build_timeline.py",
-           "ct_probe.py", "status_history.py", "github_org.py",
+           "ct_probe.py", "status_history.py", "github_org.py", "deck_audit.py",
            "sec_facts.py", "sec_filings.py", "make_release.sh",
            "typography_audit.js"]
 

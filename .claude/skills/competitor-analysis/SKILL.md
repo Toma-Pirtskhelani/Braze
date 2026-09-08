@@ -74,7 +74,22 @@ credits what deserves credit.
 A **deck** where each slide carries one idea the audience must *see*, and a **record**
 organised by subject where every fact is stated **once**, with its caveats. Generate the
 spoken script *from the built deck* so the two cannot drift.
-See `references/building-the-deck.md`.
+
+**This phase is where the reference project went wrong, and it went wrong before a slide
+was written.** Two commits produced its research; nine were rework on the presentation,
+and it still lost a head-to-head against the deck it was modelled on. Four things prevent
+that, all of them cheap and all of them done *first*:
+
+1. **Name the audience in one sentence** — their role, and the decision they face.
+2. **Open the reference deck and read its headlines as a list.** The artefact, not a
+   document about it.
+3. **Decide the headline mix: two labels for every claim, never more than three claims in
+   a row.** A deck where every headline argues has no emphasis left.
+4. **End every substantive slide on what the finding means for the audience**, not on how
+   you know it.
+
+Then run `scripts/deck_audit.py` from the first built slide, not at the end.
+See `references/building-the-deck.md` for the headline mechanism and the shapes.
 
 ---
 
@@ -129,6 +144,10 @@ untrue. Full definitions in `references/evidence-grading.md`.
 | A key number rendered as a stray glyph | **Look at the artefact.** Screenshot it; markup that parses can still render wrong |
 | A press release contradicted the docs six days later | **Test claims against the docs, with a date** — set a re-check, do not call it a lie |
 | A field named `fy` meant the filing's year, not the period's | **Read the schema, not the field name** |
+| Evidence discipline got seven documents and ten automated checks; presentation craft got four lines and none | **Specify both halves of the deliverable, or you will get one** |
+| The automated gate passed 9/0 on a deck that then needed four rounds of human review | **A gate that never fails is not a gate.** Check the half of the job you find hardest to measure |
+| The reference deck sat unopened on the same disk for the whole project | **Read the exemplar, not just the method document about it** |
+| A check firing on 23–36 of 43 slides was tuned rather than deleted | **A checker that cries wolf gets ignored.** Some craft defects are not mechanical; say so and leave them to a human |
 
 ---
 

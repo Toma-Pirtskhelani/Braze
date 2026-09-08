@@ -115,6 +115,33 @@ Keeping them separate is what stops the deck becoming a document and the documen
 becoming a transcript. Generating the spoken script *from the built deck* means the two
 cannot drift.
 
+**Before writing a single slide, do these four things.** Each corresponds to a mistake
+that cost this project a rework cycle; the full account is in
+[`POST-MORTEM.md`](POST-MORTEM.md).
+
+**Name the audience, in one sentence, in writing.** Their role, and the decision they are
+trying to make. Skip it and the deck gets written for an analyst who cares about
+provenance, because that is the only reader the project ever described — measurable
+afterwards as a deck that talks about its own evidence three times as often as about what
+that evidence means.
+
+**Open the reference deck and read every headline as a list.** Not the method document
+about it — the artefact. The rhythm of a deck is only audible when its headlines are in a
+column, and everything worth copying is visible in ten minutes.
+
+**Decide the headline mix before writing headlines.** Every headline is a **label** (2–5
+word noun phrase, for orientation) or a **claim** (5–9 words stating a finding, landing
+hardest as two short beats). **Target two labels for every claim.** Claim power is
+inversely proportional to frequency: a deck where every headline argues has no emphasis
+left, and the generous, surprising findings arrive as more of the same.
+
+**Check that the design system's visual slots are actually filled.** A ported stylesheet
+carries image containers that a ported deck does not automatically use. Grep the CSS for
+them and put something in each, or delete them.
+
+Then run the presentation gate — `deck_audit.py` — from the first built slide, not at the
+end. It is the other half of `verify.py`, and the two together are the whole standard.
+
 ---
 
 ## The disciplines that make it trustworthy
@@ -162,6 +189,23 @@ Two more, learned while building this repository:
 |---|---|
 | XBRL labels two different fiscal years `fy2026`, because the field describes the filing | **Read the schema, not the field name.** `sec_facts.py` now derives the period from dates |
 | A width check compared a transform-scaled rect against a layout width and reported a false overflow | **Compare like with like.** Use `scrollWidth` vs `clientWidth` inside a scaled stage |
+
+### And the expensive one: the presentation took nine rework cycles
+
+Two commits produced the research. **Nine were critique-and-rework on the deck**, across
+four full critique rounds — and it still lost a head-to-head against the deck it was
+modelled on. Full account in [`POST-MORTEM.md`](POST-MORTEM.md); the transferable rows:
+
+| What happened | The lesson |
+|---|---|
+| The scaffold specified evidence discipline in seven documents and presentation craft in four lines | **Specify both halves of the deliverable, or you will get one** |
+| The stylesheet shipped four styled image containers and the deck used none of them for two critique rounds | **A ported design system needs its rules ported too.** Copying the CSS copies half a mechanism |
+| The automated gate reported 9 passed / 0 failed on a deck that then needed four rounds of human review | **A gate that never fails is not a gate.** If every check is about one half of the job, that is the half you will get |
+| The word *audience* appeared sixty times across the guidance and the audience was never identified | **Name the audience in one sentence before writing a slide** |
+| The reference deck sat unopened on the same disk for the whole project | **Read the exemplar, not just the method document about it** |
+| The slide plan was written before any evidence existed, asserted a wrong figure, and hard-coded a rhythm that did not fit | **A slide plan written before the evidence is a hypothesis.** Revise it when the evidence lands, and fix it when it is wrong |
+| The most useful analytical artefact — the head-to-head measurement — was produced by hand, once, after four rework rounds | **If a judgement is countable, count it early and continuously** |
+| A check built to catch "headlines using words the slide never says" fired on 23–36 of 43 slides, all good writing | **A checker that cries wolf gets ignored.** Tuning a wrong check until it goes quiet is worse than deleting it — and some craft defects are genuinely not mechanical |
 
 ---
 

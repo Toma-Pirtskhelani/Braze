@@ -58,6 +58,7 @@ what would close the gap.
 | Understand the process | [`docs/METHOD.md`](docs/METHOD.md) — seven phases, and seven mistakes not to repeat |
 | Know what the deck must answer | [`docs/DECK-SPEC.md`](docs/DECK-SPEC.md) — 41 slides, question by question |
 | Quote a number *(once research has run)* | [`docs/FACTS.md`](docs/FACTS.md) — canonical value, grade, source. Stop there |
+| **Learn from what went wrong** | [`docs/POST-MORTEM.md`](docs/POST-MORTEM.md) — nine setup mistakes and the fixes |
 | **Edit the deck to the target standard** | [`docs/EDITING-GUIDE.md`](docs/EDITING-GUIDE.md) — the execution document |
 | **Compare against the reference deck** | [`docs/COMPARISON.md`](docs/COMPARISON.md) — the two presentations, slide by slide |
 | **See what is still weak** | [`docs/CRITIQUE-4.md`](docs/CRITIQUE-4.md) — current · [`-3`](docs/CRITIQUE-3.md) · [`-2`](docs/CRITIQUE-2.md) · [`-1`](docs/CRITIQUE.md) |
@@ -152,7 +153,7 @@ cases — and only three — where an agent should stop and ask.
 |---|---|
 | **14 extraction tools** | All dependency-free; every one tested against the live source |
 | **An orchestrator** | `tools/run_all.py` — the whole pipeline, idempotent, with a status report |
-| **A self-check** | `tools/verify.py` — ten rules the analysis must satisfy, `--strict` for a gate |
+| **Two self-checks** | `tools/verify.py` — ten rules for the evidence · `tools/deck_audit.py` — nine for the presentation |
 | **A model gate** | `tools/handoff.py` — ends collection with a report and a switch instruction |
 | **Panel escalation** | `tools/panels_status.py` + pre-created paste targets in `sources/panels/` |
 | **The deck design system** | `deck/lib.py`, `css.py`, `icons.py` + a working scaffold and [`deck/COMPONENTS.md`](deck/COMPONENTS.md) |

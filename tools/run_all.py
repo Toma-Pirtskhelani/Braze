@@ -55,6 +55,7 @@ STEPS = [
     (4, "build script",    ["deck/make_script.py"],      True,  None),
     (4, "build record",    ["deck/build_record.py"],     False, None),
     (4, "verify",          ["tools/verify.py"],          False, None),
+    (4, "deck audit",      ["tools/deck_audit.py"],      False, None),
     (4, "panel status",    ["tools/panels_status.py"],   False, None),
     (4, "handoff",         ["tools/handoff.py"],         False, None),
 ]

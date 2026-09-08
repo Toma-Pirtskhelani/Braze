@@ -90,8 +90,14 @@ Five grades, defined in [`docs/EVIDENCE-GRADES.md`](docs/EVIDENCE-GRADES.md): `a
 
 ```bash
 python3 tools/run_all.py             # the whole pipeline, idempotent, ~40 min
-python3 tools/verify.py              # ten rules the analysis must satisfy
+python3 tools/verify.py              # ten rules the EVIDENCE must satisfy
+python3 tools/deck_audit.py          # nine rules the PRESENTATION must satisfy
 ```
+
+**Both gates, always.** `verify.py` once reported 9 passed / 0 failed on a deck that then
+needed four rounds of human review — it checks sourcing, not watchability. `deck_audit.py`
+is the other half: headline mix, body density, whether the deck talks about its evidence
+or about what the evidence means. See [`docs/POST-MORTEM.md`](docs/POST-MORTEM.md).
 
 Individually:
 

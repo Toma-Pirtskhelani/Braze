@@ -21,6 +21,7 @@
 | What must each slide answer? | [`DECK-SPEC.md`](DECK-SPEC.md) |
 | How is the evidence record structured? | [`RECORD-SPEC.md`](RECORD-SPEC.md) |
 | What still needs answering? | [`QUESTIONS.md`](QUESTIONS.md) |
+| **What did the setup get wrong?** | [`POST-MORTEM.md`](POST-MORTEM.md) — the scaffold's own defects, and what changed |
 | **How do I make the deck better?** | [`EDITING-GUIDE.md`](EDITING-GUIDE.md) — architecture, then all 43 slides |
 | **How does this compare to the reference deck?** | [`COMPARISON.md`](COMPARISON.md) — slide by slide, as a spoken presentation |
 | **What is wrong with the finished analysis?** | [`CRITIQUE-4.md`](CRITIQUE-4.md) — current, from the operator's read-through · [`-3`](CRITIQUE-3.md) · [`-2`](CRITIQUE-2.md) · [`-1`](CRITIQUE.md) |
@@ -51,7 +52,8 @@
 | Task | Command |
 |---|---|
 | Run the whole pipeline | `python3 tools/run_all.py` |
-| Check the analysis against its own rules | `python3 tools/verify.py` |
+| Check the EVIDENCE against its own rules | `python3 tools/verify.py` |
+| Check the PRESENTATION against its own rules | `python3 tools/deck_audit.py` |
 | Build the deck and its script | `python3 deck/build_deck.py && python3 deck/make_script.py` |
 | Build the evidence record | `python3 deck/build_record.py` |
 | Cut a dated release | `bash tools/make_release.sh` |
