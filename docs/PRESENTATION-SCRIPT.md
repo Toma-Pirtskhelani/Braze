@@ -1,19 +1,66 @@
-# Speaker script
+# The Braze deck, in full
 
-Every slide of the deck, in order: what the audience sees, and what to say over it.
-Generated from the deck itself, so slide numbers and titles can never drift apart.
+Every slide in order: **what is on screen, and what to say over it.** Generated from the
+deck itself by `deck/make_script.py`, so a slide and its script can never drift apart.
 
-**10,154 spoken words — about 78 minutes at a normal pace, 109 seconds a slide.**
+**10,154 spoken words — 78 minutes presented, or about 65 minutes to read.**
+43 slides, 109 seconds each at a normal speaking pace.
 
-**Bold** marks the words to land on. Square brackets are notes to yourself, not lines
-to say. Press **N** in the deck to read these beside the slide.
+---
+
+## If you are learning Braze rather than presenting it
+
+Read this file top to bottom. It is the most efficient thing in this repository for that,
+because it was written to be **said to somebody who does not know Braze** — the argument
+in the order it was built to land, with the evidence attached at the point it is used.
+
+Then, and only then:
+
+| For | Read |
+|---|---|
+| The traps — where sources disagree, and the exact wording to use | `docs/CONFLICTS.md` |
+| What we expected before reading anything, and what was wrong | `docs/STRATEGY.md`, "How the ten ended" |
+| The eight things nobody knows, and what would close each | `docs/QUESTIONS.md` §4 |
+| The reasoning behind any single claim | the record chapter named under each part below |
+| One specific number | `docs/FACTS.md` — 244 rows, a lookup table, never a read |
+
+**What this cannot teach you.** Nobody on this project ever logged into Braze. It is built
+entirely from public sources, so it is strong on the business, the money and the decisions,
+and it tells you where the product's *limits* are rather than what using it feels like.
+For that, read Braze's own documentation — 1,352 pages of it are captured in `sources/docs/`
+and `grep` beats their site search — against the seven-stage walkthrough in Part II.
+
+**Bold** marks the words to land on. Press **N** in the deck to read the narration beside
+its slide.
 
 ---
 
 
 ## Part 0 — Frame
 
+*How to judge everything that follows.*
+
+**Deeper:** `deck/record/08-open.md` §8.0a — the four documents, and why they are hard to falsify.
+
 ### 01 · Competitor Analysis
+
+**On screen**
+
+Competitor analysis
+
+Growing slower every year, spending less to do it — and its newest capability was bought, not built.
+
+- **1,352 pages** — Their documentation
+- **737 documents** — SEC filings
+- **FY2019 → now** — Audited financials
+- **137 repos** — Public code
+- **451 incidents** — Status page
+- **17 outside suppliers** — Sub-processors
+
+Toma Pirtskhelani · Product Manager
+Public sources only · September 2026
+
+**Say**
 
 > This is a competitor analysis of **Braze**.
 
@@ -30,7 +77,24 @@ to say. Press **N** in the deck to read these beside the slide.
 > documentation disagree, I will show you both.
 
 ### 02 · How we approach it
-*On screen:* Method · how this is built — **Four parts, three rules**
+Method · how this is built — **Four parts, three rules**
+
+**On screen**
+
+- `PART I` **The company** — who owns it · what it costs · who buys it
+- `PART II` **The product** — seven stages of one campaign
+- `PART III` **Strategy** — where the money goes · what protects them
+- `PART IV` **Open questions** — what public sources cannot answer
+
+***AND THREE RULES THAT APPLY TO ALL FOUR***
+
+- **Every claim is graded** — Marked by how strong its source is. The bar at the foot of each slide shows where we are.
+- **Marketing is labelled as marketing** — Their own words appear — but never as evidence.
+- **Gaps become a backlog** — Anything needing a non-public source goes on the open-questions list, and grows as you add to it.
+
+**And ten expectations were written down before any of this was read. Four turned out wrong — slide 40 shows which.**
+
+**Say**
 
 > Four parts. **Who the company is. How the product actually works. Where the strategy is
 > going. And what we still cannot answer.**
@@ -53,7 +117,17 @@ to say. Press **N** in the deck to read these beside the slide.
 > was being built.
 
 ### 03 · How we grade
-*On screen:* Method · evidence grading — **How to judge every claim here**
+Method · evidence grading — **How to judge every claim here**
+
+**On screen**
+
+- **Audited filings, and their own technical documentation** — Signed off by auditors and filed under legal penalty — or behaviour the platform must actually support
+- **Independent records** — Customer reviews, infrastructure traces, incident history, real transacted prices
+- **Marketing, or disputed** — Their own claims, or sources that contradict each other
+
+Five grades are kept in the evidence record. Three reach the slides, mapped in docs/EVIDENCE-GRADES.md. **A claim takes the grade of its weakest supporting source, never its best.**
+
+**Say**
 
 > Three grades on the slides, five in the record behind them.
 
@@ -73,8 +147,23 @@ to say. Press **N** in the deck to read these beside the slide.
 
 ## Part I — The company
 
+*Who they are, what they bought, what it costs, who buys it.*
+
+**Deeper:** `deck/record/01-company.md`, `02-money.md`, `03-acquisitions.md`, `07-market.md`.
+
 ### 04 · Part I: The company
-*On screen:* Part I — **The company**
+Part I — **The company**
+
+**On screen**
+
+- `01` Who they are, and who controls them now
+- `02` What they bought, and what it cost
+- `03` What a customer pays — bounded, not guessed
+- `04` Who buys it, and who buyers compare them against
+
+*Audited filings unless marked otherwise*
+
+**Say**
 
 > Part one is the company. Four questions: who they are and who controls them, what they
 > have bought, what a customer pays, and who actually buys it.
@@ -93,7 +182,19 @@ to say. Press **N** in the deck to read these beside the slide.
 > only available price figure actually means.
 
 ### 05 · The four documents
-*On screen:* What this rests on — **Four documents a company cannot write freely**
+What this rests on — **Four documents a company cannot write freely**
+
+**On screen**
+
+- **The 10-K** — Their **audited annual report to the US regulator**. Signed by the chief executive and the finance chief, and wrong at legal risk. **Seven years of them.**
+- **The proxy statement** — Filed before the shareholder meeting. Must name **every executive officer and director**, their pay, and who owns the company.
+
+- **The sub-processor disclosure** — A public list of **every outside supplier that touches customer data**. The law obliges them to keep it complete, so it names middlemen no marketing page would.
+- **The status page** — A live record of **every outage since 2016**, written during the outage. Nobody writes one of these to look good.
+
+**None of these is marketing.** Three are filed under legal penalty and the fourth is written under pressure — so wherever this deck and Braze’s website disagree, the documents win.
+
+**Say**
 
 > Before any findings, thirty seconds on where this comes from — because four documents do
 > most of the work in this deck and they are the reason to believe it.
@@ -120,7 +221,18 @@ to say. Press **N** in the deck to read these beside the slide.
 > going to believe, and now you know why.
 
 ### 06 · Five things
-*On screen:* Executive summary — **If you remember five things**
+Executive summary — **If you remember five things**
+
+**On screen**
+
+- **Braze grades its own data delays, and three of four are slow** — Their documentation labels three of the four ways data gets in **“not real-time”**. Their table, not our characterisation.
+- **The AI decisioning engine was bought, not built** — OfferFit, acquired June 2025 for **$303.2m**. The models come from Anthropic, OpenAI and Google.
+- **One instance is not on the same cloud as the others** — The addresses Braze tells you to allowlist for **US-08** belong to Microsoft. Every other instance’s belong to Amazon.
+
+- **They are slowing down and getting more efficient at the same time** — Growth has halved since FY2023 while sales spend fell further. **Three straight years of positive cash flow.**
+- **Braze names four competitors. Buyers compare them against eight** — The five extra names are specialists Braze never mentions.
+
+**Say**
 
 > Five things.
 
@@ -142,7 +254,18 @@ to say. Press **N** in the deck to read these beside the slide.
 > **Five. Their competitive set is wider than they say it is.**
 
 ### 07 · Who they say they are
-*On screen:* Their story · in their own words — **Their biggest claim, in their most careful document**
+Their story · in their own words — **Their biggest claim, in their most careful document**
+
+**On screen**
+
+> “Our platform empowers **real-time engagement** between brands and their customers … made possible by our proprietary, enterprise-grade **stream processing architecture** … We have designed it to **listen like a human would**, process new information in context, and **react instantaneously**.”
+> — *Braze 10-K, Item 1 · filed 25 March 2026*
+
+- **The claim** — A single platform, fed by streaming first-party data, reacting in the moment across every channel
+- **Why it is quoted here** — This is the company’s own narrative in a filed document — the strongest form of a marketing claim, not a technical one
+- **What to hold on to** — “Real-time” is doing a lot of work in that sentence. Slide 21 shows their own table grading it
+
+**Say**
 
 > This is Braze describing Braze, in the 10-K.
 
@@ -158,7 +281,22 @@ to say. Press **N** in the deck to read these beside the slide.
 > argument.
 
 ### 08 · Origins
-*On screen:* Origins · and who controls it now — **Origins, and who controls it now**
+Origins · and who controls it now — **Origins, and who controls it now**
+
+**On screen**
+
+- **Bill Magnuson** · Chairman · CEO · President · Cofounder
+
+  CTO from July 2011, chief executive since 2017, chairman — and President too since June 2025, when the previous President resigned. One person, four titles.
+  Cofounder Jon Hyman is still CTO, an officer since 2011.
+
+***AND WHO HOLDS THE SEATS***
+
+- **Seven seats, six independent** — Magnuson is the exception. **Phillip Fernandez is Lead Independent Director** — the role a board creates when its chair is not.
+- **And the board is classified** — Three staggered classes, so only about **a third stands in any year**. The super-voting stock is gone; this is not.
+- **The votes, after January** — Class B converted **30 January 2026**. Largest holder **6.0%**, the CEO **4.9%**, the Battery partner **5.1%** — **no blocking position left.**
+
+**Say**
 
 > Founded 2011. Public since November 2021. And now the part this slide is actually for,
 > because until this pass it answered only half its own question.
@@ -195,7 +333,28 @@ to say. Press **N** in the deck to read these beside the slide.
 > respond to a shareholder, both halves matter.
 
 ### 09 · How they got this big
-*On screen:* Capital · and what it bought — **7.7× bigger, a billion already contracted**
+Capital · and what it bought — **7.7× bigger, a billion already contracted**
+
+**On screen**
+
+- FY2020 · **96.4m**
+- FY2021 · **150.2m**
+- FY2022 · **238.0m**
+- FY2023 · **355.4m**
+- FY2024 · **471.8m**
+- FY2025 · **593.4m**
+- FY2026 · **738.2m**
+
+- **$456.8m** — net IPO proceeds, Nov 2021
+- **7.7×** — revenue growth, FY2020 to FY2026
+- **$124.3m** — cash at FY2026 year end
+- **$1,033.0m** — contracted, not yet recognised
+
+***THE CAVEAT THAT TRAVELS WITH EVERY NUMBER IN THIS PART***
+
+Braze disclosed a **material weakness in internal control over financial reporting** at 31 January 2026 — *a flaw in the checking, not an error in the numbers*. Ineffective IT controls over **user access and program change management** on the systems that produce these figures. **And, in the same breath:** it “did not result in any identified misstatements”, nothing was restated, and Ernst & Young attested.
+
+**Say**
 
 > Revenue, seven audited years: ninety-six million to seven hundred and thirty-eight.
 > **Seven point seven times in six years.**
@@ -247,7 +406,23 @@ to say. Press **N** in the deck to read these beside the slide.
 > this deck carries a band that the product part does not.
 
 ### 10 · Acquisition: OfferFit
-*On screen:* Acquisition one · June 2025 — **They bought their AI, and the filing says so**
+Acquisition one · June 2025 — **They bought their AI, and the filing says so**
+
+**On screen**
+
+> “the Company completed the acquisition of **OfferFit, Inc.** (‘OfferFit’) **which is now known as AI Decisioning Studio** for total consideration of **$303.2 million**.”
+> — *Ernst & Young, critical audit matter · Braze 10-K, 25 March 2026*
+
+- **$303.2m** — total consideration
+- **77%** — was goodwill — price not tied to any asset
+- **$56.7m** — developed technology, amortised to cost of revenue
+- **2 Jun 2025** — closed
+
+***WHAT THE PURCHASE-PRICE ALLOCATION TELLS YOU***
+
+Only **$66.6m of the $303.2m was identifiable**, and $56.7m of that is the software — so Braze bought a capability and its people, not revenue. The trademark went at **$0.9m**: nobody expected the name to survive. **So the margin drag runs to 2031, and any AI pricing they quote has to carry it.**
+
+**Say**
 
 > This is the single most useful sentence in the filings.
 
@@ -266,7 +441,18 @@ to say. Press **N** in the deck to read these beside the slide.
 > get to the AI slide, remember that the agentic layer has a purchase price.
 
 ### 11 · Acquisition: North Star Y
-*On screen:* Acquisition two · June 2023 — **They bought a market, and the earn-out paid nothing**
+Acquisition two · June 2023 — **They bought a market, and the earn-out paid nothing**
+
+**On screen**
+
+- **$26.8m** — paid at completion
+- **$26.0m** — more, if revenue targets were met
+- **$0** — of that was ever paid
+- **What it was** — North Star Y, Pty Ltd — Braze’s **exclusive reseller in Australia and New Zealand**. Buying it took the market direct.
+- **What the filing records** — Braze “reduced the contingent consideration liability … **to zero as it was determined that the sellers did not satisfy the earn-out qualifications**.”
+- **How to read it** — An **earn-out** is money owed only if the business hits agreed targets. This one paid nothing, so the targets were not met — which does not say the acquisition failed, and the filings do not say that either.
+
+**Say**
 
 > Two years earlier they bought their own Australia and New Zealand reseller — twenty-six
 > point eight million, to take that market direct.
@@ -311,7 +497,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > the most useful thing on this slide.
 
 ### 12 · What it costs
-*On screen:* Price · bounded, not guessed — **Nobody publishes a price. You can still bound one**
+Price · bounded, not guessed — **Nobody publishes a price. You can still bound one**
+
+**On screen**
+
+- **~$283,000** — revenue ÷ customers, FY2026 — a *bound*, not a price
+
+**An average, not a typical contract.** A few very large customers pull it up, and most pay far less. It is the ceiling of what an average customer costs, not what one does.
+
+***AND THE MECHANIC UNDERNEATH IT — FROM THEIR DOCUMENTATION***
+
+- **You are billed per data point** — “a session start, session end, custom event, or purchase recorded, as well as **any attribute set**” — each counts separately
+- **Engagement is free** — Opens, clicks, push tokens and device info are **not** counted. A genuinely customer-friendly boundary
+- **Their own advice is to send less** — “**Don’t waste data points. Only update changing data!**” — a platform sold on streaming everything, priced so you send less
+
+**Say**
 
 > No vendor in this category publishes a price and Braze is no exception. But a listed
 > company gives you something better than a guess: **seven hundred and thirty-eight million
@@ -334,7 +534,23 @@ to say. Press **N** in the deck to read these beside the slide.
 > quickly.
 
 ### 13 · Who uses it
-*On screen:* Customers · three rosters, never merged — **Three ways to count a customer**
+Customers · three rosters, never merged — **Three ways to count a customer**
+
+**On screen**
+
+- **2,609** — the 10-K’s defined metric, 31 Jan 2026
+- **333** — customers at $500k+ ARR — up from 202 in FY2024
+- **178** — self-published customer stories
+- **—** — independent detection: not attempted
+
+***EXPANSION IS SLOWING, AND THE ENTERPRISE PREMIUM HAS NEARLY GONE***
+
+- FY2024 · all customers · **117%**
+- FY2024 · $500k+ ARR · **120%**
+- FY2026 · all customers · **109%**
+- FY2026 · $500k+ ARR · **110%**
+
+**Say**
 
 > Three customer counts and they must never be merged.
 
@@ -355,7 +571,18 @@ to say. Press **N** in the deck to read these beside the slide.
 > hundred and thirty-three. More big logos, each growing more slowly.
 
 ### 14 · Where they operate
-*On screen:* Geography · audited, not inferred — **No second home market**
+Geography · audited, not inferred — **No second home market**
+
+**On screen**
+
+- **54.9%** — United States, FY2026
+- **45.1%** — international
+- **0** — other countries above 10% of revenue
+- **The sentence that matters** — “Other than the United States, **no other individual country accounted for 10% or more of total revenue** for any of the periods presented.”
+- **Set against the footprint** — **15 regional clusters** and **15 legal entities across 14 territories** — from the status page and the sub-processor disclosure respectively.
+- **So what** — A wide, thin footprint on a heavy fixed base. **No single non-US market is large enough that losing it would show** — so outside the US you compete market by market, and so do they.
+
+**Say**
 
 > Geography, audited, from the segment note — not inferred from customer domains, which
 > is what you would be doing with a private vendor.
@@ -373,7 +600,24 @@ to say. Press **N** in the deck to read these beside the slide.
 > that shows up in gross margin before it shows up in growth.
 
 ### 15 · What customers say
-*On screen:* Review panels · coded, not summarised — **Well liked, with two consistent complaints**
+Review panels · coded, not summarised — **Well liked, with two consistent complaints**
+
+**On screen**
+
+***G2’S OWN TAGS, OVER ITS WHOLE REVIEW BASE — PRAISE IN GREY, CRITICISM IN RED, ONE SCALE***
+
+- Ease of Use · **385**
+- Intuitive · **188**
+- Customer Support · **151**
+- Helpful · **148**
+- Missing Features · **140**
+- Learning Curve · **139**
+- Limitations · **102**
+- Steep Learning Curve · **86**
+
+**Two themes recur across unrelated panels, which is what makes them worth quoting: reporting, and the learning curve.** TrustRadius codes reporting as “limited and unintuitive, a sentiment shared by 36% of reviewers”.
+
+**Say**
 
 > Braze is genuinely well liked. Four and a half out of five on two panels, eight point
 > eight out of ten on the third, across more than two thousand reviews. I am not going to
@@ -393,7 +637,26 @@ to say. Press **N** in the deck to read these beside the slide.
 > behind it — the raw-data export that fixes it is a paid add-on called Currents.
 
 ### 16 · What employees say
-*On screen:* Glassdoor · and the careers board — **What employees say**
+Glassdoor · and the careers board — **What employees say**
+
+**On screen**
+
+- **4.1*/5*** — 524 ratings
+- **82%** — would recommend
+- **90%** — approve of the CEO
+- **71%** — positive business outlook
+
+> Glassdoor’s own summary names the weak spots: **“limited upward mobility and discrepancies in compensation relative to market rates”**.
+> — *Glassdoor company page · captured signed-in, 2 September 2026*
+
+- **Not pay — progression** — Median employee pay is **$164,000**. Not a low-paying company, so this is a complaint about the ceiling, not the floor
+- **Still hiring hard** — **296 open roles** across 15 departments — including Bucharest, matching a Romanian entity in the sub-processor list
+
+***AND WHAT THEY ARE HIRING FOR — THE FORWARD-LOOKING HALF***
+
+Sales **89** · Engineering **57** · Customer Experience **38**. **Go-to-market is 72.0% of the board against 19.6% for engineering and product.** So they are buying new logos rather than building — and that is where they will meet you.
+
+**Say**
 
 > Employees rate them well. Four point one, eighty-two per cent would recommend, ninety
 > per cent approve of the CEO.
@@ -448,7 +711,23 @@ to say. Press **N** in the deck to read these beside the slide.
 > gap.**
 
 ### 17 · Who they compete with
-*On screen:* Competition · two lists — **They name four. Buyers weigh eight.**
+Competition · two lists — **They name four. Buyers weigh eight.**
+
+**On screen**
+
+***NAMED IN THE 10-K — THEIR CHOICE***
+
+- Adobe · Salesforce · Iterable · Klaviyo
+
+***GARTNER’S BUYER-DERIVED SHORTLIST — NOT THEIR CHOICE***
+
+- Salesforce · Adobe · Iterable · Oracle · Optimove · Blueshift · MoEngage · CleverTap
+
+***THE GAP IS THE FINDING***
+
+**The brighter names on each side are the ones the other list does not have.** Three of their four appear on the buyer list, so this is not a vendor misreading its market — but five vendors buyers compare them against appear nowhere in the 10-K. **So those five are the ones to watch: Braze is not positioning against them, and will not have an answer ready.**
+
+**Say**
 
 > Two lists. On the left, the four competitors Braze names in its own 10-K. On the right,
 > the vendors Gartner reports buyers *also considered* — derived from the buyers, not from
@@ -493,8 +772,34 @@ to say. Press **N** in the deck to read these beside the slide.
 > five specialists are who else is in the room — and their presence tells you the buyer is
 > weighing depth against breadth, which is the axis to prepare for.
 
+
+## Part II — The product
+
+*One campaign through seven stages, then the platform around it.*
+
+**Deeper:** `deck/record/04-platform.md`, `05-channels.md`, `06-ai.md`.
+
 ### 18 · Part II: The product
-*On screen:* Part II — **The product**
+Part II — **The product**
+
+**On screen**
+
+- `01` One campaign, seven stages, end to end
+- `02` Where the limits are — in their words, not ours
+- `03` Which channel has no middleman
+- `04` What the AI actually is, on five lenses
+
+*Their technical documentation unless marked otherwise*
+
+- `01` **Data**
+- `02` **Identity**
+- `03` **Decisioning**
+- `04` **Building**
+- `05` **Content**
+- `06` **Delivery**
+- `07` **Interaction**
+
+**Say**
 
 > Part two is the product, and we walk one campaign through seven stages: data arrives, a
 > profile updates, a segment recomputes, a journey triggers, content is composed, a message
@@ -515,7 +820,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > will say so too.
 
 ### 19 · How one campaign works
-*On screen:* The whole thing · end to end — **One campaign, end to end**
+The whole thing · end to end — **One campaign, end to end**
+
+**On screen**
+
+- `01` **Data arrives** — from an app, an API, or a data warehouse
+- `02` **Profile updated** — one record per person — billed per change
+- `03` **Segment recomputed** — membership changes as data lands
+- `04` **Journey triggers** — Braze calls this Canvas; it decides who continues
+- `05` **Content composed** — the message is filled in for that person
+- `06` **Message delivered** — email and SMS via named third parties
+- `07` **Response logged** — and it flows back to step 1
+
+Seven stages, and the two picked out are the ones worth arguing about: how fresh the data is going in, and who physically sends the message going out. **Everything between them is competent, so a pitch that attacks the middle will not land — aim at the ends.**
+
+**Say**
 
 > This is the loop. Data arrives, the profile updates, segments recompute, the journey
 > decides, content is composed, the message goes out, the response comes back.
@@ -531,7 +850,23 @@ to say. Press **N** in the deck to read these beside the slide.
 > Note stage two as well: the profile update is the thing you are billed for.
 
 ### 20 · How data moves
-*On screen:* Data · in, and back out — **The way in is not the way out**
+Data · in, and back out — **The way in is not the way out**
+
+**On screen**
+
+- **60,000*/min*** — ingest — */users/track*, at 75 objects each
+- **250*/min*** — read profiles back by identifier, at 50 ids each
+- **250,000*/hr*** — bulk export to cloud storage
+
+***STATE THIS FAIRLY — IT IS NOT A LOCK-IN STORY***
+
+- **The asymmetry is real** — Writing reaches ~4.5m objects a minute. Reading profiles back reaches ~12,500 for a customer who joined after August 2024
+- **But they are different operations** — Event objects versus whole profiles. The ratio shows where priority sits, not like-for-like throughput
+- **And bulk export exists** — Segment export to cloud storage sits under a 250,000/hour limit. The sanctioned bulk route is generous
+
+**So getting off Braze is a project, not a setting.** Price the migration work into any switching conversation, and make the bulk route — not the profile API — the plan.
+
+**Say**
 
 > Data in, data out.
 
@@ -551,7 +886,15 @@ to say. Press **N** in the deck to read these beside the slide.
 > came from — which is the next slide.
 
 ### 21 · Stage 1: Data
-*On screen:* Stage 1 · data and freshness — **Their words: three of four are not real-time**
+Stage 1 · data and freshness — **Their words: three of four are not real-time**
+
+**On screen**
+
+*Diagram:* Warehouse sync · their Cloud Data Ingestion · “Not real-time” · 15 min floor · Warehouse segments · read in place, no copy · “Not real-time” · Warehouse triggers · warehouse starts a journey · “Not real-time” · 15 min floor · /users/track · SDKs · app, server, stream · “Near-real-time” · Braze user profile · one record per person · billed per change
+
+Warehouse syncs run “from every 15 minutes to once per month”. Going faster is not self-serve: *“contact your customer success manager or use REST API ingestion.”* **If your customer data lives in a warehouse, fifteen minutes is the floor.**
+
+**Say**
 
 > Here is the slide six callback.
 
@@ -596,7 +939,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > project produced.
 
 ### 22 · Stage 2: Identity
-*On screen:* Stage 2 · identity — **A merge can fail and still return success**
+Stage 2 · identity — **A merge can fail and still return success**
+
+**On screen**
+
+- **unlimited** — aliases per profile
+- **1** — alias per label — unique across the base
+- **5** — identifier types accepted on ingest
+- **1** — identifier type for warehouse segments
+
+- **A merge can decline and still report success** — “If both profiles have invalid phone numbers, Braze does not merge them … **The endpoint still returns 202 Accepted with a success message.**”
+- **Reporting splits after a merge** — The dashboard attributes a pre-merge send to the surviving profile. Currents — their paid data-export feed — attributes it to the orphaned one. Both are right by their own rules, and they disagree.
+
+**So an engineering team should test a merge failure on day one** — send two profiles with bad phone numbers and check the profile, not the response code.
+
+**Say**
 
 > Identity is generous at the top and narrow at the bottom. Unlimited aliases on a
 > profile — but a warehouse-driven segment can only be built on **one** identifier type,
@@ -615,7 +972,27 @@ to say. Press **N** in the deck to read these beside the slide.
 > time.
 
 ### 23 · Stage 3: Decisioning
-*On screen:* Stage 3 · decisioning — **Deciding who gets a message**
+Stage 3 · decisioning — **Deciding who gets a message**
+
+**On screen**
+
+**Two systems decide who gets a message, and they sit on two different databases that do not talk to each other.** One follows rules you write; the other runs models.
+
+***RULE-BASED — MONGODB***
+
+- **Segmentation** — Custom events, attributes and most targeting
+- **Segment Extensions** — SQL, but served from Snowflake
+- **Global Control Group** — Holdouts — people left un-messaged, to measure lift
+
+***MODEL-BASED — SNOWFLAKE***
+
+- **Predictive Suite** — Churn and event prediction
+- **AI item recommendations** — Snowflake-backed
+- **Decisioning Studio** — Was OfferFit until June 2025
+
+Braze flags the consequence itself: “Removing data from one system does not automatically remove it from the other.” **So deleting bad data means deleting it twice** — and a deletion request that only clears one side is a compliance problem, not a tidiness one.
+
+**Say**
 
 > Decisioning runs on two engines sitting on two different databases, and Braze publishes
 > which is which.
@@ -633,7 +1010,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > Note the seven documentation pages on Predictive Suite. Hold that for slide thirty-two.
 
 ### 24 · Stage 4: Building
-*On screen:* Stage 4 · building a journey — **Canvas is the strongest thing in the platform**
+Stage 4 · building a journey — **Canvas is the strongest thing in the platform**
+
+**On screen**
+
+- **249** — focused documentation pages on Canvas
+- **10** — Canvas API endpoints
+- **385** — G2 reviews tagged ‘Ease of Use’
+- **139** — tagged ‘Learning Curve’
+
+> “Canvas makes it easy to build complex, branching lifecycle flows … Being able to trigger contextual push notifications, in-app messages, and emails from live event streams — **without needing engineering for every small tweak** — is a huge win.”
+> — *Enterprise IT manager, G2 · 5/5 · August 2026*
+
+**So do not attack Canvas.** It is the thing their customers like most, and a pitch that calls it weak will be contradicted by the room.
+
+**Say**
 
 > This is the slide where I tell you what is good, because an analysis that only finds
 > problems was not an analysis.
@@ -651,7 +1042,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > to learn.
 
 ### 25 · Stage 5: Content
-*On screen:* Stage 5 · content and personalisation — **Composing the message**
+Stage 5 · content and personalisation — **Composing the message**
+
+**On screen**
+
+- **123** — focused doc pages on Liquid templating
+- **43** — on Connected Content
+- **38** — on Content Blocks
+- **78** — on Catalogs
+
+- **What it gives you** — Liquid templating, Connected Content for live API calls at send time, reusable Content Blocks, and product catalogs for item-level personalisation.
+- **What reviewers say about it** — “Liquid personalization and Connected Content also make it straightforward to scale truly dynamic messaging” — and, from the same reviewer, “a challenging learning curve around Liquid syntax” for non-technical users.
+
+**So ask who writes the messages.** If the answer is marketers rather than engineers, the learning curve is a real cost and it lands on the team you are selling to.
+
+**Say**
 
 > Content is Liquid — the templating language — plus Connected Content for live API calls
 > at send time, Content Blocks for reuse, and catalogs for item-level personalisation.
@@ -667,7 +1072,22 @@ to say. Press **N** in the deck to read these beside the slide.
 > marketing suggests for the marketer it is sold to.
 
 ### 26 · Stage 6: Delivery
-*On screen:* Stage 6 · delivery — **Only two channels have a named middleman**
+Stage 6 · delivery — **Only two channels have a named middleman**
+
+**On screen**
+
+***CHANNELS WITH A NAMED DELIVERY SUB-PROCESSOR***
+
+- **Email — three of them** — Amazon SES · Bird.com (SparkPost) · Twilio (SendGrid). Plus Mailgun for previewing
+- **SMS / mobile messages — two** — Infobip · Twilio
+
+***CHANNELS WITH NONE NAMED***
+
+- Push · In-app · Content Cards · Banners · Webhooks · WhatsApp · LINE · KakaoTalk · Landing pages · Live notif.
+
+Absence is not proof of no intermediary — APNs, FCM and the WhatsApp, LINE and Kakao business APIs may sit outside the definition. **So a buyer cannot establish from this document who touches their messages on eleven of thirteen channels.** That is a question to put to them, not a gap to assume the worst about — and on email, three interchangeable senders is deliberate redundancy.
+
+**Say**
 
 > This is the slide that only exists because they are legally obliged to publish it.
 
@@ -685,7 +1105,25 @@ to say. Press **N** in the deck to read these beside the slide.
 > hoping email deliverability was a single point of failure you could attack, it is not.
 
 ### 27 · Stage 7: Interaction
-*On screen:* Stage 7 · interaction and the loop back — **When the customer replies**
+Stage 7 · interaction and the loop back — **When the customer replies**
+
+**On screen**
+
+- **71** — focused doc pages on Webhooks
+- **5 min** — Currents export cadence — or every 15,000 events
+- **add-on** — Currents is “an optional Braze add-on”
+- **free** — engagement events are not billed as data points
+
+Inbound and two-way handling is real: webhooks are a first-class documented channel, and engagement tracking — opens, clicks, push receipts — is excluded from data-point billing.
+
+***WEBHOOKS IS THE MOST UNDER-SOLD THING IN THE PLATFORM***
+
+- **Fifth-deepest channel in the product** — 71 focused pages — behind only email, in-app, SMS and push, and sold under no name at all.
+- **Which cuts both ways for us** — A real integration surface we should not pretend is absent — and one their own sellers are least likely to lead with.
+
+**So the round trip costs more than the outbound leg.** Getting the raw stream back is a paid add-on on a five-minute cadence — budget for it when you compare list prices.
+
+**Say**
 
 > The loop closes. Responses come back as engagement events, and here Braze does something
 > genuinely customer-friendly: **engagement tracking is free.** Opens, clicks, push
@@ -704,7 +1142,33 @@ to say. Press **N** in the deck to read these beside the slide.
 > thing.** That is when you can be confident it is real.
 
 ### 28 · Channels
-*On screen:* Channels · counted from both ends — **Thirteen documented. Ten marketed.**
+Channels · counted from both ends — **Thirteen documented. Ten marketed.**
+
+**On screen**
+
+***DEEP — FOCUSED DOCUMENTATION PAGES***
+
+- Email · **347**
+- In-app messages · **115**
+- SMS / MMS / RCS · **89**
+- Push · **73**
+- Webhooks · **71**
+- WhatsApp · **56**
+- Content Cards · **47**
+
+***THIN — REAL, BUT NOT COMPARABLE***
+
+- Banners · **28**
+- Landing pages · **21**
+- LINE · **11**
+- Web push · **11**
+- Live notifications · **8**
+- KakaoTalk · **5**
+- Transactional email · **4**
+
+Thirteen channels is broad — broader than several specialists on slide 17. But **three are the product and ten are completeness**: email alone outweighs the next three combined. **So compete on the thin ones.** A prospect buying for KakaoTalk or LINE is buying five and eleven pages of documentation, not the platform email buyers get. One line on the drift: five of these ship with no marketing page, and Webhooks — fifth deepest — is one of them.
+
+**Say**
 
 > Thirteen channels are documented. That is broad, not narrow — I went in expecting the
 > opposite and the evidence killed it.
@@ -723,7 +1187,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > talking to each other**, which is exactly the seam this whole method looks for.
 
 ### 29 · Integrations
-*On screen:* Integrations · the Alloys network — **Wide network, one page deep**
+Integrations · the Alloys network — **Wide network, one page deep**
+
+**On screen**
+
+- **150+** — technology partners — their claim
+- **322** — partner documentation pages
+- **~810** — average words per partner page
+- **~2,708** — average words per developer-guide page
+
+The network is real and wide, but its documentation is **second-largest by page count and close to thinnest by words per page** — one short entry per partner. **So treat 150+ as a directory, not a depth claim: test the two integrations you actually need before believing it.**
+
+- **What is bought** — Delivery (Twilio, Infobip, SendGrid, SparkPost, SES), warehousing (Snowflake, Databricks, BigQuery), models (Anthropic, OpenAI, Google) — all from the sub-processor list
+- **What is built** — The ingestion layer, Canvas, Liquid, the identity model, Currents, and the integration surface itself
+
+**Say**
 
 > Braze claims over a hundred and fifty technology partners, which they call Alloys.
 > That is their number and I have graded it as a claim.
@@ -742,7 +1220,22 @@ to say. Press **N** in the deck to read these beside the slide.
 > layer, Canvas, Liquid and the identity model are built.
 
 ### 30 · Infrastructure
-*On screen:* Infrastructure · the status page as a disclosure — **Fifteen clusters, seven subsystems — and one exception**
+Infrastructure · the status page as a disclosure — **Fifteen clusters, seven subsystems — and one exception**
+
+**On screen**
+
+*Diagram:* US ×9 · EU ×2 · JP 01 · KR 01 · ID 01 · AU 01
+15 clusters, 6 territories
+7 identical subsystems in every one
+one of the nine US clusters is the exception — slide 35
+
+***THE SEVEN SUBSYSTEMS, IDENTICAL IN EVERY CLUSTER***
+
+- Dashboard · SDK Data Collection · Data Processing · REST APIs · Outbound Messaging · Currents · Cloud Data-Ingestion
+
+The sub-processor disclosure lists AWS regions for the same six territories. **So data residency is available in six places and nowhere else — ask which cluster before the contract.**
+
+**Say**
 
 > The status page is an architecture disclosure Braze made by accident.
 
@@ -767,7 +1260,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > And US 08 is marked differently, because that is the next part.
 
 ### 31 · Analytics
-*On screen:* Analytics · what you can measure — **What you can measure**
+Analytics · what you can measure — **What you can measure**
+
+**On screen**
+
+- **36%** — of recent TrustRadius reviewers call reporting limited and unintuitive
+- **140** — G2 reviews tagged ‘Missing Features’
+- **27** — focused doc pages on the Global Control Group
+- **2am ET** — when your billing dashboard refreshes — daily, cached
+
+- **What is genuinely there** — Holdouts and a Global Control Group for incrementality, campaign and KPI endpoints, and a Snowflake data share that avoids copying data at all.
+- **What reviewers keep hitting** — “The out-of-the-box reporting still feels too basic unless you export raw data through paid add-ons like Currents.”
+
+**So ask a prospect what they report on today, and who builds it.** If the answer involves exporting to a warehouse, they are already paying for the add-on that fixes this.
+
+**Say**
 
 > Analytics is where the review corpus is most consistent, across panels that have nothing
 > to do with each other.
@@ -787,7 +1294,31 @@ to say. Press **N** in the deck to read these beside the slide.
 > around 2am Eastern.** The billing meter is not real-time either.
 
 ### 32 · The AI, honestly
-*On screen:* The AI · five independent lenses — **Bought recently, running on other people’s models**
+The AI · five independent lenses — **Bought recently, running on other people’s models**
+
+**On screen**
+
+- `2011–` **The platform** — segmentation, journeys, Liquid — a decade of it
+- `Jun 2025` **The engine, bought** — OfferFit, $303.2m, renamed Decisioning Studio
+- `Now` **The models, rented** — Anthropic, OpenAI and Google, named in their own disclosure
+
+***AND WHAT EACH LAYER MEASURES — FOCUSED DOC PAGES***
+
+- Email · **347**
+- Canvas · **249**
+- Segmentation · **242**
+- Recommendations · **73**
+- Decisioning Studio · **22**
+- Agents · **17**
+- Predictive Suite · **7**
+
+***LENSES 2–5***
+
+- **0 of 135 API endpoints** — 28 namespaces, none of them AI or decisioning
+- **Reviewers name copywriting** — Two G2 reviewers say the AI copy needs “a careful human hand”
+- **So the useful question is one line** — “Can I call your AI from my own systems?” Today the documented answer is no — which is what a data-science team needs to hear before they plan around it
+
+**Say**
 
 > This is the slide most likely to go wrong, so I am going to be careful.
 
@@ -844,8 +1375,25 @@ to say. Press **N** in the deck to read these beside the slide.
 > demonstration. And the genuinely useful question, which falls straight out of lens two, is
 > one line: **can I call your AI from my own systems?** Today the documented answer is no.
 
+
+## Part III — Strategy
+
+*Where the money goes, what is coming, what protects them.*
+
+**Deeper:** `deck/record/02-money.md` §2.3–2.4, `04-platform.md` §4.5.
+
 ### 33 · Part III: Strategy
-*On screen:* Part III — **Strategy**
+Part III — **Strategy**
+
+**On screen**
+
+- `01` Where seven years of revenue actually went
+- `02` What is provisioned that has not been announced
+- `03` What would survive a competitor doing the same thing
+
+*Audited, except where marked*
+
+**Say**
 
 > Part three. Three slides only, and the restraint is deliberate.
 
@@ -864,7 +1412,31 @@ to say. Press **N** in the deck to read these beside the slide.
 > not, and if you disagree with either list, that is the conversation worth having today.
 
 ### 34 · Where the money goes
-*On screen:* Seven audited years · where revenue goes — **Decelerating and getting more efficient at once**
+Seven audited years · where revenue goes — **Decelerating and getting more efficient at once**
+
+**On screen**
+
+***SALES & MARKETING AS A SHARE OF REVENUE***
+
+- FY2020 · **59.5%**
+- FY2022 · **53.4%**
+- FY2023 · **56.7%**
+- FY2024 · **52.4%**
+- FY2025 · **47.6%**
+- FY2026 · **44.3%**
+
+***REVENUE GROWTH OVER THE SAME YEARS***
+
+- FY2021 · **55.9%**
+- FY2022 · **58.5%**
+- FY2023 · **49.3%**
+- FY2024 · **32.7%**
+- FY2025 · **25.8%**
+- FY2026 · **24.4%**
+
+The expectation was decelerating growth *propped up by* sales spend. The evidence says the opposite: **S&M fell more than twelve points as a share of revenue since FY2023 while growth halved**, and operating cash flow has been positive and rising since FY2024. **So do not plan around them running out of money, or buying growth back.** They can fund a price fight, and the loss line will not stop them.
+
+**Say**
 
 > Seven audited years of where the money goes, and this slide killed the hypothesis I
 > wrote before I read anything.
@@ -888,7 +1460,19 @@ to say. Press **N** in the deck to read these beside the slide.
 > The loss is real; it is mostly equity, and shareholders are carrying it.
 
 ### 35 · What comes next
-*On screen:* Unannounced · three sources, one answer — **One instance is not on the same cloud**
+Unannounced · three sources, one answer — **One instance is not on the same cloud**
+
+**On screen**
+
+- **1 · Two company documents** — The sub-processor list names **Amazon and Google**. The 10-K names **Amazon and Rackspace**. **Neither names Microsoft.**
+- **2 · Their own documentation** — Every address Braze lists for **US-08 is registered to Microsoft**. Every other instance is Amazon. Checked against ARIN.
+- **3 · Certificate transparency** — 50 hosts sit on aze region codes matching no AWS identifier, where every other code does — including sdk-us08.
+
+***HOW TO SAY THIS — AND HOW NOT TO***
+
+A hosting arrangement may sit outside a sub-processor listing for reasons not visible from outside, and saying they failed to disclose would be a legal conclusion this evidence does not support. **So put it to them as a question: which entity operates my instance?**
+
+**Say**
 
 > This is the finding nobody else in your market will have, and it is also the one I am
 > most careful about.
@@ -941,7 +1525,20 @@ to say. Press **N** in the deck to read these beside the slide.
 > why it is the first thing on the next-steps slide.
 
 ### 36 · What protects them
-*On screen:* Defensibility · the so-what test — **Three things a competitor cannot copy**
+Defensibility · the so-what test — **Three things a competitor cannot copy**
+
+**On screen**
+
+- **Contracted revenue, not pipeline** — **$1,033.0m of remaining performance obligation** — 1.40× current revenue, already signed. You cannot displace what is not up for renewal. This is the strongest of the three.
+- **Ten years of streaming plumbing** — MongoDB, Snowflake, Kafka and Redis under fifteen clusters, with a decade of incidents to show it holds. Copyable in principle; slow in practice.
+- **Marketer independence from engineering** — The thing reviewers actually praise: changing a journey without filing a ticket. That is a workflow habit, and habits are stickier than features.
+
+***AND WHAT DOES NOT PROTECT THEM***
+
+- **The AI** — Bought for $303.2m, running on models anyone can rent, with no API of its own. A feature race, not a moat.
+- **The channel roster** — Broad and well built — and matched by several of the five specialists buyers shortlist them against but they never name.
+
+**Say**
 
 > What actually protects them, under the "so what would a competitor do about it" test.
 
@@ -962,8 +1559,27 @@ to say. Press **N** in the deck to read these beside the slide.
 > If I were briefing a sales team, I would say: do not attack the AI, attack the renewal
 > calendar and the reporting.
 
+
+## Part IV — Open questions
+
+*What is unresolved, what went the other way, and what to do next.*
+
+**Deeper:** `deck/record/08-open.md` — the open questions, the corrections log, the hypothesis ledger.
+
 ### 37 · Part IV: Open questions
-*On screen:* Part IV — **Open questions**
+Part IV — **Open questions**
+
+**On screen**
+
+- `01` One hard question, answered properly
+- `02` A decade of reliability, measured rather than claimed
+- `03` The hypotheses that died in Braze’s favour
+- `04` What public sources could not answer, and what would close it
+- `05` What to remember
+
+*Where the evidence runs out, this says so*
+
+**Say**
 
 > Part four is the part most competitor decks do not have, and it is the reason to trust
 > the other three.
@@ -981,7 +1597,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > had named. That is what a well-written backlog does.
 
 ### 38 · Deep dive: how real-time is it
-*On screen:* Deep dive — **“Is it real-time?” — answered properly**
+Deep dive — **“Is it real-time?” — answered properly**
+
+**On screen**
+
+- `ASK` **Which path?** — The answer differs by a factor of hundreds
+- `SDK / API` **Near-real-time** — Their words, with ‘async processing’ attached
+- `WAREHOUSE` **15 minutes, floor** — “Not real-time”, three times over
+- `FASTER?` **Not self-serve** — “Contact your customer success manager”
+- `EXPORT` **5 minutes** — And Currents is a paid add-on
+
+- **Why this is the question that matters** — Most enterprise buyers keep customer data in a warehouse. For them the honest answer is fifteen minutes, and it is not a setting they can change.
+- **Why it is not a gotcha** — Braze publishes this table themselves, and the SDK path genuinely is near-real-time. One word, two architectures — not a false claim.
+- **What to actually ask them** — “Which ingestion path will *my* data take, and what is the latency on it?” **The answer is in their own documentation before the meeting.**
+
+**Say**
 
 > The deep dive. I picked this after the research, from what turned out to be both
 > contested and answerable.
@@ -1030,7 +1660,28 @@ to say. Press **N** in the deck to read these beside the slide.
 > for us than any claim we could make.
 
 ### 39 · Reliability, measured
-*On screen:* The operational record · a decade of it, public — **A decade of reliability, measured**
+The operational record · a decade of it, public — **A decade of reliability, measured**
+
+**On screen**
+
+- 2019 · **49**
+- 2020 · **57**
+- 2021 · **48**
+- 2022 · **39**
+- 2023 · **60**
+- 2024 · **43**
+- 2025 · **27**
+- 2026 to Aug · **35**
+
+- **79 min** — median incident duration
+- **29.6%** — of non-maintenance incidents were major or critical
+- **63 v 27** — Dashboard incidents vs Outbound Messaging
+- **97.3%** — of 845 unsolicited public issues closed — median 11 days
+- **9 of 9** — SDK repos shipped within 13 days of capture
+
+**The caveat belongs on the slide, not only in the notes:** 2026 stands at 35 through August, roughly **double the 2025 monthly rate**. One year is not a trend, and none is claimed. And **never compare this to a vendor who publishes nothing.**
+
+**Say**
 
 > A decade of incidents, because they publish a status page and most vendors do not.
 
@@ -1057,7 +1708,17 @@ to say. Press **N** in the deck to read these beside the slide.
 > nothing.** Braze looks worse than a silent vendor purely by being transparent.
 
 ### 40 · Where the evidence went their way
-*On screen:* The hypotheses that died · in Braze’s favour — **Three things we expected to find, and did not**
+The hypotheses that died · in Braze’s favour — **Three things we expected to find, and did not**
+
+**On screen**
+
+- **H1 · “Growth is decelerating while sales spend holds”** — **Killed.** Growth did decelerate — and sales and marketing fell **from 56.7% of revenue to 44.3%** over the same period, its lowest in the seven-year series. Braze is decelerating *and* getting more efficient. Operating cash flow turned positive in FY2024 and has grown every year since.
+- **H4 · “Some supported platforms are effectively unmaintained”** — **Killed.** **All nine SDK repositories** that publish releases had shipped within 13 days of capture. The one archived repo, Unreal, has had its documentation removed too — so the marketing and the maintenance record agree. One soft spot: braze-roku-sdk, 181 days idle with 38 Roku doc pages still live.
+- **H9 · “Incident rate has risen with scale”** — **Killed.** Incidents peaked at 60 in 2023 and fell to **27 in 2025**, the quietest full year on the status page, while revenue grew 7.7×. Caveat attached: 2026 runs at about double the 2025 monthly rate.
+
+**Slide 2 promised this.** Ten hypotheses were written before any source was read; four came back wrong. A set that all confirmed would have meant they were written to confirm.
+
+**Say**
 
 > I want this slide in the deck more than almost any other, and it is the one that would
 > have been cut first.
@@ -1096,7 +1757,16 @@ to say. Press **N** in the deck to read these beside the slide.
 > we said so.
 
 ### 41 · What we could not answer
-*On screen:* The honest residue — **What we could not answer**
+The honest residue — **What we could not answer**
+
+**On screen**
+
+- **Does satisfaction fall with customer size?** — The one hypothesis we could not test. **All three review sites paywall that breakdown.** *Closed by:* paid panel access
+- **What else is in the certificate estate?** — The host list is **partial** — 833 hosts through a rate-limited fallback. Everything found stands; **nothing is claimed about what is absent**. *Closed by:* an API token
+- **Can the customer roster be checked independently?** — The only roster outside the 10-K is **178 self-published stories** — marketing, not a sample. Independent detection was **not attempted**. *Closed by:* tag crawls, or job ads naming Braze in the stack
+- **Actual pricing, and why the export limit was cut** — No vendor publishes a rate card, and the 10× cut to the profile-lookup limit is documented without explanation. *Closed by:* a procurement award or a customer contract
+
+**Say**
 
 > Four things I could not answer, stated plainly.
 
@@ -1131,7 +1801,19 @@ to say. Press **N** in the deck to read these beside the slide.
 > a gap and a mistake.
 
 ### 42 · What to research next
-*On screen:* Backlog · prioritised — **Four questions worth the next week**
+Backlog · prioritised — **Four questions worth the next week**
+
+**On screen**
+
+- **1 · Ask about US-08** — The highest-value single answer available. **Route:** the DPA schedule a customer already receives, or ask them.
+- **2 · Buy one panel’s segment data** — It closes the only unresolved hypothesis, and it is the question your sales team asks first. **Route:** paid G2 or Gartner access.
+
+- **3 · Detect the customer base independently** — The only roster outside the audited count is 178 stories Braze chose to publish. **Route:** tag crawls or job ads naming the stack. Not cheap.
+- **4 · Re-run this in ninety days** — Every number here is reproducible by script. Watch the gross-margin decline and the 2026 incident rate.
+
+**So the first two are worth a week and would change what we say; the last is worth an hour a quarter.** The full backlog is in docs/QUESTIONS.md.
+
+**Say**
 
 > If you gave me another week, this is the order.
 
@@ -1157,7 +1839,21 @@ to say. Press **N** in the deck to read these beside the slide.
 > and whether the 2026 incident rate settles.
 
 ### 43 · Close
-*On screen:* Close — **One thing to remember**
+Close — **One thing to remember**
+
+**On screen**
+
+**Their strongest asset is a contract, not a capability.**
+
+A billion dollars of next year is already signed, so most of the base is not winnable this year. They are growing slower and spending less to do it, so they can fund a fight. And the capability they paid $303.2m for runs on models anyone can rent, with no API of its own. **So compete on the renewal date and on the things they bought rather than built — not on the demo.**
+
+- **1,352** — documentation pages read
+- **451** — incidents
+- **845** — public issues
+- **17** — sub-processors
+- **7** — audited years
+
+**Say**
 
 > One thing to remember.
 
